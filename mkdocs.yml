@@ -6,3 +6,6 @@ nav:
   - About: about.md
 
 theme: flatly
+
+extra_css:
+  - style.css

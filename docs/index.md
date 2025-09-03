@@ -4,5 +4,5 @@ The MerMEId community is the central location for active exchange on all questio
 
 For testing of the latest beta version visit [here](https://adwmainz.pages.gitlab.rlp.net/nfdi4culture/cdmd/mermeid/), to get started you can read a short [How To] .
 
-[How To]: getting-started.md
+[How To]: getting_started.md
 

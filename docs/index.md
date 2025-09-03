@@ -6,3 +6,8 @@ For testing of the latest beta version visit [here](https://adwmainz.pages.gitla
 
 [How To]: getting_started.md
 
+<div class="text-center">
+<a href="https://adwmainz.pages.gitlab.rlp.net/nfdi4culture/cdmd/mermeid/" class="btn btn-primary" role="button">Try MerMEId</a>
+<a href="getting_started/" class="btn btn-primary" role="button">Getting Started</a>
+</div>
+

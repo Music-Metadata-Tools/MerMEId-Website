@@ -2,6 +2,8 @@ site_name: MerMEId
 
 nav:
   - Home: index.md
+  - Getting Started: getting_started.md
+  - Workshops: workshops.md
   - Community: community.md
   - About: about.md
 

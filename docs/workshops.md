@@ -24,3 +24,20 @@
 | ------ | ------ |
 | 9:00-9:30 | Git introduction for MerMEId users |
 | 9:30-12:00 | Practical MerMEId workshop |
+
+## Hands-on session
+
+- List of available test data repositories and credentials:
+
+| Repository[^1]     | Token                                               | User          |
+| ---------------    |:---------------------------------------------------:|:-------------:|
+| workshop-user1.git | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    | user1         |
+
+[^1]: Add https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/ to get the full link.
+
+
+### Part 1: Clone remote GitLab data repository
+
+### Part 2: Create a test entity and push it to the remote reporitory
+
+### Part 3: Create specific entities and connect them together

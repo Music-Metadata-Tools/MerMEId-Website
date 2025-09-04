@@ -27,17 +27,21 @@
 
 ## Hands-on session
 
-- List of available test data repositories and credentials:
+- List of available test data repositories and credentials (add https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/ to get the full URL):
 
-| Repository[^1]     | Token                                               | User          |
+| Repository URL     | Token                                               | User          |
 | :---               | :---                                                | :---          |
 | workshop-user1.git | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    | user1         |
 
-[^1]: Add https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/ to get the full link.
-
-
 ### Part 1: Clone remote GitLab data repository
 
+- Copy your data repository and credentials from the table above.
+- Follow steps in *Getting Started* &rarr; *Adding a Repository*.
+
 ### Part 2: Create a test entity and push it to the remote reporitory
+
+- Follow steps in *Getting Started* &rarr; *Creating New Entities*. Choose a simple entity, like e.g. a Person or a Place. Insert data in the form. Press the *Save* button.
+- Follow steps in *Getting Started* &rarr; *Sharing Changes*.
+- Optional: go to your remote GitLab repository and check if the entity is there.
 
 ### Part 3: Create specific entities and connect them together

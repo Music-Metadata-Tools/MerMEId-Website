@@ -30,7 +30,7 @@
 - List of available test data repositories and credentials:
 
 | Repository[^1]     | Token                                               | User          |
-| ---------------    |:---------------------------------------------------:|:-------------:|
+| :---               | :---                                                | :---          |
 | workshop-user1.git | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    | user1         |
 
 [^1]: Add https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/ to get the full link.

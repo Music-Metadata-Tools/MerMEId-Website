@@ -9,5 +9,8 @@ nav:
 
 theme: flatly
 
+markdown_extensions:
+  - footnotes
+
 extra_css:
   - style.css

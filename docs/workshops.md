@@ -15,6 +15,7 @@
 | 14:30–15:00 | MerMEIding project and research data |
 | 15:00–15:30 | The new MerMEId (1) |
 | 15:30–16:00 | Coffee break |
+| 16:00-16:30 | The new MerMEId (2) |
 | 16:30–17:30 | Discussion of the preceding presentations | 
 
 ### Sunday, September 14th

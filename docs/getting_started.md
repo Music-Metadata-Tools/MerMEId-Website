@@ -42,6 +42,8 @@
 - The editor will warn you if you have unsaved or unshared changes. If this is the case, you need to either share your changes with the remote repository first, or undo your changes before synchronizing with the remote repository.
 
 ## MerMEId buttons vs. Git commands
+
+| MerMEid button           | Git command        |
 | :---                     | :---               |
 | *Add repository*         |                    |
 | *Synchronize repository* |                    |

@@ -40,3 +40,11 @@
 ## Repository Synchronization
 - Click the "Synchronize repository" button (arrow-clockwise icon) to pull latest changes
 - The editor will warn you if you have unsaved or unshared changes. If this is the case, you need to either share your changes with the remote repository first, or undo your changes before synchronizing with the remote repository.
+
+## MerMEId buttons vs. Git commands
+| :---                     | :---               |
+| *Add repository*         |                    |
+| *Synchronize repository* |                    |
+| *Save*                   |                    |
+| *Share files*            |                    |
+| *Unstage selected files* |                    |

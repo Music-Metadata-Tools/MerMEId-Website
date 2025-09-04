@@ -33,15 +33,15 @@
 | :---               | :---                                                | :---          |
 | workshop-user1.git | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    | user1         |
 
-### Part 1: Clone remote GitLab data repository
+#### Part 1: Clone remote GitLab data repository
 
 - Copy your data repository and credentials from the table above.
 - Follow steps in *Getting Started* &rarr; *Adding a Repository*.
 
-### Part 2: Create a test entity and push it to the remote reporitory
+#### Part 2: Create a test entity and push it to the remote reporitory
 
 - Follow steps in *Getting Started* &rarr; *Creating New Entities*. Choose a simple entity, like e.g. a Person or a Place. Insert data in the form. Press the *Save* button.
 - Follow steps in *Getting Started* &rarr; *Sharing Changes*.
 - Optional: go to your remote GitLab repository and check if the entity is there.
 
-### Part 3: Create specific entities and connect them together
+#### Part 3: Create specific entities and connect them together

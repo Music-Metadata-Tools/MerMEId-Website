@@ -25,6 +25,8 @@
 | 9:00-9:30 | Git introduction for MerMEId users |
 | 9:30-12:00 | Practical MerMEId workshop |
 
+<br><br>
+
 ## Hands-on session
 
 List of available test data repositories and credentials:
@@ -40,13 +42,15 @@ List of available test data repositories and credentials:
 
 #### Part 2: Create a test entity and push it to the remote repository
 
-- Follow steps in *Getting Started* &rarr; *Creating New Entities*. Choose a simple entity, like e.g. a Person or a Place. Insert data in the form. Press the *Save* button.
+- Follow steps in *Getting Started* &rarr; *Creating New Entities*. Choose a simple entity, like e.g. a _Person_ or a _Place_. Insert data in the form. Press the *Save* button.
 - Follow steps in *Getting Started* &rarr; *Sharing Changes*.
 - Optional: go to your remote GitLab repository and check if the entity is there.
 
 #### Part 3: Create specific entities and connect them together
 
 Create, save, and share the following entities using the information provided in the code snippets, descriptions, or screenshots. Feel free to enter additional information, if you want, to better explore the data model and the corresponding forms.
+When an entity is shared (i.e. pushed to the remote repository) a GitLab pipeline is triggered to generate lists of entities (in Turtle format) published via GitLab Pages. It might be worthy to look at them, e.g. to check the correspondence between IRIs and labels. Lists URLs follow the structure *Repository URL* (without .git) + */datasets/* + entity type (as in the editor tree) + *.ttl*. For example: https://adwmainz.pages.gitlab.rlp.net/nfdi4culture/cdmd/project_templates/workshop-user1/datasets/persons.ttl
+
 
 - **Entity 1**: **_Place_**, *Berlin*
 ```

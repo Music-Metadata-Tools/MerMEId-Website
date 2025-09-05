@@ -1,5 +1,7 @@
 # Trieste, September 2025
 
+<br><br>
+
 ## Schedule
 
 ### Saturday, September 13th
@@ -35,6 +37,8 @@ List of available test data repositories and credentials:
 | :---               | :---                                                | :---          |
 | [workshop-user1.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user1.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    | Carlo         |
 
+<br><br>
+
 #### Part 1: Clone remote GitLab data repository
 
 - Copy your data repository and credentials from the table above.
@@ -49,10 +53,10 @@ List of available test data repositories and credentials:
 #### Part 3: Create specific entities and connect them together
 
 Create, save, and share the following entities using the information provided in the code snippets, descriptions, or screenshots. Feel free to enter additional information, if you want, to better explore the data model and the corresponding forms.
-When an entity is shared (i.e. pushed to the remote repository) a GitLab pipeline is triggered to generate lists of entities (in Turtle format) published via GitLab Pages. It might be worthy to look at them, e.g. to check the correspondence between IRIs and labels. Lists URLs follow the structure *Repository URL* (without .git) + */datasets/* + entity type (as in the editor tree) + *.ttl*. For example: https://adwmainz.pages.gitlab.rlp.net/nfdi4culture/cdmd/project_templates/workshop-user1/datasets/persons.ttl
+When an entity is shared (i.e. pushed to the remote repository) a GitLab pipeline is triggered to generate lists of entities (in Turtle format) published via GitLab Pages. It might be worthy to look at them, e.g. to check the correspondence between IRIs and labels. Lists URLs follow the structure: *Repository URL* (without .git) + */datasets/* + *entity type* (as in the editor tree) + *.ttl*. For example: https://adwmainz.pages.gitlab.rlp.net/nfdi4culture/cdmd/project_templates/workshop-user1/datasets/persons.ttl
 
 
-- **Entity 1**: **_Place_**, *Berlin*
+- **Entity 1**: **_Place_**, *Berlin*. Create a place entity for the city Berlin. Use the data provided in the XML snippet below.
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <place xml:id="urn:uuid:places/xxxxxxxxxx">
@@ -61,7 +65,7 @@ When an entity is shared (i.e. pushed to the remote repository) a GitLab pipelin
 </place>
 ```
 
-- **Entity 2**: **_Person_**, *Georg Philipp Telemann*
+- **Entity 2**: **_Person_**, *Georg Philipp Telemann*. Create a person entity for the composer Georg Philipp Telemann. Use the data provided in the Turtle snippet below.
 ```
 <urn:uuid:xxxxxxxxxx> schema:familyName "Telemann";
     schema:givenName "Georg Philipp";

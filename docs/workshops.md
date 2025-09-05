@@ -46,7 +46,19 @@
 
 #### Part 3: Create specific entities and connect them together
 
-* Entity 1: Person, Georg Philipp Telemann
+Create, save, and share the following entities using the information provided in the code snippets, descriptions, or screenshots. Feel free to enter additional information, if you want, to better explore the data model and the corresponding forms.
+
+- Entity 1: Place, *Berlin*
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<place xml:id="urn:uuid:places/xxxxxxxxxx">
+    <placeName>Berlin</placeName>
+    <idno>https://www.geonames.org/2950159</idno>
+</place>
+```
+
+- Entity 2: Person, *Georg Philipp Telemann*
 
 ```
 <urn:uuid:xxxxxxxxxx> schema:familyName "Telemann";
@@ -55,3 +67,13 @@
     schema:gender "male";
     a melod:Person.
 ```
+
+- Entity 3: Performance event. Create a performance event dated January 1st, 1751, in Hamburg. The description of the performance date is *Neujahr* (New Year's Day) and this date is known with *high* certainty. Be aware that the city *Hamburg* is not yet in the data set und you have first to create it. The entity *Hamburg* should appear in the drop-down lists shortly after beeing shared.
+
+- Entity 4: Expression (component), *Chor [Dictum] ('Halleluja, lobet den Namen des Herrn')*. This is the first of seven movements of the expression *Halleluja, lobet den Namen des Herrn* (urn:uuid:2293419636). Insert the label *Chor [Dictum]* and specify the completion status as *Complete*. Than move to the *Music* section and encode music information taken from the screenshot below: Key, Meter, Instrumentation (choose *1., 2., B. ad lib., 3 Trp., Pk., 2 V., Va. ad lib., B.c*), PAE Incipit (@clef:G-2@keysig:bBEA@timesig:c@data:4-''EED/EEED/2E'4B''8CD/4EDC{8DE}/4FED) and text incipit.
+
+![Example Expression](img/Expression-Component.png)
+
+- Entity 5: Expression, *Halleluja, lobet den Namen des Herrn*. Open the already existent main expression *urn:uuid:2293419636*, go to the field *Movements/Sections* in the *Music* section and add the expression component you just created before. Afterwards, add the performance created for January 1st, 1751, in Hamburg.
+
+- Entity 6: Work, *Halleluja, lobet den Namen des Herrn*. Open the already existent work *urn:uuid:555068543*. Go to the section *Relations* and set the relation with the corresponding expression *urn:uuid:2293419636* as well as the relation *is part of* with the main work *Musicalisches Lob Gottes* (urn:uuid:1031334055).

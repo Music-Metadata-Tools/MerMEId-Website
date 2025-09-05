@@ -27,11 +27,11 @@
 
 ## Hands-on session
 
-- List of available test data repositories and credentials (add https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/ to get the full URL):
+List of available test data repositories and credentials:
 
 | Repository URL     | Token                                               | User          |
 | :---               | :---                                                | :---          |
-| workshop-user1.git | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    | user1         |
+| (workshop-user1.git)[https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user1.git] | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    | Carlo         |
 
 #### Part 1: Clone remote GitLab data repository
 
@@ -49,7 +49,6 @@
 Create, save, and share the following entities using the information provided in the code snippets, descriptions, or screenshots. Feel free to enter additional information, if you want, to better explore the data model and the corresponding forms.
 
 - Entity 1: Place, *Berlin*
-
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <place xml:id="urn:uuid:places/xxxxxxxxxx">
@@ -59,7 +58,6 @@ Create, save, and share the following entities using the information provided in
 ```
 
 - Entity 2: Person, *Georg Philipp Telemann*
-
 ```
 <urn:uuid:xxxxxxxxxx> schema:familyName "Telemann";
     schema:givenName "Georg Philipp";

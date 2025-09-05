@@ -53,7 +53,7 @@ List of available test data repositories and credentials:
 #### Part 3: Create specific entities and connect them together
 
 Create, save, and share the following entities using the information provided in the code snippets, descriptions, or screenshots. Feel free to enter additional information, if you want, to better explore the data model and the corresponding forms.
-When an entity is shared (i.e. pushed to the remote repository) a GitLab pipeline is triggered to generate lists of entities (in Turtle format) published via GitLab Pages. It might be worthy to look at them, e.g. to check the correspondence between IRIs and labels. Lists URLs follow the structure: *Repository URL* (without .git) + */datasets/* + *entity type* (as in the editor tree) + *.ttl*. For example: https://adwmainz.pages.gitlab.rlp.net/nfdi4culture/cdmd/project_templates/workshop-user1/datasets/persons.ttl
+When an entity is shared (i.e. pushed to the remote repository) a GitLab pipeline is triggered to generate lists of entities (in Turtle format) published via GitLab Pages. It might be worthy to look at them to check the correspondence between IRIs and labels. Example list URL:  [https://adwmainz.pages.gitlab.rlp.net/nfdi4culture/cdmd/project_templates/workshop-user1/datasets/persons.ttl](https://adwmainz.pages.gitlab.rlp.net/nfdi4culture/cdmd/project_templates/workshop-user1/datasets/persons.ttl) (change repository name (*workshop-user1*) and entity name (*persons*) according to your purpose).
 
 
 - **Entity 1**: **_Place_**, *Berlin*. Create a place entity for the city Berlin. Use the data provided in the XML snippet below.

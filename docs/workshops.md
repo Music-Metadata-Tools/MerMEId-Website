@@ -46,6 +46,12 @@
 
 #### Part 3: Create specific entities and connect them together
 
-- Entity 1: Person, Georg Philipp Telemann
+* Entity 1: Person, Georg Philipp Telemann
 
-![Example Person](img/Person-Telemann.png)
+```
+<urn:uuid:xxxxxxxxxx> schema:familyName "Telemann";
+    schema:givenName "Georg Philipp";
+    owl:sameAs <http://d-nb.info/gnd/11862119X>;
+    schema:gender "male";
+    a melod:Person.
+```

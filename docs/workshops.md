@@ -45,3 +45,7 @@
 - Optional: go to your remote GitLab repository and check if the entity is there.
 
 #### Part 3: Create specific entities and connect them together
+
+- Entity 1: Person, Georg Philipp Telemann
+
+![Example Person](img/Person-Telemann.png)

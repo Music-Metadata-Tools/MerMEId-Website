@@ -29,15 +29,15 @@
 
 <br><br>
 
-## Useful links
+## Useful links and materials
 
 - Make your proposal for a name of the new MerMEId [here](https://app.wooclap.com/MDZRIL)!
 
-### Documentation
+### W3C Documentation
 
-- [RDF W3C documentation](https://www.w3.org/TR/rdf11-concepts/)
-- [SHACL W3C documentation](https://www.w3.org/TR/shacl/)
-- [Turtle W3C documentation](https://www.w3.org/TR/turtle/)
+- [RDF](https://www.w3.org/TR/rdf11-concepts/)
+- [SHACL](https://www.w3.org/TR/shacl/)
+- [Turtle](https://www.w3.org/TR/turtle/)
 
 ### Ontologies
 

@@ -35,7 +35,6 @@
 
 ### Documentation
 
-- [SHACL Form Generator](https://ulb-darmstadt.github.io/shacl-form/#intro)
 - [RDF W3C documentation](https://www.w3.org/TR/rdf11-concepts/)
 - [SHACL W3C documentation](https://www.w3.org/TR/shacl/)
 - [Turtle W3C documentation](https://www.w3.org/TR/turtle/)
@@ -54,6 +53,15 @@
 - [Place](https://examples-ttl-to-html-f7aa2e.pages.gitlab.rlp.net/place-example.html)
 - [Work](https://examples-ttl-to-html-f7aa2e.pages.gitlab.rlp.net/work-example.html)
 - [Expression](https://examples-ttl-to-html-f7aa2e.pages.gitlab.rlp.net/expression-example.html)
+
+### SHACL-form examples
+
+- [SHACL Form Generator](https://ulb-darmstadt.github.io/shacl-form/#intro)
+    - [Example 1](downloads/shacl1.shacl)
+    - [Example 2](downloads/shacl2.shacl)
+    - [Example 3](downloads/shacl3.shacl)
+    - [Example 4](downloads/shacl4.shacl)
+    - [Example 5](downloads/shacl5.shacl)
 
 <br><br>
 

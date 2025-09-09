@@ -7,7 +7,9 @@ nav:
   - Community: community.md
   - About: about.md
 
-theme: flatly
+theme:
+  name: flatly
+  custom_dir: custom_theme
 
 markdown_extensions:
   - footnotes

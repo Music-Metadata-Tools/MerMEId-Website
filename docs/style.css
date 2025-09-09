@@ -24,7 +24,7 @@ h2 {
     margin-left: auto;
 }
 
-body > footer > * {
+footer > * {
     color: #ffffff;
     display: flex;
     justify-content: space-between;
@@ -109,7 +109,7 @@ span.footer {
 
 /* Adjust responsive design */
 @media only screen and (max-width: 900px) {
-    body > footer > * {
+    footer > * {
         flex-direction: column;
         gap: 1.5rem;
         padding: 1rem;

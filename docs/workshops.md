@@ -33,18 +33,20 @@
 
 - Make your proposal for a name of the new MerMEId [here](https://app.wooclap.com/MDZRIL)!
 
-- [SHACL Form Generator](https://ulb-darmstadt.github.io/shacl-form/#intro)
+### Documentation
 
+- [SHACL Form Generator](https://ulb-darmstadt.github.io/shacl-form/#intro)
 - [RDF W3C documentation](https://www.w3.org/TR/rdf11-concepts/)
 - [SHACL W3C documentation](https://www.w3.org/TR/shacl/)
 - [Turtle W3C documentation](https://www.w3.org/TR/turtle/)
+
+### Ontologies
 
 - [Schema.org](https://schema.org/)
 - [FRBRoo](https://erlangen-crm.org/efrbroo/)
 - [LRMoo](https://cidoc-crm.org/lrmoo/si-uselearn-lrmoo)
 - [CIDOC-CRM](https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html)
 - [DoReMus](https://data.doremus.org/ontology/)
-
 
 ### Visualization of example entities
 

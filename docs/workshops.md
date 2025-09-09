@@ -29,6 +29,19 @@
 
 <br><br>
 
+## Useful links
+
+- [SHACL Form Generator](https://ulb-darmstadt.github.io/shacl-form/#intro)
+
+### Visualization of example entities
+
+- [Person](https://examples-ttl-to-html-f7aa2e.pages.gitlab.rlp.net/person-example.html)
+- [Place](https://examples-ttl-to-html-f7aa2e.pages.gitlab.rlp.net/place-example.html)
+- [Work](https://examples-ttl-to-html-f7aa2e.pages.gitlab.rlp.net/work-example.html)
+- [Expression](https://examples-ttl-to-html-f7aa2e.pages.gitlab.rlp.net/expression-example.html)
+
+<br><br>
+
 ## Hands-on session
 
 List of available test data repositories and credentials:

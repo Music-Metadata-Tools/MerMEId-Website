@@ -37,7 +37,7 @@
 - [MEI](https://music-encoding.org/)
 - [MerMEId](https://mermeid.edirom.de/index.html) (previous version)
 - [MerMEId on GitHub](https://github.com/Edirom/MerMEId) (previous version)
-- Join the Slack channel of the MerMEId community [here](https://join.slack.com/t/music-encoding/shared_invite/zt-3d5izuduu-b3PBpvV5yd91YJhN1q7GvA)! (The link will expire in 30 days.)
+- Join the Slack channel of the MerMEId community [here](https://join.slack.com/t/music-encoding/shared_invite/zt-3d5izuduu-b3PBpvV5yd91YJhN1q7GvA)! (The link will expire in 30 days)
 
 ### W3C Documentation
 
@@ -60,12 +60,14 @@
     - [Example 2](downloads/1110017576.ttl)
     - [Example 3](downloads/1763520500.ttl)
     - [Example 4](downloads/3852205663.ttl)
+<br>
 
 - Visualization of example entities
     - [Person](https://examples-ttl-to-html-f7aa2e.pages.gitlab.rlp.net/person-example.html)
     - [Place](https://examples-ttl-to-html-f7aa2e.pages.gitlab.rlp.net/place-example.html)
     - [Work](https://examples-ttl-to-html-f7aa2e.pages.gitlab.rlp.net/work-example.html)
     - [Expression](https://examples-ttl-to-html-f7aa2e.pages.gitlab.rlp.net/expression-example.html)
+<br>
 
 - SHACL-form examples
     - Demo: [SHACL Form Generator](https://ulb-darmstadt.github.io/shacl-form/#intro)
@@ -74,8 +76,7 @@
     - [Example 3](downloads/shacl3.shacl)
     - [Example 4](downloads/shacl4.shacl)
     - [Example 5](downloads/shacl5.shacl)
-
-<br><br>
+<br>
 
 ## Hands-on session
 

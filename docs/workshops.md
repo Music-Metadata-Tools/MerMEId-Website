@@ -27,6 +27,7 @@
 | 9:00-9:30 | Git introduction for MerMEId users |
 | 9:30-12:00 | Practical MerMEId workshop |
 
+<br>
 <div class="proposal-section">
 <span>Do you have an idea for a name of the new MerMEId?</span>
 <a href="https://app.wooclap.com/MDZRIL" class="btn btn-primary" role="button">Add Your Proposal</a>
@@ -63,14 +64,14 @@
     - [Example 2](downloads/1110017576.ttl)
     - [Example 3](downloads/1763520500.ttl)
     - [Example 4](downloads/3852205663.ttl)
-<br>
+<br><br>
 
 - Visualization of example entities
     - [Person](https://examples-ttl-to-html-f7aa2e.pages.gitlab.rlp.net/person-example.html)
     - [Place](https://examples-ttl-to-html-f7aa2e.pages.gitlab.rlp.net/place-example.html)
     - [Work](https://examples-ttl-to-html-f7aa2e.pages.gitlab.rlp.net/work-example.html)
     - [Expression](https://examples-ttl-to-html-f7aa2e.pages.gitlab.rlp.net/expression-example.html)
-<br>
+<br><br>
 
 - SHACL-form examples
     - Demo: [SHACL Form Generator](https://ulb-darmstadt.github.io/shacl-form/#intro)
@@ -79,7 +80,7 @@
     - [Example 3](downloads/shacl3.shacl)
     - [Example 4](downloads/shacl3a.shacl)
     - [Example 5](downloads/shacl4.shacl)
-<br>
+<br><br>
 
 ## Hands-on session
 
@@ -108,8 +109,7 @@ List of available test data repositories and credentials:
 | [workshop-user19.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user19.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
 | [workshop-user20.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user20.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
 
-
-<br><br>
+<br>
 
 #### Part 1: Clone remote GitLab data repository
 

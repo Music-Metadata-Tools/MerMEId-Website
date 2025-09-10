@@ -31,7 +31,10 @@
 
 ## Useful links and materials
 
-- Make your proposal for a name of the new MerMEId [here](https://app.wooclap.com/MDZRIL)!
+- Make your proposal for a name of the new MerMEId [here](https://app.wooclap.com/MDZRIL)! 
+- [MEI](https://music-encoding.org/)
+- [MerMEId](https://mermeid.edirom.de/index.html) (previous version)
+- [MerMEId on GitHub](https://github.com/Edirom/MerMEId) (previous version)
 
 ### W3C Documentation
 
@@ -72,6 +75,26 @@ List of available test data repositories and credentials:
 | Repository URL     | Token                                               | User          |
 | :---               | :---                                                | :---          |
 | [workshop-user1.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user1.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    | Carlo         |
+| [workshop-user2.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user2.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
+| [workshop-user3.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user3.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
+| [workshop-user4.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user4.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
+| [workshop-user5.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user5.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
+| [workshop-user6.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user6.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
+| [workshop-user7.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user7.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
+| [workshop-user8.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user8.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
+| [workshop-user9.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user9.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
+| [workshop-user10.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user10.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
+| [workshop-user11.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user11.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
+| [workshop-user12.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user12.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
+| [workshop-user13.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user13.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
+| [workshop-user14.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user14.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
+| [workshop-user15.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user15.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
+| [workshop-user16.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user16.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
+| [workshop-user17.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user17.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
+| [workshop-user18.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user18.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
+| [workshop-user19.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user19.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
+| [workshop-user20.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user20.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
+
 
 <br><br>
 

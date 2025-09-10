@@ -41,7 +41,8 @@
 - [MEI](https://music-encoding.org/)
 - [MerMEId](https://mermeid.edirom.de/index.html) (previous version)
 - [MerMEId on GitHub](https://github.com/Edirom/MerMEId) (previous version)
-- Join the Slack channel of the MerMEId community [here](https://join.slack.com/t/music-encoding/shared_invite/zt-3d5izuduu-b3PBpvV5yd91YJhN1q7GvA)! (The link will expire in 30 days)
+
+<span style="display:inline-block;background:linear-gradient(90deg,#e0ffe0,#d0f0ff);color:#155799;font-weight:bold;font-size:1.3em;padding:0.7em 1em;border-radius:8px;margin-bottom:1em;border:2px solid #159957;">Join the Slack channel of the MerMEId community [here](https://join.slack.com/t/music-encoding/shared_invite/zt-3d5izuduu-b3PBpvV5yd91YJhN1q7GvA)!</span> (The link will expire in 30 days)
 
 ### W3C Documentation
 

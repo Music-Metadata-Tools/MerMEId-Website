@@ -34,6 +34,40 @@ h2 {
     margin-left: auto;
 }
 
+.proposal-section {
+    background: linear-gradient(90deg, #e0ffe0 0%, #d0f0ff 100%);
+    border: 2px solid #159957;
+    border-radius: 12px;
+    padding: 1.5em 1em;
+    margin: 2em 0;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(21,153,87,0.08);
+}
+
+.proposal-section span {
+    display: block;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #155799;
+    margin-bottom: 1em;
+}
+
+.proposal-section .btn-primary {
+    background: linear-gradient(120deg, #155799, #159957);
+    color: #fff !important;
+    border: none;
+    font-size: 1.1em;
+    padding: 0.7em 2em;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(21,87,153,0.10);
+    transition: background 0.2s;
+}
+
+.proposal-section .btn-primary:hover {
+    background: linear-gradient(120deg, #159957, #155799);
+    color: #fff !important;
+}
+
 footer {
     width: 100vw;
     background-color: #157878;

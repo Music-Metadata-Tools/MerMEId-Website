@@ -1,6 +1,6 @@
 # Trieste, September 2025
 
-<br><br>
+<br>
 
 ## Schedule
 
@@ -27,13 +27,16 @@
 | 9:00-9:30 | Git introduction for MerMEId users |
 | 9:30-12:00 | Practical MerMEId workshop |
 
-<br><br>
+<div class="proposal-section">
+<span>Do you have an idea for a name of the new MerMEId?</span>
+<a href="https://app.wooclap.com/MDZRIL" class="btn btn-primary" role="button">Add Your Proposal</a>
+</div>
+<br>
 
 ## Useful links and materials
 
 ### MerMEId and MEI
 
-- Make your proposal for a name of the new MerMEId [here](https://app.wooclap.com/MDZRIL)! 
 - [MEI](https://music-encoding.org/)
 - [MerMEId](https://mermeid.edirom.de/index.html) (previous version)
 - [MerMEId on GitHub](https://github.com/Edirom/MerMEId) (previous version)
@@ -74,8 +77,8 @@
     - [Example 1](downloads/shacl1.shacl)
     - [Example 2](downloads/shacl2.shacl)
     - [Example 3](downloads/shacl3.shacl)
-    - [Example 4](downloads/shacl4.shacl)
-    - [Example 5](downloads/shacl5.shacl)
+    - [Example 4](downloads/shacl3a.shacl)
+    - [Example 5](downloads/shacl4.shacl)
 <br>
 
 ## Hands-on session

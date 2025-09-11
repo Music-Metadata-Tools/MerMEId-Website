@@ -43,10 +43,10 @@
 
 ## MerMEId buttons vs. Git commands
 
-| MerMEid button           | Git command        |
-| :---                     | :---               |
-| *Add repository*         |                    |
-| *Synchronize repository* |                    |
-| *Save*                   |                    |
-| *Share files*            |                    |
-| *Unstage selected files* |                    |
+| MerMEid button           | Git command             |
+| :---                     | :---                    |
+| *Add repository*         | *git clone*             |
+| *Synchronize repository* | *gi pull*               |
+| *Save*                   | save file and *git add* |
+| *Share files*            | *git commit* and *git push* |
+| *Unstage selected files* | *git restore --staged" and "git restore" |

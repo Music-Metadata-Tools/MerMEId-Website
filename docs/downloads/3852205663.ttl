@@ -1,21 +1,21 @@
-@prefix rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#.
-@prefix melod: https://lod.academy/melod/vocab/ontology#.
-@prefix owl: http://www.w3.org/2002/07/owl#.
-@prefix schema: https://schema.org/.
-@prefix sh: http://www.w3.org/ns/shacl#.
-@prefix rdfs: http://www.w3.org/2000/01/rdf-schema#.
-@prefix dash: http://datashapes.org/dash#.
-@prefix xsd: http://www.w3.org/2001/XMLSchema#.
-@prefix terms: https://lod.academy/melod/vocab/terms#.
-@prefix dataset: https://adwmainz.pages.gitlab.rlp.net/nfdi4culture/cdmd/mermeid-sample-data/datasets/.
-@prefix dct: http://purl.org/dc/terms/.
-@prefix skos: http://www.w3.org/2004/02/skos/core#.
-@prefix cidoc: http://www.cidoc-crm.org/cidoc-crm/.
-@prefix sdo: https://schema.org/.
-@prefix mus: http://data.doremus.org/ontology#.
-@prefix efrbroo: https://erlangen-crm.org/efrbroo/.
-@prefix gndo: https://d-nb.info/standards/elementset/gnd#.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix melod: <https://lod.academy/melod/vocab/ontology#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix schema: <https://schema.org/>.
+@prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix dash: <http://datashapes.org/dash#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix terms: <https://lod.academy/melod/vocab/terms#>.
+@prefix dataset: <https://adwmainz.pages.gitlab.rlp.net/nfdi4culture/cdmd/project_templates/workshop-user1/datasets/>.
+@prefix dct: <http://purl.org/dc/terms/>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/>.
+@prefix sdo: <https://schema.org/>.
+@prefix mus: <http://data.doremus.org/ontology#>.
+@prefix efrbroo: <https://erlangen-crm.org/efrbroo/>.
+@prefix gndo: <https://d-nb.info/standards/elementset/gnd#>.
 
 <urn:uuid:institutions/3852205663> sdo:name "Conservatorio di Musica Giuseppe Tartini";
-    owl:sameAs https://d-nb.info/gnd/1244230-6;
+    owl:sameAs <https://d-nb.info/gnd/1244230-6>;
     a melod:Institution.

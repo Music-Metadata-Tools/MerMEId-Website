@@ -49,4 +49,4 @@
 | *Synchronize repository* | *gi pull*               |
 | *Save*                   | save file and *git add* |
 | *Share files*            | *git commit* and *git push* |
-| *Unstage selected files* | *git restore --staged" and "git restore" |
+| *Unstage selected files* | *git restore --staged* and *git restore* |

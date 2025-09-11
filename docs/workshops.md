@@ -109,6 +109,8 @@ List of available test data repositories and credentials:
 | [workshop-user18.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user18.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
 | [workshop-user19.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user19.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
 | [workshop-user20.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user20.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
+| [workshop-user21.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user21.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
+| [workshop-user22.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user22.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
 
 <br>
 

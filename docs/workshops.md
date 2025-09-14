@@ -90,19 +90,19 @@ List of available test data repositories and credentials:
 | Repository URL     | Token                                               | User          |
 | :---               | :---                                                | :---          |
 | [workshop-user1.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user1.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    | Carlo         |
-| [workshop-user2.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user2.git) | 5DkDIB7UYLNHig4STsQ4XG86MQp1Onlkcgk.01.0z0djkeg4    |  |
-| [workshop-user3.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user3.git) | VXSxmeevMLQHsYacHSehUG86MQp1OnlkdQk.01.0z1pzlnn5    |  |
-| [workshop-user4.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user4.git) | laVI8RRCkJD6ohtzBvDyeG86MQp1Onlkdgk.01.0z0csxl51    |  |
-| [workshop-user5.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user5.git) | GiaJYjFLemfvGsntSTY4BG86MQp1Onlkdwk.01.0z1fwig8a    |  |
-| [workshop-user6.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user6.git) | KoiCsQWJfCjPAf-UCLFv0286MQp1OnlkeAk.01.0z109nl4q    |  |
-| [workshop-user7.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user7.git) | IPjIB27qFM2SsqXZ3e8s3m86MQp1OnlkeQk.01.0z0d26xn9    |  |
-| [workshop-user8.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user8.git) | eOnSNpecy8SCNBl0VwQ0OG86MQp1Onlkegk.01.0z07sozqv    |  |
-| [workshop-user9.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user9.git) | HLVMmCpmQZRux5i9x_PZ8m86MQp1OnllMQk.01.0z1wiee0f    |  |
-| [workshop-user10.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user10.git) | 9BV2c6XKj2ZV-_n9ykGwfG86MQp1OnllMgk.01.0z09yh0mq    |  |
+| [workshop-user2.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user2.git) | 5DkDIB7UYLNHig4STsQ4XG86MQp1Onlkcgk.01.0z0djkeg4    | Federica |
+| [workshop-user3.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user3.git) | VXSxmeevMLQHsYacHSehUG86MQp1OnlkdQk.01.0z1pzlnn5    | Sofia |
+| [workshop-user4.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user4.git) | laVI8RRCkJD6ohtzBvDyeG86MQp1Onlkdgk.01.0z0csxl51    | Arnulf |
+| [workshop-user5.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user5.git) | GiaJYjFLemfvGsntSTY4BG86MQp1Onlkdwk.01.0z1fwig8a    | David |
+| [workshop-user6.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user6.git) | KoiCsQWJfCjPAf-UCLFv0286MQp1OnlkeAk.01.0z109nl4q    | Berthold |
+| [workshop-user7.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user7.git) | IPjIB27qFM2SsqXZ3e8s3m86MQp1OnlkeQk.01.0z0d26xn9    | Clemens |
+| [workshop-user8.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user8.git) | eOnSNpecy8SCNBl0VwQ0OG86MQp1Onlkegk.01.0z07sozqv    | Elisabetta |
+| [workshop-user9.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user9.git) | HLVMmCpmQZRux5i9x_PZ8m86MQp1OnllMQk.01.0z1wiee0f    | Roberta |
+| [workshop-user10.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user10.git) | 9BV2c6XKj2ZV-_n9ykGwfG86MQp1OnllMgk.01.0z09yh0mq    | Kevin |
+| [workshop-user11.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user11.git) | _PBghjFxqFmcFXs178F2Bm86MQp1OnllMwk.01.0z0yixwhr    | Peter |
+| [workshop-user12.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user12.git) | 26RmFjfGw7Q6jrw6GDueOW86MQp1OnllNAk.01.0z0kh3kkw    | Sara |
+| [workshop-user13.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user13.git) | 4XKln80Q0jPjxPs5f0ZmDG86MQp1OnllNQk.01.0z18m6ap3    |  |
 <!---
-| [workshop-user11.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user11.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
-| [workshop-user12.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user12.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
-| [workshop-user13.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user13.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
 | [workshop-user14.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user14.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
 | [workshop-user15.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user15.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
 | [workshop-user16.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user16.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |

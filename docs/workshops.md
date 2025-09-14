@@ -90,15 +90,16 @@ List of available test data repositories and credentials:
 | Repository URL     | Token                                               | User          |
 | :---               | :---                                                | :---          |
 | [workshop-user1.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user1.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    | Carlo         |
-| [workshop-user2.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user2.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
-| [workshop-user3.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user3.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
-| [workshop-user4.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user4.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
-| [workshop-user5.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user5.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
-| [workshop-user6.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user6.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
-| [workshop-user7.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user7.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
-| [workshop-user8.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user8.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
-| [workshop-user9.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user9.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
-| [workshop-user10.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user10.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
+| [workshop-user2.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user2.git) | 5DkDIB7UYLNHig4STsQ4XG86MQp1Onlkcgk.01.0z0djkeg4    |  |
+| [workshop-user3.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user3.git) | VXSxmeevMLQHsYacHSehUG86MQp1OnlkdQk.01.0z1pzlnn5    |  |
+| [workshop-user4.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user4.git) | laVI8RRCkJD6ohtzBvDyeG86MQp1Onlkdgk.01.0z0csxl51    |  |
+| [workshop-user5.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user5.git) | GiaJYjFLemfvGsntSTY4BG86MQp1Onlkdwk.01.0z1fwig8a    |  |
+| [workshop-user6.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user6.git) | KoiCsQWJfCjPAf-UCLFv0286MQp1OnlkeAk.01.0z109nl4q    |  |
+| [workshop-user7.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user7.git) | IPjIB27qFM2SsqXZ3e8s3m86MQp1OnlkeQk.01.0z0d26xn9    |  |
+| [workshop-user8.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user8.git) | eOnSNpecy8SCNBl0VwQ0OG86MQp1Onlkegk.01.0z07sozqv    |  |
+| [workshop-user9.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user9.git) | HLVMmCpmQZRux5i9x_PZ8m86MQp1OnllMQk.01.0z1wiee0f    |  |
+| [workshop-user10.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user10.git) | 9BV2c6XKj2ZV-_n9ykGwfG86MQp1OnllMgk.01.0z09yh0mq    |  |
+<!---
 | [workshop-user11.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user11.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
 | [workshop-user12.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user12.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
 | [workshop-user13.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user13.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
@@ -111,6 +112,7 @@ List of available test data repositories and credentials:
 | [workshop-user20.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user20.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
 | [workshop-user21.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user21.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
 | [workshop-user22.git](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/workshop-user22.git) | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    |  |
+--->
 
 <br>
 

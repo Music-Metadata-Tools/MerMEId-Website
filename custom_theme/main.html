@@ -1,30 +1,30 @@
 {% extends "base.html" %}
 
-{% block content %}
-  {{ super() }}
-{% endblock %}
-
 {% block footer %}
-<footer>
+<footer class="md-footer">
+  <div class="md-footer-meta md-typeset">
     <div class="footer-container">
-        <div class="footer-left">
-            <div class="dfg-container">
-                <span>Funded by</span>
-                <a href="https://gepris.dfg.de/gepris/projekt/528785591" target="_blank"><img src="{{ base_url }}/img/dfg_logo_schriftzug_weiss.png" alt="DFG Logo" class="dfg-logo"/></a>
-                <span>Project-No.: 528785591</span>
-            </div>
+      <div class="footer-left">
+        <div class="dfg-container">
+          <span>Funded by</span>
+          <a href="https://gepris.dfg.de/gepris/projekt/528785591" target="_blank">
+            <img src="{{ base_url }}/img/dfg_logo_schriftzug_weiss.png" alt="DFG Logo" class="dfg-logo"/>
+          </a>
+          <span>Project-No.: 528785591</span>
         </div>
-        <div class="footer-right">
-            <a href="https://cdmd.adwmainz.de/index.html" target="_blank">
-                <img src="{{ base_url }}/img/CDMD_Logo_grand_white.png" alt="CDMD Logo" class="cdmd-logo"/>
-            </a>
-            <a href="https://zenmem.uni-paderborn.de/" target="_blank">
-                <img src="{{ base_url }}/img/ZenMEM_weiß.png" alt="ZenMEM Logo" class="zenmem-logo"/>
-            </a>
-            <a href="https://www.adwmainz.de/startseite.html" target="_blank">
-                <img src="{{ base_url }}/img/adwlogo-weiß-transparent.png" alt="ADW Logo" class="adw-logo"/>
-            </a>
-        </div>
+      </div>
+      <div class="footer-right">
+        <a href="https://cdmd.adwmainz.de/index.html" target="_blank">
+          <img src="{{ base_url }}/img/CDMD_Logo_grand_white.png" alt="CDMD Logo" class="cdmd-logo"/>
+        </a>
+        <a href="https://zenmem.uni-paderborn.de/" target="_blank">
+          <img src="{{ base_url }}/img/ZenMEM_weiß.png" alt="ZenMEM Logo" class="zenmem-logo"/>
+        </a>
+        <a href="https://www.adwmainz.de/startseite.html" target="_blank">
+          <img src="{{ base_url }}/img/adwlogo-weiß-transparent.png" alt="ADW Logo" class="adw-logo"/>
+        </a>
+      </div>
     </div>
+  </div>
 </footer>
 {% endblock %}

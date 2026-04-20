@@ -1,18 +1,89 @@
-site_name: MerMEId
+site_name: MerMEId MeLODy
+site_description: Browser-based metadata editor for music-related Linked Open Data
+repo_url: https://github.com/Music-Metadata-Tools/MerMEId-MeLODy
+repo_name: Music-Metadata-Tools/MerMEId-MeLODy
+edit_uri: ""
 
 nav:
   - Home: index.md
-  - Getting Started: getting_started.md
-  - Workshops: workshops.md
-  - Community: community.md
-  - About: about.md
+  - User Guide:
+    - Getting Started: getting_started.md
+    - The Interface: user_guide/interface.md
+    - Working with Entities: user_guide/entities.md
+    - Git Workflow: user_guide/git_workflow.md
+    - Troubleshooting: user_guide/troubleshooting.md
+  - Data Model:
+    - Overview: data_model/index.md
+    - Ontologies: data_model/ontologies.md
+    - FRBR Hierarchy: data_model/frbr.md
+    - Entity Types: data_model/entity_types.md
+    - Entity IRIs: data_model/iris.md
+  - Configuration:
+    - Overview: configuration/index.md
+    - Editor Configuration: configuration/editor_config.md
+    - Repository Configuration: configuration/repo_config.md
+    - SHACL Shapes: configuration/shacl_shapes.md
+  - Developer Reference:
+    - Overview: developer/index.md
+    - Architecture: developer/architecture.md
+    - Components: developer/components.md
+    - Services: developer/services.md
+    - Event Communication: developer/events.md
+    - Extending the Editor: developer/extending.md
+  - Community:
+    - Overview: community/index.md
+    - Contributing: community/contributing.md
+  - Events:
+    - Upcoming Events: events/index.md
+    - "Archive: Trieste 2025": events/archive/trieste_2025.md
+  - Roadmap: roadmap.md
+  - About:
+    - Overview: about/index.md
+    - Project & Team: about/project.md
+    - Impressum: about/impressum.md
 
 theme:
-  name: flatly
+  name: material
   custom_dir: custom_theme
+  palette:
+    - scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+  icon:
+    repo: fontawesome/brands/github
 
 markdown_extensions:
   - footnotes
+  - tables
+  - toc:
+      permalink: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - attr_list
 
 extra_css:
   - style.css
+
+plugins:
+  - search:
+      lang: en

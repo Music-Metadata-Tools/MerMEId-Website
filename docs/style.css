@@ -1,183 +1,159 @@
-.bg-primary {
-    background-color: #159957;
-    background-image: linear-gradient(120deg, #155799, #159957);
+/* ═══════════════════════════════════════════════
+   MerMEId MeLODy – Documentation Theme
+   Matches the editor's color scheme:
+   dark blue #013657 → light blue #3d97f1
+   ═══════════════════════════════════════════════ */
+
+/* ── Material custom color overrides ── */
+:root {
+  --md-primary-fg-color:        #1a6db5;
+  --md-primary-fg-color--light: #3d97f1;
+  --md-primary-fg-color--dark:  #013657;
+  --md-primary-bg-color:        #ffffff;
+  --md-accent-fg-color:         #3d97f1;
 }
 
-body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+/* Header gradient (matches tool header) */
+.md-header {
+  background: linear-gradient(45deg, #013657, #3d97f1);
 }
 
-.container{
-    flex: 1 0 auto;
+/* Nav tabs */
+.md-tabs {
+  background: linear-gradient(45deg, #013657, #3d97f1);
 }
 
-h1 {
-    color: #159957;
+/* Active nav tab underline */
+.md-tabs__link--active,
+.md-tabs__link:hover {
+  color: #ffffff;
+  opacity: 1;
 }
 
-h2 {
-    color: #1e6bb8;
+/* Sidebar active item */
+.md-nav__item--active > .md-nav__link {
+  color: #1a6db5;
+  font-weight: 600;
 }
 
-#navbar-collapse {
-    display: flex;
-    justify-content: space-between;
+/* Search bar focus ring */
+.md-search__input:focus {
+  border-color: #3d97f1;
 }
 
-#navbar-collapse ul:first-child {
-    margin-right: auto;
+/* ── Quick-start buttons on index.md ── */
+.text-center {
+  text-align: center;
+  margin: 1.5rem 0;
 }
 
-#navbar-collapse ul:last-child {
-    margin-left: auto;
+.btn {
+  display: inline-block;
+  padding: 0.6em 1.4em;
+  margin: 0.3em;
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: none !important;
+  transition: opacity 0.2s, transform 0.15s;
 }
 
-.proposal-section {
-    background: linear-gradient(90deg, #e0ffe0 0%, #d0f0ff 100%);
-    border: 2px solid #159957;
-    border-radius: 12px;
-    padding: 1.5em 1em;
-    margin: 2em 0;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(21,153,87,0.08);
+.btn:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
 }
 
-.proposal-section span {
-    display: block;
-    font-size: 1.2em;
-    font-weight: bold;
-    color: #155799;
-    margin-bottom: 1em;
+.btn-primary {
+  background: linear-gradient(45deg, #013657, #3d97f1);
+  color: #ffffff !important;
+  border: none;
 }
 
-.proposal-section .btn-primary {
-    background: linear-gradient(120deg, #155799, #159957);
-    color: #fff !important;
-    border: none;
-    font-size: 1.1em;
-    padding: 0.7em 2em;
-    border-radius: 6px;
-    box-shadow: 0 2px 6px rgba(21,87,153,0.10);
-    transition: background 0.2s;
+.btn-default {
+  background-color: transparent;
+  color: #1a6db5 !important;
+  border: 2px solid #1a6db5;
 }
 
-.proposal-section .btn-primary:hover {
-    background: linear-gradient(120deg, #159957, #155799);
-    color: #fff !important;
+/* ── Footer ── */
+footer.md-footer {
+  background: linear-gradient(45deg, #013657, #3d97f1);
 }
 
-footer {
-    width: 100vw;
-    background-color: #157878;
-    padding: 0;
-    border: none;
-    position: relative;
-    flex-shrink: 0;
+.md-footer-meta {
+  background: transparent;
 }
 
 .footer-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-}
-
-.footer-left, .footer-center, .footer-right {
-    display: flex;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  flex-wrap: wrap;
 }
 
 .footer-left {
-    flex: 1;
-    justify-content: flex-start;
-    gap: 1rem;
-    padding-left: 50px;
-}
-
-.footer-center {
-    flex: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.footer-center span.footer,
-.dfg-container span {
-    font-family: 'Palatino Linotype', sans-serif;
-    font-size: 0.9rem;
-}
-
-.footer-center span.footer {
-    flex: 0 1 auto;
-    text-align: center;
+  display: flex;
+  align-items: center;
 }
 
 .footer-right {
-    flex: 1;
-    justify-content: flex-end;
-    gap: 1rem;
-    padding-right: 50px;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
 }
 
 .dfg-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
 }
 
 .dfg-container span {
-    font-size: 0.9rem;
-    text-align: left;
-    margin-left: 0.5rem;
+  font-size: 0.82rem;
+  color: #ffffff;
+  font-family: 'Palatino Linotype', serif;
 }
 
-img.dfg-logo {
-    width: auto;
-    height: 40px;
-    margin: 0;
-}
+img.dfg-logo  { height: 36px; width: auto; transition: transform 0.2s; }
+img.cdmd-logo { height: 70px; width: auto; transition: transform 0.2s; }
+img.zenmem-logo { height: 44px; width: auto; transition: transform 0.2s; }
+img.adw-logo  { height: 60px; width: auto; transition: transform 0.2s; }
 
-img.dfg-logo:hover {
-    transform: scale(1.1);
-}
-
-img.cdmd-logo {
-    width: auto;
-    height: 100px;
-    margin: 0;
-}
-
-img.cdmd-logo:hover {
-    transform: scale(1.1);
-}
-
-img.zenmem-logo {
-    width: auto;
-    height: 50px;
-    margin-left: auto;
-    margin-top: 5px;
-}
-
-img.zenmem-logo:hover {
-    transform: scale(1.1);
-}
-
-img.adw-logo {
-    width: auto;
-    height: 80px;
-    margin: 0;
-}
-
+img.dfg-logo:hover,
+img.cdmd-logo:hover,
+img.zenmem-logo:hover,
 img.adw-logo:hover {
-    transform: scale(1.1);
+  transform: scale(1.06);
 }
 
-span.footer {
-    margin: 0;
-    font-size: var(--step-0);
-    font-family: 'Palatino Linotype', sans-serif;
+@media only screen and (max-width: 700px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .footer-right {
+    justify-content: center;
+  }
+}
+
+/* ── Proposal / archive highlight box ── */
+.proposal-section {
+  background: linear-gradient(90deg, #e0f0ff 0%, #d0e8ff 100%);
+  border: 2px solid #1a6db5;
+  border-radius: 8px;
+  padding: 1.5em 1em;
+  margin: 2em 0;
+  text-align: center;
+}
+
+.proposal-section span {
+  display: block;
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #013657;
+  margin-bottom: 1em;
 }

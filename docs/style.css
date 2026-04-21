@@ -76,7 +76,8 @@
 
 /* ── Footer ── */
 footer.md-footer {
-  background: linear-gradient(45deg, #013657, #3d97f1);
+  background: white;
+  color: #1a6db5;
 }
 
 .md-footer-meta {

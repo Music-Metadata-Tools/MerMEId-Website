@@ -62,9 +62,12 @@ theme:
     - navigation.tabs
     - navigation.sections
     - navigation.top
+    - navigation.footer
     - search.highlight
     - search.suggest
     - content.code.copy
+  logo: img/CDMD_Logo_cut.png
+  favicon: img/CDMD_Logo_cut.png
   icon:
     repo: fontawesome/brands/github
 

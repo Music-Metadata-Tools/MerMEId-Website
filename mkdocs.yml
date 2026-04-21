@@ -7,7 +7,7 @@ edit_uri: ""
 nav:
   - Home: index.md
   - User Guide:
-    - Getting Started: user_guide/getting_started.md
+    - Getting Started: user_guide/index.md
     - The Interface: user_guide/interface.md
     - Working with Entities: user_guide/entities.md
     - Git Workflow: user_guide/git_workflow.md

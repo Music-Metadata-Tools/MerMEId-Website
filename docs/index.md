@@ -4,7 +4,7 @@
 
 The editor produces [RDF/Turtle](https://www.w3.org/TR/turtle/) output based on a FRBR-inspired data model, placing music metadata within the broader Linked Data landscape. It is designed for musicologists, music librarians, and developers who need to create structured, interoperable, and FAIR-compliant metadata for musical works, sources, people, and events.
 
-> **MerMEId MeLODy is currently in beta.** Functionality is complete enough for real cataloguing work, but the interface and data model may still change before a stable release. Feedback is very welcome at [cdmd@adwmainz.de](mailto:cdmd@adwmainz.de).
+> **MerMEId MeLODy is currently in beta.** Functionality is complete enough for real cataloguing work, but the interface and data model may still change before a stable release. Feedback is very welcome at [cdmd@adwmainz.de](mailto:cdmd@adwmainz.de) or as Github [Issue](https://github.com/Music-Metadata-Tools/MerMEId-MeLODy/issues).
 
 ---
 
@@ -24,8 +24,8 @@ The editor produces [RDF/Turtle](https://www.w3.org/TR/turtle/) output based on 
 - **SHACL-driven forms** — data entry forms are generated automatically from [SHACL shapes](https://www.w3.org/TR/shacl/), making the data model easy to read, validate, and extend
 - **FRBR-based data model** — covers Work, Expression, Manifestation, and Item, plus Persons, Places, Venues, Events, Instrumentations, Bibliography, and Letters
 - **Cross-entity linking** — link entities to each other and preview linked records in a floating side panel
-- **MEI-compatible** — XML output tab converts data to MEI/XML, preserving compatibility with the Music Encoding Initiative ecosystem
-- **No build step** — the source code is plain HTML and JavaScript; contributions and local development need only a basic web server
+- **MEI-compatible** — Under development; will be integrated in the future
+- **No build step** — the source code is plain HTML and JavaScript
 
 ---
 
@@ -35,7 +35,7 @@ MerMEId MeLODy connects your browser directly to a Git repository where all data
 
 Each entity (person, work, source, place, etc.) is stored as a separate `.ttl` file inside a typed subfolder. The forms are generated on the fly from SHACL shape files stored in the repository, so the data model is fully transparent and customisable.
 
-To get started you need a data repository. The quickest way is to create one from the [MerMEId MeLODy Template](https://github.com/Music-Metadata-Tools/MerMEId-MeLODy-Template) on GitHub — it takes about two minutes.
+To get started you need a data repository. The quickest way is to create one from the [MerMEId MeLODy Template](https://github.com/Music-Metadata-Tools/MerMEId-MeLODy-Template) on GitHub.
 
 ---
 

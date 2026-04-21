@@ -45,12 +45,20 @@ All metadata lives in a Git repository with a predefined folder structure. The q
 1. Go to the [MerMEId MeLODy Template](https://github.com/Music-Metadata-Tools/MerMEId-MeLODy-Template) on GitHub.
 2. Click **"Use this template"** → **"Create a new repository"**.
 3. Choose an owner and give the repository a meaningful name (e.g. `mozart-catalogue`).
-4. Set the visibility to **Public** (required if you want the search index to be publicly accessible) or **Private**.
+4. Set the visibility to **Public**. On GitHub, a public repository is required for the search to work (GitHub Pages is only free for public repositories). On GitLab this is not required.
 5. Click **"Create repository"**.
+6. Activate Pages so the search index gets published:
+    - **GitHub:** go to **Settings → Pages → Source** and select **"GitHub Actions"**.
+    - **GitLab:** nothing to do — it runs automatically on the first push.
 
-The template already contains the correct folder structure (`works/`, `persons/`, `places/`, etc.) and a `configuration/config.json` file. It also includes a CI/CD pipeline that automatically publishes search index files whenever you push changes.
+The template includes the correct folder structure and a CI/CD pipeline that publishes the search index after every push. Once that first pipeline run completes, you need to tell the editor where to find the index — open `configuration/config.json` in your repository and replace the placeholder in `datasetBaseUrl` with your Pages URL:
 
-The template contains a small amount of sample data. You can delete these example files once you are comfortable with the editor.
+- **GitHub:** `https://<owner>.github.io/<repo-name>/datasets/`
+- **GitLab:** `https://<namespace>.gitlab.io/<repo-name>/datasets/`
+
+For example, if your GitHub username is `jsmith` and your repository is named `mozart-catalogue`, the value would be `https://jsmith.github.io/mozart-catalogue/datasets/`. You can find your exact Pages URL in the repository settings after the first pipeline run. For more details see [Repository Configuration](../configuration/repo_config.md).
+
+The template contains a small amount of sample data you can delete once you are comfortable with the editor.
 
 ---
 
@@ -78,8 +86,9 @@ Once you have a repository selected:
 2. Select an entity type (start with **Person** or **Place** — they have fewer required fields).
 3. A blank form opens in the main area. Fill in the required fields (marked with an asterisk).
 4. Click **"Save"** — the button turns blue with a dot indicator when there are unsaved changes.
+5. In the bottom left corner you see **Share files** click on it, mark all files you want to share and click **push**.
 
-The file is now saved to the browser's virtual filesystem and staged for the next push. To make it permanent in the Git repository, see [Git Workflow](user_guide/git_workflow.md).
+The file is now saved to the browser's virtual filesystem and the Git repository, see [Git Workflow](user_guide/git_workflow.md) for further information.
 
 For a full description of all entity types and their fields, see [Working with Entities](user_guide/entities.md) and [Data Model](data_model.md).
 

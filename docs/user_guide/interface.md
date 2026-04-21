@@ -25,7 +25,7 @@ This page gives a complete walkthrough of the MerMEId MeLODy user interface. The
 │ manager         │                               │                   │
 │                 │                               │                   │
 ├─────────────────┴───────────────────────────────┴───────────────────┤
-│  [DFG logo]  [CDMD logo]  [ZenMEM logo]  [ADW logo]                 │
+│  Footer                                                             │
 └─────────────────────────────────────────────────────────────────────┘
 ```
 

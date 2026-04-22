@@ -7,8 +7,6 @@
 /* ── Material custom color overrides ── */
 html {
   scroll-behavior: smooth;
-  height: 100%;
-  overscroll-behavior-y: none;
 }
 
 :root {
@@ -22,6 +20,7 @@ html {
 /* Header gradient (matches tool header) */
 .md-header {
   background: linear-gradient(45deg, #013657, #3d97f1);
+  overscroll-behavior-y: none;
 }
 
 /* Nav tabs */

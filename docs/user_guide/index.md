@@ -88,7 +88,7 @@ Once your data repository exists and you have a token, connect the editor to it:
 
 1. Open [MerMEId MeLODy](https://music-metadata-tools.github.io/MerMEId-MeLODy/) in your browser.
 2. In the left panel, click the **"Add repository"** button (folder-plus icon, top-left toolbar).
-3. Enter a **display name** for the repository — this is only used inside the editor (e.g. `Mozart Catalogue`).
+3. Enter the **repository folder name** as display name — this is only used inside the editor (e.g. `mozart-catalogue`). Spaces are not allowed.
 4. Enter the **repository URL** — the HTTPS clone URL from GitHub or GitLab. It must start with `https://` and end with `.git` (e.g. `https://github.com/yourname/mozart-catalogue.git`).
 5. Enter your **username** (your GitHub or GitLab username, or choose one, if you don't have an account).
 6. Enter your **personal access token**.

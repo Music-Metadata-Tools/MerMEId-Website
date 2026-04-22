@@ -8,33 +8,53 @@ This guide covers everything you need to get from zero to your first saved entit
 
 ### Browser Recommendation
 
-MerMEId MeLODy runs entirely in the browser. **Chromium-based browsers (Chrome or Edge) are recommended** for the best experience. Firefox works for most operations, but the File System Access API (used for local filesystem mode) has limited support in Firefox.
+MerMEId MeLODy runs entirely in the browser. **Chromium-based browsers (Chrome or Edge) are recommended** for the best experience. Firefox works for most operations, but the File System Access API (used for local filesystem mode) is not supported in Firefox.
 
 ### Git Host Account
 
-You need an account on a Git hosting platform — [GitHub](https://github.com) or [GitLab](https://gitlab.com) are both supported. The editor communicates with any HTTPS-accessible Git host.
+You need an account on a Git hosting platform to create data repositories — [GitHub](https://github.com) or [GitLab](https://gitlab.com) are both supported. The editor communicates with any HTTPS-accessible Git host. To edit data in the repository you don't need a Git Aaccount, only the data owner needs one.
 
 ### Personal Access Token
 
-The editor authenticates to your Git host using a **personal access token** (PAT), not your account password. You need to create one before adding a repository.
+The editor authenticates to your Git host using either a project-specific or a user-based **personal access token** (PAT). You need to create one or ask an admin to create one before adding a repository.
 
-**GitHub — creating a token:**
+**GitHub — creating a token user-based: (GitHub account required)**
 
 1. Go to **Settings → Developer settings → Personal access tokens → Tokens (classic)**.
 2. Click **"Generate new token (classic)"**.
 3. Give it a descriptive name (e.g. `mermeid-melody`).
-4. Select the **`repo`** scope (full control of private repositories).
-5. Click **"Generate token"** and copy the result immediately — it is shown only once.
+4. Set an expiration date.
+5. Select the **`repo`** scope (full control of private repositories).
+6. Click **"Generate token"** and copy the result immediately — it is shown only once.
 
-**GitLab — creating a token:**
+**GitHub — creating a token project-specific: (for users without GitHub account, Organization required)**
+
+1. Go to **Settings → Developer settings → Personal access tokens → Fine-grained tokens**.
+2. Click **"Generate new token"**.
+3. Choose organization as resource owner
+4. Set Repository acces to **"Only select repositories"** and choose project-specific repository
+5. Give it a descriptive name (e.g. `mermeid-melody`).
+6. Set an expiration date.
+7. Select the **`repo`** scope (full control of private repositories).
+8. Click **"Generate token"** and copy the result immediately — it is shown only once.
+
+**GitLab — creating a token user-based: (GitLab Account required)**
 
 1. Go to your user **Settings → Access Tokens**.
 2. Click **"Add new token"**.
-3. Select the scopes **`read_repository`** and **`write_repository`**.
+3. Select the scope **`write_repository`**.
 4. Set an expiry date if required by your organisation.
-5. Click **"Create personal access token"** and copy the result.
+5. Click **"Create personal access token"** and copy the result immediately — it is shown only once.
 
-Store the token somewhere safe (e.g. a password manager). The editor will store it inside the browser's IndexedDB after you enter it — you will not normally need to re-enter it.
+**GitLab — creating a token project-specific: (without GitLab account)**
+
+1. Go to your repositories **Settings → Access Tokens**.
+2. Click **"Add new token"**.
+3. Select the scope **`write_repository`**.
+4. Set an expiry date if required by your organisation.
+5. Click **"Create personal access token"** and copy the result immediately — it is shown only once.
+
+Store the token somewhere safe (e.g. a password manager).
 
 ---
 
@@ -70,11 +90,11 @@ Once your data repository exists and you have a token, connect the editor to it:
 2. In the left panel, click the **"Add repository"** button (folder-plus icon, top-left toolbar).
 3. Enter a **display name** for the repository — this is only used inside the editor (e.g. `Mozart Catalogue`).
 4. Enter the **repository URL** — the HTTPS clone URL from GitHub or GitLab. It must start with `https://` and end with `.git` (e.g. `https://github.com/yourname/mozart-catalogue.git`).
-5. Enter your **username** (your GitHub or GitLab username).
+5. Enter your **username** (your GitHub or GitLab username, or choose one, if you don't have an account).
 6. Enter your **personal access token**.
 7. Click **"Next"**, select the branch you want to work on (usually `main`), and click **"Clone"**.
 
-The editor will clone the repository using `git clone --depth 1` (a shallow clone — only the latest commit is downloaded, which keeps the initial clone fast). Once finished, the repository appears in the left panel. Click on its name to select it — the name is highlighted when the repository is active.
+The editor will clone the repository. Once finished, the repository appears in the left panel. Click on its name to select it — the name is highlighted when the repository is active.
 
 ---
 
@@ -86,9 +106,9 @@ Once you have a repository selected:
 2. Select an entity type (start with **Person** or **Place** — they have fewer required fields).
 3. A blank form opens in the main area. Fill in the required fields (marked with an asterisk).
 4. Click **"Save"** — the button turns blue with a dot indicator when there are unsaved changes.
-5. In the bottom left corner you see **Share files** click on it, mark all files you want to share and click **push**.
+5. In the bottom left corner you see **Share files**. Click on it, check all files you want to share and click **Share files**.
 
-The file is now saved to the browser's virtual filesystem and the Git repository, see [Git Workflow](user_guide/git_workflow.md) for further information.
+The file is now saved to the Git repository, see [Git Workflow](user_guide/git_workflow.md) for further information.
 
 For a full description of all entity types and their fields, see [Working with Entities](user_guide/entities.md) and [Data Model](data_model.md).
 
@@ -114,4 +134,4 @@ Then open `http://localhost:8080` in your browser.
 
 Open the cloned folder in [VS Code](https://code.visualstudio.com/) and install the [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) extension. Click **"Go Live"** in the status bar.
 
-Note that all Git operations (clone, push, pull) still go through the CORS proxy ([cors.isomorphic-git.org](https://cors.isomorphic-git.org)) even when running locally, because browsers block direct cross-origin Git HTTP requests.
+Note that all Git operations (clone, push, pull) still go through the CORS proxy ([cors.isomorphic-git.org](https://cors.isomorphic-git.org)) even when running locally, because browsers block direct cross-origin Git HTTP requests. That means that the local use ist still not completely offline ready.

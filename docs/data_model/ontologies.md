@@ -8,10 +8,10 @@ MerMEId MeLODy does not define everything from scratch — it builds on well-est
 
 | Ontology | Prefix | Used for |
 | :--- | :--- | :--- |
-| [LRMoo](https://cidoc-crm.org/lrmoo/) / [FRBRoo](https://erlangen-crm.org/efrbroo/) | — | Core bibliographic hierarchy: Work, Expression, Manifestation, Item and their relationships |
-| [CIDOC-CRM](https://cidoc-crm.org/) | `crm:` | Events, places, actors (persons and institutions as agents), temporal and spatial modelling |
+| [LRMoo](https://cidoc-crm.org/lrmoo/) | `lrmoo:` | Core bibliographic hierarchy: Work, Expression, Manifestation, Item and their relationships |
+| [CIDOC-CRM](https://cidoc-crm.org/) | `cidoc:` | Events, places, actors (persons and institutions as agents), temporal and spatial modelling |
 | [Schema.org](https://schema.org/) | `schema:` | Persons (name, birth/death dates and places, gender, external identifiers), organisations, basic descriptive metadata |
-| [DoReMus](https://data.doremus.org/ontology/) | — | Music-specific extensions: instrumentation, medium of performance, musical keys, casting |
+| [DoReMus](https://data.doremus.org/ontology/) | `mus:` | Music-specific extensions: instrumentation, medium of performance, musical keys, casting |
 | [SKOS](https://www.w3.org/TR/skos-reference/) | `skos:` | Preferred labels (`skos:prefLabel`) used for entity display names and search index entries |
 | [OWL](https://www.w3.org/TR/owl2-overview/) | `owl:` | `owl:sameAs` for linking to external authority records (GND, VIAF, Wikidata, GeoNames, etc.) |
 | [MEI](https://music-encoding.org/) | — | Music notation and encoding concepts; XML output tab converts to MEI format for interoperability |
@@ -20,7 +20,7 @@ MerMEId MeLODy does not define everything from scratch — it builds on well-est
 
 ## The MeLODy Ontology
 
-MerMEId MeLODy defines its own ontology (`melod:`) for concepts not covered by the standard vocabularies above — in particular the entity classes used in the editor and properties specific to the musicological use case.
+MerMEId MeLODy defines its own [Music Metadata Ontology](https://lod.academy/melod/vocab/ontology#) (`melod:`) for concepts not covered by the standard vocabularies above — in particular the entity classes used in the editor and properties specific to the musicological use case. The concepts are based on the [MEI (Music Encoding Initiative)](https://music-encoding.org/guidelines/v5/content/index.html) guidelines and are mostly linked to the corresponding MEI elements. It implements the FRBR (Functional Requirements for Bibliographic Records) conceptual model, organizing musical information into Work, Expression, Manifestation, and Item levels. MeLOD integrates established ontologies including Schema.org, LRMoo, CIDOC-CRM and DoReMus to provide a rich semantic framework for music metadata.
 
 **Ontology IRI:** `https://lod.academy/melod/vocab/ontology#`
 **Prefix:** `melod:`
@@ -40,8 +40,5 @@ All entity types in the editor (Person, Place, Work, Expression, etc.) are subcl
     schema:familyName "Telemann" ;
     schema:givenName "Georg Philipp" ;
     schema:gender "male" ;
-    skos:prefLabel "Georg Philipp Telemann" ;
     owl:sameAs <http://d-nb.info/gnd/11862119X> .
 ```
-
-The `skos:prefLabel` is used by the search index to make this entity findable by name. The `owl:sameAs` links to the GND authority record, enabling integration with external datasets.

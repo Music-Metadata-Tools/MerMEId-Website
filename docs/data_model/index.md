@@ -17,7 +17,7 @@ This section documents the conceptual and technical foundations of the data mode
 
 ## At a Glance
 
-The data model is centred on the [FRBR](https://en.wikipedia.org/wiki/Functional_Requirements_for_Bibliographic_Records) hierarchy as formalised in [LRMoo](https://cidoc-crm.org/lrmoo/), extended with contextual entities for persons, places, events, and bibliographic references.
+The data model is centred on the [FRBR](https://en.wikipedia.org/wiki/Functional_Requirements_for_Bibliographic_Records) hierarchy as formalised in [LRMoo](https://cidoc-crm.org/lrmoo/), extended with contextual entities for persons, places, events, and bibliographic references. It maintains compatibility with the MEI (Music Encoding Initiative) XML Schema Version 5.1, ensuring interoperability with existing MEI-based systems and ensures MEI/XML as an output of the editor.
 
 ```
 Work                     ← abstract creative work

@@ -6,18 +6,15 @@ MerMEId MeLODy uses standard Git operations to store and synchronise your data. 
 
 ## How Storage Works
 
-MerMEId MeLODy stores all data in a **virtual filesystem** running inside your browser. This virtual filesystem is implemented by [LightningFS](https://github.com/isomorphic-git/lightning-fs) and is persisted in the browser's **IndexedDB** — a built-in browser database that survives page refreshes and browser restarts.
+MerMEId MeLODy stores all data in a **virtual filesystem** running inside your browser. This virtual filesystem is persisted in the browser's **IndexedDB** — a built-in browser database that survives page refreshes and browser restarts.
 
-[isomorphic-git](https://isomorphic-git.org/) runs on top of this virtual filesystem and provides a full Git implementation in JavaScript. Every Git operation (clone, pull, commit, push) is executed entirely in the browser.
+The editor provides a full Git implementation. Every Git operation (clone, pull, commit, push) is executed entirely in the browser.
 
 ### Credentials Storage
 
-Your Git username and personal access token are stored in the **git config** of the cloned repository, inside the virtual filesystem:
+Your repository folder name, repository url and git username are stored in the browser's local storage.
 
-- `user.name` — your Git username
-- `user.pat` — your personal access token
-
-These values are written to the git config during the clone operation and read back before every push or pull. They persist across browser sessions (as long as you do not clear IndexedDB / browser storage). They are **not** sent anywhere except to your Git host during authenticated requests.
+These values are written to the local storage during the clone operation and read back before adding a new repository. They persist across browser sessions (as long as you do not clear the browser storage). They are **not** sent anywhere except to your Git host during authenticated requests.
 
 ### Why a CORS Proxy?
 
@@ -31,10 +28,10 @@ Adding a repository in MerMEId MeLODy is equivalent to `git clone`. Here is what
 
 1. Open the **"Add repository"** dialog (folder-plus icon in the repository panel toolbar).
 2. Enter the display name, repository URL, username, and personal access token.
-3. Click **"Next"** — the editor calls `git.listServerRefs()` via the CORS proxy to fetch the list of available branches.
+3. Click **"Next"** .
 4. Select a branch (usually `main`) and click **"Clone"**.
-5. The editor calls `git clone --depth 1` (a shallow clone) — only the latest commit on the selected branch is downloaded. This keeps the initial clone fast even for large repositories.
-6. Credentials are stored in the git config inside the virtual filesystem.
+5. The editor calls a shallow clone — only the latest commit on the selected branch is downloaded. This keeps the initial clone fast even for large repositories.
+6. Credentials are stored in the browser's local storage.
 7. The repository appears in the left panel. Click its name to select it.
 
 **Important:** you must click the repository name to select (highlight) it before you can create new entities or open files. A repository that has been cloned but not selected is shown in the tree but is not active.
@@ -44,8 +41,6 @@ Adding a repository in MerMEId MeLODy is equivalent to `git clone`. Here is what
 ## Selecting a Repository
 
 Click the **repository name** (the top-level node in the tree) to select it. The name is highlighted when the repository is active. Only one repository can be active at a time. All entity creation, editing, and saving operations apply to the currently selected repository.
-
-If you switch to a different repository while a form is open, the editor will warn you if there are unsaved changes.
 
 ---
 
@@ -73,7 +68,7 @@ Files that were not checked remain in the staging queue for a future push.
 Before committing and pushing, MerMEId MeLODy automatically checks whether the remote has any new commits. If the remote is ahead:
 
 - If the remote changes do **not** overlap with your staged files, the pull proceeds silently and the push follows.
-- If the remote changes **do** overlap with one or more of your staged files (a conflict), the push is blocked and you are warned. Resolve the conflict by reviewing the remote changes first (synchronise manually and examine the result).
+- If the remote changes **do** overlap with one or more of your staged files (a conflict), the push is blocked and you are warned. You have to unstage the conflict file, to synchronize properly.
 
 ---
 
@@ -94,10 +89,7 @@ Before pulling, the editor performs a **conflict check**:
 3. It compares the set of files changed on the remote since the common ancestor against your locally staged files.
 4. If there is overlap (the same file has been modified both remotely and locally), the pull is **blocked** and a warning is shown listing the conflicting files.
 
-If conflicts are detected, you must first resolve them:
-
-- If you want to keep the remote version: unstage your local changes for those files (see below), then synchronise again.
-- If you want to keep your local version: push your changes first, then synchronise.
+If conflicts are detected, you must first unstage your local changes for those files (see below), then synchronise again.
 
 If no conflicts are found, the pull proceeds and the local working directory is updated to match the remote.
 
@@ -109,12 +101,11 @@ If you have unsaved changes in the editor (the Save button is blue), you will be
 
 ## Unstaging Files
 
-To discard local changes for a specific file and restore it to the last committed state:
+To discard local saved changes for a specific file and restore it to the last committed state:
 
 1. In the Share Files section, select the file you want to unstage.
 2. Click the **"Unstage files"** button (arrow-counterclockwise icon).
-3. The editor calls `git.resetIndex()` to remove the file from the staging area and `git.checkout()` to restore the working directory version from HEAD.
-4. The file is removed from the Share Files queue and the working directory copy is restored to the last committed state.
+3. The file is removed from the Share Files queue and the working directory copy is restored to the last committed state.
 
 This is equivalent to `git restore --staged <file> && git restore <file>` in standard Git.
 

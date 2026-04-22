@@ -62,16 +62,16 @@ Store the token somewhere safe (e.g. a password manager).
 
 All metadata lives in a Git repository with a predefined folder structure. The quickest way to create one is to use the official template:
 
-1. Go to the [MerMEId MeLODy Template](https://github.com/Music-Metadata-Tools/MerMEId-MeLODy-Template) on GitHub.
+1. Go to the [MerMEId MeLODy Template](https://github.com/Music-Metadata-Tools/MerMEId-MeLODy-Template) on GitHub or to the [GitLab MerMEId MeLODy Template](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/mermeid-template).
 2. Click **"Use this template"** → **"Create a new repository"**.
 3. Choose an owner and give the repository a meaningful name (e.g. `mozart-catalogue`).
-4. Set the visibility to **Public**. On GitHub, a public repository is required for the search to work (GitHub Pages is only free for public repositories). On GitLab this is not required.
+4. Set the visibility to **Public**. On GitHub, a public repository is required for the search to work (GitHub Pages is only free for public repositories). On GitLab the repository can be private, but the Pages need to be configured as Public for everyone.
 5. Click **"Create repository"**.
 6. Activate Pages so the search index gets published:
     - **GitHub:** go to **Settings → Pages → Source** and select **"GitHub Actions"**.
-    - **GitLab:** nothing to do — it runs automatically on the first push.
+    - **GitLab:** go to **Deploy → Pages -> Domains and Settings**. Uncheck 'Use unique domain'. For private repositories: go to **Settings → General → Visibility** and set the Pages visibility to 'Everyone'.
 
-The template includes the correct folder structure and a CI/CD pipeline that publishes the search index after every push. Once that first pipeline run completes, you need to tell the editor where to find the index — open `configuration/config.json` in your repository and replace the placeholder in `datasetBaseUrl` with your Pages URL:
+The template includes the correct folder structure, a CI/CD pipeline that publishes the search index after every push and sparql queries for each dataset used as indexes. Once that first pipeline run completes, you need to tell the editor where to find the index — open `configuration/config.json` in your repository and replace the placeholder in `datasetBaseUrl` with your Pages URL:
 
 - **GitHub:** `https://<owner>.github.io/<repo-name>/datasets/`
 - **GitLab:** `https://<namespace>.gitlab.io/<repo-name>/datasets/`

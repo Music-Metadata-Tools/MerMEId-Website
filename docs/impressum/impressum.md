@@ -1,8 +1,8 @@
-# Legal Notics
+# Legal Notice
 
 ## Publisher
 
-Akademie der Wissenschaften und der Literatur Mainz<br>
+Academy of Sciences and Literature Mainz<br>
 Geschwister-Scholl-Straße 2<br>
 D-55131 Mainz<br>
 Telefon: 06131/577-0<br>

@@ -20,12 +20,15 @@ html {
 /* Header gradient (matches tool header) */
 .md-header {
   background: linear-gradient(45deg, #013657, #3d97f1);
+  height: 100%;
   overscroll-behavior-y: none;
 }
 
 /* Nav tabs */
 .md-tabs {
   background: linear-gradient(45deg, #013657, #3d97f1);
+  height: 100%;
+  overscroll-behavior-y: none;
 }
 
 /* Active nav tab underline */

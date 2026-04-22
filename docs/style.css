@@ -5,6 +5,10 @@
    ═══════════════════════════════════════════════ */
 
 /* ── Material custom color overrides ── */
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   --md-primary-fg-color:        #1a6db5;
   --md-primary-fg-color--light: #3d97f1;

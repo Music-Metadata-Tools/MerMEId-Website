@@ -4,12 +4,22 @@ MerMEId MeLODy is an open-source project maintained by a community of musicologi
 
 ---
 
+## Who Uses MerMEId MeLODy? 
+
+### In Progress
+
+| Composer or Catalog | Status |
+| Georg Philipp Telemann | In progress |
+| Felix Mendelssohn Bartholdy | In progress |
+| Digital Organ Music Catalog | In progress |
+
+If you are using MerMEId MeLODy for a catalogue project and would like to be listed here, please get in touch at [cdmd@adwmainz.de](mailto:cdmd@adwmainz.de) or open a [GitHub Discussion](https://github.com/Music-Metadata-Tools/MerMEId-MeLODy/discussions).
 
 ---
 
-## Who Uses MerMEId MeLODy?
+## Who Uses MerMEId?
 
-MerMEId MeLODy is used to create and maintain **thematic catalogues** of composers' works. The following catalogues are published or in active development:
+[MerMEId](https://github.com/Edirom/MerMEId) is/was used to create and maintain **thematic catalogues** of composers' works as MEI data. The following catalogues are published or in active development:
 
 ### Published Catalogues
 
@@ -27,9 +37,6 @@ MerMEId MeLODy is used to create and maintain **thematic catalogues** of compose
 | Gustav Mahler | In progress |
 | Franz Schubert | In progress |
 | Georg Philipp Telemann | In progress |
-
-If you are using MerMEId MeLODy for a catalogue project and would like to be listed here, please get in touch at [cdmd@adwmainz.de](mailto:cdmd@adwmainz.de) or open a [GitHub Discussion](https://github.com/Music-Metadata-Tools/MerMEId-MeLODy/discussions).
-
 
 ---
 

@@ -1,8 +1,22 @@
 # Component Reference
 
-MerMEId MeLODy is built from three web components. They communicate exclusively through custom DOM events — there are no direct references between components.
+MerMEId MeLODy consists of three web components, an orchestration script, and a converter module. The web components communicate exclusively through custom DOM events — there are no direct references between components.
 
 ---
+
+## Orchestration Layer (`js/index.js`)
+
+This is the top-level script that bootstraps the application. It is not a web component — it runs as a plain ES module loaded from `index.html`. The startup sequence is described in detail in the [Architecture Overview](architecture.md).
+
+Beyond startup, `js/index.js` is also responsible for wiring the **Output Panel** tabs:
+
+- **XML tab** — listens for serialised entity data and invokes the appropriate converter from `modules/rdf-xml-converter/` to produce MEI/XML output
+- **RDF tab** — displays the raw Turtle from `shacl-form.serialize()`
+- **Preview tab** — renders the entity read-only in a second `shacl-form` in `data-view` mode
+- Handles the copy buttons for all three tabs
+
+---
+
 
 ## `adwlm-filesystem-manager`
 
@@ -162,3 +176,27 @@ ORDER BY ?label
 | :--- | :--- | :--- |
 | `adwlm-entity-editor:cached-config` | Entity editor | Sets the dataset URL and triggers index loading |
 | `adwlm-filesystem-manager:reload-indexes` | Filesystem manager | Clears the Oxigraph store and reloads all indexes |
+
+
+## RDF-XML Converter
+
+**Directory:** `modules/rdf-xml-converter/`
+
+Converts entity data from JSON-LD (produced by `shacl-form.serialize("application/ld+json")`) to MEI/XML for the XML output tab.
+
+**Structure:**
+
+- `converters/` — one JavaScript module per entity type (e.g. `person-converter.js`). Each converter receives the JSON-LD object and returns an MEI/XML string.
+- `templates/` — MEI/XML template strings (one per entity type) used as output scaffolding.
+- `types/index.js` — maps entity type IRIs to their converter module.
+
+**How it works:**
+
+1. The form content changes → `adwlm-entity-editor` calls `shacl-form.serialize("application/ld+json")`
+2. `js/index.js` receives the JSON-LD and looks up the correct converter by entity type IRI
+3. The converter fills in the MEI/XML template and returns the result
+4. The XML tab displays the result
+
+Each converter is independent. Adding a new entity type requires only a new converter and template — no changes to shared orchestration code.
+
+---

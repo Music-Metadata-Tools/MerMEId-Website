@@ -110,14 +110,7 @@ melod:MyNewType
 
 Replace `melod:MyNewType` with the full class IRI from your ontology. Update the label, folder name, and shape file path accordingly.
 
-### Step 3 — Create the folder in the data repository
 
-In the data repository (created from the template), create a folder named exactly as specified in `entity_folder_name`. Add a `.gitkeep` file so that Git tracks the empty directory:
-
-```bash
-mkdir mynewtype
-touch mynewtype/.gitkeep
-git add mynewtype/.gitkeep
 ```
 
 ### Step 4 — Add a search index entry (optional)

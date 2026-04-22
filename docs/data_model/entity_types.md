@@ -9,7 +9,7 @@ MerMEId MeLODy supports 13 entity types. Each type corresponds to an RDF class i
 | Entity Type | Folder | Class IRI | Description |
 | :--- | :--- | :--- | :--- |
 | Work | `works/` | `melod:Work` | Abstract intellectual or artistic creation |
-| Expression | `expressions/` | `melod:Expression` | A specific realisation of a work |
+| Expression | `expressions/` | `melod:Expression` | A specific realisation of a work or source |
 | Manifestation | `manifestations/` | `melod:Manifestation` | A published or distributed version of an expression |
 | Item | `items/` | `melod:Item` | A single physical or digital copy |
 | Person | `persons/` | `melod:Person` | An individual relevant to the catalogue |
@@ -32,7 +32,7 @@ MerMEId MeLODy supports 13 entity types. Each type corresponds to an RDF class i
 
 The abstract intellectual or artistic creation — the composer's intention, independent of any particular realisation, notation, or performance. See [FRBR Hierarchy](frbr.md) for details.
 
-**Key fields:** title (primary and alternative), composer (linked Person), catalogue numbers (opus, BWV, TWV, etc.), genre, key (tonic and mode), date of composition, scoring overview, related works.
+**Key fields:** title (primary and alternative), composer (linked Person), catalogue numbers (opus, BWV, TWV, etc.), genre, related works, linked expression.
 
 ---
 
@@ -42,7 +42,7 @@ The abstract intellectual or artistic creation — the composer's intention, ind
 
 A specific realisation of a Work defined by its musical content. See [FRBR Hierarchy](frbr.md) for details.
 
-**Key fields:** title of this realisation, scoring/instrumentation (linked Instrumentation or inline medium of performance), movements and sections, musical incipits (PAE format), performance events (linked PerformanceEvents), related expressions, completion status.
+**Key fields:** title of this realisation, scoring/instrumentation (linked Instrumentation or inline medium of performance), key, meter, date of composition, scoring overview, movements and sections, musical incipits (PAE format), performance events (linked PerformanceEvents), related expressions, completion status.
 
 ---
 
@@ -52,7 +52,7 @@ A specific realisation of a Work defined by its musical content. See [FRBR Hiera
 
 A published or otherwise distributed embodiment of an Expression. See [FRBR Hierarchy](frbr.md) for details.
 
-**Key fields:** title as on the manifestation, publisher, place and date of publication, series and plate number, physical format and description, related manifestations (reprints, facsimiles), held items.
+**Key fields:** title as on the manifestation, publisher, place and date of publication, plate number, physical description and title pages (for manifestation singleton), related manifestations, linked items, linked expression.
 
 ---
 
@@ -62,7 +62,7 @@ A published or otherwise distributed embodiment of an Expression. See [FRBR Hier
 
 A single physical or digital copy of a Manifestation. See [FRBR Hierarchy](frbr.md) for details.
 
-**Key fields:** holding institution (linked Institution), shelfmark / call number, RISM identifier, provenance notes, physical condition, link to digitisation.
+**Key fields:** holding institution (linked Institution), shelfmark and former shelfmark, RISM identifier, provenance notes, physical condition, link to digitisation, related items.
 
 ---
 
@@ -80,10 +80,9 @@ An individual relevant to the catalogue — composer, arranger, performer, edito
 | :--- | :--- | :--- |
 | Surname | `schema:familyName` | **Required** |
 | First name | `schema:givenName` | **Required** |
-| Preferred label | `skos:prefLabel` | Used for search index and display |
 | Link / sameAs | `owl:sameAs` | GND, VIAF, Wikidata, etc. Must be a full HTTP(S) URL |
 | Gender | `schema:gender` | Allowed values: `female`, `male`, `diverse` |
-| Birth date | `schema:birthDate` | Single date (YYYY or YYYY-MM-DD) or a date span |
+| Birth date | `schema:birthDate` | Single date (YYYY-MM-DD) or a date span |
 | Birth place | `melod:birthPlace` | Linked entity dropdown (Place) |
 | Death date | `schema:deathDate` | Same pattern as birth date |
 | Death place | `melod:deathPlace` | Linked entity dropdown (Place) |
@@ -96,7 +95,7 @@ An individual relevant to the catalogue — composer, arranger, performer, edito
 
 An organisation relevant to the catalogue — publisher, library, archive, research institution, or performing organisation.
 
-**Key fields:** name, abbreviated name, place (linked Place), external authority link (`owl:sameAs`), description.
+**Key fields:** name, abbreviated name, RISM siglum, place (linked Place), address, founding date, external authority link (`owl:sameAs`), description.
 
 ---
 
@@ -104,9 +103,9 @@ An organisation relevant to the catalogue — publisher, library, archive, resea
 
 **Class:** `melod:Place` | **Folder:** `places/`
 
-A geographic location — city, region, country, or venue area — used as a reference point for persons, events, and works.
+A geographic location — city, region, country — used as a reference point for persons, events, performances, institutions, expressions and venues.
 
-**Key fields:** name (preferred and alternative), GeoNames link (`owl:sameAs`), geographic coordinates, broader place (linked Place, for hierarchical nesting).
+**Key fields:** name, Link/SameAs (Geonames, GND, Wikidata, ...), geographic coordinates, description.
 
 ---
 
@@ -124,9 +123,9 @@ A specific performance venue such as a concert hall, opera house, or church. Mor
 
 **Class:** `melod:PerformanceEvent` | **Folder:** `performanceEvents/`
 
-A documented performance of a Work or Expression. Links together performers, venues, dates, and the performed work.
+A documented performance of a Expression. Links together performers, venues, dates, and the performed expression.
 
-**Key fields:** date of performance, venue (linked Venue), performers (linked Persons or Institutions), performed expression (linked Expression), programme notes, source reference.
+**Key fields:** date of performance (single date or date span), venue (linked Venue), contributors (linked Persons or Institutions with role and certainty), description, evidence of the performance (linked Bibliography).
 
 ---
 
@@ -136,7 +135,7 @@ A documented performance of a Work or Expression. Links together performers, ven
 
 A reusable scoring description that can be referenced by multiple Expressions. Defines the medium of performance (instruments, voices, ensemble type) independently of any specific work version.
 
-**Key fields:** label, medium of performance entries (instrument or voice type + count + notes), total count, description.
+**Key fields:** label (e.g. orchestra or SATB), medium of performance entries (instrument or voice type, count, solo or ad libitum, link to identifier), ensemble as part of a instrumentation (linked Instrumentation).
 
 ---
 
@@ -146,7 +145,7 @@ A reusable scoring description that can be referenced by multiple Expressions. D
 
 A bibliographic reference to secondary literature — a book, journal article, chapter, or edition — that can be cited from Work, Expression, or other entity records.
 
-**Key fields:** author(s), title, year, publisher / journal, volume/issue/pages, edition, identifier (DOI, ISBN, etc.), link.
+**Key fields:** reference type (letter, article, book, website), author(s) (linked Person or Institution), editors, title in different levels, year, publisher / journal, volume/issue/pages, identifier (DOI, ISBN, etc.), link (to Zotero).
 
 ---
 
@@ -156,7 +155,7 @@ A bibliographic reference to secondary literature — a book, journal article, c
 
 A general event entity for non-performance contexts — a conference, workshop, commissioning event, or premiere of a work without full performance documentation.
 
-**Key fields:** title, date, place (linked Place), description, participants (linked Persons or Institutions).
+**Key fields:** name of the event, date (single date or date span), place (linked Place), description, contributors (linked Persons or Institutions with roles), evidence of the event (linked Bibliography).
 
 ---
 
@@ -166,7 +165,7 @@ A general event entity for non-performance contexts — a conference, workshop, 
 
 A letter or correspondence document. Used to document primary source material such as composers' letters that relate to specific works or expressions.
 
-**Key fields:** sender (linked Person), recipient (linked Person), date, place of writing (linked Place), summary, archive location (linked Institution), shelfmark, digitisation link.
+**Key fields:** title of the letter, sender (linked Person or Institution), recipient (linked Person or Institution), date (single date or date span), sent place (linked Place), received place (linked Place), description.
 
 ---
 
@@ -177,9 +176,7 @@ All entity folders are present in a data repository created from the [MerMEId Me
 ```
 my-catalogue/
 ├── configuration/
-│   ├── config.json
-│   ├── editor-default.ttl
-│   └── *.shacl
+│   └── config.json
 ├── works/
 ├── expressions/
 ├── manifestations/
@@ -195,13 +192,13 @@ my-catalogue/
 └── letters/
 ```
 
-The folder names are defined in `editor-default.ttl` and **must** match the `melod:entity_folder_name` values registered there. Do not rename these folders.
+The folder names are defined in the configuration of the editor. Do not rename these folders.
 
 ---
 
 ## Example Data
 
-Rendered examples of entity records from the dataset:
+Rendered RDF examples of entity records from the dataset:
 
 - [Person example](https://examples-ttl-to-html-f7aa2e.pages.gitlab.rlp.net/person-example.html)
 - [Place example](https://examples-ttl-to-html-f7aa2e.pages.gitlab.rlp.net/place-example.html)

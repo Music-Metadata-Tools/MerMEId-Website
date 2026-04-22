@@ -1,6 +1,6 @@
 # MerMEId MeLODy
 
-**MerMEId MeLODy** is an open-source, browser-based metadata editor for creating and managing music-related metadata as Linked Open Data (LOD) with MEI output. It is the successor to [MerMEId](https://github.com/Edirom/MerMEId), the established metadata editor for thematic music catalogues originally developed at the Danish Centre for Music Editing.
+**MerMEId MeLODy** is an open-source, browser-based metadata editor for creating and managing music-related metadata as Linked Open Data (LOD) with MEI output. It is the successor to [MerMEId](https://github.com/Edirom/MerMEId), the established metadata editor for thematic work catalogues originally developed at the Danish Centre for Music Editing.
 
 The editor produces [RDF/Turtle](https://www.w3.org/TR/turtle/) output based on a FRBR-inspired data model, placing music metadata within the broader Linked Data landscape. It is designed for musicologists, music librarians, and developers who need to create structured, interoperable, and FAIR-compliant metadata for musical works, sources, persons, and events.
 
@@ -8,14 +8,15 @@ The editor produces [RDF/Turtle](https://www.w3.org/TR/turtle/) output based on 
 
 ---
 
-## Who Is It For?
+## Quick Start
 
-- **Musicologists** creating or maintaining thematic catalogues of composers' works or sources
-- **Music librarians** who need to describe sources, editions, and manuscripts as Linked Open Data
-- **Developers** looking to extend or integrate a SHACL-driven RDF editor into a digital humanities workflow
+<div class="text-center">
+<a href="https://music-metadata-tools.github.io/MerMEId-MeLODy/" class="btn btn-primary" role="button">Open the Live Editor</a>
+<a href="getting_started/" class="btn btn-primary" role="button">Getting Started Guide</a>
+<a href="https://github.com/Music-Metadata-Tools/MerMEId-MeLODy" class="btn btn-default" role="button">View on GitHub</a>
+</div>
 
 ---
-
 
 ## How It Works
 
@@ -27,13 +28,11 @@ To get started you need a data repository. The quickest way is to create one fro
 
 ---
 
-## Quick Start
+## Who Is It For?
 
-<div class="text-center">
-<a href="https://music-metadata-tools.github.io/MerMEId-MeLODy/" class="btn btn-primary" role="button">Open the Live Editor</a>
-<a href="getting_started/" class="btn btn-primary" role="button">Getting Started Guide</a>
-<a href="https://github.com/Music-Metadata-Tools/MerMEId-MeLODy" class="btn btn-default" role="button">View on GitHub</a>
-</div>
+- **Musicologists** creating or maintaining thematic catalogues of composers' works or sources
+- **Music librarians** who need to describe sources, editions, and manuscripts as Linked Open Data
+- **Developers** looking to extend or integrate a SHACL-driven RDF editor into a digital humanities workflow
 
 ---
 

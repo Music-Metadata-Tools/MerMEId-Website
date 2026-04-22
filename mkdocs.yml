@@ -20,7 +20,6 @@ nav:
     - Ontologies: data_model/ontologies.md
     - FRBR Hierarchy: data_model/frbr.md
     - Entity Types: data_model/entity_types.md
-    - Entity IRIs: data_model/iris.md
   - Developer Reference:
     - Overview: developer/index.md
     - Architecture: developer/architecture.md

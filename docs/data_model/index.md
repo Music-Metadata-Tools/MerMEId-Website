@@ -11,7 +11,6 @@ This section documents the conceptual and technical foundations of the data mode
 - [Ontologies](ontologies.md) — the external vocabularies the data model is built on, and the MeLODy ontology
 - [FRBR Hierarchy](frbr.md) — the core bibliographic hierarchy: Work, Expression, Manifestation, Item
 - [Entity Types](entity_types.md) — all 13 supported entity types with fields and repository structure
-- [Entity IRIs](iris.md) — how entity identifiers are constructed and configured
 
 ---
 

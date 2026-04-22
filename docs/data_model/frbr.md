@@ -109,7 +109,7 @@ In practice, not every catalogue entry requires all four levels. A thematic cata
 Links between levels are stored as RDF property references between entity IRIs, for example:
 
 ```turtle
-<urn:uuid:expressions/1234567890>
-    a melod:Expression ;
-    melod:isRealisationOf <urn:uuid:works/9876543210> .
+<urn:uuid:works/2270604911> 
+    a melod:Work;
+    lrmoo:R3_is_realised_in <urn:uuid:expressions/2718778403>.
 ```

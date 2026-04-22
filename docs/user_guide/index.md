@@ -12,7 +12,7 @@ MerMEId MeLODy runs entirely in the browser. **Chromium-based browsers (Chrome o
 
 ### Git Host Account
 
-You need an account on a Git hosting platform to create data repositories — [GitHub](https://github.com) or [GitLab](https://gitlab.com) are both supported. The editor communicates with any HTTPS-accessible Git host. To edit data in the repository you don't need a Git Aaccount, only the data owner needs one.
+You need an account on a Git hosting platform to create data repositories — [GitHub](https://github.com) or [GitLab](https://gitlab.com) are both supported. The editor communicates with any HTTPS-accessible Git host. To edit data in the repository you don't need a Git Account, only the data owner needs one.
 
 ### Personal Access Token
 

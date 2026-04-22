@@ -1,6 +1,6 @@
 # FRBR Hierarchy
 
-The core of the MerMEId MeLODy data model follows the **FRBR** (Functional Requirements for Bibliographic Records) hierarchy, as formalised in [LRMoo](https://cidoc-crm.org/lrmoo/) and [FRBRoo](https://erlangen-crm.org/efrbroo/). This hierarchy separates a musical work into four conceptually distinct levels.
+The core of the MerMEId MeLODy data model follows the **FRBR** (Functional Requirements for Bibliographic Records) hierarchy, as formalised in [LRMoo](https://cidoc-crm.org/lrmoo/). This hierarchy separates a musical work into four conceptually distinct levels.
 
 ```
 Work
@@ -22,16 +22,16 @@ A **Work** represents the abstract intellectual or artistic creation — the com
 
 > *Example:* Beethoven's Symphony No. 9 in D minor, Op. 125 is a Work. It exists as an abstract concept, identified by the composer's intention and the thematic catalogue entry — not tied to any specific score or recording.
 
-**Typical fields:**
+**Fields:**
 
 - Title (primary and alternative titles)
-- Composer (linked Person)
+- Composer (linked Person as Contributor with role as Composer)
 - Catalogue numbers (opus number, thematic catalogue reference such as BWV, TWV, etc.)
-- Genre and sub-genre
-- Key (tonic and mode)
-- Date of composition (with certainty levels)
-- Scoring overview
+- Historic context of the work creation
+- Genre and sub-genre as classifications
+- Evidence as linked bibliography
 - Related works (part of a larger collection, preceded by, derived from, etc.)
+- Is realised in (linked Expression)
 
 ---
 
@@ -40,16 +40,18 @@ A **Work** represents the abstract intellectual or artistic creation — the com
 **Class:** `melod:Expression`
 **Folder:** `expressions/`
 
-An **Expression** is a specific realisation of a Work — a distinct version defined by its musical content: instrumentation, arrangement, language (for vocal music), number of movements, and so on. The same abstract Work can have multiple Expressions.
+An **Expression** is a specific realisation of a Work or a Source — a distinct version defined by its musical content: instrumentation, arrangement, language, number of movements, and so on. The same abstract Work can have multiple Expressions.
 
 > *Example:* An arrangement of Beethoven's 9th for piano solo is a different Expression from the full orchestral score. A revision by the composer that adds a new movement creates another Expression.
 
-**Typical fields:**
+**Fields:**
 
-- Title of this realisation
-- Scoring/instrumentation (linked Instrumentation, or inline medium of performance)
+- Label of this realisation
+- Scoring/instrumentation (linked Instrumentation entity)
 - Movements and sections (can reference other Expressions as components)
-- Musical incipits (in PAE — Plaine and Easie Code — format)
+- Key, Meter, Tempo, mensuration and extent
+- Duration of the performed expression
+- Musical incipits (in PAE — Plaine and Easie Code — format or linked MEI)
 - Performance events (linked PerformanceEvents)
 - Related expressions (arrangements, translations, revisions)
 - Completion status
@@ -65,14 +67,14 @@ A **Manifestation** is a published or otherwise distributed embodiment of an Exp
 
 > *Example:* The first edition of the score published by Breitkopf & Härtel in 1826 is a Manifestation. A later critical edition by another publisher is a separate Manifestation of the same Expression.
 
-**Typical fields:**
+**Fields:**
 
-- Title as it appears on the manifestation
+- Title as it appears on the manifestation and link to identifier (RISM)
 - Publisher and place/date of publication
-- Series and plate number
-- Physical format and description
+- Physical description (dimensions, watermark, plate number, inscriptions) and formatted title pages (for manifestation singletons)
+- Classifications
 - Related manifestations (reprints, facsimile editions)
-- Held items (linked Items)
+- Embodies (Linked Expression)
 
 ---
 
@@ -85,14 +87,18 @@ An **Item** is a single physical or digital copy of a Manifestation — a specif
 
 > *Example:* The copy of the 1826 Breitkopf & Härtel score held at the Staatsbibliothek Berlin, with shelfmark Mus.ms. 1234, is one Item.
 
-**Typical fields:**
+**Fields:**
 
-- Holding institution (linked Institution)
-- Shelfmark / call number
-- RISM identifier
-- Provenance notes
-- Physical condition
+- Label and link to identifier (RISM)
+- Holding institution/repository (linked Institution)
+- Shelfmark and former shelfmark
+- Provenance notes as events and date of acquisition
+- Physical description (dimensions, watermark, plate number, inscriptions, condition) and formatted title pages
+- Scribes (linked Persons and Medium description)
 - Link to digitisation (if available)
+- Classifications
+- Related items (components)
+- Materialization Of (Linked Manifestation)
 
 ---
 

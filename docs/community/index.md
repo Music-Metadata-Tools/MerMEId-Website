@@ -4,9 +4,6 @@ MerMEId MeLODy is an open-source project maintained by a community of musicologi
 
 ---
 
-## Sections
-
-- [Contributing](contributing.md) — how to report bugs, suggest features, and contribute code or documentation
 
 ---
 
@@ -33,14 +30,6 @@ MerMEId MeLODy is used to create and maintain **thematic catalogues** of compose
 
 If you are using MerMEId MeLODy for a catalogue project and would like to be listed here, please get in touch at [cdmd@adwmainz.de](mailto:cdmd@adwmainz.de) or open a [GitHub Discussion](https://github.com/Music-Metadata-Tools/MerMEId-MeLODy/discussions).
 
----
-
-## Get in Touch
-
-- **GitHub Discussions** — the best place for questions, ideas, and general conversation: [github.com/Music-Metadata-Tools/MerMEId-MeLODy/discussions](https://github.com/Music-Metadata-Tools/MerMEId-MeLODy/discussions)
-- **Slack** — join the MerMEId channel in the MEI Slack workspace: [Join here](https://join.slack.com/t/music-encoding/shared_invite/zt-3d5izuduu-b3PBpvV5yd91YJhN1q7GvA)
-- **GitHub Issues** — report bugs or request features: [github.com/Music-Metadata-Tools/MerMEId-MeLODy/issues](https://github.com/Music-Metadata-Tools/MerMEId-MeLODy/issues)
-- **Email** — for direct enquiries: [cdmd@adwmainz.de](mailto:cdmd@adwmainz.de)
 
 ---
 

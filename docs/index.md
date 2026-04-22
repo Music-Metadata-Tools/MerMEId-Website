@@ -58,6 +58,18 @@ MerMEId MeLODy is **beta software** (version 0.8, released 2026-03-24). It is ac
 
 ---
 
+
+## Citing MerMEId MeLODy
+
+If you use MerMEId MeLODy in your research, please cite it as:
+
+> Licciulli, Carlo; Teodorescu, Claudius; Schmitz, Annabella; Zwick, Robert; Richts-Matthaei, Kristina (2026). *MerMEId MeLODy* (Version 0.8). MIT License. [https://github.com/Music-Metadata-Tools/MerMEId-MeLODy](https://github.com/Music-Metadata-Tools/MerMEId-MeLODy)
+
+A `CITATION.cff` file is included in the repository for automated citation tools (Zotero, GitHub citation export, etc.).
+
+---
+
+
 ## Funding
 
 MerMEId MeLODy is funded by the **Deutsche Forschungsgemeinschaft (DFG)** through the project [MerMEIding to the future](https://gepris.dfg.de/gepris/projekt/528785591), project number 528785591. It is developed by the Centre for Digital Music Documentation ([CDMD](https://www.adwmainz.de/forschung/centre-for-digital-music-documentation.html)) at the [Akademie der Wissenschaften und der Literatur | Mainz](https://www.adwmainz.de/) and the Zentrum Musik–Edition–Medien ([ZenMEM](https://zenmem.uni-paderborn.de/)) at the University of Paderborn.

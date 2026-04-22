@@ -5,7 +5,10 @@ repo_name: Music-Metadata-Tools/MerMEId-MeLODy
 edit_uri: ""
 
 nav:
-  - Home: index.md
+  - Home: 
+    - MerMEId MeLODy: index.md
+    - Contributing: home/contributing.md
+    - Contact: home/contact.md
   - User Guide:
     - Getting Started: user_guide/index.md
     - The Interface: user_guide/interface.md
@@ -18,11 +21,6 @@ nav:
     - FRBR Hierarchy: data_model/frbr.md
     - Entity Types: data_model/entity_types.md
     - Entity IRIs: data_model/iris.md
-  - Configuration:
-    - Overview: configuration/index.md
-    - Editor Configuration: configuration/editor_config.md
-    - Repository Configuration: configuration/repo_config.md
-    - SHACL Shapes: configuration/shacl_shapes.md
   - Developer Reference:
     - Overview: developer/index.md
     - Architecture: developer/architecture.md
@@ -30,17 +28,16 @@ nav:
     - Services: developer/services.md
     - Event Communication: developer/events.md
     - Extending the Editor: developer/extending.md
+    - Editor Configuration: developer/editor_config.md
+    - Repository Configuration: developer/repo_config.md
+    - SHACL Shapes: developer/shacl_shapes.md
   - Community:
     - Overview: community/index.md
-    - Contributing: community/contributing.md
   - Events:
     - Upcoming Events: events/index.md
     - "Archive: Trieste 2025": events/archive/trieste_2025.md
   - Roadmap: roadmap.md
-  - About:
-    - Overview: about/index.md
-    - Project & Team: about/project.md
-    - Impressum: about/impressum.md
+  - Legal notice: impressum/impressum.md
 
 theme:
   name: material

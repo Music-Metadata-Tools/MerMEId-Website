@@ -17,7 +17,7 @@ This section documents the conceptual and technical foundations of the data mode
 
 ## At a Glance
 
-The data model is centred on the [FRBR](https://en.wikipedia.org/wiki/Functional_Requirements_for_Bibliographic_Records) hierarchy as formalised in [LRMoo](https://cidoc-crm.org/lrmoo/)/[FRBRoo](https://erlangen-crm.org/efrbroo/), extended with contextual entities for persons, places, events, and bibliographic references.
+The data model is centred on the [FRBR](https://en.wikipedia.org/wiki/Functional_Requirements_for_Bibliographic_Records) hierarchy as formalised in [LRMoo](https://cidoc-crm.org/lrmoo/), extended with contextual entities for persons, places, events, and bibliographic references.
 
 ```
 Work                     ← abstract creative work
@@ -25,7 +25,7 @@ Work                     ← abstract creative work
       └── Manifestation  ← a published or distributed edition
            └── Item      ← a single physical or digital copy
 
-Person  Place  Venue  Institution  PerformanceEvent  Instrumentation  Bibliography  Letter
+Person  Place  Venue  Institution  PerformanceEvent  Event Instrumentation  Bibliography  Letter
 ```
 
-All entity classes are defined in the **MeLODy ontology** (`melod:` → `https://lod.academy/melod/vocab/ontology#`).
+All entity classes are defined in the [MeLODy ontology](https://lod.academy/melod/vocab/ontology#) (`melod:` → `https://lod.academy/melod/vocab/ontology#`).

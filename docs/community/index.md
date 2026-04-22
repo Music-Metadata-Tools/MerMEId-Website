@@ -9,6 +9,7 @@ MerMEId MeLODy is an open-source project maintained by a community of musicologi
 ### In Progress
 
 | Composer or Catalog | Status |
+| :--- | :--- |
 | Georg Philipp Telemann | In progress |
 | Felix Mendelssohn Bartholdy | In progress |
 | Digital Organ Music Catalog | In progress |

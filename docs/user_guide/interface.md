@@ -147,13 +147,13 @@ The output panel on the right side of the screen shows the current entity's data
 
 ### XML Tab
 
-Shows the entity data converted from JSON-LD to **MEI/XML** format. This conversion is performed by entity-type-specific converter modules. The output is suitable for copying into MEI documents or passing to MEI-aware tools.
+Shows the entity data converted from JSON-LD to **MEI/XML** or **TEI/XML** format. This conversion is performed by entity-type-specific converter modules. The output is suitable for copying into MEI or TEI documents or passing to MEI-aware tools.
 
 A **copy** button at the top of the tab copies the full XML content to the clipboard.
 
 ### RDF Tab
 
-Shows the **RDF/Turtle** output — the exact content that will be written to the `.ttl` file when you save. This is produced directly by `shacl-form.serialize()` and represents the canonical stored format for the entity.
+Shows the **RDF/Turtle** output — the exact content that will is inside the `.ttl` file. This is produced directly by `shacl-form.serialize()` and represents the canonical stored format for the entity.
 
 A **copy** button at the top of the tab copies the Turtle content to the clipboard.
 

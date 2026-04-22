@@ -8,11 +8,10 @@ The editor produces [RDF/Turtle](https://www.w3.org/TR/turtle/) output based on 
 
 ---
 
-## Quick Start
 
 <div class="text-center">
 <a href="https://music-metadata-tools.github.io/MerMEId-MeLODy/" class="btn btn-primary" role="button">Open the Live Editor</a>
-<a href="getting_started/" class="btn btn-primary" role="button">Getting Started Guide</a>
+<a href="user_guide/" class="btn btn-primary" role="button">Getting Started Guide</a>
 <a href="https://github.com/Music-Metadata-Tools/MerMEId-MeLODy" class="btn btn-default" role="button">View on GitHub</a>
 </div>
 

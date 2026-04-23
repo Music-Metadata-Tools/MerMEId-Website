@@ -1,6 +1,6 @@
 # Repository Configuration
 
-Each data repository contains a configuration file at `configuration/config.json`. This file must be present and correctly configured for the editor to function with that repository.
+Each **data repository** contains a configuration file at `configuration/config.json`. This file must be present and correctly configured for the editor to function with that repository.
 
 ---
 

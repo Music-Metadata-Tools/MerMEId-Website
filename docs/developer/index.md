@@ -14,6 +14,7 @@ This section documents the technical architecture of MerMEId MeLODy for develope
 - [Editor Configuration](editor_config.md) — how `editor-default.ttl` registers entity types and links SHACL shapes
 - [Repository Configuration](repo_config.md) — `config.json` fields: dataset URL and IRI prefix
 - [SHACL Shapes](shacl_shapes.md) — how to define and extend form fields using SHACL
+
 ---
 
 ## At a Glance

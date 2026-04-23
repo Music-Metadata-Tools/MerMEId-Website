@@ -4,13 +4,6 @@ MerMEId MeLODy is configured at two distinct levels: the **editor** itself (whic
 
 ---
 
-## Sections
-
-- [Editor Configuration](editor_config.md) — the `editor-default.ttl` file: registering entity types and linking SHACL shapes
-- [Repository Configuration](repo_config.md) — the `config.json` file: dataset URL and IRI prefix
-- [SHACL Shapes](shacl_shapes.md) — how forms are defined and how to write or extend them
-
----
 
 ## At a Glance
 

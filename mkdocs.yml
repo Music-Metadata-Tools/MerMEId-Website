@@ -26,10 +26,9 @@ nav:
     - Components: developer/components.md
     - Services: developer/services.md
     - Event Communication: developer/events.md
-    - Extending the Editor: developer/extending.md
-    - Editor Configuration: developer/editor_config.md
-    - Repository Configuration: developer/repo_config.md
     - SHACL Shapes: developer/shacl_shapes.md
+    - Extending the Editor: developer/extending.md
+    - Repository Configuration: developer/repo_config.md
   - Community:
     - Overview: community/index.md
   - Events:

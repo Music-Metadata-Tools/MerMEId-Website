@@ -4,6 +4,82 @@ MerMEId MeLODy is designed to be extended without modifying core components. Add
 
 ---
 
+## At a Glance
+
+```
+Editor repository
+└── configuration/
+    ├── editor-default.ttl    ← which entity types exist and which SHACL shape each uses
+    └── *.shacl               ← one shape file per entity type, defines form fields
+
+Data repository
+└── configuration/
+    ├── config.json           ← datasetBaseUrl and projectDomain
+    └── *.shacl               ← copy of shape files (or referenced by URL)
+```
+
+No build step is required for most configuration changes. Editing a SHACL shape or `editor-default.ttl` takes effect immediately on the next page load.
+
+## Editor Configuration
+
+The editor configuration file `configuration/editor-default.ttl` is a Turtle file loaded at startup. It tells the editor which entity types are available, what their display names are, where their files are stored, and which SHACL shape file defines their form.
+
+---
+
+## How It Works
+
+When the editor starts, `js/index.js` fetches `editor-default.ttl` and loads its content into an in-browser [Oxigraph](https://github.com/oxigraph/oxigraph) triple store. A SPARQL SELECT query then extracts all entity type definitions:
+
+```sparql
+SELECT ?type ?label ?folder ?shacl WHERE {
+  ?type a melod:EntityType ;
+        rdfs:label ?label ;
+        melod:entity_folder_name ?folder ;
+        melod:shacl_file_location ?shacl .
+}
+```
+
+The results are passed to the `adwlm-entity-editor` component as `entity_type_definitions`. This drives the "New entity" dialog and tells the editor which SHACL shape to load when a file of that type is opened.
+
+---
+
+## Registration Format
+
+Each entity type is an RDF subject with four required properties:
+
+```turtle
+@prefix melod: <https://lod.academy/melod/vocab/ontology#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+
+melod:Person
+    a melod:EntityType ;
+    rdfs:label "Person" ;
+    melod:entity_folder_name "persons" ;
+    melod:shacl_file_location "configuration/person.shacl" .
+```
+
+### The Four Properties
+
+| Property | Description |
+| :--- | :--- |
+| `a melod:EntityType` | Required type declaration — the SPARQL query matches on this |
+| `rdfs:label` | Human-readable display name shown in the "New entity" dialog (e.g. `"Person"`) |
+| `melod:entity_folder_name` | Name of the folder in the data repository where files of this type are stored (e.g. `"persons"`) — **must** match the actual folder name exactly |
+| `melod:shacl_file_location` | Path or URL of the SHACL shape file for this entity type |
+
+---
+
+## SHACL File Locations
+
+The `melod:shacl_file_location` value can be either:
+
+- A **relative path** within the editor repository: e.g. `"configuration/person.shacl"` — resolved against the editor's base URL at runtime
+- An **absolute HTTPS URL**: e.g. `"https://example.org/shapes/person.shacl"` — fetched directly
+
+Using an absolute URL allows you to host SHACL shapes on an external server or in the data repository and reference them without modifying the editor files. This is useful when managing multiple data repositories that share the same entity type definitions but may have different field configurations.
+
+---
+
 ## Adding a New Entity Type
 
 ### Step 1 — Create a SHACL shape

@@ -141,11 +141,3 @@ sh:property [
 ```
 
 Save the file and reload the editor — the new field will appear in all Person forms automatically.
-
----
-
-## Further Reading
-
-- [W3C SHACL Specification](https://www.w3.org/TR/shacl/)
-- [shacl-form documentation and demo](https://ulb-darmstadt.github.io/shacl-form/#intro)
-- [DoReMus ontology](https://data.doremus.org/ontology/) — for instrumentation and medium of performance properties

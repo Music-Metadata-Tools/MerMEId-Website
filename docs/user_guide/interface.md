@@ -8,21 +8,21 @@ This page gives a complete walkthrough of the MerMEId MeLODy user interface. The
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│  BETA  MerMEId MeLODy                              [GitHub]         │
+│  BETA                MerMEId MeLODy                [GitHub]         │
 ├─────────────────┬───────────────────────────────┬───────────────────┤
 │ Search Panel    │  Editor Panel                 │  Output Panel     │
 │                 │                               │                   │
-│ adwlm-entity-   │  adwlm-entity-editor          │  XML | RDF |      │
-│ search          │                               │  Preview          │
+│ Entity Search   │  Entity Editor                │  XML | RDF |      │
+│                 │                               │  Preview          │
 │                 │  [toolbar]                    │                   │
 │                 │  Entity type + IRI            │                   │
 │                 │  shacl-form                   │                   │
 │ Repository      │                               │                   │
 │ Panel           │                               │                   │
 │                 │                               │                   │
-│ adwlm-          │                               │                   │
-│ filesystem-     │                               │                   │
-│ manager         │                               │                   │
+│ Filesystem      │                               │                   │
+│ Manager         │                               │                   │
+│                 │                               │                   │
 │                 │                               │                   │
 ├─────────────────┴───────────────────────────────┴───────────────────┤
 │  Footer                                                             │
@@ -37,13 +37,13 @@ The **footer** shows the logos of the funding and partner institutions: DFG, CDM
 
 ## The Search Panel
 
-**Component:** `adwlm-entity-search` (top of the left column)
+**Component:** Entity Search (top of the left column)
 
-The search panel lets you find entities by label across the entire dataset.
+The search panel let you find entities by labels across the entire dataset.
 
 ### Controls
 
-- **Type filter dropdown** — filter results by entity type (All, Person, Place, Work, Expression, etc.). The dropdown is populated from the entity type definitions loaded at startup.
+- **Type filter dropdown** — filter results by entity type (All, Person, Place, Work, Expression, etc.). The dropdown contains all Entity Types configured in the editor.
 - **Text input** — type a name or keyword to filter the results list. The search is case-insensitive and matches anywhere in the label.
 - **Results list** — click any result to open the corresponding entity in the editor. The filesystem manager will navigate the tree to that file automatically.
 
@@ -63,7 +63,7 @@ The index files are loaded into an in-browser [Oxigraph](https://github.com/oxig
 
 ## The Repository Panel
 
-**Component:** `adwlm-filesystem-manager` (below the search panel, occupying the lower portion of the left column)
+**Component:** Filesystem Manager (below the search panel, left side)
 
 The repository panel shows your cloned repositories, their folder structure, and the file staging area.
 
@@ -105,7 +105,7 @@ Deleted entities also appear here with a `-deleted` suffix in the filename.
 
 ## The Editor Panel
 
-**Component:** `adwlm-entity-editor` (centre column)
+**Component:** Entity Editor (centre column)
 
 The editor panel is the main working area. It displays the form for the currently open entity.
 
@@ -141,9 +141,9 @@ When you make any change to the form, the **Save** button turns blue and a dot i
 
 ## The Output Panel
 
-**Component:** right column tab group
+**Component:** Entity Renderer (right column, tab group)
 
-The output panel on the right side of the screen shows the current entity's data in different formats. It updates automatically when the form content changes.
+The output panel on the right side of the screen renders the current entity's data in different formats. It updates when the form content is saved, not automatically.
 
 ### XML Tab
 
@@ -153,7 +153,7 @@ A **copy** button at the top of the tab copies the full XML content to the clipb
 
 ### RDF Tab
 
-Shows the **RDF/Turtle** output — the exact content that will is inside the `.ttl` file. This is produced directly by `shacl-form.serialize()` and represents the canonical stored format for the entity.
+Shows the **RDF/Turtle** output — the exact content that is inside the `.ttl` file. This is produced directly by `shacl-form.serialize()` and represents the canonical stored format for the entity.
 
 A **copy** button at the top of the tab copies the Turtle content to the clipboard.
 

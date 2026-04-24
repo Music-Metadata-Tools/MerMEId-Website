@@ -26,10 +26,13 @@ If you are using MerMEId MeLODy for a catalogue project and would like to be lis
 
 | Composer | Catalogue |
 | :--- | :--- |
-| Carl Nielsen | Nielsen Catalogue |
-| Anton Bruckner | Bruckner Catalogue |
-| Giuseppe Tartini | Tartini Catalogue |
-| Frederick Delius | Delius Catalogue |
+| Carl Nielsen | [Nielsen Catalogue](https://www.kb.dk/dcm/cnw/index.xq) |
+| Anton Bruckner | [Bruckner Catalogue](http://www.bruckner-online.at/?page_id=1588) |
+| Giuseppe Tartini | [Tartini Catalogue](https://www.discovertartini.eu/archivi?type=5&lang=en) |
+| Frederick Delius | [Delius Catalogue](https://delius.music.ox.ac.uk/catalogue/navigation.html?page=2) |
+| J.P.E. Hartmann | [Hartmann Catalogue](https://www.kb.dk/dcm/hartw/index.xq) |
+| Niels W. Gade | [Gade Catalogue](https://www.kb.dk/dcm/nwgw/index.xq) |
+| Johann Adolph Scheibe | [Scheibe Catalogue](https://www.kb.dk/dcm/schw/index.xq) |
 
 ### In Progress
 

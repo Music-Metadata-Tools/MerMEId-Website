@@ -27,6 +27,7 @@ nav:
     - Services: developer/services.md
     - Event Communication: developer/events.md
     - SHACL Shapes: developer/shacl_shapes.md
+    - Datasets Generation: developer/datasets.md
     - Extending the Editor: developer/extending.md
     - Repository Configuration: developer/repo_config.md
   - Community:

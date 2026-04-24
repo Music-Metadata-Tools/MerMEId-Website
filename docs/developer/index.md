@@ -11,6 +11,7 @@ This section documents the technical architecture of MerMEId MeLODy for develope
 - [Services](services.md) — `FilesystemService` and `VirtualFilesystem`: the Git and filesystem layer
 - [Event Communication](events.md) — the full event map between components
 - [SHACL Shapes](shacl_shapes.md) — how to define and extend form fields using SHACL
+- [Datasets Generation](datasets.md) — how SPARQL queries build search indices and dropdowns from entity data
 - [Extending the Editor](extending.md) — how to add new entity types, SHACL shapes, and MEI/XML converters
 - [Repository Configuration](repo_config.md) — `config.json` fields: dataset URL and IRI prefix
 

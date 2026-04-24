@@ -8,11 +8,27 @@ This page gives a brief overview of planned and in-progress features for MerMEId
 
 ### Import
 
-- **Import from MEI/XML** — The MEI2RDF tool enables conversion of existing MerMEId MEI (MEI 4.0) XML catalogues into the RDF/Turtle format used by MerMEId MeLODy. The tool uses a three-phase conversion process: Phase 1 detects and registers musical entities from MEI documents; Phase 2 enriches MEI files with entity references; Phase 3 generates RDF triples organized by entity type. Supports both GUI and CLI modes with configurable entity schemas and mappings, making it practical for projects migrating from the original MerMEId to the new RDF-based system. Currently in development and not yet publicly accessible, but will be available for open use in the future.
+**Import from MEI/XML** 
+
+- The MEI2RDF tool enables conversion of existing MerMEId MEI (MEI 4.0) XML catalogues into the RDF/Turtle format used by MerMEId MeLODy. 
+
+The tool uses a three-phase conversion process:
+
+1. Detection and deduplication of entities from MEI documents
+2. Enrichment of MEI files with entity IRIs
+3. Generation of RDF triples organized by entity type
+
+- Supports both GUI and CLI modes with configurable entity schemas and mappings, making it practical for projects migrating from the original MerMEId to the new RDF-based system
+- Currently in development and not yet publicly accessible, but will be available for open use in the future.
 
 ### Export
 
-- **Export to various formats** — export scripts for producing formatted outputs from the RDF data, including MEI/XML, HTML catalogues, CSV, and other formats as needed by specific projects.
+**Export to MEI/XML and HTML** 
+
+- The RDF Template Engine enables transformation of RDF/Turtle data into multiple structured output formats. The engine is built on a flexible pipeline architecture using SPARQL queries and Jinja2 templates. It extracts data from RDF graphs using customizable SPARQL queries, constructs context objects with hierarchical entity relationships (Works → Expressions → Manifestations → Items), and renders them through modular Jinja2 templates. 
+- The engine will support three output modes: individual entities, complete files with related resources, and register listings of all entities of a type. Outputs can be generated in MEI (Music Encoding Initiative) XML format for use in the original MerMEId or other tools, HTML catalogues for web publication, or TEI (Text Encoding Initiative) XML for some entities like persons and places. The system is extensible with custom SPARQL queries for entity extraction and custom templates for output generation. The tool can run locally via CLI for batch processing or be integrated into CI/CD pipelines via the `static-publishing-backend` Docker container for automated publishing
+- Currently in development and not yet publicly accessible, but will be available for open use in the future. 
+- Future versions may also support additional export formats such as CSV and other structured formats as needed by specific projects.
 
 ### Planned Features
 

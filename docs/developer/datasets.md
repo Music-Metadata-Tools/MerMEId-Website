@@ -305,10 +305,10 @@ The file [`modules/datasets-generator/datasets-generator.sh`](https://github.com
 1. Sets up directory paths for all entity types
 2. For each dataset, calls the `rdf-data-aggregator` tool with:
 
-   - **Source directory:** where entity files are located (e.g., `persons/`)
-   - **File pattern:** which files to include (e.g., `*.ttl`)
-   - **SPARQL query:** the transformation logic (e.g., `persons.sparql`)
-   - **Output path:** where to write the result (e.g., `public/datasets/persons.ttl`)
+    - **Source directory:** where entity files are located (e.g., `persons/`)
+    - **File pattern:** which files to include (e.g., `*.ttl`)
+    - **SPARQL query:** the transformation logic (e.g., `persons.sparql`)
+    - **Output path:** where to write the result (e.g., `public/datasets/persons.ttl`)
 
 3. Times each operation for performance monitoring
 

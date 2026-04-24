@@ -19,7 +19,7 @@ This section documents the technical architecture of MerMEId MeLODy for develope
 
 ## At a Glance
 
-MerMEId MeLODy is a **static, browser-only application** — there is no backend server. All operations run entirely in the browser:
+MerMEId MeLODy is a **static, browser-only MEI metadata editor** — there is no backend server. All operations runs entirely in the browser and produces RDF that is structurally aligned with MEI (Music Encoding Initiative) standards:
 
 - Git operations are performed in-memory using [isomorphic-git](https://isomorphic-git.org/) with [LightningFS](https://github.com/isomorphic-git/lightning-fs) (an `IndexedDB`-backed virtual filesystem)
 - The UI is built with [Lit](https://lit.dev/) web components and [Shoelace](https://shoelace.style/)

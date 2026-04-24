@@ -16,7 +16,7 @@ This section documents the conceptual and technical foundations of the data mode
 
 ## At a Glance
 
-The data model is centred on the [FRBR](https://en.wikipedia.org/wiki/Functional_Requirements_for_Bibliographic_Records) hierarchy as formalised in [LRMoo](https://cidoc-crm.org/lrmoo/), extended with contextual entities for persons, places, events, and bibliographic references. It maintains compatibility with the MEI (Music Encoding Initiative) XML Schema Version 5.1, ensuring interoperability with existing MEI-based systems and ensures MEI/XML as an output of the editor.
+The data model is centred on the [FRBR](https://en.wikipedia.org/wiki/Functional_Requirements_for_Bibliographic_Records) hierarchy as formalised in [LRMoo](https://cidoc-crm.org/lrmoo/) and directly aligned with the [MEI (Music Encoding Initiative)](https://music-encoding.org/) XML Schema (v5.1). The RDF structure is specifically designed to map seamlessly to MEI elements, ensuring that complex thematic work and source catalogue metadata can be reliably transformed into well-formed MEI/XML. Extended with contextual entities for persons, places, events, and bibliographic references, the model ensures both semantic precision and MEI standards compliance.
 
 ```
 Work                     ← abstract creative work

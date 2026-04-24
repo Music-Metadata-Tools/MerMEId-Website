@@ -1,6 +1,6 @@
 # Ontologies
 
-MerMEId MeLODy does not define everything from scratch — it builds on well-established vocabularies from the cultural heritage and semantic web communities, and adds a small domain-specific ontology for concepts not covered elsewhere.
+MerMEId MeLODy does not define everything from scratch — it builds on well-established vocabularies from the cultural heritage and semantic web communities, with the [MEI (Music Encoding Initiative)](https://music-encoding.org/) guidelines as the foundational reference for music-specific concepts. It adds a domain-specific ontology (MeLODy) that precisely mirrors MEI element structures to ensure that RDF metadata can be reliably transformed into standards-compliant MEI XML.
 
 ---
 

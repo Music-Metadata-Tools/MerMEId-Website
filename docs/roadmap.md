@@ -11,13 +11,11 @@ This page gives a brief overview of planned and in-progress features for MerMEId
 **Import from MEI/XML** 
 
 - The MEI2RDF tool enables conversion of existing MerMEId MEI (MEI 4.0) XML catalogues into the RDF/Turtle format used by MerMEId MeLODy. 
+- The tool uses a three-phase conversion process:
 
-The tool uses a three-phase conversion process:
-
-1. Detection and deduplication of entities from MEI documents
-2. Enrichment of MEI files with entity IRIs
-3. Generation of RDF triples organized by entity type
-
+    1. Detection and deduplication of entities from MEI documents
+    2. Enrichment of MEI files with entity IRIs
+    3. Generation of RDF triples organized by entity type
 
 - Supports both GUI and CLI modes with configurable entity schemas and mappings, making it practical for projects migrating from the original MerMEId to the new RDF-based system
 - Currently in development and not yet publicly accessible, but will be available for open use in the future.

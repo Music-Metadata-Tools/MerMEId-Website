@@ -29,7 +29,7 @@ This page gives a brief overview of planned and in-progress features for MerMEId
 - Currently in development and not yet publicly accessible, but will be available for open use in the future. 
 - Future versions may also support additional export formats such as CSV and other structured formats as needed by specific projects.
 
-### Planned Features
+## Planned Features
 
 - **Import from other formats** — importers for additional metadata formats (e.g. MARC, CSV, existing LOD datasets).
 - Language Selector in the editor to switch the languages of the field labels and descriptions

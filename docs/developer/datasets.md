@@ -82,9 +82,11 @@ Each dataset is built using a **SPARQL CONSTRUCT query** that transforms entity 
 **Purpose:** Index all persons with their full names.
 
 **Output properties:**
+
 - `skos:prefLabel` — formatted name (e.g., "Bach, Johann Sebastian")
 
 **Query logic:**
+
 - Combines `schema:familyName` and `schema:givenName` into a displayable label
 - Falls back to family name only if given name is missing
 - Sorted alphabetically by full name
@@ -98,12 +100,14 @@ Each dataset is built using a **SPARQL CONSTRUCT query** that transforms entity 
 **Purpose:** Index all works with titles, alternative titles, and composer information.
 
 **Output properties:**
+
 - `skos:prefLabel` — main title
 - `skos:altLabel` — uniform title and alternative title (if present)
 - `skos:broader` — work classification (if present)
 - `schema:composer` — composer name (if linked)
 
 **Query logic:**
+
 - Extracts the main title (type: `MainTitle`)
 - Optionally includes uniform title and alternative titles as searchable variants
 - Optionally extracts composer information via a contribution relationship
@@ -118,9 +122,11 @@ Each dataset is built using a **SPARQL CONSTRUCT query** that transforms entity 
 **Purpose:** Index all expressions with labels including incipit text for identification.
 
 **Output properties:**
+
 - `skos:prefLabel` — expression label with optional incipit text
 
 **Query logic:**
+
 - Uses either `skos:prefLabel` or `rdfs:label` as base label
 - Optionally appends incipit text in parentheses for disambiguation
 - Sorted by label
@@ -134,10 +140,12 @@ Each dataset is built using a **SPARQL CONSTRUCT query** that transforms entity 
 **Purpose:** Index all manifestations with their titles and classifications.
 
 **Output properties:**
+
 - `skos:prefLabel` — manifestation title
 - `skos:broader` — classification (if present)
 
 **Query logic:**
+
 - Extracts title from title subject
 - Optionally includes classification for broader search
 - Sorted by title
@@ -151,10 +159,12 @@ Each dataset is built using a **SPARQL CONSTRUCT query** that transforms entity 
 **Purpose:** Index all items with titles and classifications.
 
 **Output properties:**
+
 - `skos:prefLabel` — item label
 - `skos:broader` — classification
 
 **Query logic:**
+
 - Uses item label from `rdfs:label`
 - Includes classification
 - Sorted by label
@@ -168,10 +178,12 @@ Each dataset is built using a **SPARQL CONSTRUCT query** that transforms entity 
 **Purpose:** Index all institutions with abbreviations or RISM sigla.
 
 **Output properties:**
+
 - `skos:prefLabel` — label with optional abbreviation or RISM siglum
 - `skos:broader` — RISM identifier if present
 
 **Query logic:**
+
 - Uses institution name as base
 - Prepends abbreviation or RISM siglum if available: `"DB (Name)"`
 - Falls back to name only if no abbreviation or rism siglum
@@ -186,9 +198,11 @@ Each dataset is built using a **SPARQL CONSTRUCT query** that transforms entity 
 **Purpose:** Index all places with their names.
 
 **Output properties:**
+
 - `skos:prefLabel` — place name
 
 **Query logic:**
+
 - Extracts place name from `schema:name`
 - Sorted alphabetically
 
@@ -201,10 +215,12 @@ Each dataset is built using a **SPARQL CONSTRUCT query** that transforms entity 
 **Purpose:** Index all venues with their names and locations.
 
 **Output properties:**
+
 - `skos:prefLabel` — venue name
 - `skos:broader` — place name (if venue is located in a place)
 
 **Query logic:**
+
 - Extracts venue name from `schema:name`
 - Optionally includes containing place via `schema:containedInPlace`
 - Sorted by venue name
@@ -218,9 +234,11 @@ Each dataset is built using a **SPARQL CONSTRUCT query** that transforms entity 
 **Purpose:** Index all events with their names.
 
 **Output properties:**
+
 - `skos:prefLabel` — event name
 
 **Query logic:**
+
 - Extracts event name from `rdfs:label`
 - Sorted by name
 
@@ -233,9 +251,11 @@ Each dataset is built using a **SPARQL CONSTRUCT query** that transforms entity 
 **Purpose:** Index all performance events with dates and venues.
 
 **Output properties:**
+
 - `skos:prefLabel` — performance label with optional date and venue
 
 **Query logic:**
+
 - Uses performance event name as base
 - Optionally appends date and place information for context
 - Combined label format: `"Name: Date Place"`
@@ -250,9 +270,11 @@ Each dataset is built using a **SPARQL CONSTRUCT query** that transforms entity 
 **Purpose:** Index all instrumentations.
 
 **Output properties:**
+
 - `skos:prefLabel` — instrumentation name
 
 **Query logic:**
+
 - Extracts name from `rdfs:label`
 - Sorted alphabetically
 
@@ -265,9 +287,11 @@ Each dataset is built using a **SPARQL CONSTRUCT query** that transforms entity 
 **Purpose:** Index all bibliography entries with abbreviations or titles.
 
 **Output properties:**
+
 - `skos:prefLabel` — bibliography label with abbreviation or title
 
 **Query logic:**
+
 - Prefers `melod:hasAbbreviation` if present
 - Falls back to title if no abbreviation exists
 - Sorted by label
@@ -280,10 +304,12 @@ The file [`modules/datasets-generator/datasets-generator.sh`](https://github.com
 
 1. Sets up directory paths for all entity types
 2. For each dataset, calls the `rdf-data-aggregator` tool with:
+
    - **Source directory:** where entity files are located (e.g., `persons/`)
    - **File pattern:** which files to include (e.g., `*.ttl`)
    - **SPARQL query:** the transformation logic (e.g., `persons.sparql`)
    - **Output path:** where to write the result (e.g., `public/datasets/persons.ttl`)
+
 3. Times each operation for performance monitoring
 
 Example invocation:
@@ -306,6 +332,7 @@ After datasets are generated, the GitHub Actions workflow publishes them to GitH
 3. They become available at your configured `datasetBaseUrl` URL
 
 **Required configuration:**
+
 - GitHub Pages must be enabled for your repository (Settings → Pages → Source: GitHub Actions)
 - The repository must be **public** (for free GitHub Pages hosting)
 
@@ -324,6 +351,7 @@ Add a new `.sparql` file in `modules/datasets-generator/` that follows the patte
 ```sparql
 prefix melod: <https://lod.academy/melod/vocab/ontology#>
 prefix skos: <http://www.w3.org/2004/02/skos/core#>
+prefix schema: <https://schema.org/>
 
 construct {
   ?iri a melod:CustomEntity ;
@@ -358,6 +386,7 @@ time /static-publishing-backend rdf-data-aggregator \
 ### 3. Update Configuration
 
 If the dataset is used in form dropdowns:
+
 - Update SHACL shapes to reference the dataset URL (e.g., `dataset:custom.ttl`)
 - Ensure `datasetBaseUrl` in `config.json` is correctly configured
 
@@ -386,6 +415,7 @@ Generated files will appear in `public/datasets/`.
 **Problem:** Dropdowns are empty or search doesn't work.
 
 **Solutions:**
+
 1. Check that GitHub Pages is enabled (Settings → Pages → Source: GitHub Actions)
 2. Verify the `datasetBaseUrl` in `config.json` matches your actual Pages URL
 3. Check that the latest pipeline run succeeded (Actions tab in GitHub)
@@ -396,6 +426,7 @@ Generated files will appear in `public/datasets/`.
 **Problem:** Pipeline fails with a SPARQL error.
 
 **Solutions:**
+
 1. Check the Actions logs for the specific error
 2. Verify namespace prefixes are defined (`prefix melod:`, `prefix skos:`, etc.)
 3. Ensure the entity type in the query matches your actual entity classes
@@ -406,6 +437,7 @@ Generated files will appear in `public/datasets/`.
 **Problem:** A specific dataset file is missing.
 
 **Solutions:**
+
 1. Check the source directory exists and contains `.ttl` files
 2. Verify the SPARQL query file exists in `modules/datasets-generator/`
 3. Ensure the entry is added to `datasets-generator.sh`

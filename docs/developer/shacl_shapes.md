@@ -1,6 +1,6 @@
 # SHACL Shapes
 
-Forms in MerMEId MeLODy are generated automatically from [SHACL shapes](https://www.w3.org/TR/shacl/) by the [shacl-form](https://github.com/ulb-darmstadt/shacl-form) web component developed by UB Darmstadt. You do not write HTML or JavaScript to add or modify fields — defining them in the SHACL shape file is sufficient.
+Forms in MerMEId MeLODy are generated automatically from [SHACL shapes](https://www.w3.org/TR/shacl/) by the [shacl-form](https://github.com/ulb-darmstadt/shacl-form) web component developed by ULB Darmstadt. You do not write HTML or JavaScript to add or modify fields — defining them in the SHACL shape file is sufficient.
 
 ---
 
@@ -50,6 +50,7 @@ The following is a simplified excerpt from `person.shacl`:
 @prefix owl:    <http://www.w3.org/2002/07/owl#> .
 @prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
+@prefix dataset: <https://adwmainz.pages.gitlab.rlp.net/nfdi4culture/cdmd/project_templates/mermeid-template/datasets/> .
 
 melod:PersonShape
     a sh:NodeShape ;
@@ -60,7 +61,6 @@ melod:PersonShape
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:datatype xsd:string ;
-        sh:order 1 ;
     ] ;
     sh:property [
         sh:path schema:givenName ;
@@ -68,7 +68,6 @@ melod:PersonShape
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:datatype xsd:string ;
-        sh:order 2 ;
     ] ;
     sh:property [
         sh:path owl:sameAs ;
@@ -76,21 +75,18 @@ melod:PersonShape
         sh:description "Authority record URL (GND, VIAF, Wikidata, etc.)" ;
         sh:nodeKind sh:IRI ;
         sh:pattern "^http(s)?://.+?/..+?" ;
-        sh:order 3 ;
     ] ;
     sh:property [
         sh:path schema:gender ;
         sh:name "Gender" ;
         sh:in ( "female" "male" "diverse" ) ;
         sh:maxCount 1 ;
-        sh:order 4 ;
     ] ;
     sh:property [
-        sh:path melod:birthPlace ;
+        sh:path schema:birthPlace ;
         sh:name "Birth place" ;
         sh:class melod:Place ;
         sh:nodeKind sh:IRI ;
-        sh:order 6 ;
     ] .
 ```
 
@@ -110,16 +106,17 @@ SHACL shapes reference published dataset indexes using a special `dataset:` name
 
 ```turtle
 sh:property [
+    sh:name "Birth place" ;
     sh:path melod:birthPlace ;
     sh:class melod:Place ;
-    melod:index <dataset:places.ttl> ;
+    owl:imports dataset:places.ttl ;
 ] .
 ```
 
 When the editor loads a repository, it reads `datasetBaseUrl` from `configuration/config.json` and replaces every occurrence of `dataset:` in the loaded SHACL shape with that URL. For example, if `datasetBaseUrl` is `https://yourname.github.io/my-catalogue/datasets/`, the property above becomes:
 
 ```turtle
-melod:index <https://yourname.github.io/my-catalogue/datasets/places.ttl> ;
+owl:imports <https://yourname.github.io/my-catalogue/datasets/places.ttl> ;
 ```
 
 This allows the same SHACL shape files to work with any repository — only `config.json` needs to point to the correct published dataset.
@@ -136,7 +133,6 @@ sh:property [
     sh:name "Nickname" ;
     sh:description "Informal or abbreviated name" ;
     sh:datatype xsd:string ;
-    sh:order 10 ;
 ] ;
 ```
 

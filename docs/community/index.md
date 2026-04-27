@@ -47,6 +47,6 @@ If you are using MerMEId MeLODy for a catalogue project and would like to be lis
 ## Related Projects
 
 - [MerMEId (previous version)](https://github.com/Edirom/MerMEId) — the original MEI/XML-based editor
-- [shacl-form](https://github.com/ulb-darmstadt/shacl-form) — the SHACL form web component developed by UB Darmstadt
+- [shacl-form](https://github.com/ulb-darmstadt/shacl-form) — the SHACL form web component developed by ULB Darmstadt
 - [MEI (Music Encoding Initiative)](https://music-encoding.org/) — the music encoding standard MerMEId is designed to connect with
 - [MerMEId MeLODy Template](https://github.com/Music-Metadata-Tools/MerMEId-MeLODy-Template) — the template repository for creating new data repositories

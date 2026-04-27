@@ -14,8 +14,7 @@ Editor repository
 
 Data repository
 └── configuration/
-    ├── config.json           ← datasetBaseUrl and projectDomain
-    └── *.shacl               ← copy of shape files (or referenced by URL)
+    └── config.json           ← datasetBaseUrl and projectDomain
 ```
 
 No build step is required for most configuration changes. Editing a SHACL shape or `editor-default.ttl` takes effect immediately on the next page load.
@@ -31,11 +30,11 @@ The editor configuration file `configuration/editor-default.ttl` is a Turtle fil
 When the editor starts, `js/index.js` fetches `editor-default.ttl` and loads its content into an in-browser [Oxigraph](https://github.com/oxigraph/oxigraph) triple store. A SPARQL SELECT query then extracts all entity type definitions:
 
 ```sparql
-SELECT ?type ?label ?folder ?shacl WHERE {
-  ?type a melod:EntityType ;
+SELECT ?entity_type ?label ?entity_folder_name ?shacl_file_location WHERE {
+  ?entity_type a melod:EntityType ;
         rdfs:label ?label ;
-        melod:entity_folder_name ?folder ;
-        melod:shacl_file_location ?shacl .
+        melod_ui:entity_folder_name ?entity_folder_name ;
+        melod_ui:shacl_file_location ?shacl_file_location .
 }
 ```
 
@@ -50,12 +49,13 @@ Each entity type is an RDF subject with four required properties:
 ```turtle
 @prefix melod: <https://lod.academy/melod/vocab/ontology#> .
 @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix melod_ui: <https://lod.academy/melod/vocab/ui/> .
 
 melod:Person
     a melod:EntityType ;
     rdfs:label "Person" ;
-    melod:entity_folder_name "persons" ;
-    melod:shacl_file_location "configuration/person.shacl" .
+    melod_ui:entity_folder_name "persons" ;
+    melod_ui:shacl_file_location "configuration/person.shacl" .
 ```
 
 ### The Four Properties
@@ -64,14 +64,14 @@ melod:Person
 | :--- | :--- |
 | `a melod:EntityType` | Required type declaration — the SPARQL query matches on this |
 | `rdfs:label` | Human-readable display name shown in the "New entity" dialog (e.g. `"Person"`) |
-| `melod:entity_folder_name` | Name of the folder in the data repository where files of this type are stored (e.g. `"persons"`) — **must** match the actual folder name exactly |
-| `melod:shacl_file_location` | Path or URL of the SHACL shape file for this entity type |
+| `melod_ui:entity_folder_name` | Name of the folder in the data repository where files of this type are stored (e.g. `"persons"`) — **must** match the actual folder name exactly |
+| `melod_ui:shacl_file_location` | Path or URL of the SHACL shape file for this entity type |
 
 ---
 
 ## SHACL File Locations
 
-The `melod:shacl_file_location` value can be either:
+The `melod_ui:shacl_file_location` value can be either:
 
 - A **relative path** within the editor repository: e.g. `"configuration/person.shacl"` — resolved against the editor's base URL at runtime
 - An **absolute HTTPS URL**: e.g. `"https://example.org/shapes/person.shacl"` — fetched directly
@@ -101,13 +101,11 @@ melod:MyNewTypeShape
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:datatype xsd:string ;
-        sh:order 1 ;
     ] ;
     sh:property [
         sh:path <http://www.w3.org/2000/01/rdf-schema#comment> ;
         sh:name "Description" ;
         sh:datatype xsd:string ;
-        sh:order 2 ;
     ] .
 ```
 
@@ -125,43 +123,28 @@ Open `configuration/editor-default.ttl` and add a new block:
 melod:MyNewType
     a melod:EntityType ;
     rdfs:label "My New Type" ;
-    melod:entity_folder_name "mynewtype" ;
-    melod:shacl_file_location "configuration/mynewtype.shacl" .
+    melod_ui:entity_folder_name "mynewtypes" ;
+    melod_ui:shacl_file_location "configuration/mynewtype.shacl" .
 ```
 
 - Replace `melod:MyNewType` with the full class IRI from your ontology (e.g. `melod:MyNewType` if the class is defined in the MeLODy ontology, or any other IRI if you're using a different namespace)
 - `rdfs:label` is the display name shown in the "New entity" dialog
-- `melod:entity_folder_name` must exactly match the folder name you will create in Step 3
-- `melod:shacl_file_location` can be a relative path or an absolute HTTPS URL
+- `melod_ui:entity_folder_name` must exactly match the folder name you will create in Step 3
+- `melod_ui:shacl_file_location` can be a relative path or an absolute HTTPS URL
 
 ---
 
-### Step 3 — Create the folder in the data repository
-
-In your data repository (created from the [MerMEId MeLODy Template](https://github.com/Music-Metadata-Tools/MerMEId-MeLODy-Template)), create a folder with the name matching `entity_folder_name`:
-
-```bash
-mkdir mynewtype
-touch mynewtype/.gitkeep
-git add mynewtype/.gitkeep
-git commit -m "Add mynewtype folder"
-```
-
-The `.gitkeep` file ensures Git tracks the empty directory.
-
----
-
-### Step 4 — Add a search index entry (optional)
+### Step 3 — Add a search index entry (optional)
 
 If you want your new entity type to appear in the search panel, two things are needed:
 
 **In the editor:** add an entry to `modules/entity-search/index.js` that includes the index file URL for your type (e.g. `mynewtype.ttl`). The search component fetches this file and loads it into Oxigraph.
 
-**In the data repository CI/CD pipeline:** add a step that aggregates all `.ttl` files in `mynewtype/` into a single `datasets/mynewtype.ttl` index file. This is the file the search component fetches. The existing pipeline steps for `persons.ttl`, `works.ttl`, etc. serve as a template.
+**In the data repository CI/CD pipeline:** add a step that aggregates all `.ttl` files in `mynewtype/` into a single `datasets/mynewtype.ttl` index file. This is the file the search component fetches. The existing pipeline steps for `persons.ttl`, `works.ttl`, etc. serve as a template. You need to also add a SPARQL CONSTRUCT query, that created the index. Read more in the section about [Datasets Generation](datasets.md).
 
 ---
 
-### Step 5 — Add a MEI/XML converter (optional)
+### Step 4 — Add a MEI/XML converter (optional)
 
 If you want MEI/XML output in the XML tab for your new entity type, add:
 

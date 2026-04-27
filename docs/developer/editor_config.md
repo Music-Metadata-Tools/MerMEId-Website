@@ -15,8 +15,7 @@ Editor repository
 
 Data repository
 └── configuration/
-    ├── config.json           ← datasetBaseUrl and projectDomain
-    └── *.shacl               ← copy of shape files (or referenced by URL)
+    └── config.json           ← datasetBaseUrl and projectDomain
 ```
 
 No build step is required for most configuration changes. Editing a SHACL shape or `editor-default.ttl` takes effect immediately on the next page load.

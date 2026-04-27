@@ -68,7 +68,7 @@ If you need to use a different proxy (e.g. a self-hosted instance), update the `
 
 `VirtualFilesystem` also supports direct access to the local filesystem via the [File System Access API](https://developer.chrome.com/docs/capabilities/web-apis/file-system-access). When a directory handle is registered via `add_local_repository()`, all read/write operations for that repository bypass isomorphic-git and operate directly on the local files.
 
-**Use case:** offline and local workflows — editing files in a local Git clone without needing to push/pull.
+**Use case:** local workflows for larger repositories, git actions need to be executed locally (not within the browser).
 
 **Browser support:** best supported in Chromium-based browsers (Chrome, Edge). Firefox has limited support; Safari does not support the writable variant of the API.
 

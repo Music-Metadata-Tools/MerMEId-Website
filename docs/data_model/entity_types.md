@@ -171,7 +171,7 @@ A letter or correspondence document. Used to document primary source material su
 
 ## Repository Folder Structure
 
-All entity folders are present in a data repository created from the [MerMEId MeLODy Template](https://github.com/Music-Metadata-Tools/MerMEId-MeLODy-Template). The structure looks like this:
+All entity folders are present in a data repository created from the [MerMEId MeLODy Template](https://github.com/Music-Metadata-Tools/MerMEId-MeLODy-Template). In this Template you can find example .ttl files as well. The structure looks like this:
 
 ```
 my-catalogue/
@@ -193,14 +193,3 @@ my-catalogue/
 ```
 
 The folder names are defined in the configuration of the editor. Do not rename these folders.
-
----
-
-## Example Data
-
-Rendered RDF examples of entity records from the dataset:
-
-- [Person example](https://examples-ttl-to-html-f7aa2e.pages.gitlab.rlp.net/person-example.html)
-- [Place example](https://examples-ttl-to-html-f7aa2e.pages.gitlab.rlp.net/place-example.html)
-- [Work example](https://examples-ttl-to-html-f7aa2e.pages.gitlab.rlp.net/work-example.html)
-- [Expression example](https://examples-ttl-to-html-f7aa2e.pages.gitlab.rlp.net/expression-example.html)

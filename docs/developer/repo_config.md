@@ -95,6 +95,28 @@ See [Entity IRIs](../data_model/iris.md) for full details on IRI generation and 
 
 ---
 
+### `IDprefix`
+
+A prefix for chosen entity types, which is inserted as a prefix of the identifier number. This configuration is optional.
+
+**Default value:** `"1477695404"` — produces opaque identifiers like `urn:uuid:works/1477695404`
+
+**Alternative:** an IRI with a prefix to distinguish entity types with a character — for example `w1477695404` for works, full IRI: `urn:uuid:works/w1477695404`. This is done by adding the folder name with the chosen prefix.
+
+Only the entities of the folders named in the config.json will get a prefix.
+
+```json
+"IDprefix": {
+    "works": "w",
+    "persons": "p"
+  }
+```
+
+!!! warning
+    Changing `IDprefix` after entities have been created does **not** retroactively update existing entity IRIs. Existing entities keep their original IRIs. New entities will use the new prefix, resulting in a mixed-prefix dataset. Decide on your IRI scheme before creating any entities.
+
+---
+
 ## Typical Setup (GitHub)
 
 If you created your repository from the [MerMEId MeLODy Template](https://github.com/Music-Metadata-Tools/MerMEId-MeLODy-Template) on GitHub, the typical `config.json` looks like:

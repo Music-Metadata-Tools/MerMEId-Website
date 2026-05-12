@@ -34,7 +34,7 @@ nav:
     - Upcoming Events: events/index.md
     - "Archive: Trieste 2025": events/archive/trieste_2025.md
   - Roadmap: roadmap.md
-  - Legal notice: impressum/impressum.md
+  - Legal notice: impressum.md
 
 theme:
   name: material

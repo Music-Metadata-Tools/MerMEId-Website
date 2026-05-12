@@ -10,13 +10,21 @@ MerMEId MeLODy is a **static, browser-only application**. There is no server-sid
 Browser
 ├── js/index.js                    ← orchestration layer (startup + event wiring)
 ├── adwlm-filesystem-manager       ← left panel: repositories + staging area
-├── adwlm-entity-search            ← left panel: full-text search
+│   ├── index.js                        ← adwlm-filesystem-manager component
+│   ├── constants.js                    ← shared constants (CORS proxy URL, scheme names)
+│   ├── credentials-helper.js           ← token handling utilities
+│   ├── add-repository-dialog/index.js  ← dialog for cloning a repository
+│   ├── rename-filesystem-entry-dialog/ ← dialog for renaming repositories
+│   └── virtual-filesystem/index.js     ← VirtualFilesystem class (Git + FS operations)
+├── adwlm-entity-search            ← left panel: entity search
+|   └── index.js                        ← adwlm-entity-search component
 ├── adwlm-entity-editor            ← main area: form editor
-│   └── shacl-form                 ← form renderer (external component)
-└── FilesystemService (singleton)
-    └── VirtualFilesystem
-        ├── LightningFS            ← virtual filesystem in IndexedDB
-        └── isomorphic-git         ← Git operations in-memory
+|   ├── index.js                        ← adwlm-entity-editor component and shacl-form renderer
+│   └── entity-types-dialog/index.js    ← dialog for selecting a new entity type
+└── rdf-xml-converter              ← right panel: entity renderer
+    ├── converters                     ← one converter module per entity type
+    ├── templates                      ← MEI/XML output templates (one per entity type)
+    └── types/index.js                  ← maps entity type IRIs to converter modules
 ```
 
 Cross-origin Git requests are routed through a CORS proxy (`https://cors.isomorphic-git.org`). No data is processed server-side; the proxy only adds the necessary CORS headers to Git HTTP responses.
@@ -48,33 +56,3 @@ When the page loads, the following sequence occurs in `js/index.js`:
 | [Oxigraph](https://github.com/oxigraph/oxigraph) | 0.4.5 | In-browser RDF triple store + SPARQL 1.1 engine (entity search + startup config loading) |
 
 All dependencies are loaded directly from CDNs (`cdn.jsdelivr.net`, `unpkg.com`). No build step or package manager is required to run or develop the editor.
-
----
-
-## Module Structure
-
-```
-js/
-└── index.js                        ← orchestration: loads editor-default.ttl, wires components
-
-modules/
-├── entity-editor/
-│   ├── index.js                        ← adwlm-entity-editor component
-│   └── entity-types-dialog/index.js    ← dialog for selecting a new entity type
-├── entity-search/
-│   └── index.js                        ← adwlm-entity-search component
-├── filesystem-manager/
-│   ├── index.js                        ← adwlm-filesystem-manager component
-│   ├── constants.js                    ← shared constants (CORS proxy URL, scheme names)
-│   ├── credentials-helper.js           ← token handling utilities
-│   ├── add-repository-dialog/index.js  ← dialog for cloning a repository
-│   ├── rename-filesystem-entry-dialog/ ← dialog for renaming repositories
-│   └── virtual-filesystem/index.js     ← VirtualFilesystem class (Git + FS operations)
-├── rdf-xml-converter/
-│   ├── converters/                     ← one converter module per entity type
-│   ├── templates/                      ← MEI/XML output templates (one per entity type)
-│   └── types/index.js                  ← maps entity type IRIs to converter modules
-└── services/
-    └── filesystem-service.js           ← FilesystemService singleton
-```
-

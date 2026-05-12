@@ -73,6 +73,33 @@ Before a push or pull, `VirtualFilesystem.canPullSafely()` is called. It fetches
 
 ---
 
+### VirtualFilesystem
+
+**File:** `modules/filesystem-manager/virtual-filesystem/index.js`
+
+Wraps [isomorphic-git](https://isomorphic-git.org/) and [LightningFS](https://github.com/isomorphic-git/lightning-fs) to provide a Git-backed virtual filesystem that persists in the browser's `IndexedDB`.
+
+### Key Methods
+
+| Method | Description |
+| :--- | :--- |
+| `add_repository(metadata)` | Clones a remote repository into the virtual FS (`git clone --depth 1`) and stores credentials |
+| `remove_repository(path)` | Removes the remote and recursively deletes all files from the virtual FS |
+| `list_repository_names()` | Lists top-level directory names in the virtual FS root (one per cloned repo) |
+| `list_branches(metadata)` | Fetches the remote's branch list via `git.listServerRefs` |
+| `list_entries_from_workdir(repo, folder)` | Lists files and subdirectories for a given folder using `git.walk(WORKDIR)` |
+| `read_file(repo, path)` | Reads a file from the working directory as a string |
+| `save_and_stage_file(repo, contents, path)` | Writes a file and calls `git add` + `git updateIndex` |
+| `list_staged_files(repo)` | Compares `TREE` and `STAGE` to find files with staged changes |
+| `commit_and_push_file(repo, staged, selected)` | Commits the selected staged files and pushes to the remote |
+| `pull(repo)` | Pulls from the remote (fast-forward), restoring staged files afterward |
+| `canPullSafely(repo, changedFiles)` | Detects conflicts between local staged files and remote changes before pull/push |
+| `unstageFile(repo, path)` | Resets the index entry and restores the file from `HEAD` |
+
+---
+
+---
+
 ## `adwlm-entity-editor`
 
 **File:** `modules/entity-editor/index.js`

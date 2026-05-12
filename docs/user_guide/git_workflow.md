@@ -16,10 +16,6 @@ Your repository folder name, repository url and git username are stored in the b
 
 These values are written to the local storage during the clone operation and read back before adding a new repository. They persist across browser sessions (as long as you do not clear the browser storage). They are **not** sent anywhere except to your Git host during authenticated requests.
 
-### Why a CORS Proxy?
-
-Browsers block cross-origin HTTP requests by default. Git hosts (GitHub, GitLab) do not add the CORS headers that browsers require for cross-origin requests from JavaScript. To work around this, all Git HTTP traffic is routed through a **CORS proxy** at `https://cors.isomorphic-git.org`. This proxy simply forwards the request to the target host and adds the required CORS headers. Your credentials are sent directly to the Git host; the proxy only handles the transport.
-
 ---
 
 ## Adding a Repository

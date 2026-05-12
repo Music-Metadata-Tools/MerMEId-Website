@@ -36,8 +36,6 @@ This page gives a brief overview of planned and in-progress features for MerMEId
 - Multiple tabs to open more than one entity
 - Split panel for the three components (Filesystem manager, Entity Editor and Entity Renderer) to adjust the size of each panel.
 
-*[PLACEHOLDER: add further planned features here]*
-
 ---
 
 ## Contributing to the Roadmap

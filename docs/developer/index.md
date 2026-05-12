@@ -8,7 +8,6 @@ This section documents the technical architecture of MerMEId MeLODy for develope
 
 - [Architecture Overview](architecture.md) — bootstrap sequence, technology stack, and module structure
 - [Components](components.md) — detailed reference for each web component: properties, events, and behaviour
-- [Services](services.md) — `FilesystemService` and `VirtualFilesystem`: the Git and filesystem layer
 - [Event Communication](events.md) — the full event map between components
 - [SHACL Shapes](shacl_shapes.md) — how to define and extend form fields using SHACL
 - [Datasets Generation](datasets.md) — how SPARQL queries build search indices and dropdowns from entity data

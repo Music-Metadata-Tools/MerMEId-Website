@@ -1,24 +1,56 @@
 # Component Reference
 
-MerMEId MeLODy consists of three web components, an orchestration script, and a converter module. The web components communicate exclusively through custom DOM events — there are no direct references between components.
+MerMEId MeLODy consists of three web components, an orchestration script, and a converter module. The web components communicate exclusively through custom DOM events dispatched on the `window` object — there are no direct references between components, which keeps each component independently testable and replaceable.
+
+All events follow the naming convention `<component-name>:<action>` and are dispatched on `window` with `bubbles: true` and `composed: true` so they cross shadow DOM boundaries:
+
+
+### Event Map
+
+```
+                    ┌──────────────────────────────────┐
+                    │     adwlm-filesystem-manager      │
+                    │                                   │
+  User selects ───► │  dispatches: entity-to-edit      │──────────────────────────►┐
+  file in tree      │  dispatches: repository-selected │─────────────────────────►┐│
+                    │  dispatches: clear-entity-editor  │                          ││
+                    │  dispatches: reload-indexes       │───────────────────────►┐ ││
+                    └──────────────────────────────────┘                         │ ││
+                              ▲                                                   │ ││
+                              │ entity-to-save                                    │ ││
+                              │ entity-to-delete                                  │ ││
+                              │ unsaved-changes                                   │ ││
+                    ┌──────────────────────────────────┐                         │ ││
+                    │        adwlm-entity-editor        │                         │ ││
+                    │                                   │◄────────────────────────┘ ││
+                    │  User edits form ────────────────►│  consumes: entity-to-edit  ││
+                    │  Save button ────────────────────►│  dispatches: entity-to-save││
+                    └──────────────────────────────────┘                            ││
+                                                                                    ││
+                    ┌──────────────────────────────────┐                            ││
+                    │        adwlm-entity-search        │◄───────────────────────────┘│
+                    │                                   │  consumes: repository-selected
+                    │  Fetches index TTLs from URL ─────│  consumes: reload-indexes ◄─┘
+                    │  SPARQL query via Oxigraph        │
+                    │  Click ─────────────────────────►│  dispatches: entity-selected
+                    └──────────────────────────────────┘
+```
 
 ---
 
 ## Orchestration Layer (`js/index.js`)
 
-This is the top-level script that bootstraps the application. It is not a web component — it runs as a plain ES module loaded from `index.html`. The startup sequence is described in detail in the [Architecture Overview](architecture.md).
-
+This is the top-level script that bootstraps the application. It is not a web component — it runs as a plain ES module loaded from `index.html`. 
 Beyond startup, `js/index.js` is also responsible for wiring the **Output Panel** tabs:
 
 - **XML tab** — listens for serialised entity data and invokes the appropriate converter from `modules/rdf-xml-converter/` to produce MEI/XML output
 - **RDF tab** — displays the raw Turtle from `shacl-form.serialize()`
 - **Preview tab** — renders the entity read-only in a second `shacl-form` in `data-view` mode
-- Handles the copy buttons for all three tabs
 
 ---
+## Filesystem Manager
 
-
-## `adwlm-filesystem-manager`
+`adwlm-filesystem-manager`
 
 **File:** `modules/filesystem-manager/index.js`
 
@@ -44,20 +76,21 @@ The left panel component. Manages the repository tree, the staged files queue, a
 
 ### Events Dispatched
 
-| Event name | When | Payload |
+| Event | When | Payload |
 | :--- | :--- | :--- |
-| `adwlm-filesystem-manager:entity-to-edit` | File selected in the tree | `{ contents, path }` |
-| `adwlm-filesystem-manager:repository-selected` | Repository clicked or auto-selected | `{ repositoryPath }` |
-| `adwlm-filesystem-manager:clear-entity-editor` | Entity file deleted | — |
-| `adwlm-filesystem-manager:reload-indexes` | After a push or pull | — |
+| `adwlm-filesystem-manager:entity-to-edit` | File selected in the repository tree | `{ contents: String, path: String }` |
+| `adwlm-filesystem-manager:repository-selected` | Repository clicked or auto-selected on load | `{ repositoryPath: String }` |
+| `adwlm-filesystem-manager:clear-entity-editor` | Currently open entity file deleted | — |
+| `adwlm-filesystem-manager:reload-indexes` | After a push or pull completes | — |
 
 ### Events Consumed
 
-| Event name | Source | Effect |
+| Event | Source | Effect |
 | :--- | :--- | :--- |
-| `adwlm-entity-editor:unsaved-changes` | Entity editor | Blocks synchronise if there are unsaved changes |
-| `adwlm-entity-editor:entity-to-delete` | Entity editor | Deletes the selected entity file |
-| `entity-selected` | `window` | Navigates the tree to the given file path |
+| `adwlm-entity-editor:entity-to-save` | Entity editor | Saves the file to the virtual FS and stages it |
+| `adwlm-entity-editor:unsaved-changes` | Entity editor | Blocks synchronise if unsaved changes are present |
+| `adwlm-entity-editor:entity-to-delete` | Entity editor | Deletes the entity file from the virtual FS |
+| `entity-selected` | Search (via `window`) | Navigates the tree to the given file path |
 
 ### Repository Tree
 
@@ -69,15 +102,15 @@ The tree is lazily loaded. When a `sl-tree-item[lazy]` node is expanded, the `sl
 
 ### Conflict Detection
 
-Before a push or pull, `VirtualFilesystem.canPullSafely()` is called. It fetches the remote HEAD, finds the common ancestor commit, and checks whether any locally staged files have also been modified remotely. If conflicts are detected, the operation is blocked and the user is warned. See [Services](services.md) for details on `canPullSafely()`.
+Before a push or pull, `VirtualFilesystem.canPullSafely()` is called. It fetches the remote HEAD, finds the common ancestor commit, and checks whether any locally staged files have also been modified remotely. If conflicts are detected, the operation is blocked and the user is warned.
 
 ---
 
-### VirtualFilesystem
+## VirtualFilesystem
 
 **File:** `modules/filesystem-manager/virtual-filesystem/index.js`
 
-Wraps [isomorphic-git](https://isomorphic-git.org/) and [LightningFS](https://github.com/isomorphic-git/lightning-fs) to provide a Git-backed virtual filesystem that persists in the browser's `IndexedDB`.
+A sub-module of `adwlm-filesystem-manager`. Wraps [isomorphic-git](https://isomorphic-git.org/) and [LightningFS](https://github.com/isomorphic-git/lightning-fs) to provide a Git-backed virtual filesystem that persists in the browser's `IndexedDB`.
 
 ### Key Methods
 
@@ -98,9 +131,9 @@ Wraps [isomorphic-git](https://isomorphic-git.org/) and [LightningFS](https://gi
 
 ---
 
----
+## Entity Editor
 
-## `adwlm-entity-editor`
+`adwlm-entity-editor`
 
 **File:** `modules/entity-editor/index.js`
 
@@ -127,21 +160,22 @@ The main editing area. Wraps the `shacl-form` component and manages the lifecycl
 
 ### Events Dispatched
 
-| Event name | When | Payload |
+| Event | When | Payload |
 | :--- | :--- | :--- |
 | `adwlm-entity-editor:entity-to-save` | Save button clicked | `{ entity_iri, rdf_contents, json_ld_contents, path, shapesUrl }` |
-| `adwlm-entity-editor:unsaved-changes` | `_hasUnsavedChanges` changes | `{ hasUnsavedChanges }` |
+| `adwlm-entity-editor:unsaved-changes` | Unsaved-changes state changes | `{ hasUnsavedChanges: Boolean }` |
+| `adwlm-entity-editor:cached-config` | Repository `config.json` read | `{ datasetBaseUrl, projectDomain }` |
 | `adwlm-quick-add:entity-to-save` | Quick-add form saved | same payload as `entity-to-save` |
 
 ### Events Consumed
 
-| Event name | Source | Effect |
+| Event | Source | Effect |
 | :--- | :--- | :--- |
-| `adwlm-filesystem-manager:entity-to-edit` | Filesystem manager | Loads the entity into the form |
-| `adwlm-filesystem-manager:clear-entity-editor` | Filesystem manager | Clears the form |
-| `adwlm-filesystem-manager:repository-selected` | Filesystem manager | Updates `_selected_repository_path`, clears config cache |
+| `adwlm-filesystem-manager:entity-to-edit` | Filesystem manager | Loads the entity Turtle into the form |
+| `adwlm-filesystem-manager:clear-entity-editor` | Filesystem manager | Clears the current form |
+| `adwlm-filesystem-manager:repository-selected` | Filesystem manager | Updates repository path; clears config cache |
 | `adwlm-entity-types-dialog:entity-to-add` | Entity types dialog | Creates a new empty entity of the selected type |
-| `shacl-form:quick-add` | `shacl-form` shadow DOM | Opens the quick-add dialog for a linked entity |
+| `shacl-form:quick-add` | `shacl-form` (shadow DOM) | Opens the quick-add dialog for a linked entity field |
 
 ### Entity ID Generation
 
@@ -167,7 +201,9 @@ On first load of a repository, the editor reads `configuration/config.json`. The
 
 ---
 
-## `adwlm-entity-search`
+## Entity Search
+
+`adwlm-entity-search`
 
 **File:** `modules/entity-search/index.js`
 
@@ -179,7 +215,20 @@ The search panel. Provides full-text search across all entity labels in the acti
 - Parses all index files into an in-memory Oxigraph RDF store
 - Runs a SPARQL query to extract all `skos:prefLabel` values and their types
 - Filters results by label text and/or entity type
-- On selection, navigates the filesystem manager tree to the matching file
+- On selection, dispatches `entity-selected` to navigate the filesystem manager tree to the matching file
+
+### Events Dispatched
+
+| Event | When | Payload |
+| :--- | :--- | :--- |
+| `entity-selected` | Search result clicked | `{ path: String }` — navigates the tree |
+
+### Events Consumed
+
+| Event | Source | Effect |
+| :--- | :--- | :--- |
+| `adwlm-entity-editor:cached-config` | Entity editor | Sets the dataset URL and loads indexes |
+| `adwlm-filesystem-manager:reload-indexes` | Filesystem manager | Clears the Oxigraph store and reloads all index files |
 
 ### How Indexes Work
 
@@ -197,13 +246,7 @@ SELECT ?subject ?label ?type WHERE {
 ORDER BY ?label
 ```
 
-### Events Consumed
-
-| Event name | Source | Effect |
-| :--- | :--- | :--- |
-| `adwlm-entity-editor:cached-config` | Entity editor | Sets the dataset URL and triggers index loading |
-| `adwlm-filesystem-manager:reload-indexes` | Filesystem manager | Clears the Oxigraph store and reloads all indexes |
-
+---
 
 ## RDF-XML Converter
 
@@ -225,5 +268,3 @@ Converts entity data from JSON-LD (produced by `shacl-form.serialize("applicatio
 4. The XML tab displays the result
 
 Each converter is independent. Adding a new entity type requires only a new converter and template — no changes to shared orchestration code.
-
----

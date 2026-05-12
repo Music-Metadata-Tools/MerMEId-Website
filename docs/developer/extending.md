@@ -134,13 +134,68 @@ melod:MyNewType
 
 ---
 
-### Step 3 — Add a search index entry (optional)
+### Step 3 — Add a a dataset and search index (optional)
 
-If you want your new entity type to appear in the search panel, two things are needed:
+If you want your new entity type to appear in the search panel or want to cross reference an Entity, you need to register it in the editor and add a dataset generation step to the CI/CD pipeline.
 
-**In the editor:** add an entry to `modules/entity-search/index.js` that includes the index file URL for your type (e.g. `mynewtype.ttl`). The search component fetches this file and loads it into Oxigraph.
+#### Register in the editor
 
-**In the data repository CI/CD pipeline:** add a step that aggregates all `.ttl` files in `mynewtype/` into a single `datasets/mynewtype.ttl` index file. This is the file the search component fetches. The existing pipeline steps for `persons.ttl`, `works.ttl`, etc. serve as a template. You need to also add a SPARQL CONSTRUCT query, that created the index. Read more in the section about [Datasets Generation](datasets.md).
+Add an entry to `modules/entity-search/index.js` that includes the index file URL for your type (e.g. `mynewtype.ttl`). The search component fetches this file and loads it into Oxigraph.
+
+#### Create a SPARQL query
+
+Add a new `.sparql` file in `modules/datasets-generator/` following this pattern:
+
+```sparql
+prefix melod: <https://lod.academy/melod/vocab/ontology#>
+prefix skos: <http://www.w3.org/2004/02/skos/core#>
+prefix schema: <https://schema.org/>
+
+construct {
+  ?iri a melod:MyNewType ;
+    skos:prefLabel ?label .
+} where {
+  select ?iri ?label where {
+    ?iri a melod:MyNewType .
+    ?iri schema:name ?label .
+  }
+  order by ?label
+}
+```
+
+Key requirements:
+- Use `CONSTRUCT` (not `SELECT`) to output RDF
+- Always include `skos:prefLabel` — the search component indexes on this property
+- Include the entity type (`a melod:MyNewType`) in the output
+- Use `OPTIONAL` for any properties that may not be present on every entity
+
+#### Update the generation script
+
+Add an entry to `modules/datasets-generator/datasets-generator.sh`:
+
+```bash
+echo "construct the mynewtype dataset"
+time /static-publishing-backend rdf-data-aggregator \
+  $mynewtype_dir_path/ "*.ttl" \
+  $datasets_generator_dir_path/mynewtype.sparql \
+  $datasets_dir_path/mynewtype.ttl
+```
+
+#### Update SHACL configuration
+
+If the dataset is used in form dropdowns (i.e. as a linked entity field in another shape), update the relevant SHACL shapes to reference the dataset URL (e.g. `dataset:mynewtype.ttl`) and ensure `datasetBaseUrl` in `config.json` points to your published Pages URL.
+
+#### Test locally
+
+Dataset generation can be tested locally without pushing:
+
+```bash
+docker run --rm -v $(pwd):/repo \
+  registry.gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/static-publishing-backend/static-publishing-backend:latest \
+  /repo/modules/datasets-generator/datasets-generator.sh
+```
+
+Generated files will appear in `public/datasets/`. See [Datasets Generation](datasets.md) for background on the pipeline and SPARQL query reference.
 
 ---
 

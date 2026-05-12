@@ -7,8 +7,7 @@ This section documents the technical architecture of MerMEId MeLODy for develope
 ## Sections
 
 - [Architecture Overview](architecture.md) — bootstrap sequence, technology stack, and module structure
-- [Components](components.md) — detailed reference for each web component: properties, events, and behaviour
-- [Event Communication](events.md) — the full event map between components
+- [Components & Events](components.md) — detailed reference for each web component and the complete event map between them
 - [SHACL Shapes](shacl_shapes.md) — how to define and extend form fields using SHACL
 - [Datasets Generation](datasets.md) — how SPARQL queries build search indices and dropdowns from entity data
 - [Extending the Editor](extending.md) — how to add new entity types, SHACL shapes, and MEI/XML converters
@@ -47,6 +46,33 @@ Then open `http://localhost:8080`.
 **If you are an external contributor**, fork the repository first, then create a branch in your fork. Open a Pull Request against `main` of the original repository when ready.
 
 Commit messages should be short and written in the imperative: *"Add person converter"*, not *"Added"* or *"Adding"*.
+
+---
+
+## Working with SHACL Shapes Locally
+
+The SHACL shapes that define the editor forms are maintained in a separate repository:
+[Music-Metadata-Tools/mermeid-shacl-form](https://github.com/Music-Metadata-Tools/mermeid-shacl-form)
+
+If you want to modify existing shapes or develop new ones and test them against a running editor, clone that repository and serve it locally alongside the editor:
+
+```bash
+git clone https://github.com/Music-Metadata-Tools/mermeid-shacl-form.git
+cd mermeid-shacl-form
+python3 -m http.server 8081
+```
+
+Then open `configuration/editor-default.ttl` in MerMEId MeLODy and update the `melod_ui:shacl_file_location` of the relevant entity type to point to your local server:
+
+```turtle
+melod:Person
+    a melod:EntityType ;
+    rdfs:label "Person" ;
+    melod_ui:entity_folder_name "persons" ;
+    melod_ui:shacl_file_location "http://localhost:8081/configuration/person.shacl" .
+```
+
+The editor fetches the shape file at runtime for each entity opened, so changes to the `.shacl` file take effect on the next form load — no restart needed. Once your changes are ready, open a Pull Request against the `mermeid-shacl-form` repository and revert the URL in `editor-default.ttl` back to the published path.
 
 ---
 

@@ -1314,6 +1314,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#idprefix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IDprefix
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1712,6 +1723,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#idprefix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IDprefix
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1812,12 +1834,27 @@
 <p>Changing <code>projectDomain</code> after entities have been created does <strong>not</strong> retroactively update existing entity IRIs. Existing entities keep their original IRIs. New entities will use the new prefix, resulting in a mixed-prefix dataset. Decide on your IRI scheme before creating any entities.</p>
 </div>
 <hr />
+<h3 id="idprefix"><code>IDprefix</code><a class="headerlink" href="#idprefix" title="Permanent link">&para;</a></h3>
+<p>A prefix for chosen entity types, which is inserted as a prefix of the identifier number. This configuration is optional.</p>
+<p><strong>Default value:</strong> <code>"1477695404"</code> — produces opaque identifiers like <code>urn:uuid:works/1477695404</code></p>
+<p><strong>Alternative:</strong> an IRI with a prefix to distinguish entity types with a character — for example <code>w1477695404</code> for works, full IRI: <code>urn:uuid:works/w1477695404</code>. This is done by adding the folder name with the chosen prefix.</p>
+<p>Only the entities of the folders named in the config.json will get a prefix.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">&quot;IDprefix&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="nt">&quot;works&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;w&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nt">&quot;persons&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;p&quot;</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="p">}</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Changing <code>IDprefix</code> after entities have been created does <strong>not</strong> retroactively update existing entity IRIs. Existing entities keep their original IRIs. New entities will use the new prefix, resulting in a mixed-prefix dataset. Decide on your IRI scheme before creating any entities.</p>
+</div>
+<hr />
 <h2 id="typical-setup-github">Typical Setup (GitHub)<a class="headerlink" href="#typical-setup-github" title="Permanent link">&para;</a></h2>
 <p>If you created your repository from the <a href="https://github.com/Music-Metadata-Tools/MerMEId-MeLODy-Template">MerMEId MeLODy Template</a> on GitHub, the typical <code>config.json</code> looks like:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">&quot;datasetBaseUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://Music-Metadata-Tools.github.io/my-catalogue/datasets/&quot;</span><span class="p">,</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="nt">&quot;projectDomain&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;urn:uuid:&quot;</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p">{</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="nt">&quot;datasetBaseUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://Music-Metadata-Tools.github.io/my-catalogue/datasets/&quot;</span><span class="p">,</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="nt">&quot;projectDomain&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;urn:uuid:&quot;</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="p">}</span>
 </code></pre></div>
 <p>Replace <code>Music-Metadata-Tools</code> with your GitHub organisation or username and <code>my-catalogue</code> with your repository name.</p>
 <p>Make sure GitHub Pages is enabled for your repository (Settings → Pages → Deploy from branch: <code>gh-pages</code>).</p>

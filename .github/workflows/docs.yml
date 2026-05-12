@@ -1,0 +1,39 @@
+name: Deploy Docs
+
+on:
+  push:
+    tags:
+      - "v*"          # deploy on every version tag, e.g. v1.0, v1.1
+  workflow_dispatch:  # allow manual trigger from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # mike needs full git history
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Deploy versioned docs
+        run: |
+          VERSION=${GITHUB_REF_NAME#v}        # strips the "v" prefix: v1.1 → 1.1
+          mike deploy --push --update-aliases "$VERSION" latest
+
+      - name: Set default version (first deploy only)
+        run: mike set-default --push latest
+        continue-on-error: true  # harmless if default is already set

@@ -1,0 +1,180 @@
+/* ═══════════════════════════════════════════════
+   MerMEId MeLODy – Documentation Theme
+   Matches the editor's color scheme:
+   dark blue #013657 → light blue #3d97f1
+   ═══════════════════════════════════════════════ */
+
+/* ── Material custom color overrides ── */
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+  overscroll-behavior-y: none;
+}
+
+:root {
+  --md-primary-fg-color:        #1a6db5;
+  --md-primary-fg-color--light: #3d97f1;
+  --md-primary-fg-color--dark:  #013657;
+  --md-primary-bg-color:        #ffffff;
+  --md-accent-fg-color:         #3d97f1;
+}
+
+/* Header gradient (matches tool header) */
+.md-header {
+  background: linear-gradient(45deg, #013657, #3d97f1);
+}
+
+/* Nav tabs */
+.md-tabs {
+  background: linear-gradient(45deg, #013657, #3d97f1);
+}
+
+/* Active nav tab underline */
+.md-tabs__link--active,
+.md-tabs__link:hover {
+  color: #ffffff;
+  opacity: 1;
+}
+
+/* Sidebar active item */
+.md-nav__item--active > .md-nav__link {
+  color: #1a6db5;
+  font-weight: 600;
+}
+
+/* Search bar focus ring */
+.md-search__input:focus {
+  border-color: #3d97f1;
+}
+
+/* ── Quick-start buttons on index.md ── */
+.text-center {
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.6em 1.4em;
+  margin: 0.3em;
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: none !important;
+  transition: opacity 0.2s, transform 0.15s;
+}
+
+.btn:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, #013657, #3d97f1);
+  color: #ffffff !important;
+  border: none;
+}
+
+.btn-default {
+  background-color: transparent;
+  color: #1a6db5 !important;
+  border: 2px solid #1a6db5;
+}
+
+/* ── Footer ── */
+footer.md-footer {
+  background: #ffffff;
+  color: #1a6db5;
+}
+
+
+.md-footer-meta {
+  background: transparent;
+}
+
+[data-md-color-scheme="slate"] footer.md-footer {
+  background: var(--md-default-bg-color);
+  color: var(--md-default-fg-color);
+}
+
+[data-md-color-scheme="slate"] .md-footer__link {
+  color: var(--md-default-fg-color);
+}
+
+[data-md-color-scheme="slate"] .md-footer__direction {
+  color: var(--md-default-fg-color--light);
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  flex-wrap: wrap;
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+}
+
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.dfg-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+}
+
+.dfg-container span {
+  font-size: 0.82rem;
+  color: #ffffff;
+  font-family: 'Palatino Linotype', serif;
+}
+
+img.dfg-logo  { height: 36px; width: auto; transition: transform 0.2s; }
+img.cdmd-logo { height: 70px; width: auto; transition: transform 0.2s; }
+img.zenmem-logo { height: 44px; width: auto; transition: transform 0.2s; }
+img.adw-logo  { height: 60px; width: auto; transition: transform 0.2s; }
+
+img.dfg-logo:hover,
+img.cdmd-logo:hover,
+img.zenmem-logo:hover,
+img.adw-logo:hover {
+  transform: scale(1.06);
+}
+
+@media only screen and (max-width: 700px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .footer-right {
+    justify-content: center;
+  }
+}
+
+/* ── Proposal / archive highlight box ── */
+.proposal-section {
+  background: linear-gradient(90deg, #e0f0ff 0%, #d0e8ff 100%);
+  border: 2px solid #1a6db5;
+  border-radius: 8px;
+  padding: 1.5em 1em;
+  margin: 2em 0;
+  text-align: center;
+}
+
+.proposal-section span {
+  display: block;
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #013657;
+  margin-bottom: 1em;
+}

@@ -1,0 +1,54 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix melod: <https://lod.academy/melod/vocab/ontology#> .
+@prefix owl: <https://www.w3.org/TR/owl-ref/> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+melod:Person
+  a sh:NodeShape, rdfs:Class ;
+  sh:targetClass melod:Person ;
+  sh:property   [ sh:description "Surname of the person" ;
+                  sh:name "Surname" ;
+                  sh:minCount 1 ;
+                  sh:maxCount 1;
+                  sh:group melod:General ;
+                  sh:path schema:familyName
+                ] ;
+  sh:property   [ sh:description "First name of the person" ;
+                  sh:name "First name" ;
+                  sh:minCount 1 ;
+                  sh:maxCount 1;
+                  sh:group melod:General ;
+                  sh:path schema:givenName
+                ] ;
+  sh:property   [ sh:description "Identifier e.g. GND, VIAF" ;
+                  sh:name "Link" ;
+                  sh:nodeKind sh:IRI ;
+                  sh:group melod:General ;
+                  sh:path owl:sameAs
+                ] ;
+  sh:property   [ sh:description "Birth date of the person" ;
+                  sh:name "Date" ;
+                  sh:maxCount 1;
+                  sh:datatype  xsd:date ;
+                  sh:group melod:Birth ;
+                  sh:path schema:birthDate
+                ] ;
+  sh:property   [ sh:description "Insert ID of birth place" ;
+                  sh:name "Place" ;
+                  sh:maxCount 1;
+                  sh:nodeKind sh:IRI ;
+                  sh:group melod:Birth ;
+                  sh:path schema:birthPlace
+                ] .
+
+melod:General
+a               sh:PropertyGroup ;
+rdfs:label      "General Information" .
+
+melod:Birth
+a               sh:PropertyGroup ;
+rdfs:label      "Birth" .
+

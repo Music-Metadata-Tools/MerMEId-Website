@@ -1,0 +1,2864 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Browser-based metadata editor for music-related Linked Open Data">
+      
+      
+      
+      
+        <link rel="prev" href="../architecture/">
+      
+      
+        <link rel="next" href="../shacl_shapes/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../img/CDMD_Logo_cut.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Components - MerMEId MeLODy</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../style.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#component-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="MerMEId MeLODy" class="md-header__button md-logo" aria-label="MerMEId MeLODy" data-md-component="logo">
+      
+  <img src="../../img/CDMD_Logo_cut.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MerMEId MeLODy
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Components
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Music-Metadata-Tools/MerMEId-MeLODy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Music-Metadata-Tools/MerMEId-MeLODy
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../user_guide/" class="md-tabs__link">
+          
+  
+  
+  User Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../data_model/" class="md-tabs__link">
+          
+  
+  
+  Data Model
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  Developer Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../community/" class="md-tabs__link">
+          
+  
+  
+  Community
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../events/" class="md-tabs__link">
+          
+  
+  
+  Events
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../roadmap/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Roadmap
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../impressum/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Legal notice
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="MerMEId MeLODy" class="md-nav__button md-logo" aria-label="MerMEId MeLODy" data-md-component="logo">
+      
+  <img src="../../img/CDMD_Logo_cut.png" alt="logo">
+
+    </a>
+    MerMEId MeLODy
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Music-Metadata-Tools/MerMEId-MeLODy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Music-Metadata-Tools/MerMEId-MeLODy
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MerMEId MeLODy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/contact/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contact
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The Interface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/entities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Working with Entities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/git_workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git Workflow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Model
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Model
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data_model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data_model/ontologies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ontologies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data_model/frbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FRBR Hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data_model/entity_types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developer Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Developer Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Components
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Components
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#event-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event Map
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#orchestration-layer-jsindexjs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orchestration Layer (js/index.js)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filesystem-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filesystem Manager
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Filesystem Manager">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#responsibilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Responsibilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#events-dispatched" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Events Dispatched
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#events-consumed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Events Consumed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repository-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository Tree
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conflict-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conflict Detection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#virtualfilesystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VirtualFilesystem
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="VirtualFilesystem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entity-editor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entity Editor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Entity Editor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#responsibilities_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Responsibilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-properties_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#events-dispatched_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Events Dispatched
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#events-consumed_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Events Consumed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entity-id-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entity ID Generation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#side-panel-linked-entity-preview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Side Panel (Linked Entity Preview)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repository-configuration-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository Configuration Cache
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entity-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entity Search
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Entity Search">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#responsibilities_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Responsibilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#events-dispatched_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Events Dispatched
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#events-consumed_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Events Consumed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-indexes-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Indexes Work
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sparql-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SPARQL Queries
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SPARQL Queries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#query-1-main-data-subject-label-type-composer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Query 1: Main Data (Subject, Label, Type, Composer)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-2-classifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Query 2: Classifications
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-3-alternative-labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Query 3: Alternative Labels
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-results-are-combined" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Results are Combined
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rdf-xml-converter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RDF-XML Converter
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shacl_shapes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SHACL Shapes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Datasets Generation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extending/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extending the Editor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../repo_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repository Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Community
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Community
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../community/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Events
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Events
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upcoming Events
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../events/archive/trieste_2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Archive: Trieste 2025
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../impressum/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legal notice
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#event-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event Map
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#orchestration-layer-jsindexjs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orchestration Layer (js/index.js)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filesystem-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filesystem Manager
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Filesystem Manager">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#responsibilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Responsibilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#events-dispatched" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Events Dispatched
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#events-consumed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Events Consumed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repository-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository Tree
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conflict-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conflict Detection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#virtualfilesystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VirtualFilesystem
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="VirtualFilesystem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entity-editor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entity Editor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Entity Editor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#responsibilities_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Responsibilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-properties_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#events-dispatched_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Events Dispatched
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#events-consumed_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Events Consumed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entity-id-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entity ID Generation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#side-panel-linked-entity-preview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Side Panel (Linked Entity Preview)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repository-configuration-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository Configuration Cache
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entity-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entity Search
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Entity Search">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#responsibilities_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Responsibilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#events-dispatched_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Events Dispatched
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#events-consumed_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Events Consumed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-indexes-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Indexes Work
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sparql-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SPARQL Queries
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SPARQL Queries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#query-1-main-data-subject-label-type-composer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Query 1: Main Data (Subject, Label, Type, Composer)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-2-classifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Query 2: Classifications
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-3-alternative-labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Query 3: Alternative Labels
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-results-are-combined" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Results are Combined
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rdf-xml-converter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RDF-XML Converter
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="component-reference">Component Reference<a class="headerlink" href="#component-reference" title="Permanent link">&para;</a></h1>
+<p>MerMEId MeLODy consists of three web components, an orchestration script, and a converter module. The web components communicate exclusively through custom DOM events dispatched on the <code>window</code> object — there are no direct references between components, which keeps each component independently testable and replaceable.</p>
+<p>All events follow the naming convention <code>&lt;component-name&gt;:&lt;action&gt;</code> and are dispatched on <code>window</code> with <code>bubbles: true</code> and <code>composed: true</code> so they cross shadow DOM boundaries:</p>
+<h3 id="event-map">Event Map<a class="headerlink" href="#event-map" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>                    ┌──────────────────────────────────┐
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>                    │     adwlm-filesystem-manager      │
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>                    │                                   │
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  User selects ───► │  dispatches: entity-to-edit      │──────────────────────────►┐
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  file in tree      │  dispatches: repository-selected │─────────────────────────►┐│
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>                    │  dispatches: clear-entity-editor  │                          ││
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>                    │  dispatches: reload-indexes       │───────────────────────►┐ ││
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>                    └──────────────────────────────────┘                         │ ││
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>                              ▲                                                   │ ││
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>                              │ entity-to-save                                    │ ││
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>                              │ entity-to-delete                                  │ ││
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>                              │ unsaved-changes                                   │ ││
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>                    ┌──────────────────────────────────┐                         │ ││
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>                    │        adwlm-entity-editor        │                         │ ││
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>                    │                                   │◄────────────────────────┘ ││
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>                    │  User edits form ────────────────►│  consumes: entity-to-edit  ││
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>                    │  Save button ────────────────────►│  dispatches: entity-to-save││
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>                    └──────────────────────────────────┘                            ││
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>                                                                                    ││
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>                    ┌──────────────────────────────────┐                            ││
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>                    │        adwlm-entity-search        │◄───────────────────────────┘│
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>                    │                                   │  consumes: repository-selected
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>                    │  Fetches index TTLs from URL ─────│  consumes: reload-indexes ◄─┘
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>                    │  SPARQL query via Oxigraph        │
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>                    │  Click ─────────────────────────►│  dispatches: entity-selected
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>                    └──────────────────────────────────┘
+</code></pre></div>
+<hr />
+<h2 id="orchestration-layer-jsindexjs">Orchestration Layer (<code>js/index.js</code>)<a class="headerlink" href="#orchestration-layer-jsindexjs" title="Permanent link">&para;</a></h2>
+<p>This is the top-level script that bootstraps the application. It is not a web component — it runs as a plain ES module loaded from <code>index.html</code>. 
+Beyond startup, <code>js/index.js</code> is also responsible for wiring the <strong>Output Panel</strong> tabs:</p>
+<ul>
+<li><strong>XML tab</strong> — listens for serialised entity data and invokes the appropriate converter from <code>modules/rdf-xml-converter/</code> to produce MEI/XML output</li>
+<li><strong>RDF tab</strong> — displays the raw Turtle from <code>shacl-form.serialize()</code></li>
+<li><strong>Preview tab</strong> — renders the entity read-only in a second <code>shacl-form</code> in <code>data-view</code> mode</li>
+</ul>
+<hr />
+<h2 id="filesystem-manager">Filesystem Manager<a class="headerlink" href="#filesystem-manager" title="Permanent link">&para;</a></h2>
+<p><code>adwlm-filesystem-manager</code></p>
+<p><strong>File:</strong> <code>modules/filesystem-manager/index.js</code></p>
+<p>The left panel component. Manages the repository tree, the staged files queue, and all Git operations exposed to the user.</p>
+<h3 id="responsibilities">Responsibilities<a class="headerlink" href="#responsibilities" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Display and navigate the repository tree (lazily loaded via <code>sl-tree</code>)</li>
+<li>Clone, remove, rename, and synchronise repositories</li>
+<li>Stage, unstage, and push (commit + push) modified files</li>
+<li>Highlight unsaved and unshared files in the tree using colour indicators</li>
+<li>Load the selected <code>.ttl</code> file and dispatch it to the entity editor</li>
+<li>Respond to save requests from the entity editor</li>
+</ul>
+<h3 id="key-properties">Key Properties<a class="headerlink" href="#key-properties" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Property</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>_selected_repository_path</code></td>
+<td style="text-align: left;"><code>String</code></td>
+<td style="text-align: left;">Absolute path of the active repository (e.g. <code>/my-catalogue</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>_file_path</code></td>
+<td style="text-align: left;"><code>String</code></td>
+<td style="text-align: left;">Relative path of the currently open file</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>_staged_files</code></td>
+<td style="text-align: left;"><code>Array</code></td>
+<td style="text-align: left;">Relative paths of files staged for the next commit</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>entity_to_save</code></td>
+<td style="text-align: left;"><code>Object</code></td>
+<td style="text-align: left;">Set externally to trigger a file save; observed via <code>updated()</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="events-dispatched">Events Dispatched<a class="headerlink" href="#events-dispatched" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Event</th>
+<th style="text-align: left;">When</th>
+<th style="text-align: left;">Payload</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>adwlm-filesystem-manager:entity-to-edit</code></td>
+<td style="text-align: left;">File selected in the repository tree</td>
+<td style="text-align: left;"><code>{ contents: String, path: String }</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>adwlm-filesystem-manager:repository-selected</code></td>
+<td style="text-align: left;">Repository clicked or auto-selected on load</td>
+<td style="text-align: left;"><code>{ repositoryPath: String }</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>adwlm-filesystem-manager:clear-entity-editor</code></td>
+<td style="text-align: left;">Currently open entity file deleted</td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>adwlm-filesystem-manager:reload-indexes</code></td>
+<td style="text-align: left;">After a push or pull completes</td>
+<td style="text-align: left;">—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="events-consumed">Events Consumed<a class="headerlink" href="#events-consumed" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Event</th>
+<th style="text-align: left;">Source</th>
+<th style="text-align: left;">Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>adwlm-entity-editor:entity-to-save</code></td>
+<td style="text-align: left;">Entity editor</td>
+<td style="text-align: left;">Saves the file to the virtual FS and stages it</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>adwlm-entity-editor:unsaved-changes</code></td>
+<td style="text-align: left;">Entity editor</td>
+<td style="text-align: left;">Blocks synchronise if unsaved changes are present</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>adwlm-entity-editor:entity-to-delete</code></td>
+<td style="text-align: left;">Entity editor</td>
+<td style="text-align: left;">Deletes the entity file from the virtual FS</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>entity-selected</code></td>
+<td style="text-align: left;">Search (via <code>window</code>)</td>
+<td style="text-align: left;">Navigates the tree to the given file path</td>
+</tr>
+</tbody>
+</table>
+<h3 id="repository-tree">Repository Tree<a class="headerlink" href="#repository-tree" title="Permanent link">&para;</a></h3>
+<p>The tree is lazily loaded. When a <code>sl-tree-item[lazy]</code> node is expanded, the <code>sl-lazy-load</code> event fires and <code>_generate_folder_tree()</code> reads the contents of that folder from the virtual filesystem. Each tree item carries its path in <code>data-*</code> attributes:</p>
+<ul>
+<li><code>data-entry-type</code>: <code>repo-folder</code>, <code>folder</code>, or <code>file</code></li>
+<li><code>data-entry-absolute-path</code>: e.g. <code>/my-catalogue/persons/12345.ttl</code></li>
+<li><code>data-entry-relative-path</code>: e.g. <code>persons/12345.ttl</code></li>
+</ul>
+<h3 id="conflict-detection">Conflict Detection<a class="headerlink" href="#conflict-detection" title="Permanent link">&para;</a></h3>
+<p>Before a push or pull, <code>VirtualFilesystem.canPullSafely()</code> is called. It fetches the remote HEAD, finds the common ancestor commit, and checks whether any locally staged files have also been modified remotely. If conflicts are detected, the operation is blocked and the user is warned.</p>
+<hr />
+<h2 id="virtualfilesystem">VirtualFilesystem<a class="headerlink" href="#virtualfilesystem" title="Permanent link">&para;</a></h2>
+<p><strong>File:</strong> <code>modules/filesystem-manager/virtual-filesystem/index.js</code></p>
+<p>A sub-module of <code>adwlm-filesystem-manager</code>. Wraps <a href="https://isomorphic-git.org/">isomorphic-git</a> and <a href="https://github.com/isomorphic-git/lightning-fs">LightningFS</a> to provide a Git-backed virtual filesystem that persists in the browser's <code>IndexedDB</code>.</p>
+<h3 id="key-methods">Key Methods<a class="headerlink" href="#key-methods" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Method</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>add_repository(metadata)</code></td>
+<td style="text-align: left;">Clones a remote repository into the virtual FS (<code>git clone --depth 1</code>) and stores credentials</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>remove_repository(path)</code></td>
+<td style="text-align: left;">Removes the remote and recursively deletes all files from the virtual FS</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>list_repository_names()</code></td>
+<td style="text-align: left;">Lists top-level directory names in the virtual FS root (one per cloned repo)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>list_branches(metadata)</code></td>
+<td style="text-align: left;">Fetches the remote's branch list via <code>git.listServerRefs</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>list_entries_from_workdir(repo, folder)</code></td>
+<td style="text-align: left;">Lists files and subdirectories for a given folder using <code>git.walk(WORKDIR)</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>read_file(repo, path)</code></td>
+<td style="text-align: left;">Reads a file from the working directory as a string</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>save_and_stage_file(repo, contents, path)</code></td>
+<td style="text-align: left;">Writes a file and calls <code>git add</code> + <code>git updateIndex</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>list_staged_files(repo)</code></td>
+<td style="text-align: left;">Compares <code>TREE</code> and <code>STAGE</code> to find files with staged changes</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>commit_and_push_file(repo, staged, selected)</code></td>
+<td style="text-align: left;">Commits the selected staged files and pushes to the remote</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>pull(repo)</code></td>
+<td style="text-align: left;">Pulls from the remote (fast-forward), restoring staged files afterward</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>canPullSafely(repo, changedFiles)</code></td>
+<td style="text-align: left;">Detects conflicts between local staged files and remote changes before pull/push</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>unstageFile(repo, path)</code></td>
+<td style="text-align: left;">Resets the index entry and restores the file from <code>HEAD</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="entity-editor">Entity Editor<a class="headerlink" href="#entity-editor" title="Permanent link">&para;</a></h2>
+<p><code>adwlm-entity-editor</code></p>
+<p><strong>File:</strong> <code>modules/entity-editor/index.js</code></p>
+<p>The main editing area. Wraps the <code>shacl-form</code> component and manages the lifecycle of the currently open entity.</p>
+<h3 id="responsibilities_1">Responsibilities<a class="headerlink" href="#responsibilities_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Render the <code>shacl-form</code> for the currently selected entity</li>
+<li>Load the correct SHACL shape for the entity type (patched with the repository namespace)</li>
+<li>Track unsaved changes and guard against accidental navigation</li>
+<li>Dispatch save requests back to the filesystem manager</li>
+<li>Handle "quick add" — creating a new linked entity from within an open form</li>
+<li>Show linked entities in a draggable, floating side panel (read-only preview)</li>
+</ul>
+<h3 id="key-properties_1">Key Properties<a class="headerlink" href="#key-properties_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Property</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>entity_to_edit</code></td>
+<td style="text-align: left;"><code>Object</code></td>
+<td style="text-align: left;">Currently open entity: <code>{ contents, path, entity_iri, entity_type, shapesUrl }</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>entity_type_definitions</code></td>
+<td style="text-align: left;"><code>Array</code></td>
+<td style="text-align: left;">Entity type definitions loaded from <code>editor-default.ttl</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>_hasUnsavedChanges</code></td>
+<td style="text-align: left;"><code>Boolean</code></td>
+<td style="text-align: left;">Set to <code>true</code> on any <code>change</code> event from <code>shacl-form</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>_selected_repository_path</code></td>
+<td style="text-align: left;"><code>String</code></td>
+<td style="text-align: left;">Kept in sync with the filesystem manager via events</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>_cachedConfig</code></td>
+<td style="text-align: left;"><code>Object</code></td>
+<td style="text-align: left;">Cached result of <code>configuration/config.json</code> — cleared on repository change</td>
+</tr>
+</tbody>
+</table>
+<h3 id="events-dispatched_1">Events Dispatched<a class="headerlink" href="#events-dispatched_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Event</th>
+<th style="text-align: left;">When</th>
+<th style="text-align: left;">Payload</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>adwlm-entity-editor:entity-to-save</code></td>
+<td style="text-align: left;">Save button clicked</td>
+<td style="text-align: left;"><code>{ entity_iri, rdf_contents, json_ld_contents, path, shapesUrl }</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>adwlm-entity-editor:unsaved-changes</code></td>
+<td style="text-align: left;">Unsaved-changes state changes</td>
+<td style="text-align: left;"><code>{ hasUnsavedChanges: Boolean }</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>adwlm-entity-editor:cached-config</code></td>
+<td style="text-align: left;">Repository <code>config.json</code> read</td>
+<td style="text-align: left;"><code>{ datasetBaseUrl, projectDomain }</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>adwlm-quick-add:entity-to-save</code></td>
+<td style="text-align: left;">Quick-add form saved</td>
+<td style="text-align: left;">same payload as <code>entity-to-save</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="events-consumed_1">Events Consumed<a class="headerlink" href="#events-consumed_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Event</th>
+<th style="text-align: left;">Source</th>
+<th style="text-align: left;">Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>adwlm-filesystem-manager:entity-to-edit</code></td>
+<td style="text-align: left;">Filesystem manager</td>
+<td style="text-align: left;">Loads the entity Turtle into the form</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>adwlm-filesystem-manager:clear-entity-editor</code></td>
+<td style="text-align: left;">Filesystem manager</td>
+<td style="text-align: left;">Clears the current form</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>adwlm-filesystem-manager:repository-selected</code></td>
+<td style="text-align: left;">Filesystem manager</td>
+<td style="text-align: left;">Updates repository path; clears config cache</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>adwlm-entity-types-dialog:entity-to-add</code></td>
+<td style="text-align: left;">Entity types dialog</td>
+<td style="text-align: left;">Creates a new empty entity of the selected type</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>shacl-form:quick-add</code></td>
+<td style="text-align: left;"><code>shacl-form</code> (shadow DOM)</td>
+<td style="text-align: left;">Opens the quick-add dialog for a linked entity field</td>
+</tr>
+</tbody>
+</table>
+<h3 id="entity-id-generation">Entity ID Generation<a class="headerlink" href="#entity-id-generation" title="Permanent link">&para;</a></h3>
+<p>New entity IRIs are generated at creation time using the Web Crypto API:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nx">_generate_entity_id</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Uint32Array</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nx">self</span><span class="p">.</span><span class="nx">crypto</span><span class="p">.</span><span class="nx">getRandomValues</span><span class="p">(</span><span class="nx">array</span><span class="p">);</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">array</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span><span class="w"> </span><span class="c1">// random 32-bit unsigned integer</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">}</span>
+</code></pre></div>
+<p>This produces paths like <code>persons/2847362910.ttl</code> and IRIs like <code>urn:uuid:persons/2847362910</code>.</p>
+<h3 id="side-panel-linked-entity-preview">Side Panel (Linked Entity Preview)<a class="headerlink" href="#side-panel-linked-entity-preview" title="Permanent link">&para;</a></h3>
+<p>When a user clicks a link inside a <code>shacl-form</code> field (links are rendered as <code>&lt;a class="uuid"&gt;</code>), the editor intercepts the click using <code>composedPath()</code> to pierce the shadow DOM, reads the linked <code>.ttl</code> file from the virtual filesystem, and renders it in a floating, draggable panel using a second <code>shacl-form</code> instance in read-only <code>data-view</code> mode.</p>
+<h3 id="repository-configuration-cache">Repository Configuration Cache<a class="headerlink" href="#repository-configuration-cache" title="Permanent link">&para;</a></h3>
+<p>On first load of a repository, the editor reads <code>configuration/config.json</code>. The result is cached in <code>_cachedConfig</code> and cleared when a different repository is selected. This avoids repeated filesystem reads for every entity opened in the same session.</p>
+<hr />
+<h2 id="entity-search">Entity Search<a class="headerlink" href="#entity-search" title="Permanent link">&para;</a></h2>
+<p><code>adwlm-entity-search</code></p>
+<p><strong>File:</strong> <code>modules/entity-search/index.js</code></p>
+<p>The search panel. Provides full-text search across all entity labels, alternative labels and classifications in the active repository.</p>
+<h3 id="responsibilities_2">Responsibilities<a class="headerlink" href="#responsibilities_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Fetches pre-built dataset index files (one <code>.ttl</code> per entity type) from <code>datasetBaseUrl</code></li>
+<li>Parses all index files into an in-memory Oxigraph RDF store</li>
+<li>Runs multiple SPARQL queries to extract entity metadata: labels, types, composers, classifications, and alternative labels</li>
+<li>Filters results by label text (including alternative labels and classifications) and/or entity type</li>
+<li>On selection, dispatches <code>entity-selected</code> to navigate the filesystem manager tree to the matching file</li>
+</ul>
+<h3 id="events-dispatched_2">Events Dispatched<a class="headerlink" href="#events-dispatched_2" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Event</th>
+<th style="text-align: left;">When</th>
+<th style="text-align: left;">Payload</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>entity-selected</code></td>
+<td style="text-align: left;">Search result clicked</td>
+<td style="text-align: left;"><code>{ path: String }</code> — navigates the tree</td>
+</tr>
+</tbody>
+</table>
+<h3 id="events-consumed_2">Events Consumed<a class="headerlink" href="#events-consumed_2" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Event</th>
+<th style="text-align: left;">Source</th>
+<th style="text-align: left;">Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>adwlm-entity-editor:cached-config</code></td>
+<td style="text-align: left;">Entity editor</td>
+<td style="text-align: left;">Sets the dataset URL and loads indexes</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>adwlm-filesystem-manager:reload-indexes</code></td>
+<td style="text-align: left;">Filesystem manager</td>
+<td style="text-align: left;">Clears the Oxigraph store and reloads all index files</td>
+</tr>
+</tbody>
+</table>
+<h3 id="how-indexes-work">How Indexes Work<a class="headerlink" href="#how-indexes-work" title="Permanent link">&para;</a></h3>
+<p>The search component does <strong>not</strong> index files from the local virtual filesystem. Instead, it fetches pre-built aggregated index files from the <code>datasetBaseUrl</code> — a published static URL, typically GitHub/GitLab Pages. These files are generated by a CI/CD pipeline when changes are pushed to the repository.</p>
+<p><strong>Implication:</strong> the search index reflects the <strong>last pushed state</strong>, not local unsaved changes. After a push, the filesystem manager dispatches <code>adwlm-filesystem-manager:reload-indexes</code> to trigger a fresh reload of all indexes.</p>
+<h3 id="sparql-queries">SPARQL Queries<a class="headerlink" href="#sparql-queries" title="Permanent link">&para;</a></h3>
+<p>The search component executes <strong>three separate SPARQL queries</strong> against the Oxigraph store and combines the results:</p>
+<h4 id="query-1-main-data-subject-label-type-composer">Query 1: Main Data (Subject, Label, Type, Composer)<a class="headerlink" href="#query-1-main-data-subject-label-type-composer" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="nv">?subject</span> <span class="nv">?label</span> <span class="nv">?type</span> <span class="nv">?composer</span> <span class="k">WHERE</span> <span class="p">{</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  <span class="nv">?subject</span> <span class="nl">&lt;http://www.w3.org/2004/02/skos/core#prefLabel&gt;</span> <span class="nv">?title</span> <span class="p">.</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>  <span class="nv">?subject</span> <span class="k">a</span> <span class="nv">?type</span> <span class="p">.</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>  <span class="k">OPTIONAL</span> <span class="p">{</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="nv">?subject</span> <span class="nl">&lt;https://schema.org/composer&gt;</span> <span class="nv">?composer</span> <span class="p">.</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>  <span class="p">}</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>  <span class="k">bind</span><span class="p">(</span><span class="nf">coalesce</span><span class="p">(</span><span class="nf">concat</span><span class="p">(</span><span class="nv">?composer</span><span class="p">,</span> <span class="s">&quot;: &quot;</span><span class="p">,</span> <span class="nv">?title</span><span class="p">),</span> <span class="nv">?title</span><span class="p">)</span> <span class="k">AS</span> <span class="nv">?label</span><span class="p">)</span> <span class="p">.</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">}</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="k">ORDER BY</span> <span class="nv">?label</span>
+</code></pre></div>
+<p>This query extracts the primary label and type for each entity. If a composer is present, the label is formatted as <code>"composer: title"</code> (e.g., "Bach, Johann Sebastian: BWV 1001"). Otherwise, only the title is used.</p>
+<h4 id="query-2-classifications">Query 2: Classifications<a class="headerlink" href="#query-2-classifications" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">SELECT</span> <span class="nv">?subject</span> <span class="nv">?classification</span> <span class="k">WHERE</span> <span class="p">{</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>  <span class="nv">?subject</span> <span class="nl">&lt;http://www.w3.org/2004/02/skos/core#broader&gt;</span> <span class="nv">?classification</span> <span class="p">.</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="p">}</span>
+</code></pre></div>
+<p>Retrieves the broader (parent) classifications for each entity. These are stored in a <code>classificationsMap</code> indexed by subject.</p>
+<h4 id="query-3-alternative-labels">Query 3: Alternative Labels<a class="headerlink" href="#query-3-alternative-labels" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">SELECT</span> <span class="nv">?subject</span> <span class="nv">?altlabel</span> <span class="k">WHERE</span> <span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>  <span class="nv">?subject</span> <span class="nl">&lt;http://www.w3.org/2004/02/skos/core#altLabel&gt;</span> <span class="nv">?altlabel</span> <span class="p">.</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">}</span>
+</code></pre></div>
+<p>Retrieves alternative labels for each entity. These are stored in an <code>altLabelsMap</code> indexed by subject.</p>
+<h3 id="how-results-are-combined">How Results are Combined<a class="headerlink" href="#how-results-are-combined" title="Permanent link">&para;</a></h3>
+<p>After executing all three queries, the results are merged into a single array of entry objects:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nx">subject</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;urn:uuid:persons/2847362910&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Bach, Johann Sebastian: Suite in G Major&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Work&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span><span class="nx">classifications</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;concert&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">],</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span><span class="nx">altlabels</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Alternative Name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Alternate Title&quot;</span><span class="p">],</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">  </span><span class="nx">composer</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Bach, Johann Sebastian&quot;</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="rdf-xml-converter">RDF-XML Converter<a class="headerlink" href="#rdf-xml-converter" title="Permanent link">&para;</a></h2>
+<p><strong>Directory:</strong> <code>modules/rdf-xml-converter/</code></p>
+<p>Converts entity data from JSON-LD (produced by <code>shacl-form.serialize("application/ld+json")</code>) to MEI/XML or TEI/XML for the XML output tab.</p>
+<p><strong>Structure:</strong></p>
+<ul>
+<li><code>converters/</code> — one JavaScript module per entity type (e.g. <code>person-converter.js</code>). Each converter receives the JSON-LD object and returns an MEI/XML string.</li>
+<li><code>templates/</code> — MEI/XML or TEI/XML template strings (one per entity type) used as output scaffolding.</li>
+<li><code>types/index.js</code> — maps entity type IRIs to their converter module.</li>
+</ul>
+<p><strong>How it works:</strong></p>
+<ol>
+<li>The form content changes → <code>adwlm-entity-editor</code> calls <code>shacl-form.serialize("application/ld+json")</code></li>
+<li><code>js/index.js</code> receives the JSON-LD and looks up the correct converter by entity type IRI</li>
+<li>The converter fills in the MEI/XML template and returns the result</li>
+<li>The XML tab displays the result</li>
+</ol>
+<p>Each converter is independent. Adding a new entity type requires only a new converter and template — no changes to shared orchestration code.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../architecture/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Architecture">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Architecture
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../shacl_shapes/" class="md-footer__link md-footer__link--next" aria-label="Next: SHACL Shapes">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                SHACL Shapes
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+<footer class="md-footer" style="background: linear-gradient(45deg, #013657, #3d97f1);
+">
+  <div class="md-footer-meta md-typeset">
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="dfg-container">
+          <span>Funded by</span>
+          <a href="https://gepris.dfg.de/gepris/projekt/528785591" target="_blank">
+            <img src="../../img/dfg_logo_schriftzug_weiss.png" alt="DFG Logo" class="dfg-logo"/>
+          </a>
+          <span>Project-No.: 528785591</span>
+        </div>
+      </div>
+      <div class="footer-right">
+        <a href="https://www.adwmainz.de/forschung/centre-for-digital-music-documentation.html" target="_blank">
+          <img src="../../img/CDMD_Logo_grand_white.png" alt="CDMD Logo" class="cdmd-logo"/>
+        </a>
+        <a href="https://zenmem.uni-paderborn.de/" target="_blank">
+          <img src="../../img/ZenMEM_weiß.png" alt="ZenMEM Logo" class="zenmem-logo"/>
+        </a>
+        <a href="https://www.adwmainz.de/startseite.html" target="_blank">
+          <img src="../../img/adwlogo-weiß-transparent.png" alt="ADW Logo" class="adw-logo"/>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

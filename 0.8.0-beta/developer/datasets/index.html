@@ -1,0 +1,2643 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Browser-based metadata editor for music-related Linked Open Data">
+      
+      
+      
+      
+        <link rel="prev" href="../shacl_shapes/">
+      
+      
+        <link rel="next" href="../extending/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../img/CDMD_Logo_cut.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Datasets Generation - MerMEId MeLODy</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../style.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#datasets-generation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="MerMEId MeLODy" class="md-header__button md-logo" aria-label="MerMEId MeLODy" data-md-component="logo">
+      
+  <img src="../../img/CDMD_Logo_cut.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MerMEId MeLODy
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Datasets Generation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Music-Metadata-Tools/MerMEId-MeLODy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Music-Metadata-Tools/MerMEId-MeLODy
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../user_guide/" class="md-tabs__link">
+          
+  
+  
+  User Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../data_model/" class="md-tabs__link">
+          
+  
+  
+  Data Model
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  Developer Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../community/" class="md-tabs__link">
+          
+  
+  
+  Community
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../events/" class="md-tabs__link">
+          
+  
+  
+  Events
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../roadmap/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Roadmap
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../impressum/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Legal notice
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="MerMEId MeLODy" class="md-nav__button md-logo" aria-label="MerMEId MeLODy" data-md-component="logo">
+      
+  <img src="../../img/CDMD_Logo_cut.png" alt="logo">
+
+    </a>
+    MerMEId MeLODy
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Music-Metadata-Tools/MerMEId-MeLODy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Music-Metadata-Tools/MerMEId-MeLODy
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MerMEId MeLODy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/contact/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contact
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The Interface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/entities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Working with Entities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/git_workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git Workflow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Model
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Model
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data_model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data_model/ontologies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ontologies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data_model/frbr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FRBR Hierarchy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data_model/entity_types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developer Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Developer Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../components/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Components
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shacl_shapes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SHACL Shapes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Datasets Generation
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Datasets Generation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-datasets-are-generated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Datasets Are Generated
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How Datasets Are Generated">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tools-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tools Used
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dataset-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dataset Files
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sparql-query-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SPARQL Query Reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SPARQL Query Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#persons-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Persons Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#works-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Works Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expressions-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expressions Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manifestations-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manifestations Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#items-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Items Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#institutions-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Institutions Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#places-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Places Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#venues-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Venues Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#events-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Events Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-events-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Events Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instrumentations-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instrumentations Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bibliography-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bibliography Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-generation-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Generation Script
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-pages-publishing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitHub Pages Publishing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#datasets-are-not-published" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Datasets Are Not Published
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sparql-query-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SPARQL Query Errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dataset-file-not-generated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dataset File Not Generated
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-topics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Topics
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extending/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extending the Editor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../repo_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repository Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Community
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Community
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../community/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Events
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Events
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upcoming Events
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../events/archive/trieste_2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Archive: Trieste 2025
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../impressum/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legal notice
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-datasets-are-generated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Datasets Are Generated
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How Datasets Are Generated">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tools-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tools Used
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dataset-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dataset Files
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sparql-query-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SPARQL Query Reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SPARQL Query Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#persons-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Persons Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#works-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Works Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expressions-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expressions Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manifestations-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manifestations Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#items-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Items Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#institutions-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Institutions Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#places-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Places Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#venues-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Venues Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#events-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Events Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-events-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Events Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instrumentations-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instrumentations Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bibliography-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bibliography Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-generation-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Generation Script
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-pages-publishing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitHub Pages Publishing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#datasets-are-not-published" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Datasets Are Not Published
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sparql-query-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SPARQL Query Errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dataset-file-not-generated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dataset File Not Generated
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-topics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Topics
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="datasets-generation">Datasets Generation<a class="headerlink" href="#datasets-generation" title="Permanent link">&para;</a></h1>
+<p>This document explains how MerMEId MeLODy generates and uses datasets for search indices and dropdown menus. Understanding this process is essential for setting up a data repository, customizing search behavior, and extending the system with new entity types.</p>
+<hr />
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p><strong>Datasets</strong> are aggregated RDF/Turtle files generated from your repository's data. They serve two critical functions in the editor:</p>
+<ol>
+<li><strong>Search indices</strong> — powers the entity search functionality that loads in the editor</li>
+<li><strong>Cross-reference dropdowns</strong> — supplies the linked entity fields (e.g., "Birth Place", "Contributor") in the editor forms</li>
+</ol>
+<p>Without published datasets, the editor can read and edit entities locally, but the search and cross-reference features are not working.</p>
+<hr />
+<h2 id="how-datasets-are-generated">How Datasets Are Generated<a class="headerlink" href="#how-datasets-are-generated" title="Permanent link">&para;</a></h2>
+<h3 id="the-pipeline">The Pipeline<a class="headerlink" href="#the-pipeline" title="Permanent link">&para;</a></h3>
+<p>The template repository includes a <strong>GitHub Actions workflow</strong> that automatically generates datasets after every push:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Push
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    ↓
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>GitHub Actions: generate_datasets job
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    ↓
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>Run datasets-generator.sh script
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    ↓
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>For each dataset:
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  - Collect all RDF files from their source directory
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>  - Execute a SPARQL CONSTRUCT query
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>  - Output aggregated .ttl file to public/datasets/
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    ↓
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>Upload public/ folder to GitHub Pages
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    ↓
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>Datasets are published at your Pages URL
+</code></pre></div>
+<h3 id="tools-used">Tools Used<a class="headerlink" href="#tools-used" title="Permanent link">&para;</a></h3>
+<p>The generation process requires:</p>
+<ul>
+<li><strong><code>static-publishing-backend</code></strong> Docker container — provides the RDF aggregator and SPARQL engine</li>
+<li><strong>SPARQL CONSTRUCT queries</strong> — transform entity data into searchable datasets</li>
+<li><strong>GitHub Actions</strong> — orchestrates the workflow on every push</li>
+</ul>
+<p>All of these are configured in the template; you do not need to set anything up manually.</p>
+<hr />
+<h2 id="dataset-files">Dataset Files<a class="headerlink" href="#dataset-files" title="Permanent link">&para;</a></h2>
+<p>When the pipeline runs, it generates Turtle (.ttl) files in the <code>public/datasets/</code> directory. Each dataset corresponds to an entity type and is published to your GitHub Pages URL.</p>
+<table>
+<thead>
+<tr>
+<th>Dataset File</th>
+<th>Source Directory</th>
+<th>Entity Type</th>
+<th>Used For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>persons.ttl</code></td>
+<td><code>persons/</code></td>
+<td>Person</td>
+<td>Search, cross-references (e.g., contributors, publishers)</td>
+</tr>
+<tr>
+<td><code>works.ttl</code></td>
+<td><code>works/</code></td>
+<td>Work</td>
+<td>Search, cross-references (e.g., related works)</td>
+</tr>
+<tr>
+<td><code>expressions.ttl</code></td>
+<td><code>expressions/</code></td>
+<td>Expression</td>
+<td>Search, cross-references (related expressions, works and manifestations)</td>
+</tr>
+<tr>
+<td><code>manifestations.ttl</code></td>
+<td><code>manifestations/</code></td>
+<td>Manifestation</td>
+<td>Search, cross-references (related manifestations)</td>
+</tr>
+<tr>
+<td><code>items.ttl</code></td>
+<td><code>items/</code></td>
+<td>Item</td>
+<td>Search, cross-references (related manifestations and items)</td>
+</tr>
+<tr>
+<td><code>institutions.ttl</code></td>
+<td><code>institutions/</code></td>
+<td>Institution</td>
+<td>Search, cross-references (e.g., holding institutions/repositories)</td>
+</tr>
+<tr>
+<td><code>places.ttl</code></td>
+<td><code>places/</code></td>
+<td>Place</td>
+<td>Search, cross-references (e.g., birth place)</td>
+</tr>
+<tr>
+<td><code>venues.ttl</code></td>
+<td><code>venues/</code>, <code>performanceEvents/</code></td>
+<td>Venue</td>
+<td>Search, cross-references (e.g. performance venue)</td>
+</tr>
+<tr>
+<td><code>events.ttl</code></td>
+<td><code>events/</code></td>
+<td>Event</td>
+<td>Search, cross-references (e.g. historic events of a items creation)</td>
+</tr>
+<tr>
+<td><code>performanceEvents.ttl</code></td>
+<td><code>performanceEvents/</code></td>
+<td>Performance Event</td>
+<td>Search, cross-references (e.g. first performance of an expression)</td>
+</tr>
+<tr>
+<td><code>instrumentations.ttl</code></td>
+<td><code>instrumentations/</code></td>
+<td>Instrumentation</td>
+<td>Search, cross-references (e.g. instrumentation of an expression)</td>
+</tr>
+<tr>
+<td><code>bibliography.ttl</code></td>
+<td><code>bibliography/</code></td>
+<td>Bibliography</td>
+<td>Search, cross-references (e.g. evidences of a performance or work)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="sparql-query-reference">SPARQL Query Reference<a class="headerlink" href="#sparql-query-reference" title="Permanent link">&para;</a></h2>
+<p>Each dataset is built using a <strong>SPARQL CONSTRUCT query</strong> that transforms entity data into a simplified searchable form. These queries are located in <a href="https://github.com/Music-Metadata-Tools/MerMEId-MeLODy-Template/tree/main/modules/datasets-generator"><code>modules/datasets-generator/</code></a>.</p>
+<h3 id="persons-dataset">Persons Dataset<a class="headerlink" href="#persons-dataset" title="Permanent link">&para;</a></h3>
+<p><strong>File:</strong> <code>persons.sparql</code></p>
+<p><strong>Purpose:</strong> Index all persons with their full names.</p>
+<p><strong>Output properties:</strong></p>
+<ul>
+<li><code>skos:prefLabel</code> — formatted name (e.g., "Bach, Johann Sebastian")</li>
+</ul>
+<p><strong>Query logic:</strong></p>
+<ul>
+<li>Combines <code>schema:familyName</code> and <code>schema:givenName</code> into a displayable label</li>
+<li>Falls back to family name only if given name is missing</li>
+<li>Sorted alphabetically by full name</li>
+</ul>
+<hr />
+<h3 id="works-dataset">Works Dataset<a class="headerlink" href="#works-dataset" title="Permanent link">&para;</a></h3>
+<p><strong>File:</strong> <code>works.sparql</code></p>
+<p><strong>Purpose:</strong> Index all works with titles, alternative titles, and composer information.</p>
+<p><strong>Output properties:</strong></p>
+<ul>
+<li><code>skos:prefLabel</code> — main title</li>
+<li><code>skos:altLabel</code> — uniform title and alternative title (if present)</li>
+<li><code>skos:broader</code> — work classification (if present)</li>
+<li><code>schema:composer</code> — composer name (if linked)</li>
+</ul>
+<p><strong>Query logic:</strong></p>
+<ul>
+<li>Extracts the main title (type: <code>MainTitle</code>)</li>
+<li>Optionally includes uniform title and alternative titles as searchable variants</li>
+<li>Optionally extracts composer information via a contribution relationship</li>
+<li>Sorted by main title</li>
+</ul>
+<hr />
+<h3 id="expressions-dataset">Expressions Dataset<a class="headerlink" href="#expressions-dataset" title="Permanent link">&para;</a></h3>
+<p><strong>File:</strong> <code>expressions.sparql</code></p>
+<p><strong>Purpose:</strong> Index all expressions with labels including incipit text for identification.</p>
+<p><strong>Output properties:</strong></p>
+<ul>
+<li><code>skos:prefLabel</code> — expression label with optional incipit text</li>
+</ul>
+<p><strong>Query logic:</strong></p>
+<ul>
+<li>Uses either <code>skos:prefLabel</code> or <code>rdfs:label</code> as base label</li>
+<li>Optionally appends incipit text in parentheses for disambiguation</li>
+<li>Sorted by label</li>
+</ul>
+<hr />
+<h3 id="manifestations-dataset">Manifestations Dataset<a class="headerlink" href="#manifestations-dataset" title="Permanent link">&para;</a></h3>
+<p><strong>File:</strong> <code>manifestations.sparql</code></p>
+<p><strong>Purpose:</strong> Index all manifestations with their titles and classifications.</p>
+<p><strong>Output properties:</strong></p>
+<ul>
+<li><code>skos:prefLabel</code> — manifestation title</li>
+<li><code>skos:broader</code> — classification (if present)</li>
+</ul>
+<p><strong>Query logic:</strong></p>
+<ul>
+<li>Extracts title from title subject</li>
+<li>Optionally includes classification for broader search</li>
+<li>Sorted by title</li>
+</ul>
+<hr />
+<h3 id="items-dataset">Items Dataset<a class="headerlink" href="#items-dataset" title="Permanent link">&para;</a></h3>
+<p><strong>File:</strong> <code>items.sparql</code></p>
+<p><strong>Purpose:</strong> Index all items with titles and classifications.</p>
+<p><strong>Output properties:</strong></p>
+<ul>
+<li><code>skos:prefLabel</code> — item label</li>
+<li><code>skos:broader</code> — classification</li>
+</ul>
+<p><strong>Query logic:</strong></p>
+<ul>
+<li>Uses item label from <code>rdfs:label</code></li>
+<li>Includes classification</li>
+<li>Sorted by label</li>
+</ul>
+<hr />
+<h3 id="institutions-dataset">Institutions Dataset<a class="headerlink" href="#institutions-dataset" title="Permanent link">&para;</a></h3>
+<p><strong>File:</strong> <code>institutions.sparql</code></p>
+<p><strong>Purpose:</strong> Index all institutions with abbreviations or RISM sigla.</p>
+<p><strong>Output properties:</strong></p>
+<ul>
+<li><code>skos:prefLabel</code> — label with optional abbreviation or RISM siglum</li>
+<li><code>skos:broader</code> — RISM identifier if present</li>
+</ul>
+<p><strong>Query logic:</strong></p>
+<ul>
+<li>Uses institution name as base</li>
+<li>Prepends abbreviation or RISM siglum if available: <code>"DB (Name)"</code></li>
+<li>Falls back to name only if no abbreviation or rism siglum</li>
+<li>Sorted by label</li>
+</ul>
+<hr />
+<h3 id="places-dataset">Places Dataset<a class="headerlink" href="#places-dataset" title="Permanent link">&para;</a></h3>
+<p><strong>File:</strong> <code>places.sparql</code></p>
+<p><strong>Purpose:</strong> Index all places with their names.</p>
+<p><strong>Output properties:</strong></p>
+<ul>
+<li><code>skos:prefLabel</code> — place name</li>
+</ul>
+<p><strong>Query logic:</strong></p>
+<ul>
+<li>Extracts place name from <code>schema:name</code></li>
+<li>Sorted alphabetically</li>
+</ul>
+<hr />
+<h3 id="venues-dataset">Venues Dataset<a class="headerlink" href="#venues-dataset" title="Permanent link">&para;</a></h3>
+<p><strong>File:</strong> <code>venues.sparql</code></p>
+<p><strong>Purpose:</strong> Index all venues with their names and locations.</p>
+<p><strong>Output properties:</strong></p>
+<ul>
+<li><code>skos:prefLabel</code> — venue name</li>
+<li><code>skos:broader</code> — place name (if venue is located in a place)</li>
+</ul>
+<p><strong>Query logic:</strong></p>
+<ul>
+<li>Extracts venue name from <code>schema:name</code></li>
+<li>Optionally includes containing place via <code>schema:containedInPlace</code></li>
+<li>Sorted by venue name</li>
+</ul>
+<hr />
+<h3 id="events-dataset">Events Dataset<a class="headerlink" href="#events-dataset" title="Permanent link">&para;</a></h3>
+<p><strong>File:</strong> <code>events.sparql</code></p>
+<p><strong>Purpose:</strong> Index all events with their names.</p>
+<p><strong>Output properties:</strong></p>
+<ul>
+<li><code>skos:prefLabel</code> — event name</li>
+</ul>
+<p><strong>Query logic:</strong></p>
+<ul>
+<li>Extracts event name from <code>rdfs:label</code></li>
+<li>Sorted by name</li>
+</ul>
+<hr />
+<h3 id="performance-events-dataset">Performance Events Dataset<a class="headerlink" href="#performance-events-dataset" title="Permanent link">&para;</a></h3>
+<p><strong>File:</strong> <code>performanceEvents.sparql</code></p>
+<p><strong>Purpose:</strong> Index all performance events with dates and venues.</p>
+<p><strong>Output properties:</strong></p>
+<ul>
+<li><code>skos:prefLabel</code> — performance label with optional date and venue</li>
+</ul>
+<p><strong>Query logic:</strong></p>
+<ul>
+<li>Uses performance event name as base</li>
+<li>Optionally appends date and place information for context</li>
+<li>Combined label format: <code>"Name: Date Place"</code></li>
+<li>Sorted by label</li>
+</ul>
+<hr />
+<h3 id="instrumentations-dataset">Instrumentations Dataset<a class="headerlink" href="#instrumentations-dataset" title="Permanent link">&para;</a></h3>
+<p><strong>File:</strong> <code>instrumentations.sparql</code></p>
+<p><strong>Purpose:</strong> Index all instrumentations.</p>
+<p><strong>Output properties:</strong></p>
+<ul>
+<li><code>skos:prefLabel</code> — instrumentation name</li>
+</ul>
+<p><strong>Query logic:</strong></p>
+<ul>
+<li>Extracts name from <code>rdfs:label</code></li>
+<li>Sorted alphabetically</li>
+</ul>
+<hr />
+<h3 id="bibliography-dataset">Bibliography Dataset<a class="headerlink" href="#bibliography-dataset" title="Permanent link">&para;</a></h3>
+<p><strong>File:</strong> <code>bibliography.sparql</code></p>
+<p><strong>Purpose:</strong> Index all bibliography entries with abbreviations or titles.</p>
+<p><strong>Output properties:</strong></p>
+<ul>
+<li><code>skos:prefLabel</code> — bibliography label with abbreviation or title</li>
+</ul>
+<p><strong>Query logic:</strong></p>
+<ul>
+<li>Prefers <code>melod:hasAbbreviation</code> if present</li>
+<li>Falls back to title if no abbreviation exists</li>
+<li>Sorted by label</li>
+</ul>
+<hr />
+<h2 id="the-generation-script">The Generation Script<a class="headerlink" href="#the-generation-script" title="Permanent link">&para;</a></h2>
+<p>The file <a href="https://github.com/Music-Metadata-Tools/MerMEId-MeLODy-Template/blob/main/modules/datasets-generator/datasets-generator.sh"><code>modules/datasets-generator/datasets-generator.sh</code></a> orchestrates the entire process. It:</p>
+<ol>
+<li>Sets up directory paths for all entity types</li>
+<li>
+<p>For each dataset, calls the <code>rdf-data-aggregator</code> tool with:</p>
+<ul>
+<li><strong>Source directory:</strong> where entity files are located (e.g., <code>persons/</code>)</li>
+<li><strong>File pattern:</strong> which files to include (e.g., <code>*.ttl</code>)</li>
+<li><strong>SPARQL query:</strong> the transformation logic (e.g., <code>persons.sparql</code>)</li>
+<li><strong>Output path:</strong> where to write the result (e.g., <code>public/datasets/persons.ttl</code>)</li>
+</ul>
+</li>
+<li>
+<p>Times each operation for performance monitoring</p>
+</li>
+</ol>
+<p>Example invocation:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>/static-publishing-backend<span class="w"> </span>rdf-data-aggregator<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nv">$persons_dir_path</span>/<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="s2">&quot;*.ttl&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nv">$datasets_generator_dir_path</span>/persons.sparql<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nv">$datasets_dir_path</span>/persons.ttl
+</code></pre></div></p>
+<hr />
+<h2 id="github-pages-publishing">GitHub Pages Publishing<a class="headerlink" href="#github-pages-publishing" title="Permanent link">&para;</a></h2>
+<p>After datasets are generated, the GitHub Actions workflow publishes them to GitHub Pages:</p>
+<ol>
+<li>Datasets are created in <code>public/datasets/</code> directory</li>
+<li>The artifact is uploaded to GitHub Pages</li>
+<li>They become available at your configured <code>datasetBaseUrl</code> URL</li>
+</ol>
+<p><strong>Required configuration:</strong></p>
+<ul>
+<li>GitHub Pages must be enabled for your repository (Settings → Pages → Source: GitHub Actions)</li>
+<li>The repository must be <strong>public</strong> (for free GitHub Pages hosting)</li>
+</ul>
+<p>For GitLab repositories, configure Pages in the CI/CD pipeline settings.</p>
+<hr />
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="datasets-are-not-published">Datasets Are Not Published<a class="headerlink" href="#datasets-are-not-published" title="Permanent link">&para;</a></h3>
+<p><strong>Problem:</strong> Dropdowns are empty or search doesn't work.</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li>Check that GitHub Pages is enabled (Settings → Pages → Source: GitHub Actions)</li>
+<li>Verify the <code>datasetBaseUrl</code> in <code>config.json</code> matches your actual Pages URL</li>
+<li>Check that the latest pipeline run succeeded (Actions tab in GitHub)</li>
+<li>Clear the editor's browser cache (Ctrl+Shift+Delete)</li>
+</ol>
+<h3 id="sparql-query-errors">SPARQL Query Errors<a class="headerlink" href="#sparql-query-errors" title="Permanent link">&para;</a></h3>
+<p><strong>Problem:</strong> Pipeline fails with a SPARQL error.</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li>Check the Actions logs for the specific error</li>
+<li>Verify namespace prefixes are defined (<code>prefix melod:</code>, <code>prefix skos:</code>, etc.)</li>
+<li>Ensure the entity type in the query matches your actual entity classes</li>
+<li>Test the query locally in an RDF editor or SPARQL IDE</li>
+</ol>
+<h3 id="dataset-file-not-generated">Dataset File Not Generated<a class="headerlink" href="#dataset-file-not-generated" title="Permanent link">&para;</a></h3>
+<p><strong>Problem:</strong> A specific dataset file is missing.</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li>Check the source directory exists and contains <code>.ttl</code> files</li>
+<li>Verify the SPARQL query file exists in <code>modules/datasets-generator/</code></li>
+<li>Ensure the entry is added to <code>datasets-generator.sh</code></li>
+<li>Check that no syntax errors exists in the SPARQL query</li>
+</ol>
+<hr />
+<h2 id="related-topics">Related Topics<a class="headerlink" href="#related-topics" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../repo_config/">Repository Configuration</a> — <code>datasetBaseUrl</code> and <code>projectDomain</code> settings</li>
+<li><a href="../shacl_shapes/">SHACL Shapes</a> — how form fields reference datasets</li>
+<li><a href="../../data_model/entity_types/">Entity Types</a> — data model and entity classes</li>
+<li><a href="../../data_model/ontologies/">Data Model Ontologies</a> — vocabularies used in datasets</li>
+</ul>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../shacl_shapes/" class="md-footer__link md-footer__link--prev" aria-label="Previous: SHACL Shapes">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                SHACL Shapes
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../extending/" class="md-footer__link md-footer__link--next" aria-label="Next: Extending the Editor">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Extending the Editor
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+<footer class="md-footer" style="background: linear-gradient(45deg, #013657, #3d97f1);
+">
+  <div class="md-footer-meta md-typeset">
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="dfg-container">
+          <span>Funded by</span>
+          <a href="https://gepris.dfg.de/gepris/projekt/528785591" target="_blank">
+            <img src="../../img/dfg_logo_schriftzug_weiss.png" alt="DFG Logo" class="dfg-logo"/>
+          </a>
+          <span>Project-No.: 528785591</span>
+        </div>
+      </div>
+      <div class="footer-right">
+        <a href="https://www.adwmainz.de/forschung/centre-for-digital-music-documentation.html" target="_blank">
+          <img src="../../img/CDMD_Logo_grand_white.png" alt="CDMD Logo" class="cdmd-logo"/>
+        </a>
+        <a href="https://zenmem.uni-paderborn.de/" target="_blank">
+          <img src="../../img/ZenMEM_weiß.png" alt="ZenMEM Logo" class="zenmem-logo"/>
+        </a>
+        <a href="https://www.adwmainz.de/startseite.html" target="_blank">
+          <img src="../../img/adwlogo-weiß-transparent.png" alt="ADW Logo" class="adw-logo"/>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

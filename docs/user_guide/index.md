@@ -76,7 +76,7 @@ The template includes the correct folder structure, a CI/CD pipeline that publis
 - **GitHub:** `https://<owner>.github.io/<repo-name>/datasets/`
 - **GitLab:** `https://<namespace>.gitlab.io/<repo-name>/datasets/`
 
-For example, if your GitHub username is `jsmith` and your repository is named `mozart-catalogue`, the value would be `https://jsmith.github.io/mozart-catalogue/datasets/`. You can find your exact Pages URL in the repository settings after the first pipeline run. For more details see [Repository Configuration](../configuration/repo_config.md).
+For example, if your GitHub username is `your-username` and your repository is named `mozart-catalogue`, the value would be `https://your-username.github.io/mozart-catalogue/datasets/`. You can find your exact Pages URL in the repository settings after the first pipeline run. For more details see [Repository Configuration](../developer/repo_config.md).
 
 The template contains a small amount of sample data you can delete once you are comfortable with the editor.
 

@@ -207,14 +207,14 @@ On first load of a repository, the editor reads `configuration/config.json`. The
 
 **File:** `modules/entity-search/index.js`
 
-The search panel. Provides full-text search across all entity labels in the active repository.
+The search panel. Provides full-text search across all entity labels, alternative labels and classifications in the active repository.
 
 ### Responsibilities
 
 - Fetches pre-built dataset index files (one `.ttl` per entity type) from `datasetBaseUrl`
 - Parses all index files into an in-memory Oxigraph RDF store
-- Runs a SPARQL query to extract all `skos:prefLabel` values and their types
-- Filters results by label text and/or entity type
+- Runs multiple SPARQL queries to extract entity metadata: labels, types, composers, classifications, and alternative labels
+- Filters results by label text (including alternative labels and classifications) and/or entity type
 - On selection, dispatches `entity-selected` to navigate the filesystem manager tree to the matching file
 
 ### Events Dispatched
@@ -236,14 +236,59 @@ The search component does **not** index files from the local virtual filesystem.
 
 **Implication:** the search index reflects the **last pushed state**, not local unsaved changes. After a push, the filesystem manager dispatches `adwlm-filesystem-manager:reload-indexes` to trigger a fresh reload of all indexes.
 
-### SPARQL Query
+### SPARQL Queries
+
+The search component executes **three separate SPARQL queries** against the Oxigraph store and combines the results:
+
+#### Query 1: Main Data (Subject, Label, Type, Composer)
 
 ```sparql
-SELECT ?subject ?label ?type WHERE {
-  ?subject <http://www.w3.org/2004/02/skos/core#prefLabel> ?label .
+SELECT DISTINCT ?subject ?label ?type ?composer WHERE {
+  ?subject <http://www.w3.org/2004/02/skos/core#prefLabel> ?title .
   ?subject a ?type .
+  OPTIONAL {
+    ?subject <https://schema.org/composer> ?composer .
+  }
+  bind(coalesce(concat(?composer, ": ", ?title), ?title) AS ?label) .
 }
 ORDER BY ?label
+```
+
+This query extracts the primary label and type for each entity. If a composer is present, the label is formatted as `"composer: title"` (e.g., "Bach, Johann Sebastian: BWV 1001"). Otherwise, only the title is used.
+
+#### Query 2: Classifications
+
+```sparql
+SELECT ?subject ?classification WHERE {
+  ?subject <http://www.w3.org/2004/02/skos/core#broader> ?classification .
+}
+```
+
+Retrieves the broader (parent) classifications for each entity. These are stored in a `classificationsMap` indexed by subject.
+
+#### Query 3: Alternative Labels
+
+```sparql
+SELECT ?subject ?altlabel WHERE {
+  ?subject <http://www.w3.org/2004/02/skos/core#altLabel> ?altlabel .
+}
+```
+
+Retrieves alternative labels for each entity. These are stored in an `altLabelsMap` indexed by subject.
+
+### How Results are Combined
+
+After executing all three queries, the results are merged into a single array of entry objects:
+
+```js
+{
+  subject: "urn:uuid:persons/2847362910",
+  label: "Bach, Johann Sebastian: Suite in G Major",
+  type: "Work",
+  classifications: ["concert", "..."],
+  altlabels: ["Alternative Name", "Alternate Title"],
+  composer: "Bach, Johann Sebastian"
+}
 ```
 
 ---

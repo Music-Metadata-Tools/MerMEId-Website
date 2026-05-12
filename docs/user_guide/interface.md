@@ -39,25 +39,30 @@ The **footer** shows the logos of the funding and partner institutions: DFG, CDM
 
 **Component:** Entity Search (top of the left column)
 
-The search panel let you find entities by labels across the entire dataset.
+The search panel let you find entities across the entire dataset without navigating through the file tree. You can search by names, titles, composers, alternative titles, or classifications.
 
 ### Controls
 
-- **Type filter dropdown** — filter results by entity type (All, Person, Place, Work, Expression, etc.). The dropdown contains all Entity Types configured in the editor.
-- **Text input** — type a name or keyword to filter the results list. The search is case-insensitive and matches anywhere in the label.
-- **Results list** — click any result to open the corresponding entity in the editor. The filesystem manager will navigate the tree to that file automatically.
+- **Type filter dropdown** — narrows your search to a specific entity type (Person, Place, Work, Institution, etc.). Select **All** to search across all entity types.
+- **Search input field** — type a name, keyword, or phrase to find matching entities. The search is case-insensitive and looks across multiple fields:
+  - **Primary labels** — the main name or title of an entity
+  - **Alternative labels** — alternate names or spellings registered for an entity (e.g., if "J.S. Bach" and "Johann Sebastian Bach" are both registered) or alternative/uniform titles
+  - **Classifications** — broader categories an entity belongs to
+- **Results list** — shows matching entities with a label indicating their type. Click any result to open it in the editor. The file tree on the left will automatically navigate to that file.
 
 ### How the Search Index Works
 
-The search component does **not** search local files in the virtual filesystem. Instead, it fetches pre-built index files (one `.ttl` file per entity type, e.g. `persons.ttl`, `works.ttl`) from the URL configured in `datasetBaseUrl` inside the repository's `configuration/config.json`. This is typically a GitHub Pages or GitLab Pages URL where the CI/CD pipeline publishes the aggregated index files after each push.
+- **Start with a partial name** — you don't need to type the full name; "Bach" will find all Bachs, "Sonata" will find all sonatas
+- **Use type filters** — if you're looking for a specific person but the name is common, first filter by **Person**, then search
+- **Look for alternative spellings** — if you can't find an entity by its common name, the search may know it by another spelling
 
-This means:
+### Important Note About Search Results
 
-- The search results reflect the **last pushed state** of the repository, not any unsaved local changes.
-- If you have just cloned a new repository or the `config.json` is not yet configured, the search panel will be empty.
-- After a push, the filesystem manager triggers a reload of the indexes once the CI/CD pipeline has published updated files (this may take a minute or two).
+The search shows entities from the **last pushed state** of the repository, not your unsaved local changes. This means:
 
-The index files are loaded into an in-browser [Oxigraph](https://github.com/oxigraph/oxigraph) RDF triple store and queried with SPARQL to extract entity labels and types.
+- If you've just created or edited an entity locally but haven't pushed yet, it won't show up in search results.
+- New results appear after the repository is pushed and the server indexes are updated (this typically takes 1-2 minutes).
+- To sync your local view with the latest published results, use the **Synchronise** button in the Repository Panel.
 
 ---
 

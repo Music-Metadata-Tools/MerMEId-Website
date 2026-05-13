@@ -1096,10 +1096,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#working-with-shacl-shapes-locally" class="md-nav__link">
+  <a href="#working-with-the-shacl-form-renderer-locally" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Working with SHACL Shapes Locally
+        Working with the SHACL Form Renderer Locally
       
     </span>
   </a>
@@ -1628,10 +1628,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#working-with-shacl-shapes-locally" class="md-nav__link">
+  <a href="#working-with-the-shacl-form-renderer-locally" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Working with SHACL Shapes Locally
+        Working with the SHACL Form Renderer Locally
       
     </span>
   </a>
@@ -1712,33 +1712,47 @@
 <p><strong>If you are an external contributor</strong>, fork the repository first, then create a branch in your fork. Open a Pull Request against <code>main</code> of the original repository when ready.</p>
 <p>Commit messages should be short and written in the imperative: <em>"Add person converter"</em>, not <em>"Added"</em> or <em>"Adding"</em>.</p>
 <hr />
-<h2 id="working-with-shacl-shapes-locally">Working with SHACL Shapes Locally<a class="headerlink" href="#working-with-shacl-shapes-locally" title="Permanent link">&para;</a></h2>
-<p>The SHACL shapes that define the editor forms are maintained in a separate repository:
+<h2 id="working-with-the-shacl-form-renderer-locally">Working with the SHACL Form Renderer Locally<a class="headerlink" href="#working-with-the-shacl-form-renderer-locally" title="Permanent link">&para;</a></h2>
+<p>The form renderer used by the editor is maintained in a separate repository:
 <a href="https://github.com/Music-Metadata-Tools/mermeid-shacl-form">Music-Metadata-Tools/mermeid-shacl-form</a></p>
-<p>If you want to modify existing shapes or develop new ones and test them against a running editor, clone that repository and serve it locally alongside the editor:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Music-Metadata-Tools/mermeid-shacl-form.git
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">cd</span><span class="w"> </span>mermeid-shacl-form
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>python3<span class="w"> </span>-m<span class="w"> </span>http.server<span class="w"> </span><span class="m">8081</span>
+<p>It is a TypeScript/Vite project. To develop it locally and test it against a running editor, clone it as a sibling of <code>MerMEId-MeLODy</code> (i.e. both repositories must share the same parent directory):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># from the shared parent directory, e.g. ~/projects/</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Music-Metadata-Tools/mermeid-shacl-form.git
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nb">cd</span><span class="w"> </span>mermeid-shacl-form
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>git<span class="w"> </span>checkout<span class="w"> </span>development
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>npm<span class="w"> </span>install
 </code></pre></div>
-<p>Then open <code>configuration/editor-default.ttl</code> in MerMEId MeLODy and update the <code>melod_ui:shacl_file_location</code> of the relevant entity type to point to your local server:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nn">melod</span><span class="p">:</span><span class="nt">Person</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="kt">a</span> <span class="nn">melod</span><span class="p">:</span><span class="nt">EntityType</span> <span class="p">;</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="nn">rdfs</span><span class="p">:</span><span class="nt">label</span> <span class="s">&quot;Person&quot;</span> <span class="p">;</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="nn">melod_ui</span><span class="p">:</span><span class="nt">entity_folder_name</span> <span class="s">&quot;persons&quot;</span> <span class="p">;</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="nn">melod_ui</span><span class="p">:</span><span class="nt">shacl_file_location</span> <span class="s">&quot;http://localhost:8081/configuration/person.shacl&quot;</span> <span class="p">.</span>
+<p>Build the MerMEId-specific bundle:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>npm<span class="w"> </span>run<span class="w"> </span>build-mermeid
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1"># produces dist/form-mermeid.js</span>
 </code></pre></div>
-<p>The editor fetches the shape file at runtime for each entity opened, so changes to the <code>.shacl</code> file take effect on the next form load — no restart needed. Once your changes are ready, open a Pull Request against the <code>mermeid-shacl-form</code> repository and revert the URL in <code>editor-default.ttl</code> back to the published path.</p>
+<p>Start a single HTTP server from the <strong>shared parent directory</strong> so both repositories are served from the same origin:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># from the shared parent directory</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>python3<span class="w"> </span>-m<span class="w"> </span>http.server<span class="w"> </span><span class="m">8080</span>
+</code></pre></div>
+<p>Then update <code>index.html</code> in MerMEId-MeLODy to point to the local build using a root-relative path (avoids CORS issues regardless of whether you access the editor via <code>localhost</code> or an IP address):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;/mermeid-shacl-form/dist/form-mermeid.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">registerPlugin</span><span class="p">,</span><span class="w"> </span><span class="nx">RichTextEditorPlugin</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;/mermeid-shacl-form/dist/form-mermeid.js&#39;</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="p">...</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Open the editor at <code>http://localhost:8080/MerMEId-MeLODy/index.html</code> (or the equivalent IP address).</p>
+<p><strong>Development cycle:</strong> edit files in <code>mermeid-shacl-form/src/</code> → run <code>npm run build-mermeid</code> → reload the browser. No server restart needed.</p>
+<p>Once your changes are ready, open a Pull Request against the <code>development</code> branch of the <code>mermeid-shacl-form</code> repository and revert the URLs in <code>index.html</code> back to the published path:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>https://music-metadata-tools.github.io/mermeid-shacl-form/dist/form-mermeid.js
+</code></pre></div>
 <hr />
 <h2 id="running-the-tests">Running the Tests<a class="headerlink" href="#running-the-tests" title="Permanent link">&para;</a></h2>
 <p>If you are working on core functionality (filesystem management, git operations), run the test suite:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>npm<span class="w"> </span>install
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>npm<span class="w"> </span><span class="nb">test</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>npm<span class="w"> </span>install
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>npm<span class="w"> </span><span class="nb">test</span>
 </code></pre></div>
 <p>Requires <a href="https://nodejs.org">Node.js</a> v22 or later.</p>
 <p>For integration tests (real clone/pull/push operations), you need a test repository and a GitHub personal access token. Create a repository from the <a href="https://github.com/Music-Metadata-Tools/MerMEId-MeLODy-Template">MerMEId MeLODy Template</a> and add a <code>.env</code> file in the project root:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>GIT_TOKEN=&lt;your GitHub personal access token&gt;
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>GIT_USERNAME=&lt;your GitHub username&gt;
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>TEST_REPO_URL=&lt;URL of your test repository&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>GIT_TOKEN=&lt;your GitHub personal access token&gt;
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>GIT_USERNAME=&lt;your GitHub username&gt;
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>TEST_REPO_URL=&lt;URL of your test repository&gt;
 </code></pre></div>
 <p>Integration tests are automatically skipped if these variables are not set.</p>
 <hr />

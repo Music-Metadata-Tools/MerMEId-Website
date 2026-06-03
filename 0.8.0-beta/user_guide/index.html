@@ -775,17 +775,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#running-the-editor-locally" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Running the Editor Locally
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1152,6 +1141,34 @@
     
   
     Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../developer/local/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Offline Setup
   
 
     
@@ -1705,17 +1722,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#running-the-editor-locally" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Running the Editor Locally
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1828,18 +1834,6 @@
 <p>The file is now saved to the Git repository, see <a href="user_guide/git_workflow.md">Git Workflow</a> for further information.</p>
 <p>For a full description of all entity types and their fields, see <a href="user_guide/entities.md">Working with Entities</a> and <a href="data_model.md">Data Model</a>.</p>
 <hr />
-<h2 id="running-the-editor-locally">Running the Editor Locally<a class="headerlink" href="#running-the-editor-locally" title="Permanent link">&para;</a></h2>
-<p>The editor is a static HTML/JavaScript application — no build step is required. To run a local copy:</p>
-<p><strong>Option 1: Python</strong></p>
-<p>Clone the <a href="https://github.com/Music-Metadata-Tools/MerMEId-MeLODy">MerMEId MeLODy repository</a> and serve it with Python's built-in server:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Music-Metadata-Tools/MerMEId-MeLODy.git
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>MerMEId-MeLODy
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>python3<span class="w"> </span>-m<span class="w"> </span>http.server<span class="w"> </span><span class="m">8080</span>
-</code></pre></div>
-<p>Then open <code>http://localhost:8080</code> in your browser.</p>
-<p><strong>Option 2: VS Code Live Server</strong></p>
-<p>Open the cloned folder in <a href="https://code.visualstudio.com/">VS Code</a> and install the <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer">Live Server</a> extension. Click <strong>"Go Live"</strong> in the status bar.</p>
-<p>Note that all Git operations (clone, push, pull) still go through the CORS proxy (<a href="https://cors.isomorphic-git.org">cors.isomorphic-git.org</a>) even when running locally, because browsers block direct cross-origin Git HTTP requests. That means that the local use ist still not completely offline ready.</p>
 
 
 

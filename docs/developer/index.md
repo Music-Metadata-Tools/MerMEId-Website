@@ -6,6 +6,7 @@ This section documents the technical architecture of MerMEId MeLODy for develope
 
 ## Sections
 
+- [Local Setup](local.md) — how to run every part of the tool on your local machine
 - [Architecture Overview](architecture.md) — bootstrap sequence, technology stack, and module structure
 - [Components & Events](components.md) — detailed reference for each web component and the complete event map between them
 - [SHACL Shapes](shacl_shapes.md) — how to define and extend form fields using SHACL
@@ -49,30 +50,54 @@ Commit messages should be short and written in the imperative: *"Add person conv
 
 ---
 
-## Working with SHACL Shapes Locally
+## Working with the SHACL Form Renderer Locally
 
-The SHACL shapes that define the editor forms are maintained in a separate repository:
+The form renderer used by the editor is maintained in a separate repository:
 [Music-Metadata-Tools/mermeid-shacl-form](https://github.com/Music-Metadata-Tools/mermeid-shacl-form)
 
-If you want to modify existing shapes or develop new ones and test them against a running editor, clone that repository and serve it locally alongside the editor:
+It is a TypeScript/Vite project. To develop it locally and test it against a running editor, clone it as a sibling of `MerMEId-MeLODy` (i.e. both repositories must share the same parent directory):
 
 ```bash
+# from the shared parent directory, e.g. ~/projects/
 git clone https://github.com/Music-Metadata-Tools/mermeid-shacl-form.git
 cd mermeid-shacl-form
-python3 -m http.server 8081
+git checkout development
+npm install
 ```
 
-Then open `configuration/editor-default.ttl` in MerMEId MeLODy and update the `melod_ui:shacl_file_location` of the relevant entity type to point to your local server:
+Build the MerMEId-specific bundle:
 
-```turtle
-melod:Person
-    a melod:EntityType ;
-    rdfs:label "Person" ;
-    melod_ui:entity_folder_name "persons" ;
-    melod_ui:shacl_file_location "http://localhost:8081/configuration/person.shacl" .
+```bash
+npm run build-mermeid
+# produces dist/form-mermeid.js
 ```
 
-The editor fetches the shape file at runtime for each entity opened, so changes to the `.shacl` file take effect on the next form load — no restart needed. Once your changes are ready, open a Pull Request against the `mermeid-shacl-form` repository and revert the URL in `editor-default.ttl` back to the published path.
+Start a single HTTP server from the **shared parent directory** so both repositories are served from the same origin:
+
+```bash
+# from the shared parent directory
+python3 -m http.server 8080
+```
+
+Then update `index.html` in MerMEId-MeLODy to point to the local build using a root-relative path (avoids CORS issues regardless of whether you access the editor via `localhost` or an IP address):
+
+```html
+<script type="module" src="/mermeid-shacl-form/dist/form-mermeid.js"></script>
+<script type="module">
+    import { registerPlugin, RichTextEditorPlugin } from '/mermeid-shacl-form/dist/form-mermeid.js'
+    ...
+</script>
+```
+
+Open the editor at `http://localhost:8080/MerMEId-MeLODy/index.html` (or the equivalent IP address).
+
+**Development cycle:** edit files in `mermeid-shacl-form/src/` → run `npm run build-mermeid` → reload the browser. No server restart needed.
+
+Once your changes are ready, open a Pull Request against the `development` branch of the `mermeid-shacl-form` repository and revert the URLs in `index.html` back to the published path:
+
+```
+https://music-metadata-tools.github.io/mermeid-shacl-form/dist/form-mermeid.js
+```
 
 ---
 

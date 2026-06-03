@@ -22,6 +22,7 @@ nav:
     - Entity Types: data_model/entity_types.md
   - Developer Reference:
     - Overview: developer/index.md
+    - Offline Setup: developer/local.md
     - Architecture: developer/architecture.md
     - Components: developer/components.md
     - SHACL Shapes: developer/shacl_shapes.md

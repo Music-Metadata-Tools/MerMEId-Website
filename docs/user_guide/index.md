@@ -114,24 +114,3 @@ For a full description of all entity types and their fields, see [Working with E
 
 ---
 
-## Running the Editor Locally
-
-The editor is a static HTML/JavaScript application — no build step is required. To run a local copy:
-
-**Option 1: Python**
-
-Clone the [MerMEId MeLODy repository](https://github.com/Music-Metadata-Tools/MerMEId-MeLODy) and serve it with Python's built-in server:
-
-```bash
-git clone https://github.com/Music-Metadata-Tools/MerMEId-MeLODy.git
-cd MerMEId-MeLODy
-python3 -m http.server 8080
-```
-
-Then open `http://localhost:8080` in your browser.
-
-**Option 2: VS Code Live Server**
-
-Open the cloned folder in [VS Code](https://code.visualstudio.com/) and install the [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) extension. Click **"Go Live"** in the status bar.
-
-Note that all Git operations (clone, push, pull) still go through the CORS proxy ([cors.isomorphic-git.org](https://cors.isomorphic-git.org)) even when running locally, because browsers block direct cross-origin Git HTTP requests. That means that the local use ist still not completely offline ready.

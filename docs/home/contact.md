@@ -10,7 +10,7 @@
 | Institution | Role |
 | :--- | :--- |
 | [Centre for Digital Music Documentation (CDMD)](https://cdmd.adwmainz.de), Akademie der Wissenschaften und der Literatur Mainz | Lead institution; coordination, development, and data modelling |
-| [Centre for Music and Film Informatics (ZenMEM)](https://www.uni-paderborn.de/zenmem), Universität Paderborn | Partner institution; musicological expertise and catalogue development |
+| [Centre for Music - Edition - Media (ZenMEM) ](https://www.uni-paderborn.de/zenmem), Universität Paderborn | Partner institution; musicological expertise and editoric development |
 | [Akademie der Wissenschaften und der Literatur Mainz (ADW Mainz)](https://www.adwmainz.de) | Host institution |
 
 ---

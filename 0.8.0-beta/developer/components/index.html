@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../img/CDMD_Logo_cut.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -29,10 +29,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -2712,7 +2712,7 @@ Beyond startup, <code>js/index.js</code> is also responsible for wiring the <str
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>  <span class="k">OPTIONAL</span> <span class="p">{</span>
 <a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="nv">?subject</span> <span class="nl">&lt;https://schema.org/composer&gt;</span> <span class="nv">?composer</span> <span class="p">.</span>
 <a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>  <span class="p">}</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>  <span class="k">bind</span><span class="p">(</span><span class="nf">coalesce</span><span class="p">(</span><span class="nf">concat</span><span class="p">(</span><span class="nv">?composer</span><span class="p">,</span> <span class="s">&quot;: &quot;</span><span class="p">,</span> <span class="nv">?title</span><span class="p">),</span> <span class="nv">?title</span><span class="p">)</span> <span class="k">AS</span> <span class="nv">?label</span><span class="p">)</span> <span class="p">.</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>  <span class="k">bind</span><span class="p">(</span><span class="nf">coalesce</span><span class="p">(</span><span class="nf">concat</span><span class="p">(</span><span class="nv">?composer</span><span class="p">,</span> <span class="s">": "</span><span class="p">,</span> <span class="nv">?title</span><span class="p">),</span> <span class="nv">?title</span><span class="p">)</span> <span class="k">AS</span> <span class="nv">?label</span><span class="p">)</span> <span class="p">.</span>
 <a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">}</span>
 <a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="k">ORDER BY</span> <span class="nv">?label</span>
 </code></pre></div>
@@ -2732,12 +2732,12 @@ Beyond startup, <code>js/index.js</code> is also responsible for wiring the <str
 <h3 id="how-results-are-combined">How Results are Combined<a class="headerlink" href="#how-results-are-combined" title="Permanent link">&para;</a></h3>
 <p>After executing all three queries, the results are merged into a single array of entry objects:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nx">subject</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;urn:uuid:persons/2847362910&quot;</span><span class="p">,</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Bach, Johann Sebastian: Suite in G Major&quot;</span><span class="p">,</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Work&quot;</span><span class="p">,</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span><span class="nx">classifications</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;concert&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">],</span>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span><span class="nx">altlabels</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Alternative Name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Alternate Title&quot;</span><span class="p">],</span>
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">  </span><span class="nx">composer</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Bach, Johann Sebastian&quot;</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nx">subject</span><span class="o">:</span><span class="w"> </span><span class="s2">"urn:uuid:persons/2847362910"</span><span class="p">,</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s2">"Bach, Johann Sebastian: Suite in G Major"</span><span class="p">,</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">"Work"</span><span class="p">,</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span><span class="nx">classifications</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"concert"</span><span class="p">,</span><span class="w"> </span><span class="s2">"..."</span><span class="p">],</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span><span class="nx">altlabels</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Alternative Name"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Alternate Title"</span><span class="p">],</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">  </span><span class="nx">composer</span><span class="o">:</span><span class="w"> </span><span class="s2">"Bach, Johann Sebastian"</span>
 <a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="p">}</span>
 </code></pre></div>
 <hr />
@@ -2882,10 +2882,10 @@ Beyond startup, <code>js/index.js</code> is also responsible for wiring the <str
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

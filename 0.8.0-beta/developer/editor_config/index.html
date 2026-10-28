@@ -17,7 +17,7 @@
       
       
       <link rel="icon" href="../../img/CDMD_Logo_cut.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -25,10 +25,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -1683,9 +1683,9 @@
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nn">melod</span><span class="p">:</span><span class="nt">Person</span>
 <a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="kt">a</span> <span class="nn">melod</span><span class="p">:</span><span class="nt">EntityType</span> <span class="p">;</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="nn">rdfs</span><span class="p">:</span><span class="nt">label</span> <span class="s">&quot;Person&quot;</span> <span class="p">;</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="nn">melod</span><span class="p">:</span><span class="nt">entity_folder_name</span> <span class="s">&quot;persons&quot;</span> <span class="p">;</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="nn">melod</span><span class="p">:</span><span class="nt">shacl_file_location</span> <span class="s">&quot;configuration/person.shacl&quot;</span> <span class="p">.</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="nn">rdfs</span><span class="p">:</span><span class="nt">label</span> <span class="s">"Person"</span> <span class="p">;</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="nn">melod</span><span class="p">:</span><span class="nt">entity_folder_name</span> <span class="s">"persons"</span> <span class="p">;</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="nn">melod</span><span class="p">:</span><span class="nt">shacl_file_location</span> <span class="s">"configuration/person.shacl"</span> <span class="p">.</span>
 </code></pre></div>
 <h3 id="the-four-properties">The Four Properties<a class="headerlink" href="#the-four-properties" title="Permanent link">&para;</a></h3>
 <table>
@@ -1731,9 +1731,9 @@
 <p>Add a new block to <code>configuration/editor-default.ttl</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nn">melod</span><span class="p">:</span><span class="nt">MyNewType</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="kt">a</span> <span class="nn">melod</span><span class="p">:</span><span class="nt">EntityType</span> <span class="p">;</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="nn">rdfs</span><span class="p">:</span><span class="nt">label</span> <span class="s">&quot;My New Type&quot;</span> <span class="p">;</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="nn">melod</span><span class="p">:</span><span class="nt">entity_folder_name</span> <span class="s">&quot;mynewtype&quot;</span> <span class="p">;</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="nn">melod</span><span class="p">:</span><span class="nt">shacl_file_location</span> <span class="s">&quot;configuration/mynewtype.shacl&quot;</span> <span class="p">.</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="nn">rdfs</span><span class="p">:</span><span class="nt">label</span> <span class="s">"My New Type"</span> <span class="p">;</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="nn">melod</span><span class="p">:</span><span class="nt">entity_folder_name</span> <span class="s">"mynewtype"</span> <span class="p">;</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="nn">melod</span><span class="p">:</span><span class="nt">shacl_file_location</span> <span class="s">"configuration/mynewtype.shacl"</span> <span class="p">.</span>
 </code></pre></div>
 <p>Replace <code>melod:MyNewType</code> with the full class IRI from your ontology. Update the label, folder name, and shape file path accordingly.</p>
 <p>```</p>
@@ -1833,10 +1833,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

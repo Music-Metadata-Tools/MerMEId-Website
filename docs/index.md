@@ -50,7 +50,7 @@ To get started you need a data repository. The quickest way is to create one fro
 
 ## Beta Status
 
-MerMEId MeLODy is **beta software** (version 0.8, released 2026-03-24). It is actively used in ongoing cataloguing projects, but you should:
+MerMEId MeLODy is **beta software** (version 0.9, released 2026-10-27). It is actively used in ongoing cataloguing projects, but you should:
 
 - Back up your data repository regularly (it is a standard Git repository — cloning it elsewhere is sufficient)
 - Expect occasional breaking changes between versions
@@ -63,7 +63,7 @@ MerMEId MeLODy is **beta software** (version 0.8, released 2026-03-24). It is ac
 
 If you use MerMEId MeLODy in your research, please cite it as:
 
-> Licciulli, Carlo; Teodorescu, Claudius; Schmitz, Annabella; Zwick, Robert; Richts-Matthaei, Kristina (2026). *MerMEId MeLODy* (Version 0.8). MIT License. [https://github.com/Music-Metadata-Tools/MerMEId-MeLODy](https://github.com/Music-Metadata-Tools/MerMEId-MeLODy)
+> Licciulli, Carlo; Teodorescu, Claudius; Schmitz, Annabella; Zwick, Robert; Richts-Matthaei, Kristina (2026). *MerMEId MeLODy* (Version 0.9). MIT License. [https://github.com/Music-Metadata-Tools/MerMEId-MeLODy](https://github.com/Music-Metadata-Tools/MerMEId-MeLODy)
 
 A `CITATION.cff` file is included in the repository for automated citation tools (Zotero, GitHub citation export, etc.).
 

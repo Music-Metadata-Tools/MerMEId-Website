@@ -1,0 +1,34 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix melod: <https://lod.academy/melod/vocab/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix terms: <https://mermeid-data-model-efbf77.pages.gitlab.rlp.net/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+melod:Work
+  a sh:NodeShape, rdfs:Class ;
+  sh:property   [ sh:name "Titles" ;
+                  sh:minCount 0 ;
+                  sh:node melod:Title ;
+                  sh:path melod:hasTitle
+                ] ;
+  sh:targetClass melod:Work .
+
+melod:Title
+  a               sh:NodeShape ;
+  owl:imports     terms:melod-terms.ttl ;
+  sh:property   [ sh:description "Title of the work" ;
+                  sh:name      "Title" ;
+                  sh:languageIn   ( "en" "de" ) ;
+                  sh:minCount  1 ;
+                  sh:maxCount  1 ;
+                  sh:path      rdfs:label
+                ] ;
+  sh:property   [ sh:name      "Type" ;
+                  sh:minCount  0 ;
+                  sh:maxCount  1 ;
+                  sh:path      melod:hasTitleType ;
+                  sh:class melod:TitleType ;
+                ] ;
+  sh:targetClass melod:Title .

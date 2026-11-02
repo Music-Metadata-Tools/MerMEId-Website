@@ -1,0 +1,24 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix melod: <https://lod.academy/melod/vocab/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix dash: <http://datashapes.org/dash#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix mus: <http://data.doremus.org/ontology#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix terms: <https://mermeid-data-model-efbf77.pages.gitlab.rlp.net/> .
+
+melod:Expression
+  a               sh:NodeShape, rdfs:Class ;
+  owl:imports     terms:melod-terms.ttl ;
+  sh:property   [ sh:name "Relation" ;
+                  sh:minCount 0 ;
+                  sh:or (
+                    [ sh:name "has part" ; sh:description "has part" ; sh:path  melod:hasPart ; rdfs:label "has part" ; sh:nodeKind sh:IRI ]
+                    [ sh:name "is part of" ; sh:description "is part of" ; sh:path melod:isPartOf ; rdfs:label "is part of" ; sh:nodeKind sh:IRI ]
+                    )
+                ] ;
+  sh:targetClass  melod:Expression .

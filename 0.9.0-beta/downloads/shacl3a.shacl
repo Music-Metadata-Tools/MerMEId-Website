@@ -1,0 +1,31 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix melod: <https://lod.academy/melod/vocab/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <https://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix terms: <https://mermeid-data-model-efbf77.pages.gitlab.rlp.net/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+melod:Expression
+  a               sh:NodeShape, rdfs:Class ;
+  owl:imports     terms:melod-terms.ttl ;
+  sh:property   [ sh:name "Label" ;
+                  sh:description "Expression title, e.g. 'Version 1'" ;
+                  sh:minCount 0 ;
+                  sh:maxCount 1 ;
+                  sh:path rdfs:label
+                ] ;
+  sh:property   [ sh:description "Genre or classification" ;
+                  sh:name "Classification" ;
+                  sh:minCount 0 ;
+                  sh:path melod:hasClassification ;
+                  sh:or (
+                    [ sh:class melod:StageMusic ; rdfs:label "Stage music" ]
+                    [ sh:class melod:InstrumentalMusic; rdfs:label "Instrumental Music" ]
+                    [ sh:class melod:VocalMusic; rdfs:label "Vocal Music" ]
+                    [ sh:class melod:Classification; rdfs:label "Classification" ]
+                    [ rdfs:label "Custom classification" ]
+                  )
+                ] ;
+  sh:targetClass  melod:Expression .
+

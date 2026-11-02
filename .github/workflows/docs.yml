@@ -3,11 +3,27 @@ name: Deploy Docs
 on:
   push:
     tags:
-      - "v*"          # deploy on every version tag, e.g. v1.0, v1.1
-  workflow_dispatch:  # allow manual trigger from the Actions tab
+      - "v*"          # new version, e.g. v1.0, v1.1 → deployed and set as "latest"
+    branches:
+      - main          # content changes → redeploy the version "latest" points to
+    paths:            # only applies to branch pushes; tag pushes ignore path filters
+      - "docs/**"
+      - "mkdocs.yml"
+      - "custom_theme/**"
+      - "requirements.txt"
+  workflow_dispatch:  # manual trigger from the Actions tab
+    inputs:
+      version:
+        description: "Version to redeploy (empty = the version 'latest' points to)"
+        required: false
 
 permissions:
   contents: write
+
+# mike commits to gh-pages; never let two deploys write at the same time
+concurrency:
+  group: gh-pages
+  cancel-in-progress: false
 
 jobs:
   deploy:
@@ -29,11 +45,30 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Deploy versioned docs
+      - name: Deploy new version (tag)
+        if: github.ref_type == 'tag'
         run: |
           VERSION=${GITHUB_REF_NAME#v}        # strips the "v" prefix: v1.1 → 1.1
           mike deploy --push --update-aliases "$VERSION" latest
 
+      - name: Redeploy existing version (main / manual)
+        if: github.ref_type != 'tag'
+        env:
+          INPUT_VERSION: ${{ inputs.version }}
+        run: |
+          VERSION="$INPUT_VERSION"
+          if [ -z "$VERSION" ]; then
+            VERSION=$(git show origin/gh-pages:versions.json \
+              | jq -r '.[] | select(.aliases | index("latest")) | .version')
+          fi
+          if [ -z "$VERSION" ]; then
+            echo "::error::No version given and no version with alias 'latest' found in gh-pages/versions.json"
+            exit 1
+          fi
+          echo "Redeploying version $VERSION (aliases unchanged)"
+          mike deploy --push "$VERSION"
+
       - name: Set default version (first deploy only)
+        if: github.ref_type == 'tag'
         run: mike set-default --push latest
         continue-on-error: true  # harmless if default is already set

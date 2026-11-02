@@ -1935,7 +1935,7 @@
 <h2 id="creating-a-new-entity">Creating a New Entity<a class="headerlink" href="#creating-a-new-entity" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Make sure a repository is <strong>selected</strong> (highlighted) in the left panel.</li>
-<li>Click the <strong>"New"</strong> button (folder-plus icon) in the editor toolbar.</li>
+<li>Click the <strong>"New"</strong> button (file-plus icon) in the editor toolbar.</li>
 <li>A dialog opens listing all available entity types. Select the type you want to create (e.g. <strong>Person</strong>, <strong>Work</strong>, <strong>Place</strong>).</li>
 <li>Click <strong>"Create"</strong>. The dialog closes and a blank form opens in the editor panel.</li>
 </ol>
@@ -1945,72 +1945,76 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>urn:uuid:&lt;folder&gt;/&lt;randomInteger&gt;
 </code></pre></div>
 <p>For example, a new person entity might get the IRI <code>urn:uuid:persons/2847362910</code>.</p>
+<p>The prefix can be changed with <code>projectDomain</code> in <code>configuration/config.json</code>, and an optional <code>IDprefix</code> per folder can be placed in front of the number (e.g. <code>urn:uuid:works/w1477695404</code>). See <a href="../../developer/repo_config/">Repository Configuration</a>.</p>
 <p>The IRI is displayed below the toolbar in the editor panel and cannot be changed after creation.</p>
 <hr />
 <h2 id="filling-in-the-form">Filling in the Form<a class="headerlink" href="#filling-in-the-form" title="Permanent link">&para;</a></h2>
-<p>The form is generated automatically from the SHACL shape for the entity type. Different field types appear depending on the property being described.</p>
+<p>The form is generated automatically from the SHACL shape for the entity type. Different field types appear depending on the property being described. Field labels and help texts are shown in the language selected in the header (English or German).</p>
 <h3 id="field-types">Field Types<a class="headerlink" href="#field-types" title="Permanent link">&para;</a></h3>
 <p><strong>Text fields</strong> — plain literal values. Type directly into the input. Most label and name fields are text fields (e.g. Surname, First name, title).</p>
-<p><strong>IRI / Link fields</strong> — expect a full IRI (URL) as value. The field may validate that the entered value matches the expected IRI pattern. For example, the <code>owl:sameAs</code> field on a Person expects a value like <code>http://d-nb.info/gnd/118816X</code>. An error is shown if the value does not match the required pattern <code>^http(s)?://.+?/..+?</code>.</p>
+<p><strong>Rich text fields</strong> — some description fields offer a rich text editor with basic formatting. The content is stored as HTML.</p>
+<p><strong>IRI / Link fields</strong> — expect a full IRI (URL) as value. The field may validate that the entered value matches the expected IRI pattern. For example, the <code>owl:sameAs</code> field ("Link") on a Person expects a value like <code>http://d-nb.info/gnd/118816X</code>. An error is shown if the value does not match the required pattern <code>^http(s)?://.+?/..+?</code>.</p>
 <p><strong>Dropdown / enum fields</strong> — a fixed list of allowed values to choose from. For example, the Gender field on a Person offers <code>female</code>, <code>male</code>, and <code>diverse</code>. Click the dropdown to see the options.</p>
 <p><strong>Date fields</strong> — some date fields offer a choice between a <strong>single date</strong> and a <strong>date span</strong> (a start and end date or not before, not after). A dropdown lets you switch between the two modes. Dates are entered in ISO 8601 format (YYYY-MM-DD).</p>
 <p><strong>Linked entity reference fields</strong> — allow you to select another entity from the dataset (e.g. a Birth Place linking to a Place entity). These are described in detail in the next section.</p>
 <h3 id="required-fields">Required Fields<a class="headerlink" href="#required-fields" title="Permanent link">&para;</a></h3>
-<p>Fields marked with an asterisk (<code>*</code>) or highlighted as required must be filled before the entity can be saved without validation errors. The form will show an inline error message if a required field is empty when you attempt to save.</p>
+<p>Fields marked with an asterisk (<code>*</code>) or highlighted as required must be filled before the entity can be saved. If a required field is empty or a value is invalid, saving is blocked and the message <em>"Cannot save entity. Please fill out all required fields or correct invalid fields."</em> is shown.</p>
 <hr />
 <h2 id="linking-entities">Linking Entities<a class="headerlink" href="#linking-entities" title="Permanent link">&para;</a></h2>
-<p>Many fields reference other entities — for example, a Person has a Birth Place (linking to a Place entity), and a Work has a Composer (linking to a Person entity). These cross-references are what make the data model a true Linked Open Data graph.</p>
+<p>Many fields reference other entities — for example, a Person has a Birth Place (linking to a Place entity), and a Work has a Contributor (linking to a Person entity). These cross-references are what make the data model a true Linked Open Data graph.</p>
 <h3 id="how-cross-references-work">How Cross-References Work<a class="headerlink" href="#how-cross-references-work" title="Permanent link">&para;</a></h3>
-<p>Linked entity fields appear as <strong>dropdown menus</strong> populated from the dataset's published index files. When you click on a linked entity field, a searchable list of existing entities of the appropriate type appears, loaded from the <code>datasetBaseUrl</code> configured in <code>configuration/config.json</code>.</p>
+<p>Linked entity fields appear as <strong>dropdown menus</strong> populated from the index files in the <code>indexes/</code> folder of the selected repository. When you click on a linked entity field, a searchable list of existing entities of the appropriate type appears.</p>
 <p>Select the entity you want to link. The IRI of the selected entity is written into the Turtle file as the value of the property.</p>
-<p>Because the dropdown draws from the <strong>published</strong> index (not from local unsaved files), a newly created entity will only appear in linked entity dropdowns after it has been pushed to the remote repository and the CI/CD pipeline has regenerated the index files.</p>
 <h3 id="quick-add">Quick Add<a class="headerlink" href="#quick-add" title="Permanent link">&para;</a></h3>
 <p>If the entity you want to link does not exist yet, you do not need to leave the current form to create it. The <strong>Quick Add</strong> feature lets you create a new linked entity inline:</p>
 <ol>
 <li>In the linked entity field, look for the <strong>"Quick Add"</strong> button (the <code>+</code> button next to the field).</li>
-<li>Click it. A dialog opens with a form for the linked entity type (e.g. a Place form if you are filling in a Birth Place).</li>
-<li>Fill in the required fields and click <strong>"Save"</strong> in the Quick Add dialog.</li>
-<li>The new entity is saved to the virtual filesystem.</li>
+<li>Click it. A <strong>Quick Add</strong> dialog opens with a form for the linked entity type (e.g. a Place form if you are filling in a Birth Place).</li>
+<li>Fill in the required fields and click <strong>"Save"</strong> in the Quick Add dialog. The button is enabled once the form is valid; <strong>Cancel</strong> closes the dialog without saving.</li>
+<li>The new entity is saved, staged and added to the index, and it is <strong>selected automatically</strong> in the field from which you opened the dialog.</li>
+<li>Save the main form to keep the link.</li>
 </ol>
-<p>The Quick Add entity is staged for git in the same way as a manually saved entity — it will appear in the Share Files section and must be pushed to become available in the published index.</p>
+<p>The Quick Add entity is staged for git in the same way as a manually saved entity — it will appear in the Share Files section and must be shared to become available to other users.</p>
 <hr />
 <h2 id="previewing-linked-entities">Previewing Linked Entities<a class="headerlink" href="#previewing-linked-entities" title="Permanent link">&para;</a></h2>
 <p>While editing, you can inspect any linked entity without leaving the current form:</p>
 <ol>
-<li>In the form, find a field that shows a linked entity value (displayed as a clickable link, rendered as <code>&lt;a class="uuid"&gt;</code>).</li>
+<li>In the form, find a field that shows a linked entity value (displayed as a clickable link).</li>
 <li>Click the link.</li>
-<li>A <strong>floating, draggable side panel</strong> opens on the right side of the screen. It shows a read-only rendering of the linked entity using a second <code>shacl-form</code> in <code>data-view</code> mode.</li>
+<li>A <strong>floating side panel</strong> opens. It shows a read-only rendering of the linked entity using a second <code>shacl-form</code> in <code>data-view</code> mode. You can move the panel by dragging its header and resize it.</li>
 <li>At the top of the side panel, an <strong>"Edit"</strong> button opens the linked entity in the main editor (replacing the currently open form). Use with care if you have unsaved changes in the current form — you will be warned before switching.</li>
 </ol>
-<p>The preview panel is useful for quickly checking the details of a linked entity without navigating away from your work.</p>
+<p>The preview panel can also be opened from the <a href="../interface/#graph-tab">Graph tab</a>. It is useful for quickly checking the details of a linked entity without navigating away from your work.</p>
 <hr />
 <h2 id="saving">Saving<a class="headerlink" href="#saving" title="Permanent link">&para;</a></h2>
-<p>Click the <strong>"Save"</strong> button (or the floppy-disk icon) to save the current entity.</p>
+<p>Click the <strong>"Save"</strong> button (floppy-disk icon) to save the current entity.</p>
 <h3 id="unsaved-changes-indicator">Unsaved Changes Indicator<a class="headerlink" href="#unsaved-changes-indicator" title="Permanent link">&para;</a></h3>
-<p>As soon as you make any change to the form, the Save button changes appearance (turns blue and shows a dot indicator). This visual cue reminds you that the current state has not been written to the virtual filesystem yet.</p>
+<p>As soon as you make any change to the form, the Save button becomes active and shows a dot indicator. This visual cue reminds you that the current state has not been saved yet.</p>
 <h3 id="what-happens-when-you-save">What Happens When You Save<a class="headerlink" href="#what-happens-when-you-save" title="Permanent link">&para;</a></h3>
 <ol>
 <li>The <code>shacl-form</code> serialises the current form state as RDF/Turtle.</li>
-<li>The Turtle content is written to the corresponding <code>.ttl</code> file in the virtual filesystem.</li>
-<li>The file is staged for git (<code>git add</code> + <code>git updateIndex</code>).</li>
+<li>The Turtle content is written to the corresponding <code>.ttl</code> file in the browser's storage.</li>
+<li>The file is staged for sharing.</li>
+<li>The index file of the entity type in <code>indexes/</code> is updated and the search is reloaded. The updated index file is staged as well and is shared together with your data.</li>
 <li>The file appears in the <strong>Share Files</strong> section in the repository panel.</li>
 </ol>
-<p>Saving does <strong>not</strong> push anything to the remote Git repository. The data is stored only in the browser's IndexedDB until you explicitly share (push) the file.</p>
+<p>New works and manifestations are automatically added to the repository's default data collection ("All works" or "All manifestations").</p>
+<p>Saving does <strong>not</strong> push anything to the remote Git repository. The data is stored only in the browser until you explicitly share (push) the file.</p>
 <hr />
 <h2 id="undoing-changes">Undoing Changes<a class="headerlink" href="#undoing-changes" title="Permanent link">&para;</a></h2>
-<p>Click the <strong>"Undo"</strong> button (arrow-counterclockwise icon) in the entity editor toolbar to revert the current form to the last saved state.</p>
-<p>Undo only works for changes made since the last save. It restores the content of the <code>.ttl</code> file from the virtual filesystem and reloads the form. It does <strong>not</strong> unstage the file if it had already been staged — use the Unstage button in the Share Files section for that.</p>
+<p>Click the <strong>"Undo"</strong> button (arrow-counterclockwise icon) in the entity editor toolbar to discard your unsaved changes.</p>
+<p>Undo resets the form to the state in which the entity was loaded into the editor. It does <strong>not</strong> unstage the file if it had already been staged — use the Unstage button in the Share Files section for that.</p>
 <hr />
 <h2 id="deleting-an-entity">Deleting an Entity<a class="headerlink" href="#deleting-an-entity" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Open the entity you want to delete by clicking on its file in the repository tree.</li>
-<li>Click the red <strong>"Remove Entity"</strong> button (file-minus icon) in the entity editor toolbar or the <strong>"Remove Entity"</strong> button (file-minus icon) in the repositories section (left side)**.</li>
-<li>A confirmation dialog appears asking you to confirm the deletion. Click <strong>"Confirm"</strong> (or the equivalent confirm button).</li>
-<li>The file is removed from the repository tree and the editor is cleared.</li>
-<li>The deleted file appears in the <strong>Share Files</strong> section with a <code>-deleted</code> suffix in its filename (e.g. <code>persons/2847362910.ttl-deleted</code>).</li>
+<li>Click the red <strong>"Delete"</strong> button (file-minus icon) in the entity editor toolbar or the <strong>"Remove entity"</strong> button (file-minus icon) in the repositories section (left side).</li>
+<li>A <strong>Confirm deletion</strong> dialog appears asking <em>"Do you really want to delete this entity?"</em>. Click <strong>"Delete"</strong> to confirm or <strong>"Cancel"</strong> to abort.</li>
+<li>The file is removed from the repository tree, its entry is removed from the index, and the editor is cleared.</li>
+<li>If the file already existed in the remote repository, the deleted file appears in the <strong>Share Files</strong> section with a <code>-deleted</code> suffix in its filename (e.g. <code>persons/2847362910.ttl-deleted</code>). A new file that was never shared is simply removed.</li>
 <li>To push the deletion to the remote repository, check the box next to the deleted file entry and click <strong>"Share files"</strong>.</li>
 </ol>
-<p>If you change your mind before pushing, use the <strong>Unstage files</strong> button in the Share Files section to restore the file from the last committed state.</p>
+<p>If you change your mind before pushing, use the <strong>Unstage files</strong> button in the Share Files section to restore the file to the last synchronised state.</p>
 <p>Note: deleting an entity locally and pushing the deletion removes the file from the Git repository. Any other entities that linked to the deleted entity will retain the IRI reference but it will no longer resolve to a file.</p>
 
 

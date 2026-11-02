@@ -1337,27 +1337,16 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-3-add-a-a-dataset-and-search-index-optional" class="md-nav__link">
+  <a href="#step-3-add-a-dataset-and-search-index-optional" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 3 — Add a a dataset and search index (optional)
+        Step 3 — Add a dataset and search index (optional)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Step 3 — Add a a dataset and search index (optional)">
+    <nav class="md-nav" aria-label="Step 3 — Add a dataset and search index (optional)">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#register-in-the-editor" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Register in the editor
-      
-    </span>
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#create-a-sparql-query" class="md-nav__link">
@@ -1371,10 +1360,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#update-the-generation-script" class="md-nav__link">
+  <a href="#register-in-the-editor" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Update the generation script
+        Register in the editor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-the-cicd-pipeline-of-the-data-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update the CI/CD pipeline of the data repository
       
     </span>
   </a>
@@ -1879,27 +1879,16 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-3-add-a-a-dataset-and-search-index-optional" class="md-nav__link">
+  <a href="#step-3-add-a-dataset-and-search-index-optional" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 3 — Add a a dataset and search index (optional)
+        Step 3 — Add a dataset and search index (optional)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Step 3 — Add a a dataset and search index (optional)">
+    <nav class="md-nav" aria-label="Step 3 — Add a dataset and search index (optional)">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#register-in-the-editor" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Register in the editor
-      
-    </span>
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#create-a-sparql-query" class="md-nav__link">
@@ -1913,10 +1902,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#update-the-generation-script" class="md-nav__link">
+  <a href="#register-in-the-editor" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Update the generation script
+        Register in the editor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-the-cicd-pipeline-of-the-data-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update the CI/CD pipeline of the data repository
       
     </span>
   </a>
@@ -2006,32 +2006,38 @@
 
 
 <h1 id="extending-the-editor">Extending the Editor<a class="headerlink" href="#extending-the-editor" title="Permanent link">&para;</a></h1>
-<p>MerMEId MeLODy is designed to be extended without modifying core components. Adding a new entity type requires only four steps: creating a SHACL shape, registering the type, creating the data folder, and optionally adding a search index and MEI/XML converter.</p>
+<p>MerMEId MeLODy is designed to be extended with little changes to the core components. Adding a new entity type requires a SHACL shape, an entry in <code>editor-default.ttl</code>, and — to make it searchable and linkable — a SPARQL index query and an <code>INDEXES</code> entry. Optionally you can add a colour for the graph view and an MEI/XML converter.</p>
 <hr />
 <h2 id="at-a-glance">At a Glance<a class="headerlink" href="#at-a-glance" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Editor repository
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>└── configuration/
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    ├── editor-default.ttl    ← which entity types exist and which SHACL shape each uses
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    └── *.shacl               ← one shape file per entity type, defines form fields
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>Data repository
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>└── configuration/
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    └── config.json           ← datasetBaseUrl and projectDomain
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── configuration/
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│   ├── editor-default.ttl            ← which entity types exist and which SHACL shape each uses
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│   └── *.shacl                       ← one shape file per entity type, defines form fields
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├── modules/datasets-generator/
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│   └── &lt;folder&gt;.sparql               ← index query per entity folder
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>├── modules/services/index-store-service.js  ← INDEXES: index files loaded for search and graph
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>└── modules/rdf-xml-converter/        ← optional MEI/XML converters
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>Data repository
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>├── configuration/
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│   └── config.json                   ← datasetBaseUrl, projectDomain, IDprefix
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>└── indexes/                          ← generated index files
 </code></pre></div>
 <p>No build step is required for most configuration changes. Editing a SHACL shape or <code>editor-default.ttl</code> takes effect immediately on the next page load.</p>
 <h2 id="editor-configuration">Editor Configuration<a class="headerlink" href="#editor-configuration" title="Permanent link">&para;</a></h2>
 <p>The editor configuration file <code>configuration/editor-default.ttl</code> is a Turtle file loaded at startup. It tells the editor which entity types are available, what their display names are, where their files are stored, and which SHACL shape file defines their form.</p>
 <hr />
 <h2 id="how-it-works">How It Works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h2>
-<p>When the editor starts, <code>js/index.js</code> fetches <code>editor-default.ttl</code> and loads its content into an in-browser <a href="https://github.com/oxigraph/oxigraph">Oxigraph</a> triple store. A SPARQL SELECT query then extracts all entity type definitions:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">SELECT</span> <span class="nv">?entity_type</span> <span class="nv">?label</span> <span class="nv">?entity_folder_name</span> <span class="nv">?shacl_file_location</span> <span class="k">WHERE</span> <span class="p">{</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  <span class="nv">?entity_type</span> <span class="k">a</span> <span class="nn">melod</span><span class="p">:</span><span class="nt">EntityType</span> <span class="p">;</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>        <span class="nn">rdfs</span><span class="p">:</span><span class="nt">label</span> <span class="nv">?label</span> <span class="p">;</span>
+<p>When the editor starts, <code>js/index.js</code> fetches <code>editor-default.ttl</code> and loads its content into an in-browser <a href="https://github.com/oxigraph/oxigraph">Oxigraph</a> triple store. A SPARQL SELECT query then extracts all entity type definitions with the label in the current UI language:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">SELECT</span> <span class="nv">?entity_type</span> <span class="nv">?entity_name</span> <span class="nv">?entity_folder_name</span> <span class="nv">?shacl_file_location</span> <span class="k">WHERE</span> <span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  <span class="nv">?entity_type</span> <span class="k">a</span> <span class="nn">melod</span><span class="p">:</span><span class="nt">Entity</span> <span class="p">;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>        <span class="nn">rdfs</span><span class="p">:</span><span class="nt">label</span> <span class="nv">?entity_name</span> <span class="p">;</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>        <span class="nn">melod_ui</span><span class="p">:</span><span class="nt">entity_folder_name</span> <span class="nv">?entity_folder_name</span> <span class="p">;</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        <span class="nn">melod_ui</span><span class="p">:</span><span class="nt">shacl_file_location</span> <span class="nv">?shacl_file_location</span> <span class="p">.</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="p">}</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>  <span class="k">FILTER</span> <span class="p">(</span><span class="nf">lang</span><span class="p">(</span><span class="nv">?entity_name</span><span class="p">)</span> <span class="o">=</span> <span class="s">'&lt;current UI language&gt;'</span><span class="p">)</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="p">}</span>
 </code></pre></div>
-<p>The results are passed to the <code>adwlm-entity-editor</code> component as <code>entity_type_definitions</code>. This drives the "New entity" dialog and tells the editor which SHACL shape to load when a file of that type is opened.</p>
+<p>The results are passed to the <code>adwlm-entity-editor</code>, <code>adwlm-filesystem-manager</code> and <code>adwlm-graph-view</code> components as <code>entity_type_definitions</code>. This drives the "New entity" dialog and tells the editor which SHACL shape to load when a file of that type is opened.</p>
 <hr />
 <h2 id="registration-format">Registration Format<a class="headerlink" href="#registration-format" title="Permanent link">&para;</a></h2>
 <p>Each entity type is an RDF subject with four required properties:</p>
@@ -2039,11 +2045,10 @@
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">@prefix</span><span class="w"> </span><span class="nn">rdfs:</span><span class="w">  </span><span class="nv">&lt;http://www.w3.org/2000/01/rdf-schema#&gt;</span><span class="w"> </span><span class="p">.</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">@prefix</span><span class="w"> </span><span class="nn">melod_ui:</span><span class="w"> </span><span class="nv">&lt;https://lod.academy/melod/vocab/ui/&gt;</span><span class="w"> </span><span class="p">.</span>
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nn">melod</span><span class="p">:</span><span class="nt">Person</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="kt">a</span> <span class="nn">melod</span><span class="p">:</span><span class="nt">EntityType</span> <span class="p">;</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="nn">rdfs</span><span class="p">:</span><span class="nt">label</span> <span class="s">"Person"</span> <span class="p">;</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="nn">melod_ui</span><span class="p">:</span><span class="nt">entity_folder_name</span> <span class="s">"persons"</span> <span class="p">;</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="nn">melod_ui</span><span class="p">:</span><span class="nt">shacl_file_location</span> <span class="s">"configuration/person.shacl"</span> <span class="p">.</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nn">melod</span><span class="p">:</span><span class="nt">Person</span> <span class="kt">a</span> <span class="nn">melod</span><span class="p">:</span><span class="nt">Entity</span> <span class="p">;</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="nn">rdfs</span><span class="p">:</span><span class="nt">label</span> <span class="s">"Person"</span><span class="o">@</span><span class="ge">en</span> <span class="p">,</span> <span class="s">"Person"</span><span class="o">@</span><span class="ge">de</span> <span class="p">;</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="nn">melod_ui</span><span class="p">:</span><span class="nt">entity_folder_name</span> <span class="s">"persons"</span> <span class="p">;</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="nn">melod_ui</span><span class="p">:</span><span class="nt">shacl_file_location</span> <span class="s">"configuration/person.shacl"</span> <span class="p">.</span>
 </code></pre></div>
 <h3 id="the-four-properties">The Four Properties<a class="headerlink" href="#the-four-properties" title="Permanent link">&para;</a></h3>
 <table>
@@ -2055,12 +2060,12 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><code>a melod:EntityType</code></td>
+<td style="text-align: left;"><code>a melod:Entity</code></td>
 <td style="text-align: left;">Required type declaration — the SPARQL query matches on this</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code>rdfs:label</code></td>
-<td style="text-align: left;">Human-readable display name shown in the "New entity" dialog (e.g. <code>"Person"</code>)</td>
+<td style="text-align: left;">Human-readable display name shown in the "New entity" dialog — one label per UI language (<code>@en</code>, <code>@de</code>)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code>melod_ui:entity_folder_name</code></td>
@@ -2083,58 +2088,56 @@
 <hr />
 <h2 id="adding-a-new-entity-type">Adding a New Entity Type<a class="headerlink" href="#adding-a-new-entity-type" title="Permanent link">&para;</a></h2>
 <h3 id="step-1-create-a-shacl-shape">Step 1 — Create a SHACL shape<a class="headerlink" href="#step-1-create-a-shacl-shape" title="Permanent link">&para;</a></h3>
-<p>Create a new <code>.shacl</code> file in <code>configuration/</code>. This is a Turtle file that defines the form fields for your entity type.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">@prefix</span><span class="w"> </span><span class="nn">sh:</span><span class="w">    </span><span class="nv">&lt;http://www.w3.org/ns/shacl#&gt;</span><span class="w"> </span><span class="p">.</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">@prefix</span><span class="w"> </span><span class="nn">melod:</span><span class="w"> </span><span class="nv">&lt;https://lod.academy/melod/vocab/ontology#&gt;</span><span class="w"> </span><span class="p">.</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">@prefix</span><span class="w"> </span><span class="nn">xsd:</span><span class="w">   </span><span class="nv">&lt;http://www.w3.org/2001/XMLSchema#&gt;</span><span class="w"> </span><span class="p">.</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">@prefix</span><span class="w"> </span><span class="nn">skos:</span><span class="w">  </span><span class="nv">&lt;http://www.w3.org/2004/02/skos/core#&gt;</span><span class="w"> </span><span class="p">.</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nn">melod</span><span class="p">:</span><span class="nt">MyNewTypeShape</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="kt">a</span> <span class="nn">sh</span><span class="p">:</span><span class="nt">NodeShape</span> <span class="p">;</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="nn">sh</span><span class="p">:</span><span class="nt">targetClass</span> <span class="nn">melod</span><span class="p">:</span><span class="nt">MyNewType</span> <span class="p">;</span>
+<p>Create a new <code>.shacl</code> file in <code>configuration/</code>. This is a Turtle file that defines the form fields for your entity type. Give labels and descriptions in every UI language.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">@prefix</span><span class="w"> </span><span class="nn">sh:</span><span class="w">     </span><span class="nv">&lt;http://www.w3.org/ns/shacl#&gt;</span><span class="w"> </span><span class="p">.</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">@prefix</span><span class="w"> </span><span class="nn">melod:</span><span class="w">  </span><span class="nv">&lt;https://lod.academy/melod/vocab/ontology#&gt;</span><span class="w"> </span><span class="p">.</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">@prefix</span><span class="w"> </span><span class="nn">rdfs:</span><span class="w">   </span><span class="nv">&lt;http://www.w3.org/2000/01/rdf-schema#&gt;</span><span class="w"> </span><span class="p">.</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">@prefix</span><span class="w"> </span><span class="nn">xsd:</span><span class="w">    </span><span class="nv">&lt;http://www.w3.org/2001/XMLSchema#&gt;</span><span class="w"> </span><span class="p">.</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">@prefix</span><span class="w"> </span><span class="nn">schema:</span><span class="w"> </span><span class="nv">&lt;https://schema.org/&gt;</span><span class="w"> </span><span class="p">.</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="nn">melod</span><span class="p">:</span><span class="nt">MyNewType</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="kt">a</span> <span class="nn">sh</span><span class="p">:</span><span class="nt">NodeShape</span><span class="p">,</span> <span class="nn">rdfs</span><span class="p">:</span><span class="nt">Class</span> <span class="p">;</span>
 <a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="nn">sh</span><span class="p">:</span><span class="nt">property</span> <span class="p">[</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">path</span> <span class="nn">skos</span><span class="p">:</span><span class="nt">prefLabel</span> <span class="p">;</span>
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">name</span> <span class="s">"Name"</span> <span class="p">;</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">path</span> <span class="nn">schema</span><span class="p">:</span><span class="nt">name</span> <span class="p">;</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">name</span> <span class="s">"Name"</span><span class="o">@</span><span class="ge">en</span><span class="p">,</span> <span class="s">"Name"</span><span class="o">@</span><span class="ge">de</span> <span class="p">;</span>
 <a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">minCount</span> <span class="mi">1</span> <span class="p">;</span>
 <a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">maxCount</span> <span class="mi">1</span> <span class="p">;</span>
 <a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">datatype</span> <span class="nn">xsd</span><span class="p">:</span><span class="nt">string</span> <span class="p">;</span>
 <a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>    <span class="p">]</span> <span class="p">;</span>
 <a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>    <span class="nn">sh</span><span class="p">:</span><span class="nt">property</span> <span class="p">[</span>
-<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">path</span> <span class="nv">&lt;http://www.w3.org/2000/01/rdf-schema#comment&gt;</span> <span class="p">;</span>
-<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">name</span> <span class="s">"Description"</span> <span class="p">;</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">path</span> <span class="nn">schema</span><span class="p">:</span><span class="nt">description</span> <span class="p">;</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">name</span> <span class="s">"Description"</span><span class="o">@</span><span class="ge">en</span><span class="p">,</span> <span class="s">"Beschreibung"</span><span class="o">@</span><span class="ge">de</span> <span class="p">;</span>
 <a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">datatype</span> <span class="nn">xsd</span><span class="p">:</span><span class="nt">string</span> <span class="p">;</span>
-<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>    <span class="p">]</span> <span class="p">.</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>    <span class="p">]</span> <span class="p">;</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>    <span class="nn">sh</span><span class="p">:</span><span class="nt">targetClass</span> <span class="nn">melod</span><span class="p">:</span><span class="nt">MyNewType</span> <span class="p">.</span>
 </code></pre></div>
 <p>Save the file as <code>configuration/mynewtype.shacl</code>.</p>
-<p>See <a href="../configuration/shacl_shapes.md">SHACL Shapes</a> for the full property reference.</p>
+<p>See <a href="../shacl_shapes/">SHACL Shapes</a> for the full property reference.</p>
 <hr />
 <h3 id="step-2-register-the-entity-type">Step 2 — Register the entity type<a class="headerlink" href="#step-2-register-the-entity-type" title="Permanent link">&para;</a></h3>
 <p>Open <code>configuration/editor-default.ttl</code> and add a new block:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nn">melod</span><span class="p">:</span><span class="nt">MyNewType</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="kt">a</span> <span class="nn">melod</span><span class="p">:</span><span class="nt">EntityType</span> <span class="p">;</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="nn">rdfs</span><span class="p">:</span><span class="nt">label</span> <span class="s">"My New Type"</span> <span class="p">;</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="nn">melod_ui</span><span class="p">:</span><span class="nt">entity_folder_name</span> <span class="s">"mynewtypes"</span> <span class="p">;</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="nn">melod_ui</span><span class="p">:</span><span class="nt">shacl_file_location</span> <span class="s">"configuration/mynewtype.shacl"</span> <span class="p">.</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nn">melod</span><span class="p">:</span><span class="nt">MyNewType</span> <span class="kt">a</span> <span class="nn">melod</span><span class="p">:</span><span class="nt">Entity</span> <span class="p">;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="nn">rdfs</span><span class="p">:</span><span class="nt">label</span> <span class="s">"My New Type"</span><span class="o">@</span><span class="ge">en</span> <span class="p">,</span> <span class="s">"Mein neuer Typ"</span><span class="o">@</span><span class="ge">de</span> <span class="p">;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="nn">melod_ui</span><span class="p">:</span><span class="nt">entity_folder_name</span> <span class="s">"mynewtypes"</span> <span class="p">;</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="nn">melod_ui</span><span class="p">:</span><span class="nt">shacl_file_location</span> <span class="s">"configuration/mynewtype.shacl"</span> <span class="p">.</span>
 </code></pre></div>
 <ul>
 <li>Replace <code>melod:MyNewType</code> with the full class IRI from your ontology (e.g. <code>melod:MyNewType</code> if the class is defined in the MeLODy ontology, or any other IRI if you're using a different namespace)</li>
-<li><code>rdfs:label</code> is the display name shown in the "New entity" dialog</li>
+<li><code>rdfs:label</code> is the display name shown in the "New entity" dialog; without a label in the current UI language the type is not shown</li>
 <li><code>melod_ui:entity_folder_name</code> must exactly match the folder name you will create in Step 3</li>
 <li><code>melod_ui:shacl_file_location</code> can be a relative path or an absolute HTTPS URL</li>
 </ul>
 <hr />
-<h3 id="step-3-add-a-a-dataset-and-search-index-optional">Step 3 — Add a a dataset and search index (optional)<a class="headerlink" href="#step-3-add-a-a-dataset-and-search-index-optional" title="Permanent link">&para;</a></h3>
-<p>If you want your new entity type to appear in the search panel or want to cross reference an Entity, you need to register it in the editor and add a dataset generation step to the CI/CD pipeline.</p>
-<h4 id="register-in-the-editor">Register in the editor<a class="headerlink" href="#register-in-the-editor" title="Permanent link">&para;</a></h4>
-<p>Add an entry to <code>modules/entity-search/index.js</code> that includes the index file URL for your type (e.g. <code>mynewtype.ttl</code>). The search component fetches this file and loads it into Oxigraph.</p>
+<h3 id="step-3-add-a-dataset-and-search-index-optional">Step 3 — Add a dataset and search index (optional)<a class="headerlink" href="#step-3-add-a-dataset-and-search-index-optional" title="Permanent link">&para;</a></h3>
+<p>If you want your new entity type to appear in the search panel, in the graph view or want to cross reference an entity, you need an index query and an entry in the index list.</p>
 <h4 id="create-a-sparql-query">Create a SPARQL query<a class="headerlink" href="#create-a-sparql-query" title="Permanent link">&para;</a></h4>
-<p>Add a new <code>.sparql</code> file in <code>modules/datasets-generator/</code> following this pattern:</p>
+<p>Add a new <code>.sparql</code> file in <code>modules/datasets-generator/</code> of the <strong>editor</strong> repository. The file name must equal the folder name (<code>mynewtypes.sparql</code>): the editor uses it to update <code>indexes/mynewtypes.ttl</code> in the data repository whenever an entity is saved, and the CI/CD pipeline of the data repository fetches it from the editor repository.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">prefix</span> <span class="nn">melod</span><span class="p">:</span> <span class="nl">&lt;https://lod.academy/melod/vocab/ontology#&gt;</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">prefix</span> <span class="nn">skos</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/2004/02/skos/core#&gt;</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">prefix</span> <span class="nn">schema</span><span class="p">:</span> <span class="nl">&lt;https://schema.org/&gt;</span>
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
 <a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="k">construct</span> <span class="p">{</span>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>  <span class="nv">?iri</span> <span class="k">a</span> <span class="nn">melod</span><span class="p">:</span><span class="nt">MyNewType</span> <span class="p">;</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>  <span class="nv">?iri</span> <span class="k">a</span> <span class="nn">melod</span><span class="p">:</span><span class="nt">MyNewTypeEntity</span> <span class="p">;</span>
 <a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="nn">skos</span><span class="p">:</span><span class="nt">prefLabel</span> <span class="nv">?label</span> <span class="p">.</span>
 <a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="p">}</span> <span class="k">where</span> <span class="p">{</span>
 <a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>  <span class="k">select</span> <span class="nv">?iri</span> <span class="nv">?label</span> <span class="k">where</span> <span class="p">{</span>
@@ -2146,40 +2149,48 @@
 </code></pre></div>
 <p>Key requirements:
 - Use <code>CONSTRUCT</code> (not <code>SELECT</code>) to output RDF
-- Always include <code>skos:prefLabel</code> — the search component indexes on this property
-- Include the entity type (<code>a melod:MyNewType</code>) in the output
+- Always include <code>skos:prefLabel</code> — the search component and the dropdowns use this property
+- Type the index entries as <code>melod:&lt;Type&gt;Entity</code> (e.g. <code>melod:MyNewTypeEntity</code>) — linked entity fields in the SHACL shapes refer to this class
+- Optionally add <code>skos:altLabel</code> and <code>skos:broader</code> for the search, and <code>skos:related</code> for the graph view
 - Use <code>OPTIONAL</code> for any properties that may not be present on every entity</p>
-<h4 id="update-the-generation-script">Update the generation script<a class="headerlink" href="#update-the-generation-script" title="Permanent link">&para;</a></h4>
-<p>Add an entry to <code>modules/datasets-generator/datasets-generator.sh</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"construct the mynewtype dataset"</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nb">time</span><span class="w"> </span>/static-publishing-backend<span class="w"> </span>rdf-data-aggregator<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="nv">$mynewtype_dir_path</span>/<span class="w"> </span><span class="s2">"*.ttl"</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="nv">$datasets_generator_dir_path</span>/mynewtype.sparql<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span><span class="nv">$datasets_dir_path</span>/mynewtype.ttl
+<h4 id="register-in-the-editor">Register in the editor<a class="headerlink" href="#register-in-the-editor" title="Permanent link">&para;</a></h4>
+<p>Add an entry to <code>INDEXES</code> in <code>modules/services/index-store-service.js</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">"MyNewType"</span><span class="p">,</span><span class="w"> </span><span class="nx">url</span><span class="o">:</span><span class="w"> </span><span class="s2">"mynewtypes.ttl"</span><span class="p">,</span><span class="w"> </span><span class="nx">labels</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">en</span><span class="o">:</span><span class="w"> </span><span class="s2">"My New Type"</span><span class="p">,</span><span class="w"> </span><span class="nx">de</span><span class="o">:</span><span class="w"> </span><span class="s2">"Mein neuer Typ"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+</code></pre></div>
+<p>Without this entry, the index is not loaded for the search, the type filter and the graph view. (Linked entity dropdowns work independently, because the editor appends all files from <code>indexes/</code> to the shapes.)</p>
+<p>Optionally add a colour for the new type to <code>TYPE_COLORS</code> in <code>modules/graph-view/index.js</code>.</p>
+<h4 id="update-the-cicd-pipeline-of-the-data-repository">Update the CI/CD pipeline of the data repository<a class="headerlink" href="#update-the-cicd-pipeline-of-the-data-repository" title="Permanent link">&para;</a></h4>
+<p>Add the query name to the list in <code>modules/datasets-generator/fetch-sparql-queries.sh</code> and add an entry to <code>modules/datasets-generator/datasets-generator.sh</code> of the data repository:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"construct the mynewtypes dataset"</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nb">time</span><span class="w"> </span>/static-publishing-backend<span class="w"> </span>rdf-data-aggregator<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="nv">$CI_PROJECT_DIR</span>/mynewtypes/<span class="w"> </span><span class="s2">"*.ttl"</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="nv">$datasets_generator_dir_path</span>/mynewtypes.sparql<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span><span class="nv">$indexes_dir_path</span>/mynewtypes.ttl
 </code></pre></div>
 <h4 id="update-shacl-configuration">Update SHACL configuration<a class="headerlink" href="#update-shacl-configuration" title="Permanent link">&para;</a></h4>
-<p>If the dataset is used in form dropdowns (i.e. as a linked entity field in another shape), update the relevant SHACL shapes to reference the dataset URL (e.g. <code>dataset:mynewtype.ttl</code>) and ensure <code>datasetBaseUrl</code> in <code>config.json</code> points to your published Pages URL.</p>
+<p>If the entity type is used in form dropdowns (i.e. as a linked entity field in another shape), reference the index class in the relevant SHACL shapes: <code>sh:class melod:MyNewTypeEntity</code>.</p>
 <h4 id="test-locally">Test locally<a class="headerlink" href="#test-locally" title="Permanent link">&para;</a></h4>
-<p>Dataset generation can be tested locally without pushing:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/repo<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span>registry.gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/static-publishing-backend/static-publishing-backend:latest<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span>/repo/modules/datasets-generator/datasets-generator.sh
+<p>Dataset generation can be tested locally without pushing (from the root of the data repository, after fetching the queries into <code>sparql-queries/</code>):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sh<span class="w"> </span>modules/datasets-generator/fetch-sparql-queries.sh
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/repo<span class="w"> </span>-e<span class="w"> </span><span class="nv">GITHUB_WORKSPACE</span><span class="o">=</span>/repo<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span>registry.gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/static-publishing-backend/static-publishing-backend:latest<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span>/repo/modules/datasets-generator/datasets-generator.sh
 </code></pre></div>
-<p>Generated files will appear in <code>public/datasets/</code>. See <a href="../datasets/">Datasets Generation</a> for background on the pipeline and SPARQL query reference.</p>
+<p>Generated files will appear in <code>indexes/</code>. See <a href="../datasets/">Datasets Generation</a> for background on the pipeline and SPARQL query reference.</p>
 <hr />
 <h3 id="step-4-add-a-meixml-converter-optional">Step 4 — Add a MEI/XML converter (optional)<a class="headerlink" href="#step-4-add-a-meixml-converter-optional" title="Permanent link">&para;</a></h3>
 <p>If you want MEI/XML output in the XML tab for your new entity type, add:</p>
 <ol>
-<li>A converter module at <code>modules/rdf-xml-converter/converters/mynewtype-converter.js</code></li>
+<li>A converter module at <code>modules/rdf-xml-converter/converters/mynewtype.js</code></li>
 <li>An MEI/XML template string at <code>modules/rdf-xml-converter/templates/mynewtype-template.js</code></li>
 <li>A mapping entry in <code>modules/rdf-xml-converter/types/index.js</code>:</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">myNewTypeConverter</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"./converters/mynewtype-converter.js"</span><span class="p">;</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">converters</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="c1">// ... existing entries ...</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="s2">"https://lod.academy/melod/vocab/ontology#MyNewType"</span><span class="o">:</span><span class="w"> </span><span class="nx">myNewTypeConverter</span><span class="p">,</span>
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="p">};</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">myNewTypeConverter</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">"./converters/mynewtype.js"</span><span class="p">;</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">converters</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="c1">// ... existing entries ...</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span><span class="s2">"https://lod.academy/melod/vocab/ontology#MyNewType"</span><span class="o">:</span><span class="w"> </span><span class="nx">myNewTypeConverter</span><span class="p">,</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="p">};</span>
 </code></pre></div>
 <p>The converter receives the JSON-LD object from <code>shacl-form.serialize("application/ld+json")</code> and must return a complete MEI/XML string.</p>
 <hr />
@@ -2187,21 +2198,21 @@
 <p>To add, remove, or change fields in an existing entity type, edit the corresponding <code>.shacl</code> file in <code>configuration/</code>. No code changes are needed — the form is regenerated from the shape on the next page load.</p>
 <p><strong>Common modifications:</strong></p>
 <ul>
-<li><strong>Add a field:</strong> add a new <code>sh:property</code> block with <code>sh:path</code>, <code>sh:name</code>, <code>sh:datatype</code>, and <code>sh:order</code></li>
+<li><strong>Add a field:</strong> add a new <code>sh:property</code> block with <code>sh:path</code>, <code>sh:name</code> (one per language, e.g. <code>"Name"@en, "Name"@de</code>), <code>sh:datatype</code>, and <code>sh:order</code> or <code>sh:group</code></li>
 <li><strong>Make a field required:</strong> set <code>sh:minCount 1</code></li>
 <li><strong>Restrict to a single value:</strong> set <code>sh:maxCount 1</code></li>
 <li><strong>Add a dropdown:</strong> set <code>sh:in ( "value1" "value2" "value3" )</code></li>
-<li><strong>Add a linked entity field:</strong> set <code>sh:class melod:SomeType</code> and <code>sh:nodeKind sh:IRI</code></li>
+<li><strong>Add a linked entity field:</strong> set <code>sh:class melod:SomeTypeEntity</code> (the class of the index entries) and <code>sh:nodeKind sh:IRI</code></li>
 <li><strong>Reorder fields:</strong> change the <code>sh:order</code> values</li>
 </ul>
 <hr />
 <h2 id="hosting-shacl-shapes-externally">Hosting SHACL Shapes Externally<a class="headerlink" href="#hosting-shacl-shapes-externally" title="Permanent link">&para;</a></h2>
 <p>The <code>melod:shacl_file_location</code> value in <code>editor-default.ttl</code> accepts any HTTPS URL. This allows you to host your SHACL shapes in a separate repository, on a CDN, or alongside your data repository, and reference them by URL:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nn">melod</span><span class="p">:</span><span class="nt">MyNewType</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    <span class="kt">a</span> <span class="nn">melod</span><span class="p">:</span><span class="nt">EntityType</span> <span class="p">;</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    <span class="nn">rdfs</span><span class="p">:</span><span class="nt">label</span> <span class="s">"My New Type"</span> <span class="p">;</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    <span class="nn">melod</span><span class="p">:</span><span class="nt">entity_folder_name</span> <span class="s">"mynewtype"</span> <span class="p">;</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    <span class="nn">melod</span><span class="p">:</span><span class="nt">shacl_file_location</span> <span class="s">"https://yourname.github.io/my-shapes/mynewtype.shacl"</span> <span class="p">.</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nn">melod</span><span class="p">:</span><span class="nt">MyNewType</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>    <span class="kt">a</span> <span class="nn">melod</span><span class="p">:</span><span class="nt">Entity</span> <span class="p">;</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>    <span class="nn">rdfs</span><span class="p">:</span><span class="nt">label</span> <span class="s">"My New Type"</span> <span class="p">;</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>    <span class="nn">melod</span><span class="p">:</span><span class="nt">entity_folder_name</span> <span class="s">"mynewtype"</span> <span class="p">;</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>    <span class="nn">melod</span><span class="p">:</span><span class="nt">shacl_file_location</span> <span class="s">"https://yourname.github.io/my-shapes/mynewtype.shacl"</span> <span class="p">.</span>
 </code></pre></div>
 <p>The editor fetches the shape file at runtime for each entity opened. Make sure the URL returns the correct <code>Content-Type</code> (<code>text/turtle</code> or <code>application/octet-stream</code>) and is accessible without authentication.</p>
 

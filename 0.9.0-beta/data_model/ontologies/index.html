@@ -1687,7 +1687,17 @@
 <tr>
 <td style="text-align: left;"><a href="https://www.w3.org/TR/skos-reference/">SKOS</a></td>
 <td style="text-align: left;"><code>skos:</code></td>
-<td style="text-align: left;">Preferred labels (<code>skos:prefLabel</code>) used for entity display names and search index entries</td>
+<td style="text-align: left;">Used in the generated index files: <code>skos:prefLabel</code> (display label), <code>skos:altLabel</code> (alternative labels), <code>skos:broader</code> (additional search context) and <code>skos:related</code> (links to related entities for the graph view)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://correspsearch.net/">correspSearch</a></td>
+<td style="text-align: left;"><code>cs:</code></td>
+<td style="text-align: left;">Letters: correspondence actions (sent, received), participants, places and dates</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://datashapes.org/dash">DASH</a></td>
+<td style="text-align: left;"><code>dash:</code></td>
+<td style="text-align: left;">Form widget hints in the SHACL shapes (e.g. <code>dash:singleLine</code>)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a href="https://www.w3.org/TR/owl2-overview/">OWL</a></td>
@@ -1701,6 +1711,7 @@
 </tr>
 </tbody>
 </table>
+<p>Controlled vocabularies of the MeLODy data model (e.g. title types, roles, certainty) are published as <code>melod-terms.ttl</code> (prefix <code>terms:</code>) and imported by the SHACL shapes.</p>
 <hr />
 <h2 id="the-melody-ontology">The MeLODy Ontology<a class="headerlink" href="#the-melody-ontology" title="Permanent link">&para;</a></h2>
 <p>MerMEId MeLODy defines its own <a href="https://lod.academy/melod/vocab/ontology#">Music Metadata Ontology</a> (<code>melod:</code>) for concepts not covered by the standard vocabularies above — in particular the entity classes used in the editor and properties specific to the musicological use case. The concepts are based on the <a href="https://music-encoding.org/guidelines/v5/content/index.html">MEI (Music Encoding Initiative)</a> guidelines and are mostly linked to the corresponding MEI elements. It implements the FRBR (Functional Requirements for Bibliographic Records) conceptual model, organizing musical information into Work, Expression, Manifestation, and Item levels. MeLOD integrates established ontologies including Schema.org, LRMoo, CIDOC-CRM and DoReMus to provide a rich semantic framework for music metadata.</p>

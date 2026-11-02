@@ -1208,6 +1208,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#multilingual-labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multilingual Labels
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#linked-entity-fields" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1219,10 +1230,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-dataset-namespace-patch" class="md-nav__link">
+  <a href="#how-dropdowns-are-populated" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The dataset: Namespace Patch
+        How Dropdowns Are Populated
       
     </span>
   </a>
@@ -1656,6 +1667,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#multilingual-labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multilingual Labels
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#linked-entity-fields" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1667,10 +1689,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-dataset-namespace-patch" class="md-nav__link">
+  <a href="#how-dropdowns-are-populated" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The dataset: Namespace Patch
+        How Dropdowns Are Populated
       
     </span>
   </a>
@@ -1706,7 +1728,7 @@
 
 
 <h1 id="shacl-shapes">SHACL Shapes<a class="headerlink" href="#shacl-shapes" title="Permanent link">&para;</a></h1>
-<p>Forms in MerMEId MeLODy are generated automatically from <a href="https://www.w3.org/TR/shacl/">SHACL shapes</a> by the <a href="https://github.com/ulb-darmstadt/shacl-form">shacl-form</a> web component developed by ULB Darmstadt. You do not write HTML or JavaScript to add or modify fields — defining them in the SHACL shape file is sufficient.</p>
+<p>Forms in MerMEId MeLODy are generated automatically from <a href="https://www.w3.org/TR/shacl/">SHACL shapes</a> by the <a href="https://github.com/ulb-darmstadt/shacl-form">shacl-form</a> web component developed by ULB Darmstadt (in the MerMEId fork <a href="https://github.com/Music-Metadata-Tools/mermeid-shacl-form">mermeid-shacl-form</a>). You do not write HTML or JavaScript to add or modify fields — defining them in the SHACL shape file is sufficient.</p>
 <hr />
 <h2 id="what-is-a-shacl-shape">What is a SHACL Shape?<a class="headerlink" href="#what-is-a-shacl-shape" title="Permanent link">&para;</a></h2>
 <p>SHACL (Shapes Constraint Language) is a W3C standard for describing and validating RDF data. A "node shape" describes the expected structure of an RDF resource of a given type — its properties, their datatypes, cardinality, and allowed values.</p>
@@ -1729,11 +1751,11 @@
 <tbody>
 <tr>
 <td style="text-align: left;"><code>sh:name</code></td>
-<td style="text-align: left;">Label shown for the field in the form</td>
+<td style="text-align: left;">Label shown for the field in the form (one per UI language, e.g. <code>"Surname"@en, "Nachname"@de</code>)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code>sh:description</code></td>
-<td style="text-align: left;">Help text displayed below the field</td>
+<td style="text-align: left;">Help text displayed below the field (one per UI language)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code>sh:path</code></td>
@@ -1797,65 +1819,74 @@
 <a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="nn">sh</span><span class="p">:</span><span class="nt">targetClass</span> <span class="nn">melod</span><span class="p">:</span><span class="nt">Person</span> <span class="p">;</span>
 <a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="nn">sh</span><span class="p">:</span><span class="nt">property</span> <span class="p">[</span>
 <a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">path</span> <span class="nn">schema</span><span class="p">:</span><span class="nt">familyName</span> <span class="p">;</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">name</span> <span class="s">"Surname"</span> <span class="p">;</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">minCount</span> <span class="mi">1</span> <span class="p">;</span>
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">maxCount</span> <span class="mi">1</span> <span class="p">;</span>
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">datatype</span> <span class="nn">xsd</span><span class="p">:</span><span class="nt">string</span> <span class="p">;</span>
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="p">]</span> <span class="p">;</span>
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="nn">sh</span><span class="p">:</span><span class="nt">property</span> <span class="p">[</span>
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">path</span> <span class="nn">schema</span><span class="p">:</span><span class="nt">givenName</span> <span class="p">;</span>
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">name</span> <span class="s">"First name"</span> <span class="p">;</span>
-<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">minCount</span> <span class="mi">1</span> <span class="p">;</span>
-<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">maxCount</span> <span class="mi">1</span> <span class="p">;</span>
-<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">datatype</span> <span class="nn">xsd</span><span class="p">:</span><span class="nt">string</span> <span class="p">;</span>
-<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="p">]</span> <span class="p">;</span>
-<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="nn">sh</span><span class="p">:</span><span class="nt">property</span> <span class="p">[</span>
-<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">path</span> <span class="nn">owl</span><span class="p">:</span><span class="nt">sameAs</span> <span class="p">;</span>
-<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">name</span> <span class="s">"Link / sameAs"</span> <span class="p">;</span>
-<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">description</span> <span class="s">"Authority record URL (GND, VIAF, Wikidata, etc.)"</span> <span class="p">;</span>
-<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">nodeKind</span> <span class="nn">sh</span><span class="p">:</span><span class="nt">IRI</span> <span class="p">;</span>
-<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">pattern</span> <span class="s">"^http(s)?://.+?/..+?"</span> <span class="p">;</span>
-<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>    <span class="p">]</span> <span class="p">;</span>
-<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>    <span class="nn">sh</span><span class="p">:</span><span class="nt">property</span> <span class="p">[</span>
-<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">path</span> <span class="nn">schema</span><span class="p">:</span><span class="nt">gender</span> <span class="p">;</span>
-<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">name</span> <span class="s">"Gender"</span> <span class="p">;</span>
-<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">in</span> <span class="p">(</span> <span class="s">"female"</span> <span class="s">"male"</span> <span class="s">"diverse"</span> <span class="p">)</span> <span class="p">;</span>
-<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">maxCount</span> <span class="mi">1</span> <span class="p">;</span>
-<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    <span class="p">]</span> <span class="p">;</span>
-<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>    <span class="nn">sh</span><span class="p">:</span><span class="nt">property</span> <span class="p">[</span>
-<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">path</span> <span class="nn">schema</span><span class="p">:</span><span class="nt">birthPlace</span> <span class="p">;</span>
-<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">name</span> <span class="s">"Birth place"</span> <span class="p">;</span>
-<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">class</span> <span class="nn">melod</span><span class="p">:</span><span class="nt">Place</span> <span class="p">;</span>
-<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">nodeKind</span> <span class="nn">sh</span><span class="p">:</span><span class="nt">IRI</span> <span class="p">;</span>
-<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>    <span class="p">]</span> <span class="p">.</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">name</span> <span class="s">"Surname"</span><span class="o">@</span><span class="ge">en</span><span class="p">,</span> <span class="s">"Nachname"</span><span class="o">@</span><span class="ge">de</span> <span class="p">;</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">description</span> <span class="s">"Surname of the person"</span><span class="o">@</span><span class="ge">en</span><span class="p">,</span> <span class="s">"Nachname der Person"</span><span class="o">@</span><span class="ge">de</span> <span class="p">;</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">minCount</span> <span class="mi">1</span> <span class="p">;</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">maxCount</span> <span class="mi">1</span> <span class="p">;</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">datatype</span> <span class="nn">xsd</span><span class="p">:</span><span class="nt">string</span> <span class="p">;</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">group</span> <span class="nn">melod</span><span class="p">:</span><span class="nt">General</span> <span class="p">;</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="p">]</span> <span class="p">;</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="nn">sh</span><span class="p">:</span><span class="nt">property</span> <span class="p">[</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">path</span> <span class="nn">schema</span><span class="p">:</span><span class="nt">givenName</span> <span class="p">;</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">name</span> <span class="s">"First name"</span><span class="o">@</span><span class="ge">en</span><span class="p">,</span> <span class="s">"Vorname"</span><span class="o">@</span><span class="ge">de</span> <span class="p">;</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">maxCount</span> <span class="mi">1</span> <span class="p">;</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">group</span> <span class="nn">melod</span><span class="p">:</span><span class="nt">General</span> <span class="p">;</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="p">]</span> <span class="p">;</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="nn">sh</span><span class="p">:</span><span class="nt">property</span> <span class="p">[</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">path</span> <span class="nn">owl</span><span class="p">:</span><span class="nt">sameAs</span> <span class="p">;</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">name</span> <span class="s">"Link"</span><span class="o">@</span><span class="ge">en</span><span class="p">,</span> <span class="s">"Link"</span><span class="o">@</span><span class="ge">de</span> <span class="p">;</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">description</span> <span class="s">"Identifier e.g. GND, VIAF"</span><span class="o">@</span><span class="ge">en</span><span class="p">,</span> <span class="s">"Identifier z.B. GND, VIAF"</span><span class="o">@</span><span class="ge">de</span> <span class="p">;</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">nodeKind</span> <span class="nn">sh</span><span class="p">:</span><span class="nt">IRI</span> <span class="p">;</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">pattern</span> <span class="s">"^http(s)?://.+?/..+?"</span> <span class="p">;</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">group</span> <span class="nn">melod</span><span class="p">:</span><span class="nt">General</span> <span class="p">;</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>    <span class="p">]</span> <span class="p">;</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>    <span class="nn">sh</span><span class="p">:</span><span class="nt">property</span> <span class="p">[</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">path</span> <span class="nn">schema</span><span class="p">:</span><span class="nt">gender</span> <span class="p">;</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">name</span> <span class="s">"Gender"</span><span class="o">@</span><span class="ge">en</span><span class="p">,</span> <span class="s">"Geschlecht"</span><span class="o">@</span><span class="ge">de</span> <span class="p">;</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">in</span> <span class="p">(</span> <span class="s">"female"</span> <span class="s">"male"</span> <span class="s">"diverse"</span> <span class="p">)</span> <span class="p">;</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">maxCount</span> <span class="mi">1</span> <span class="p">;</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">group</span> <span class="nn">melod</span><span class="p">:</span><span class="nt">General</span> <span class="p">;</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>    <span class="p">]</span> <span class="p">;</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    <span class="nn">sh</span><span class="p">:</span><span class="nt">property</span> <span class="p">[</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">path</span> <span class="nn">schema</span><span class="p">:</span><span class="nt">birthPlace</span> <span class="p">;</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">name</span> <span class="s">"Place"</span><span class="o">@</span><span class="ge">en</span><span class="p">,</span> <span class="s">"Ort"</span><span class="o">@</span><span class="ge">de</span> <span class="p">;</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">class</span> <span class="nn">melod</span><span class="p">:</span><span class="nt">PlaceEntity</span> <span class="p">;</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">maxCount</span> <span class="mi">1</span> <span class="p">;</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>        <span class="nn">sh</span><span class="p">:</span><span class="nt">group</span> <span class="nn">melod</span><span class="p">:</span><span class="nt">Birth</span> <span class="p">;</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>    <span class="p">]</span> <span class="p">;</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>    <span class="nn">sh</span><span class="p">:</span><span class="nt">targetClass</span> <span class="nn">melod</span><span class="p">:</span><span class="nt">Person</span> <span class="p">.</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="nn">melod</span><span class="p">:</span><span class="nt">General</span> <span class="kt">a</span> <span class="nn">sh</span><span class="p">:</span><span class="nt">PropertyGroup</span> <span class="p">;</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>    <span class="nn">rdfs</span><span class="p">:</span><span class="nt">label</span> <span class="s">"General Information"</span><span class="o">@</span><span class="ge">en</span><span class="p">,</span> <span class="s">"Allgemeine Informationen"</span><span class="o">@</span><span class="ge">de</span> <span class="p">.</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="nn">melod</span><span class="p">:</span><span class="nt">Birth</span> <span class="kt">a</span> <span class="nn">sh</span><span class="p">:</span><span class="nt">PropertyGroup</span> <span class="p">;</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>    <span class="nn">rdfs</span><span class="p">:</span><span class="nt">label</span> <span class="s">"Birth"</span><span class="o">@</span><span class="ge">en</span><span class="p">,</span> <span class="s">"Geburt"</span><span class="o">@</span><span class="ge">de</span> <span class="p">.</span>
 </code></pre></div>
+<hr />
+<h2 id="multilingual-labels">Multilingual Labels<a class="headerlink" href="#multilingual-labels" title="Permanent link">&para;</a></h2>
+<p>The editor supports the UI languages English (<code>en</code>) and German (<code>de</code>). The form receives the selected language via the <code>data-language</code> attribute and shows the labels that match it. Therefore all labels — <code>sh:name</code>, <code>sh:description</code>, the <code>rdfs:label</code> of property groups and of <code>sh:or</code> alternatives — should be given once per language with language tags (<code>@en</code>, <code>@de</code>).</p>
 <hr />
 <h2 id="linked-entity-fields">Linked Entity Fields<a class="headerlink" href="#linked-entity-fields" title="Permanent link">&para;</a></h2>
-<p>Fields that reference other entities (e.g. "Birth place" → Place) use <code>sh:class</code> to specify the type of the linked entity. The editor populates the dropdown for such fields from the published dataset index.</p>
-<p>The index URL is injected at runtime via the <code>dataset:</code> namespace patch (see below).</p>
+<p>Fields that reference other entities (e.g. "Birth place" → Place) use <code>sh:class</code> to specify the type of the linked entity. The class is the <strong>index class</strong> of the target type, <code>melod:&lt;Type&gt;Entity</code> (e.g. <code>melod:PlaceEntity</code>, <code>melod:PersonEntity</code>, <code>melod:ExpressionEntity</code>), which is produced by the index queries (see <a href="../datasets/">Datasets Generation</a>). The editor populates the dropdown for such fields from the repository's index files.</p>
+<p>Fields that accept several entity types use <code>sh:or</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nn">sh</span><span class="p">:</span><span class="nt">or</span> <span class="p">(</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="p">[</span> <span class="nn">sh</span><span class="p">:</span><span class="nt">class</span> <span class="nn">melod</span><span class="p">:</span><span class="nt">PersonEntity</span> <span class="p">;</span> <span class="nn">rdfs</span><span class="p">:</span><span class="nt">label</span> <span class="s">"Person"</span><span class="o">@</span><span class="ge">en</span><span class="p">,</span> <span class="s">"Person"</span><span class="o">@</span><span class="ge">de</span> <span class="p">]</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="p">[</span> <span class="nn">sh</span><span class="p">:</span><span class="nt">class</span> <span class="nn">melod</span><span class="p">:</span><span class="nt">InstitutionEntity</span> <span class="p">;</span> <span class="nn">rdfs</span><span class="p">:</span><span class="nt">label</span> <span class="s">"Institution"</span><span class="o">@</span><span class="ge">en</span><span class="p">,</span> <span class="s">"Institution"</span><span class="o">@</span><span class="ge">de</span> <span class="p">]</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">)</span> <span class="p">;</span>
+</code></pre></div>
 <hr />
-<h2 id="the-dataset-namespace-patch">The <code>dataset:</code> Namespace Patch<a class="headerlink" href="#the-dataset-namespace-patch" title="Permanent link">&para;</a></h2>
-<p>SHACL shapes reference published dataset indexes using a special <code>dataset:</code> namespace:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nn">sh</span><span class="p">:</span><span class="nt">property</span> <span class="p">[</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="nn">sh</span><span class="p">:</span><span class="nt">name</span> <span class="s">"Birth place"</span> <span class="p">;</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="nn">sh</span><span class="p">:</span><span class="nt">path</span> <span class="nn">melod</span><span class="p">:</span><span class="nt">birthPlace</span> <span class="p">;</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="nn">sh</span><span class="p">:</span><span class="nt">class</span> <span class="nn">melod</span><span class="p">:</span><span class="nt">Place</span> <span class="p">;</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="nn">owl</span><span class="p">:</span><span class="nt">imports</span> <span class="nn">dataset</span><span class="p">:</span><span class="nt">places.ttl</span> <span class="p">;</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="p">]</span> <span class="p">.</span>
-</code></pre></div>
-<p>When the editor loads a repository, it reads <code>datasetBaseUrl</code> from <code>configuration/config.json</code> and replaces every occurrence of <code>dataset:</code> in the loaded SHACL shape with that URL. For example, if <code>datasetBaseUrl</code> is <code>https://yourname.github.io/my-catalogue/datasets/</code>, the property above becomes:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nn">owl</span><span class="p">:</span><span class="nt">imports</span> <span class="nv">&lt;https://yourname.github.io/my-catalogue/datasets/places.ttl&gt;</span> <span class="p">;</span>
-</code></pre></div>
-<p>This allows the same SHACL shape files to work with any repository — only <code>config.json</code> needs to point to the correct published dataset.</p>
+<h2 id="how-dropdowns-are-populated">How Dropdowns Are Populated<a class="headerlink" href="#how-dropdowns-are-populated" title="Permanent link">&para;</a></h2>
+<p>When a form is opened, the editor fetches the SHACL shape and appends the content of all files in the repository's <code>indexes/</code> folder to it. The combined Turtle is passed to <code>shacl-form</code> as a <code>blob:</code> URL. <code>shacl-form</code> then offers every entity typed with the requested class (e.g. <code>melod:PlaceEntity</code>) in the dropdown.</p>
+<p>This allows the same SHACL shape files to work with any repository.</p>
 <hr />
 <h2 id="adding-a-new-field">Adding a New Field<a class="headerlink" href="#adding-a-new-field" title="Permanent link">&para;</a></h2>
-<p>To add a field to an existing entity type, open the corresponding <code>.shacl</code> file and add a new <code>sh:property</code> block to the node shape. For example, to add a "Nickname" field to the Person shape:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nn">sh</span><span class="p">:</span><span class="nt">property</span> <span class="p">[</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="nn">sh</span><span class="p">:</span><span class="nt">path</span> <span class="nn">schema</span><span class="p">:</span><span class="nt">alternateName</span> <span class="p">;</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="nn">sh</span><span class="p">:</span><span class="nt">name</span> <span class="s">"Nickname"</span> <span class="p">;</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="nn">sh</span><span class="p">:</span><span class="nt">description</span> <span class="s">"Informal or abbreviated name"</span> <span class="p">;</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="nn">sh</span><span class="p">:</span><span class="nt">datatype</span> <span class="nn">xsd</span><span class="p">:</span><span class="nt">string</span> <span class="p">;</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="p">]</span> <span class="p">;</span>
+<p>To add a field to an existing entity type, open the corresponding <code>.shacl</code> file and add a new <code>sh:property</code> block to the node shape. For example, to add an "Honorific prefix" field to the Person shape:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nn">sh</span><span class="p">:</span><span class="nt">property</span> <span class="p">[</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="nn">sh</span><span class="p">:</span><span class="nt">path</span> <span class="nn">schema</span><span class="p">:</span><span class="nt">honorificPrefix</span> <span class="p">;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="nn">sh</span><span class="p">:</span><span class="nt">name</span> <span class="s">"Honorific prefix"</span><span class="o">@</span><span class="ge">en</span><span class="p">,</span> <span class="s">"Namenszusatz"</span><span class="o">@</span><span class="ge">de</span> <span class="p">;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="nn">sh</span><span class="p">:</span><span class="nt">description</span> <span class="s">"Title or honorific, e.g. Dr."</span><span class="o">@</span><span class="ge">en</span><span class="p">,</span> <span class="s">"Titel, z.B. Dr."</span><span class="o">@</span><span class="ge">de</span> <span class="p">;</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="nn">sh</span><span class="p">:</span><span class="nt">datatype</span> <span class="nn">xsd</span><span class="p">:</span><span class="nt">string</span> <span class="p">;</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="nn">sh</span><span class="p">:</span><span class="nt">group</span> <span class="nn">melod</span><span class="p">:</span><span class="nt">General</span> <span class="p">;</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="p">]</span> <span class="p">;</span>
 </code></pre></div>
 <p>Save the file and reload the editor — the new field will appear in all Person forms automatically.</p>
 

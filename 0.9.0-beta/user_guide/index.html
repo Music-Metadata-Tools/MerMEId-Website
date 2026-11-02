@@ -762,6 +762,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Adding a Repository to the Editor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-local-folder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding a Local Folder
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1709,6 +1726,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Adding a Repository to the Editor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-local-folder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding a Local Folder
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1746,7 +1780,7 @@
 <h3 id="browser-recommendation">Browser Recommendation<a class="headerlink" href="#browser-recommendation" title="Permanent link">&para;</a></h3>
 <p>MerMEId MeLODy runs entirely in the browser. <strong>Chromium-based browsers (Chrome or Edge) are recommended</strong> for the best experience. Firefox works for most operations, but the File System Access API (used for local filesystem mode) is not supported in Firefox.</p>
 <h3 id="git-host-account">Git Host Account<a class="headerlink" href="#git-host-account" title="Permanent link">&para;</a></h3>
-<p>You need an account on a Git hosting platform to create data repositories — <a href="https://github.com">GitHub</a> or <a href="https://gitlab.com">GitLab</a> are both supported. The editor communicates with any HTTPS-accessible Git host. To edit data in the repository you don't need a Git Account, only the data owner needs one.</p>
+<p>You need an account on a Git hosting platform to create data repositories — <a href="https://github.com">GitHub</a> or <a href="https://gitlab.com">GitLab</a> (gitlab.com or a self-hosted GitLab instance such as GitLab RLP) are supported. The editor communicates directly with the GitHub or GitLab API; other Git hosts are not supported right now. To edit data in the repository you don't need a Git account, only the data owner needs one.</p>
 <h3 id="personal-access-token">Personal Access Token<a class="headerlink" href="#personal-access-token" title="Permanent link">&para;</a></h3>
 <p>The editor authenticates to your Git host using either a project-specific or a user-based <strong>personal access token</strong> (PAT). You need to create one or ask an admin to create one before adding a repository.</p>
 <p><strong>GitHub — creating a token user-based: (GitHub account required)</strong></p>
@@ -1763,17 +1797,17 @@
 <li>Go to <strong>Settings → Developer settings → Personal access tokens → Fine-grained tokens</strong>.</li>
 <li>Click <strong>"Generate new token"</strong>.</li>
 <li>Choose organization as resource owner</li>
-<li>Set Repository acces to <strong>"Only select repositories"</strong> and choose project-specific repository</li>
+<li>Set Repository access to <strong>"Only select repositories"</strong> and choose project-specific repository</li>
 <li>Give it a descriptive name (e.g. <code>mermeid-melody</code>).</li>
 <li>Set an expiration date.</li>
-<li>Select the <strong><code>repo</code></strong> scope (full control of private repositories).</li>
+<li>Under <strong>Repository permissions</strong>, set <strong>Contents</strong> to <strong>"Read and write"</strong> (Metadata: Read-only is added automatically).</li>
 <li>Click <strong>"Generate token"</strong> and copy the result immediately — it is shown only once.</li>
 </ol>
 <p><strong>GitLab — creating a token user-based: (GitLab Account required)</strong></p>
 <ol>
 <li>Go to your user <strong>Settings → Access Tokens</strong>.</li>
 <li>Click <strong>"Add new token"</strong>.</li>
-<li>Select the scope <strong><code>write_repository</code></strong>.</li>
+<li>Select the scope <strong><code>api</code></strong>.</li>
 <li>Set an expiry date if required by your organisation.</li>
 <li>Click <strong>"Create personal access token"</strong> and copy the result immediately — it is shown only once.</li>
 </ol>
@@ -1781,9 +1815,9 @@
 <ol>
 <li>Go to your repositories <strong>Settings → Access Tokens</strong>.</li>
 <li>Click <strong>"Add new token"</strong>.</li>
-<li>Select the scope <strong><code>write_repository</code></strong>.</li>
+<li>Choose the role <strong>Maintainer</strong> (or higher) and select the scope <strong><code>api</code></strong>.</li>
 <li>Set an expiry date if required by your organisation.</li>
-<li>Click <strong>"Create personal access token"</strong> and copy the result immediately — it is shown only once.</li>
+<li>Click <strong>"Create project access token"</strong> and copy the result immediately — it is shown only once.</li>
 </ol>
 <p>Store the token somewhere safe (e.g. a password manager).</p>
 <hr />
@@ -1791,22 +1825,19 @@
 <p>All metadata lives in a Git repository with a predefined folder structure. The quickest way to create one is to use the official template:</p>
 <ol>
 <li>Go to the <a href="https://github.com/Music-Metadata-Tools/MerMEId-MeLODy-Template">MerMEId MeLODy Template</a> on GitHub or to the <a href="https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/mermeid-template">GitLab MerMEId MeLODy Template</a>.</li>
-<li>Click <strong>"Use this template"</strong> → <strong>"Create a new repository"</strong>.</li>
+<li>Click <strong>"Use this template"</strong> → <strong>"Create a new repository"</strong> (on GitLab: create a new project from the template or fork it).</li>
 <li>Choose an owner and give the repository a meaningful name (e.g. <code>mozart-catalogue</code>).</li>
-<li>Set the visibility to <strong>Public</strong>. On GitHub, a public repository is required for the search to work (GitHub Pages is only free for public repositories). On GitLab the repository can be private, but the Pages need to be configured as Public for everyone.</li>
+<li>Choose the visibility. The repository can be <strong>public or private</strong>.</li>
 <li>Click <strong>"Create repository"</strong>.</li>
-<li>Activate Pages so the search index gets published:<ul>
-<li><strong>GitHub:</strong> go to <strong>Settings → Pages → Source</strong> and select <strong>"GitHub Actions"</strong>.</li>
-<li><strong>GitLab:</strong> go to <strong>Deploy → Pages -&gt; Domains and Settings</strong>. Uncheck 'Use unique domain'. For private repositories: go to <strong>Settings → General → Visibility</strong> and set the Pages visibility to 'Everyone'.</li>
+<li>Make sure the CI/CD pipeline is allowed to push the generated indexes back to the repository:<ul>
+<li><strong>GitHub:</strong> nothing to do — the workflow requests write access itself. If your organisation restricts workflow permissions, allow GitHub Actions to write to the repository (<strong>Settings → Actions → General</strong>).</li>
+<li><strong>GitLab:</strong> go to <strong>Settings → CI/CD → Job token permissions</strong> and allow Git push requests with the CI/CD job token (or adapt the <code>push_indexes</code> job to use a project access token).</li>
 </ul>
 </li>
 </ol>
-<p>The template includes the correct folder structure, a CI/CD pipeline that publishes the search index after every push and sparql queries for each dataset used as indexes. Once that first pipeline run completes, you need to tell the editor where to find the index — open <code>configuration/config.json</code> in your repository and replace the placeholder in <code>datasetBaseUrl</code> with your Pages URL:</p>
-<ul>
-<li><strong>GitHub:</strong> <code>https://&lt;owner&gt;.github.io/&lt;repo-name&gt;/datasets/</code></li>
-<li><strong>GitLab:</strong> <code>https://&lt;namespace&gt;.gitlab.io/&lt;repo-name&gt;/datasets/</code></li>
-</ul>
-<p>For example, if your GitHub username is <code>your-username</code> and your repository is named <code>mozart-catalogue</code>, the value would be <code>https://your-username.github.io/mozart-catalogue/datasets/</code>. You can find your exact Pages URL in the repository settings after the first pipeline run. For more details see <a href="../developer/repo_config/">Repository Configuration</a>.</p>
+<p>The template includes the correct folder structure, sample data, the configuration file <code>configuration/config.json</code>, and a CI/CD pipeline that regenerates the search indexes in the <code>indexes/</code> folder after every push to <code>main</code>. The SPARQL queries used to build the indexes are fetched from the editor repository during the pipeline run, so they always match the current editor version.</p>
+<p>The editor itself also keeps the files in <code>indexes/</code> up to date whenever you save, delete, or synchronise entities, so you can start working right away. The pipeline makes sure the indexes stay consistent when files are changed outside the editor.</p>
+<p>The file <code>configuration/config.json</code> contains the IRI prefix domain for new entities (<code>projectDomain</code>). For more details see <a href="../developer/repo_config/">Repository Configuration</a>.</p>
 <p>The template contains a small amount of sample data you can delete once you are comfortable with the editor.</p>
 <hr />
 <h2 id="adding-a-repository-to-the-editor">Adding a Repository to the Editor<a class="headerlink" href="#adding-a-repository-to-the-editor" title="Permanent link">&para;</a></h2>
@@ -1814,25 +1845,32 @@
 <ol>
 <li>Open <a href="https://music-metadata-tools.github.io/MerMEId-MeLODy/">MerMEId MeLODy</a> in your browser.</li>
 <li>In the left panel, click the <strong>"Add repository"</strong> button (folder-plus icon, top-left toolbar).</li>
-<li>Enter the <strong>repository folder name</strong> as display name — this is only used inside the editor (e.g. <code>mozart-catalogue</code>). Spaces are not allowed.</li>
-<li>Enter the <strong>repository URL</strong> — the HTTPS clone URL from GitHub or GitLab. It must start with <code>https://</code> and end with <code>.git</code> (e.g. <code>https://github.com/yourname/mozart-catalogue.git</code>).</li>
+<li>Enter the <strong>repository folder name</strong> as display name — this is only used inside the editor (e.g. <code>mozart-catalogue</code>). It must start with a letter or digit and may only contain letters, digits, <code>_</code>, <code>-</code> and <code>.</code> (no spaces).</li>
+<li>Enter the <strong>repository URL</strong> — e.g. <code>https://github.com/yourname/mozart-catalogue</code>. The URL may end with <code>.git</code> or not; copying the address from the browser's address bar works as well. SSH URLs (<code>git@github.com:...</code>) are converted automatically.</li>
 <li>Enter your <strong>username</strong> (your GitHub or GitLab username, or choose one, if you don't have an account).</li>
 <li>Enter your <strong>personal access token</strong>.</li>
-<li>Click <strong>"Next"</strong>, select the branch you want to work on (usually <code>main</code>), and click <strong>"Clone"</strong>.</li>
+<li>Click <strong>"Next"</strong> and select the branch you want to work on. If the repository has only one branch, or a branch named <code>main</code>, it is preselected.</li>
+<li>Decide whether to <strong>"Use lazy loading"</strong> (enabled by default). With lazy loading, only the list of files is downloaded and each file is fetched when you open it for the first time — recommended for large repositories. Turn it off to download all files at once.</li>
+<li>Click <strong>"Clone"</strong>. A progress indicator is shown while the files are loaded.</li>
 </ol>
-<p>The editor will clone the repository. Once finished, the repository appears in the left panel. Click on its name to select it — the name is highlighted when the repository is active.</p>
+<p>The folder name, URL and username of the last added repository are prefilled the next time you open the dialog.</p>
+<p>Once finished, the repository appears in the left panel and is selected automatically. Click on its name to select another repository — the name is highlighted when the repository is active.</p>
+<p>When a repository is selected for the first time, the editor creates the catalog files <code>dataCatalogs/catalog.ttl</code>, <code>dataCollections/works.ttl</code> and <code>dataCollections/manifestations.ttl</code> if they are missing. They appear in the <strong>Share files</strong> section and can be shared like any other file.</p>
+<h3 id="adding-a-local-folder">Adding a Local Folder<a class="headerlink" href="#adding-a-local-folder" title="Permanent link">&para;</a></h3>
+<p>Instead of a remote URL, you can also work on a folder on your computer (Chromium-based browsers only). On the first page of the dialog, click the folder-plus button below <strong>"Or add a local folder instead"</strong> and choose the folder in the browser's folder picker. If the folder is not yet a Git repository, it is initialised. Optionally enter username and token so you can synchronise and share with the remote configured in the folder.</p>
+<p>After a browser restart, the editor asks you again for permission to access the folder when you click the repository.</p>
 <hr />
 <h2 id="your-first-entity">Your First Entity<a class="headerlink" href="#your-first-entity" title="Permanent link">&para;</a></h2>
 <p>Once you have a repository selected:</p>
 <ol>
-<li>Click the <strong>"New"</strong> button in the toolbar to open the entity type dialog.</li>
+<li>Click the <strong>"New"</strong> button in the editor toolbar to open the entity type dialog.</li>
 <li>Select an entity type (start with <strong>Person</strong> or <strong>Place</strong> — they have fewer required fields).</li>
 <li>A blank form opens in the main area. Fill in the required fields (marked with an asterisk).</li>
-<li>Click <strong>"Save"</strong> — the button turns blue with a dot indicator when there are unsaved changes.</li>
-<li>In the bottom left corner you see <strong>Share files</strong>. Click on it, check all files you want to share and click <strong>Share files</strong>.</li>
+<li>Click <strong>"Save"</strong> — the button becomes active and shows a dot indicator when there are unsaved changes. Saving is only possible when all required fields are filled and valid.</li>
+<li>In the bottom left corner you see <strong>Share files</strong>. Check all files you want to share, optionally enter a commit message, and click the <strong>Share files</strong> button.</li>
 </ol>
-<p>The file is now saved to the Git repository, see <a href="user_guide/git_workflow.md">Git Workflow</a> for further information.</p>
-<p>For a full description of all entity types and their fields, see <a href="user_guide/entities.md">Working with Entities</a> and <a href="data_model.md">Data Model</a>.</p>
+<p>The file is now saved to the Git repository, see <a href="git_workflow/">Git Workflow</a> for further information.</p>
+<p>For a full description of all entity types and their fields, see <a href="entities/">Working with Entities</a> and <a href="../data_model/">Data Model</a>.</p>
 <hr />
 
 

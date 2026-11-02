@@ -1510,10 +1510,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#cors-proxy" class="md-nav__link">
+  <a href="#git-host-api" class="md-nav__link">
     <span class="md-ellipsis">
       
-        CORS Proxy
+        Git Host API
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lazy-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lazy Loading
       
     </span>
   </a>
@@ -1532,10 +1543,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#conflict-detection-canpullsafely" class="md-nav__link">
+  <a href="#conflict-detection-checkpushconflicts" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Conflict Detection (canPullSafely)
+        Conflict Detection (checkPushConflicts)
       
     </span>
   </a>
@@ -1560,32 +1571,40 @@
 
 
 <h1 id="services">Services<a class="headerlink" href="#services" title="Permanent link">&para;</a></h1>
-<p>The service layer provides a shared, singleton access point to the virtual filesystem and all Git operations. Components never instantiate their own filesystem directly — they always go through the service.</p>
+<p>The service layer provides shared, singleton access points to the virtual filesystem, all Git operations and the search indexes. Components never instantiate their own filesystem directly — they always go through the service.</p>
 <hr />
 <h3 id="credentials">Credentials<a class="headerlink" href="#credentials" title="Permanent link">&para;</a></h3>
-<p>Username and personal access token are stored in the git config of the cloned repository (<code>user.name</code> and <code>user.pat</code>), persisted inside the virtual filesystem in <code>IndexedDB</code>. They are read back via <code>git.getConfigAll()</code> before each push or pull operation. Credentials are never sent anywhere other than the Git server — the CORS proxy only forwards requests and adds CORS headers.</p>
+<p>Username and personal access token are stored in the git config of the repository (<code>user.name</code> and <code>user.pat</code>). For repositories added by URL, this config lives in the browser's Origin Private File System (OPFS). For <strong>local folders</strong>, it is written into the folder's own <code>.git/config</code> on disk — the token is then stored there in plain text.</p>
+<p>The credentials are read back before each push or pull operation and can be changed at any time through the repository settings dialog. The token is only sent to the GitHub or GitLab API (as <code>Authorization: Bearer</code> or <code>PRIVATE-TOKEN</code> header).</p>
+<p>The add-repository dialog additionally remembers the last folder name, URL and username — but not the token — in <code>localStorage</code> (key <code>lastGitCredentials</code>, see <code>credentials-helper.js</code>).</p>
 <hr />
-<h3 id="cors-proxy">CORS Proxy<a class="headerlink" href="#cors-proxy" title="Permanent link">&para;</a></h3>
-<p>Because browsers block cross-origin requests to Git servers, all Git HTTP traffic is routed through a CORS proxy. The default proxy URL is configured in <code>modules/filesystem-manager/constants.js</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">CORS_PROXY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"https://cors.isomorphic-git.org"</span><span class="p">;</span>
-</code></pre></div>
-<p>This is the standard proxy maintained by the isomorphic-git project. It simply forwards Git HTTP requests and adds the necessary <code>Access-Control-*</code> response headers. No data is stored or logged by the proxy.</p>
-<p>If you need to use a different proxy (e.g. a self-hosted instance), update the <code>CORS_PROXY</code> constant.</p>
+<h3 id="git-host-api">Git Host API<a class="headerlink" href="#git-host-api" title="Permanent link">&para;</a></h3>
+<p>All network operations go directly to the APIs of the Git host, implemented in <code>modules/filesystem-manager/api-provider.js</code>:</p>
+<ul>
+<li><code>parseRepoUrl()</code> normalises HTTPS, SSH and GitLab web URLs. Hosts containing <code>github</code> are treated as GitHub, all other hosts as GitLab (API v4). Other Git hosts are not supported.</li>
+<li><code>createProvider()</code> returns a GitHub or GitLab provider for listing branches, fetching the file tree, downloading files and fetching single remote files.</li>
+<li><code>pushViaApi()</code> creates one commit with all selected files — via the GraphQL mutation <code>createCommitOnBranch</code> on GitHub or the Commits API (<code>POST /projects/:id/repository/commits</code>) on GitLab.</li>
+<li>Requests that are rate-limited (HTTP 429) are retried automatically, respecting <code>Retry-After</code>.</li>
+</ul>
+<p>The constant <code>CORS_PROXY</code> in <code>modules/filesystem-manager/constants.js</code> is still defined, but only used by legacy code paths that are no longer called.</p>
+<hr />
+<h3 id="lazy-loading">Lazy Loading<a class="headerlink" href="#lazy-loading" title="Permanent link">&para;</a></h3>
+<p>When a repository is added with lazy loading (default), only the remote file tree is fetched and written to <code>.remote-tree.json</code>. Each file is downloaded the first time it is read. Without lazy loading, all files are downloaded at once. The setting is stored per repository in the git config (<code>lazy.enabled</code>).</p>
 <hr />
 <h3 id="local-filesystem-mode">Local Filesystem Mode<a class="headerlink" href="#local-filesystem-mode" title="Permanent link">&para;</a></h3>
-<p><code>VirtualFilesystem</code> also supports direct access to the local filesystem via the <a href="https://developer.chrome.com/docs/capabilities/web-apis/file-system-access">File System Access API</a>. When a directory handle is registered via <code>add_local_repository()</code>, all read/write operations for that repository bypass isomorphic-git and operate directly on the local files.</p>
-<p><strong>Use case:</strong> local workflows for larger repositories, git actions need to be executed locally (not within the browser).</p>
-<p><strong>Browser support:</strong> best supported in Chromium-based browsers (Chrome, Edge). Firefox has limited support; Safari does not support the writable variant of the API.</p>
+<p><code>VirtualFilesystem</code> also supports direct access to the local filesystem via the <a href="https://developer.chrome.com/docs/capabilities/web-apis/file-system-access">File System Access API</a>. When a directory handle is registered via <code>add_local_repository()</code>, the picked folder is used as a normal Git working directory (<code>fsa-directory-filesystem.js</code>); if it contains no <code>.git</code>, <code>git init</code> is run. The folder handles are kept in IndexedDB (<code>local-repository-store.js</code>); after a browser restart, permission is requested again via <code>ensure_local_repository_access()</code>.</p>
+<p>Sharing and synchronising work exactly as for repositories added by URL (through the GitHub/GitLab API, using the remote from <code>.git/config</code>). The bookkeeping files <code>.dirty.json</code> and <code>.snapshot.json</code> are kept in OPFS under the repository name.</p>
+<p><strong>Use case:</strong> local workflows for larger repositories, or when you also want to use your local Git client.</p>
+<p><strong>Browser support:</strong> best supported in Chromium-based browsers (Chrome, Edge). Firefox and Safari do not support the directory picker of the API.</p>
 <hr />
-<h3 id="conflict-detection-canpullsafely">Conflict Detection (<code>canPullSafely</code>)<a class="headerlink" href="#conflict-detection-canpullsafely" title="Permanent link">&para;</a></h3>
-<p>Before any push or pull operation, <code>canPullSafely(repo, changedFiles)</code> is called with the list of locally staged files. It:</p>
+<h3 id="conflict-detection-checkpushconflicts">Conflict Detection (<code>checkPushConflicts</code>)<a class="headerlink" href="#conflict-detection-checkpushconflicts" title="Permanent link">&para;</a></h3>
+<p>Before sharing, <code>checkPushConflicts()</code> is called with the list of selected files. For each file that has a synchronised baseline in <code>.snapshot.json</code>, it:</p>
 <ol>
-<li>Fetches the remote <code>HEAD</code> reference</li>
-<li>Walks the commit graph to find the most recent common ancestor commit between the local branch and the remote</li>
-<li>Lists all files changed in the remote since that common ancestor</li>
-<li>Checks for overlap with the locally staged files</li>
+<li>Fetches the current version of the file from the remote via the API</li>
+<li>Compares it with the baseline from the last synchronisation</li>
+<li>Reports the file as a conflict if the remote version has changed or the file has been deleted remotely</li>
 </ol>
-<p>If any file appears in both sets, the operation is blocked and the user receives a warning listing the conflicting files. This prevents silent data loss from a non-fast-forward situation.</p>
+<p>Conflicting files are shown in the <code>adwlm-push-conflict-dialog</code>, which renders the local and the remote version side by side with <code>shacl-form</code>. For each file the user chooses to keep the local version, take the remote version (<code>resolveConflictWithRemote()</code>), or skip the file for this push. New files that do not exist remotely never cause a conflict.</p>
 
 
 

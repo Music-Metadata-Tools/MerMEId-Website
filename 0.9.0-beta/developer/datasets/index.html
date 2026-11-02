@@ -1226,6 +1226,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#in-the-editor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In the Editor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#the-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1407,6 +1418,39 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#letters-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Letters Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-collections-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Collections Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-catalogs-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Catalogs Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1424,10 +1468,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#github-pages-publishing" class="md-nav__link">
+  <a href="#committing-the-indexes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GitHub Pages Publishing
+        Committing the Indexes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Validation
       
     </span>
   </a>
@@ -1447,10 +1502,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#datasets-are-not-published" class="md-nav__link">
+  <a href="#datasets-are-not-generated-or-not-up-to-date" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Datasets Are Not Published
+        Datasets Are Not Generated or Not Up to Date
       
     </span>
   </a>
@@ -1873,6 +1928,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#in-the-editor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In the Editor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#the-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2054,6 +2120,39 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#letters-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Letters Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-collections-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Collections Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-catalogs-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Catalogs Dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2071,10 +2170,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#github-pages-publishing" class="md-nav__link">
+  <a href="#committing-the-indexes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GitHub Pages Publishing
+        Committing the Indexes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Validation
       
     </span>
   </a>
@@ -2094,10 +2204,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#datasets-are-not-published" class="md-nav__link">
+  <a href="#datasets-are-not-generated-or-not-up-to-date" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Datasets Are Not Published
+        Datasets Are Not Generated or Not Up to Date
       
     </span>
   </a>
@@ -2160,45 +2270,65 @@
 
 
 <h1 id="datasets-generation">Datasets Generation<a class="headerlink" href="#datasets-generation" title="Permanent link">&para;</a></h1>
-<p>This document explains how MerMEId MeLODy generates and uses datasets for search indices and dropdown menus. Understanding this process is essential for setting up a data repository, customizing search behavior, and extending the system with new entity types.</p>
+<p>This document explains how MerMEId MeLODy generates and uses datasets for search indexes, dropdown menus and the graph view. Understanding this process is essential for setting up a data repository, customizing search behavior, and extending the system with new entity types.</p>
 <hr />
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p><strong>Datasets</strong> are aggregated RDF/Turtle files generated from your repository's data. They serve two critical functions in the editor:</p>
+<p><strong>Datasets</strong> are aggregated RDF/Turtle files generated from your repository's data. They serve three functions in the editor:</p>
 <ol>
-<li><strong>Search indices</strong> — powers the entity search functionality that loads in the editor</li>
-<li><strong>Cross-reference dropdowns</strong> — supplies the linked entity fields (e.g., "Birth Place", "Contributor") in the editor forms</li>
+<li><strong>Search indexes</strong> — power the entity search functionality that loads in the editor</li>
+<li><strong>Cross-reference dropdowns</strong> — supply the linked entity fields (e.g., "Birth Place", "Contributor") in the editor forms</li>
+<li><strong>Graph view</strong> — provide the relations between entities</li>
 </ol>
-<p>Without published datasets, the editor can read and edit entities locally, but the search and cross-reference features are not working.</p>
+<p>The index files are kept up to date in two ways:</p>
+<ul>
+<li><strong>In the editor</strong> — whenever you save, delete, unstage or synchronise an entity, the editor updates the corresponding index file directly in the browser. The updated index file is staged and shared together with your data.</li>
+<li><strong>In the CI/CD pipeline</strong> — after every push to <code>main</code>, a pipeline in the data repository regenerates all index files and commits them back to the repository.</li>
+</ul>
+<p>Without index files, the editor can read and edit entities, but the search, the graph view and the cross-reference dropdowns are empty.</p>
 <hr />
 <h2 id="how-datasets-are-generated">How Datasets Are Generated<a class="headerlink" href="#how-datasets-are-generated" title="Permanent link">&para;</a></h2>
+<h3 id="in-the-editor">In the Editor<a class="headerlink" href="#in-the-editor" title="Permanent link">&para;</a></h3>
+<p>When an entity is saved, deleted or changed by a synchronisation, <code>VirtualFilesystem.generate_indexes_for_saved_file()</code>:</p>
+<ol>
+<li>Determines the entity folder from the file path (e.g. <code>persons</code>)</li>
+<li>Fetches the SPARQL query <code>modules/datasets-generator/&lt;folder&gt;.sparql</code> from the editor</li>
+<li>Runs the CONSTRUCT query on the saved file with Oxigraph in the browser</li>
+<li>Replaces the triples of this entity in <code>indexes/&lt;folder&gt;.ttl</code> (or removes them for a deleted file); the index file is created if it does not exist</li>
+<li>Stages the index file and reloads the search</li>
+</ol>
+<p>Because only the changed file is processed, context that a query takes from other folders (e.g. the place name of a venue or institution) may be missing until the CI/CD pipeline regenerates the index.</p>
 <h3 id="the-pipeline">The Pipeline<a class="headerlink" href="#the-pipeline" title="Permanent link">&para;</a></h3>
-<p>The template repository includes a <strong>GitHub Actions workflow</strong> that automatically generates datasets after every push:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Push
+<p>The template repository includes a <strong>GitHub Actions workflow</strong> (<code>.github/workflows/pages.yml</code>, "Build and Push Indexes") or a <strong>GitLab CI pipeline</strong> (<code>.gitlab-ci.yml</code>) that regenerates all datasets after every push to <code>main</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Push to main
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    ↓
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>GitHub Actions: generate_datasets job
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    ↓
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>Run datasets-generator.sh script
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    ↓
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>For each dataset:
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  - Collect all RDF files from their source directory
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>  - Execute a SPARQL CONSTRUCT query
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>  - Output aggregated .ttl file to public/datasets/
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    ↓
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>Upload public/ folder to GitHub Pages
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    ↓
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>Datasets are published at your Pages URL
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Job fetch_sparql_queries
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  - Download the current SPARQL queries from the editor repository
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    ↓
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>Job generate_datasets
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>  - Run datasets-generator.sh
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  - For each dataset:
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>      - Collect all RDF files from their source directory
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>      - Execute a SPARQL CONSTRUCT query
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>      - Output aggregated .ttl file to indexes/
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    ↓
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>Job push-indexes (GitLab: push_indexes)
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>  - Commit the indexes/ folder with "Updated indexes [skip ci]"
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>  - Push to main
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    ↓
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>Synchronise in the editor to receive the updated indexes
 </code></pre></div>
+<p>The <code>[skip ci]</code> tag in the commit message prevents the pipeline from running again for its own commit.</p>
 <h3 id="tools-used">Tools Used<a class="headerlink" href="#tools-used" title="Permanent link">&para;</a></h3>
 <p>The generation process requires:</p>
 <ul>
 <li><strong><code>static-publishing-backend</code></strong> Docker container — provides the RDF aggregator and SPARQL engine</li>
-<li><strong>SPARQL CONSTRUCT queries</strong> — transform entity data into searchable datasets</li>
-<li><strong>GitHub Actions</strong> — orchestrates the workflow on every push</li>
+<li><strong>SPARQL CONSTRUCT queries</strong> — transform entity data into searchable datasets. The queries are maintained in the editor repository (<a href="https://github.com/Music-Metadata-Tools/MerMEId-MeLODy/tree/main/modules/datasets-generator"><code>MerMEId-MeLODy/modules/datasets-generator/</code></a>) and are downloaded at build time by <code>fetch-sparql-queries.sh</code>. Set the variable <code>EDITOR_REPO_REF</code> to use another branch or tag of the editor (default: <code>main</code>). Copies of the queries in the data repository are not used.</li>
+<li><strong>GitHub Actions / GitLab CI</strong> — orchestrates the workflow on every push</li>
 </ul>
-<p>All of these are configured in the template; you do not need to set anything up manually.</p>
+<p>All of these are configured in the template; you do not need to set anything up manually. The pipeline only needs permission to push to <code>main</code> (see <a href="../../user_guide/#creating-a-data-repository">Getting Started</a>).</p>
 <hr />
 <h2 id="dataset-files">Dataset Files<a class="headerlink" href="#dataset-files" title="Permanent link">&para;</a></h2>
-<p>When the pipeline runs, it generates Turtle (.ttl) files in the <code>public/datasets/</code> directory. Each dataset corresponds to an entity type and is published to your GitHub Pages URL.</p>
+<p>When the pipeline runs, it generates Turtle (.ttl) files in the <code>indexes/</code> directory. Each dataset corresponds to an entity type. All entries are typed with an index class <code>melod:&lt;Type&gt;Entity</code> (e.g. <code>melod:PersonEntity</code>), which the SHACL shapes use for linked entity fields.</p>
 <table>
 <thead>
 <tr>
@@ -2253,7 +2383,7 @@
 </tr>
 <tr>
 <td><code>venues.ttl</code></td>
-<td><code>venues/</code>, <code>performanceEvents/</code></td>
+<td><code>venues/</code></td>
 <td>Venue</td>
 <td>Search, cross-references (e.g. performance venue)</td>
 </tr>
@@ -2281,11 +2411,31 @@
 <td>Bibliography</td>
 <td>Search, cross-references (e.g. evidences of a performance or work)</td>
 </tr>
+<tr>
+<td><code>letters.ttl</code></td>
+<td><code>letters/</code></td>
+<td>Letter</td>
+<td>Search, cross-references</td>
+</tr>
+<tr>
+<td><code>dataCollections.ttl</code></td>
+<td><code>dataCollections/</code></td>
+<td>Data Collection</td>
+<td>Search, cross-references (data collections of works and manifestations)</td>
+</tr>
+<tr>
+<td><code>dataCatalogs.ttl</code></td>
+<td><code>dataCatalogs/</code></td>
+<td>Data Catalog</td>
+<td>Cross-references (data catalog of a data collection)</td>
+</tr>
 </tbody>
 </table>
+<p>The search and the graph view load the index files listed in <code>INDEXES</code> in <code>modules/services/index-store-service.js</code> (all of the above except <code>dataCatalogs.ttl</code>). For the form dropdowns, all files in <code>indexes/</code> are used.</p>
 <hr />
 <h2 id="sparql-query-reference">SPARQL Query Reference<a class="headerlink" href="#sparql-query-reference" title="Permanent link">&para;</a></h2>
-<p>Each dataset is built using a <strong>SPARQL CONSTRUCT query</strong> that transforms entity data into a simplified searchable form. These queries are located in <a href="https://github.com/Music-Metadata-Tools/MerMEId-MeLODy-Template/tree/main/modules/datasets-generator"><code>modules/datasets-generator/</code></a>.</p>
+<p>Each dataset is built using a <strong>SPARQL CONSTRUCT query</strong> that transforms entity data into a simplified searchable form. These queries are located in the editor repository in <a href="https://github.com/Music-Metadata-Tools/MerMEId-MeLODy/tree/main/modules/datasets-generator"><code>modules/datasets-generator/</code></a>.</p>
+<p>All queries output the index class (<code>a melod:&lt;Type&gt;Entity</code>) and <code>skos:prefLabel</code>; most of them also output <code>skos:related</code> links to connected entities, which are used by the graph view.</p>
 <h3 id="persons-dataset">Persons Dataset<a class="headerlink" href="#persons-dataset" title="Permanent link">&para;</a></h3>
 <p><strong>File:</strong> <code>persons.sparql</code></p>
 <p><strong>Purpose:</strong> Index all persons with their full names.</p>
@@ -2302,33 +2452,34 @@
 <hr />
 <h3 id="works-dataset">Works Dataset<a class="headerlink" href="#works-dataset" title="Permanent link">&para;</a></h3>
 <p><strong>File:</strong> <code>works.sparql</code></p>
-<p><strong>Purpose:</strong> Index all works with titles, alternative titles, and composer information.</p>
+<p><strong>Purpose:</strong> Index all works with titles, alternative titles and classifications.</p>
 <p><strong>Output properties:</strong></p>
 <ul>
 <li><code>skos:prefLabel</code> — main title</li>
-<li><code>skos:altLabel</code> — uniform title and alternative title (if present)</li>
+<li><code>skos:altLabel</code> — uniform title, alternative titles and other titles (if present)</li>
 <li><code>skos:broader</code> — work classification (if present)</li>
-<li><code>schema:composer</code> — composer name (if linked)</li>
+<li><code>skos:related</code> — expressions, contributors, work parts, bibliography and data collections</li>
 </ul>
 <p><strong>Query logic:</strong></p>
 <ul>
 <li>Extracts the main title (type: <code>MainTitle</code>)</li>
-<li>Optionally includes uniform title and alternative titles as searchable variants</li>
-<li>Optionally extracts composer information via a contribution relationship</li>
+<li>Optionally includes uniform, alternative and other titles as searchable variants</li>
 <li>Sorted by main title</li>
 </ul>
 <hr />
 <h3 id="expressions-dataset">Expressions Dataset<a class="headerlink" href="#expressions-dataset" title="Permanent link">&para;</a></h3>
 <p><strong>File:</strong> <code>expressions.sparql</code></p>
-<p><strong>Purpose:</strong> Index all expressions with labels including incipit text for identification.</p>
+<p><strong>Purpose:</strong> Index all expressions with labels including position and incipit text for identification.</p>
 <p><strong>Output properties:</strong></p>
 <ul>
-<li><code>skos:prefLabel</code> — expression label with optional incipit text</li>
+<li><code>skos:prefLabel</code> — expression label with optional position and incipit text</li>
+<li><code>skos:broader</code> — classification (if present)</li>
+<li><code>skos:related</code> — performances, first performance, place of creation, contributors, parts, components, historic events, instrumentation, bibliography, MEI incipit</li>
 </ul>
 <p><strong>Query logic:</strong></p>
 <ul>
-<li>Uses either <code>skos:prefLabel</code> or <code>rdfs:label</code> as base label</li>
-<li>Optionally appends incipit text in parentheses for disambiguation</li>
+<li>Uses <code>rdfs:label</code> as base label (falls back to the IRI)</li>
+<li>Optionally prepends the position and appends the incipit text in parentheses for disambiguation</li>
 <li>Sorted by label</li>
 </ul>
 <hr />
@@ -2337,12 +2488,13 @@
 <p><strong>Purpose:</strong> Index all manifestations with their titles and classifications.</p>
 <p><strong>Output properties:</strong></p>
 <ul>
-<li><code>skos:prefLabel</code> — manifestation title</li>
+<li><code>skos:prefLabel</code> — manifestation title (with title type)</li>
 <li><code>skos:broader</code> — classification (if present)</li>
+<li><code>skos:related</code> — embodied expressions, parts, data collections, contributors, publisher, place of publication</li>
 </ul>
 <p><strong>Query logic:</strong></p>
 <ul>
-<li>Extracts title from title subject</li>
+<li>Extracts title from title subject (falls back to the IRI)</li>
 <li>Optionally includes classification for broader search</li>
 <li>Sorted by title</li>
 </ul>
@@ -2354,10 +2506,11 @@
 <ul>
 <li><code>skos:prefLabel</code> — item label</li>
 <li><code>skos:broader</code> — classification</li>
+<li><code>skos:related</code> — manifestation, current keeper, parts, hands, provenance agents</li>
 </ul>
 <p><strong>Query logic:</strong></p>
 <ul>
-<li>Uses item label from <code>rdfs:label</code></li>
+<li>Uses item label from <code>rdfs:label</code> (falls back to the IRI)</li>
 <li>Includes classification</li>
 <li>Sorted by label</li>
 </ul>
@@ -2368,7 +2521,8 @@
 <p><strong>Output properties:</strong></p>
 <ul>
 <li><code>skos:prefLabel</code> — label with optional abbreviation or RISM siglum</li>
-<li><code>skos:broader</code> — RISM identifier if present</li>
+<li><code>skos:broader</code> — ("Organization" or "RISM") and place name, if present</li>
+<li><code>skos:related</code> — place</li>
 </ul>
 <p><strong>Query logic:</strong></p>
 <ul>
@@ -2398,6 +2552,7 @@
 <ul>
 <li><code>skos:prefLabel</code> — venue name</li>
 <li><code>skos:broader</code> — place name (if venue is located in a place)</li>
+<li><code>skos:related</code> — place</li>
 </ul>
 <p><strong>Query logic:</strong></p>
 <ul>
@@ -2412,6 +2567,7 @@
 <p><strong>Output properties:</strong></p>
 <ul>
 <li><code>skos:prefLabel</code> — event name</li>
+<li><code>skos:related</code> — place, contributors, bibliography</li>
 </ul>
 <p><strong>Query logic:</strong></p>
 <ul>
@@ -2425,11 +2581,12 @@
 <p><strong>Output properties:</strong></p>
 <ul>
 <li><code>skos:prefLabel</code> — performance label with optional date and venue</li>
+<li><code>skos:related</code> — contributors, venue, bibliography</li>
 </ul>
 <p><strong>Query logic:</strong></p>
 <ul>
 <li>Uses performance event name as base</li>
-<li>Optionally appends date and place information for context</li>
+<li>Optionally appends date and venue information for context</li>
 <li>Combined label format: <code>"Name: Date Place"</code></li>
 <li>Sorted by label</li>
 </ul>
@@ -2440,10 +2597,11 @@
 <p><strong>Output properties:</strong></p>
 <ul>
 <li><code>skos:prefLabel</code> — instrumentation name</li>
+<li><code>skos:related</code> — instrumentation groups</li>
 </ul>
 <p><strong>Query logic:</strong></p>
 <ul>
-<li>Extracts name from <code>rdfs:label</code></li>
+<li>Extracts name from <code>rdfs:label</code> (falls back to the IRI)</li>
 <li>Sorted alphabetically</li>
 </ul>
 <hr />
@@ -2453,6 +2611,7 @@
 <p><strong>Output properties:</strong></p>
 <ul>
 <li><code>skos:prefLabel</code> — bibliography label with abbreviation or title</li>
+<li><code>skos:related</code> — authors, editors, publisher, place, keeper</li>
 </ul>
 <p><strong>Query logic:</strong></p>
 <ul>
@@ -2461,8 +2620,38 @@
 <li>Sorted by label</li>
 </ul>
 <hr />
+<h3 id="letters-dataset">Letters Dataset<a class="headerlink" href="#letters-dataset" title="Permanent link">&para;</a></h3>
+<p><strong>File:</strong> <code>letters.sparql</code></p>
+<p><strong>Purpose:</strong> Index all letters.</p>
+<p><strong>Output properties:</strong></p>
+<ul>
+<li><code>skos:prefLabel</code> — title of the letter</li>
+<li><code>skos:related</code> — participants, places, holding institution</li>
+</ul>
+<p><strong>Query logic:</strong></p>
+<ul>
+<li>Extracts the title from <code>rdfs:label</code></li>
+<li>Sorted by label</li>
+</ul>
+<hr />
+<h3 id="data-collections-dataset">Data Collections Dataset<a class="headerlink" href="#data-collections-dataset" title="Permanent link">&para;</a></h3>
+<p><strong>File:</strong> <code>dataCollections.sparql</code></p>
+<p><strong>Purpose:</strong> Index all data collections.</p>
+<p><strong>Output properties:</strong></p>
+<ul>
+<li><code>skos:prefLabel</code> — name of the data collection (class <code>melod:DataCollectionEntity</code>)</li>
+</ul>
+<hr />
+<h3 id="data-catalogs-dataset">Data Catalogs Dataset<a class="headerlink" href="#data-catalogs-dataset" title="Permanent link">&para;</a></h3>
+<p><strong>File:</strong> <code>dataCatalogs.sparql</code></p>
+<p><strong>Purpose:</strong> Index the data catalog of the repository.</p>
+<p><strong>Output properties:</strong></p>
+<ul>
+<li><code>skos:prefLabel</code> — name of the data catalog (class <code>melod:DataCatalog</code>)</li>
+</ul>
+<hr />
 <h2 id="the-generation-script">The Generation Script<a class="headerlink" href="#the-generation-script" title="Permanent link">&para;</a></h2>
-<p>The file <a href="https://github.com/Music-Metadata-Tools/MerMEId-MeLODy-Template/blob/main/modules/datasets-generator/datasets-generator.sh"><code>modules/datasets-generator/datasets-generator.sh</code></a> orchestrates the entire process. It:</p>
+<p>The file <code>modules/datasets-generator/datasets-generator.sh</code> in the data repository (see the <a href="https://github.com/Music-Metadata-Tools/MerMEId-MeLODy-Template/blob/main/modules/datasets-generator/datasets-generator.sh">GitHub template</a>) orchestrates the entire process. It:</p>
 <ol>
 <li>Sets up directory paths for all entity types</li>
 <li>
@@ -2470,8 +2659,8 @@
 <ul>
 <li><strong>Source directory:</strong> where entity files are located (e.g., <code>persons/</code>)</li>
 <li><strong>File pattern:</strong> which files to include (e.g., <code>*.ttl</code>)</li>
-<li><strong>SPARQL query:</strong> the transformation logic (e.g., <code>persons.sparql</code>)</li>
-<li><strong>Output path:</strong> where to write the result (e.g., <code>public/datasets/persons.ttl</code>)</li>
+<li><strong>SPARQL query:</strong> the transformation logic, downloaded before by <code>fetch-sparql-queries.sh</code> (e.g., <code>sparql-queries/persons.sparql</code>)</li>
+<li><strong>Output path:</strong> where to write the result (e.g., <code>indexes/persons.ttl</code>)</li>
 </ul>
 </li>
 <li>
@@ -2483,32 +2672,40 @@
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nv">$persons_dir_path</span>/<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="s2">"*.ttl"</span><span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nv">$datasets_generator_dir_path</span>/persons.sparql<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nv">$datasets_dir_path</span>/persons.ttl
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nv">$indexes_dir_path</span>/persons.ttl
 </code></pre></div></p>
+<p>The script <code>modules/datasets-generator/fetch-sparql-queries.sh</code> downloads all queries listed in its loop from <code>https://raw.githubusercontent.com/music-metadata-tools/MerMEId-MeLODy/$EDITOR_REPO_REF/modules/datasets-generator/</code>.</p>
 <hr />
-<h2 id="github-pages-publishing">GitHub Pages Publishing<a class="headerlink" href="#github-pages-publishing" title="Permanent link">&para;</a></h2>
-<p>After datasets are generated, the GitHub Actions workflow publishes them to GitHub Pages:</p>
+<h2 id="committing-the-indexes">Committing the Indexes<a class="headerlink" href="#committing-the-indexes" title="Permanent link">&para;</a></h2>
+<p>After datasets are generated, the pipeline commits them to the repository:</p>
 <ol>
-<li>Datasets are created in <code>public/datasets/</code> directory</li>
-<li>The artifact is uploaded to GitHub Pages</li>
-<li>They become available at your configured <code>datasetBaseUrl</code> URL</li>
+<li>Datasets are created in the <code>indexes/</code> directory</li>
+<li>The job <code>push-indexes</code> (GitLab: <code>push_indexes</code>) commits the folder with the message <code>Updated indexes [skip ci]</code> — only for the <code>main</code> branch and only if something has changed</li>
+<li>The commit is pushed to <code>main</code>; the editor receives the new indexes when you synchronise</li>
 </ol>
 <p><strong>Required configuration:</strong></p>
 <ul>
-<li>GitHub Pages must be enabled for your repository (Settings → Pages → Source: GitHub Actions)</li>
-<li>The repository must be <strong>public</strong> (for free GitHub Pages hosting)</li>
+<li><strong>GitHub:</strong> the workflow requests <code>contents: write</code> itself. If your organisation restricts workflow permissions or <code>main</code> is protected, allow GitHub Actions to push to <code>main</code>.</li>
+<li><strong>GitLab:</strong> the job pushes with the CI/CD job token. Allow Git push requests with the job token in <strong>Settings → CI/CD → Job token permissions</strong>, or adapt the job to use a project access token.</li>
 </ul>
-<p>For GitLab repositories, configure Pages in the CI/CD pipeline settings.</p>
+<hr />
+<h2 id="data-validation">Data Validation<a class="headerlink" href="#data-validation" title="Permanent link">&para;</a></h2>
+<p>The GitHub template additionally includes a <strong>Data Validation</strong> workflow (<code>.github/workflows/validate.yml</code>). It is started manually (Actions → Data Validation → Run workflow) and validates the <code>.ttl</code> files of the data folders against the SHACL shapes of the editor (fetched from the <code>main</code> branch of the editor repository).</p>
+<p>It can also be run locally with Node.js:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>npm<span class="w"> </span>install
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>npm<span class="w"> </span><span class="nb">test</span>
+</code></pre></div>
 <hr />
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
-<h3 id="datasets-are-not-published">Datasets Are Not Published<a class="headerlink" href="#datasets-are-not-published" title="Permanent link">&para;</a></h3>
+<h3 id="datasets-are-not-generated-or-not-up-to-date">Datasets Are Not Generated or Not Up to Date<a class="headerlink" href="#datasets-are-not-generated-or-not-up-to-date" title="Permanent link">&para;</a></h3>
 <p><strong>Problem:</strong> Dropdowns are empty or search doesn't work.</p>
 <p><strong>Solutions:</strong></p>
 <ol>
-<li>Check that GitHub Pages is enabled (Settings → Pages → Source: GitHub Actions)</li>
-<li>Verify the <code>datasetBaseUrl</code> in <code>config.json</code> matches your actual Pages URL</li>
-<li>Check that the latest pipeline run succeeded (Actions tab in GitHub)</li>
-<li>Clear the editor's browser cache (Ctrl+Shift+Delete)</li>
+<li>Check that the <code>indexes/</code> folder exists in your repository and contains files</li>
+<li>Click <strong>Reload indexes</strong> in the editor toolbar</li>
+<li>Synchronise the repository to receive indexes committed by the pipeline</li>
+<li>Check that the latest pipeline run ("Build and Push Indexes") succeeded (Actions tab in GitHub, Build → Pipelines in GitLab) and that it was allowed to push to <code>main</code></li>
+<li>Verify that <code>datasetBaseUrl</code> in <code>config.json</code> is set (any non-empty value)</li>
 </ol>
 <h3 id="sparql-query-errors">SPARQL Query Errors<a class="headerlink" href="#sparql-query-errors" title="Permanent link">&para;</a></h3>
 <p><strong>Problem:</strong> Pipeline fails with a SPARQL error.</p>
@@ -2524,8 +2721,8 @@
 <p><strong>Solutions:</strong></p>
 <ol>
 <li>Check the source directory exists and contains <code>.ttl</code> files</li>
-<li>Verify the SPARQL query file exists in <code>modules/datasets-generator/</code></li>
-<li>Ensure the entry is added to <code>datasets-generator.sh</code></li>
+<li>Verify the SPARQL query file exists in <code>modules/datasets-generator/</code> of the <strong>editor</strong> repository — the editor finds a query by the folder name (<code>&lt;folder&gt;.sparql</code>)</li>
+<li>Ensure the query is listed in <code>fetch-sparql-queries.sh</code> and an entry is added to <code>datasets-generator.sh</code> of the data repository</li>
 <li>Check that no syntax errors exists in the SPARQL query</li>
 </ol>
 <hr />

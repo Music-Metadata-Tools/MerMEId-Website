@@ -1164,6 +1164,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#catalog-entities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Catalog Entities
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Catalog Entities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#datacollection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DataCollection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datacatalog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DataCatalog
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#repository-folder-structure" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1944,6 +1983,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#catalog-entities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Catalog Entities
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Catalog Entities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#datacollection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DataCollection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datacatalog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DataCatalog
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#repository-folder-structure" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1972,7 +2050,7 @@
 
 
 <h1 id="entity-types">Entity Types<a class="headerlink" href="#entity-types" title="Permanent link">&para;</a></h1>
-<p>MerMEId MeLODy supports 13 entity types. Each type corresponds to an RDF class in the <code>melod:</code> ontology, a dedicated folder in the data repository, and a SHACL shape file that defines its form fields.</p>
+<p>MerMEId MeLODy supports 14 entity types, plus one data catalog per repository. Each type corresponds to an RDF class in the <code>melod:</code> ontology, a dedicated folder in the data repository, and a SHACL shape file that defines its form fields.</p>
 <hr />
 <h2 id="all-entity-types-at-a-glance">All Entity Types at a Glance<a class="headerlink" href="#all-entity-types-at-a-glance" title="Permanent link">&para;</a></h2>
 <table>
@@ -2063,14 +2141,21 @@
 <td style="text-align: left;"><code>melod:Letter</code></td>
 <td style="text-align: left;">A letter or correspondence document</td>
 </tr>
+<tr>
+<td style="text-align: left;">DataCollection</td>
+<td style="text-align: left;"><code>dataCollections/</code></td>
+<td style="text-align: left;"><code>melod:DataCollection</code></td>
+<td style="text-align: left;">A named collection (work or source catalogue) belonging to the data catalog</td>
+</tr>
 </tbody>
 </table>
+<p>In addition, each repository contains exactly one <strong>data catalog</strong> (<code>dataCatalogs/catalog.ttl</code>, <code>melod:DataCatalog</code>), which is edited via the <strong>Catalog metadata</strong> button in the repository panel.</p>
 <hr />
 <h2 id="frbr-entities">FRBR Entities<a class="headerlink" href="#frbr-entities" title="Permanent link">&para;</a></h2>
 <h3 id="work">Work<a class="headerlink" href="#work" title="Permanent link">&para;</a></h3>
 <p><strong>Class:</strong> <code>melod:Work</code> | <strong>Folder:</strong> <code>works/</code></p>
 <p>The abstract intellectual or artistic creation — the composer's intention, independent of any particular realisation, notation, or performance. See <a href="../frbr/">FRBR Hierarchy</a> for details.</p>
-<p><strong>Key fields:</strong> title (primary and alternative), composer (linked Person), catalogue numbers (opus, BWV, TWV, etc.), genre, related works, linked expression.</p>
+<p><strong>Key fields:</strong> title (primary and alternative), composer (linked Person), catalogue numbers (opus, BWV, TWV, etc.), genre, related works, linked expression, data collections (file collections with citation and publication information).</p>
 <hr />
 <h3 id="expression">Expression<a class="headerlink" href="#expression" title="Permanent link">&para;</a></h3>
 <p><strong>Class:</strong> <code>melod:Expression</code> | <strong>Folder:</strong> <code>expressions/</code></p>
@@ -2080,7 +2165,7 @@
 <h3 id="manifestation">Manifestation<a class="headerlink" href="#manifestation" title="Permanent link">&para;</a></h3>
 <p><strong>Class:</strong> <code>melod:Manifestation</code> | <strong>Folder:</strong> <code>manifestations/</code></p>
 <p>A published or otherwise distributed embodiment of an Expression. See <a href="../frbr/">FRBR Hierarchy</a> for details.</p>
-<p><strong>Key fields:</strong> title as on the manifestation, publisher, place and date of publication, plate number, physical description and title pages (for manifestation singleton), related manifestations, linked items, linked expression.</p>
+<p><strong>Key fields:</strong> title as on the manifestation, publisher, place and date of publication, plate number, physical description and title pages (for manifestation singleton), related manifestations, linked items, linked expression, data collections (file collections with citation and publication information).</p>
 <hr />
 <h3 id="item">Item<a class="headerlink" href="#item" title="Permanent link">&para;</a></h3>
 <p><strong>Class:</strong> <code>melod:Item</code> | <strong>Folder:</strong> <code>items/</code></p>
@@ -2109,10 +2194,15 @@
 <tr>
 <td style="text-align: left;">First name</td>
 <td style="text-align: left;"><code>schema:givenName</code></td>
-<td style="text-align: left;"><strong>Required</strong></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr>
-<td style="text-align: left;">Link / sameAs</td>
+<td style="text-align: left;">Alternate name</td>
+<td style="text-align: left;"><code>schema:alternateName</code></td>
+<td style="text-align: left;">Alternative names or spellings</td>
+</tr>
+<tr>
+<td style="text-align: left;">Link</td>
 <td style="text-align: left;"><code>owl:sameAs</code></td>
 <td style="text-align: left;">GND, VIAF, Wikidata, etc. Must be a full HTTP(S) URL</td>
 </tr>
@@ -2128,7 +2218,7 @@
 </tr>
 <tr>
 <td style="text-align: left;">Birth place</td>
-<td style="text-align: left;"><code>melod:birthPlace</code></td>
+<td style="text-align: left;"><code>schema:birthPlace</code></td>
 <td style="text-align: left;">Linked entity dropdown (Place)</td>
 </tr>
 <tr>
@@ -2138,8 +2228,18 @@
 </tr>
 <tr>
 <td style="text-align: left;">Death place</td>
-<td style="text-align: left;"><code>melod:deathPlace</code></td>
+<td style="text-align: left;"><code>schema:deathPlace</code></td>
 <td style="text-align: left;">Linked entity dropdown (Place)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Occupation</td>
+<td style="text-align: left;"><code>schema:hasOccupation</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Description</td>
+<td style="text-align: left;"><code>schema:description</code></td>
+<td style="text-align: left;"></td>
 </tr>
 </tbody>
 </table>
@@ -2152,12 +2252,12 @@
 <h3 id="place">Place<a class="headerlink" href="#place" title="Permanent link">&para;</a></h3>
 <p><strong>Class:</strong> <code>melod:Place</code> | <strong>Folder:</strong> <code>places/</code></p>
 <p>A geographic location — city, region, country — used as a reference point for persons, events, performances, institutions, expressions and venues.</p>
-<p><strong>Key fields:</strong> name, Link/SameAs (Geonames, GND, Wikidata, ...), geographic coordinates, description.</p>
+<p><strong>Key fields:</strong> name, country, Link/SameAs (Geonames, GND, Wikidata, ...), description.</p>
 <hr />
 <h3 id="venue">Venue<a class="headerlink" href="#venue" title="Permanent link">&para;</a></h3>
 <p><strong>Class:</strong> <code>melod:Venue</code> | <strong>Folder:</strong> <code>venues/</code></p>
 <p>A specific performance venue such as a concert hall, opera house, or church. More specific than Place — a Venue is located in a Place.</p>
-<p><strong>Key fields:</strong> name, place (linked Place), capacity, description, external link.</p>
+<p><strong>Key fields:</strong> name, place (linked Place), description, external link.</p>
 <hr />
 <h3 id="performanceevent">PerformanceEvent<a class="headerlink" href="#performanceevent" title="Permanent link">&para;</a></h3>
 <p><strong>Class:</strong> <code>melod:PerformanceEvent</code> | <strong>Folder:</strong> <code>performanceEvents/</code></p>
@@ -2182,27 +2282,45 @@
 <h3 id="letter">Letter<a class="headerlink" href="#letter" title="Permanent link">&para;</a></h3>
 <p><strong>Class:</strong> <code>melod:Letter</code> | <strong>Folder:</strong> <code>letters/</code></p>
 <p>A letter or correspondence document. Used to document primary source material such as composers' letters that relate to specific works or expressions.</p>
-<p><strong>Key fields:</strong> title of the letter, sender (linked Person or Institution), recipient (linked Person or Institution), date (single date or date span), sent place (linked Place), received place (linked Place), description.</p>
+<p><strong>Key fields:</strong> title of the letter, sent and received (each with participant (linked Person), place (linked Place) and date), repository (linked Institution), shelfmark and former shelfmark, description. Letters are modelled with the <a href="https://correspsearch.net/">correspSearch</a> vocabulary.</p>
+<hr />
+<h2 id="catalog-entities">Catalog Entities<a class="headerlink" href="#catalog-entities" title="Permanent link">&para;</a></h2>
+<h3 id="datacollection">DataCollection<a class="headerlink" href="#datacollection" title="Permanent link">&para;</a></h3>
+<p><strong>Class:</strong> <code>melod:DataCollection</code> | <strong>Folder:</strong> <code>dataCollections/</code></p>
+<p>A named collection of works or manifestations, e.g. a work catalogue or a source catalogue, belonging to the data catalog of the repository. The default collections <code>dataCollections/works.ttl</code> ("All works") and <code>dataCollections/manifestations.ttl</code> ("All manifestations") are created automatically; new works and manifestations are added to them.</p>
+<p><strong>Key fields:</strong> name, data catalog, type (work catalog or source catalog), restrictions of use, status (draft, candidate, approved, published), responsible.</p>
+<hr />
+<h3 id="datacatalog">DataCatalog<a class="headerlink" href="#datacatalog" title="Permanent link">&para;</a></h3>
+<p><strong>Class:</strong> <code>melod:DataCatalog</code> | <strong>File:</strong> <code>dataCatalogs/catalog.ttl</code></p>
+<p>The data catalog describes the catalogue of the repository as a whole. There is exactly one per repository; it is created automatically and edited via the <strong>Catalog metadata</strong> button.</p>
+<p><strong>Key fields:</strong> name, contributors with roles (data manager, data contributor, editor, contributor, publisher), application ("MerMEId MeLODy"), description.</p>
 <hr />
 <h2 id="repository-folder-structure">Repository Folder Structure<a class="headerlink" href="#repository-folder-structure" title="Permanent link">&para;</a></h2>
 <p>All entity folders are present in a data repository created from the <a href="https://github.com/Music-Metadata-Tools/MerMEId-MeLODy-Template">MerMEId MeLODy Template</a>. In this Template you can find example .ttl files as well. The structure looks like this:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>my-catalogue/
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── configuration/
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│   └── config.json
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── works/
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├── expressions/
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>├── manifestations/
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>├── items/
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>├── persons/
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>├── institutions/
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>├── places/
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>├── venues/
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>├── performanceEvents/
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>├── instrumentations/
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>├── bibliography/
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>├── events/
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>└── letters/
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── dataCatalogs/
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│   └── catalog.ttl
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>├── dataCollections/
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>├── works/
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>├── expressions/
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>├── manifestations/
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>├── items/
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>├── persons/
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>├── institutions/
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>├── places/
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>├── venues/
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>├── performanceEvents/
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>├── instrumentations/
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>├── bibliography/
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>├── events/
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>├── letters/
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>├── indexes/                
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>└── modules/
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    └── datasets-generator/
 </code></pre></div>
+<p>The GitHub template additionally contains the workflows in <code>.github/workflows/</code> and the data validation (<code>package.json</code>, <code>tests/</code>); the GitLab template contains a <code>.gitlab-ci.yml</code>. Folders for entity types without examples (e.g. <code>events/</code>, <code>letters/</code>) may be missing in the template — they are created when the first entity of that type is saved.</p>
 <p>The folder names are defined in the configuration of the editor. Do not rename these folders.</p>
 
 

@@ -861,10 +861,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#auto-pull-before-push" class="md-nav__link">
+  <a href="#conflict-check-before-sharing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Auto-Pull Before Push
+        Conflict Check Before Sharing
       
     </span>
   </a>
@@ -900,10 +900,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#conflict-detection" class="md-nav__link">
+  <a href="#what-happens-during-synchronisation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Conflict Detection
+        What Happens During Synchronisation
       
     </span>
   </a>
@@ -1835,10 +1835,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#auto-pull-before-push" class="md-nav__link">
+  <a href="#conflict-check-before-sharing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Auto-Pull Before Push
+        Conflict Check Before Sharing
       
     </span>
   </a>
@@ -1874,10 +1874,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#conflict-detection" class="md-nav__link">
+  <a href="#what-happens-during-synchronisation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Conflict Detection
+        What Happens During Synchronisation
       
     </span>
   </a>
@@ -1962,11 +1962,11 @@
 
 
 <h1 id="git-workflow">Git Workflow<a class="headerlink" href="#git-workflow" title="Permanent link">&para;</a></h1>
-<p>MerMEId MeLODy uses standard Git operations to store and synchronise your data. This page explains how the Git integration works and how to manage your repositories effectively.</p>
+<p>MerMEId MeLODy uses a Git repository on GitHub or GitLab to store and synchronise your data. This page explains how the Git integration works and how to manage your repositories effectively.</p>
 <hr />
 <h2 id="how-storage-works">How Storage Works<a class="headerlink" href="#how-storage-works" title="Permanent link">&para;</a></h2>
-<p>MerMEId MeLODy stores all data in a <strong>virtual filesystem</strong> running inside your browser. This virtual filesystem is persisted in the browser's <strong>IndexedDB</strong> — a built-in browser database that survives page refreshes and browser restarts.</p>
-<p>The editor provides a full Git implementation. Every Git operation (clone, pull, commit, push) is executed entirely in the browser.</p>
+<p>MerMEId MeLODy stores all data in a <strong>virtual filesystem</strong> running inside your browser. This virtual filesystem is persisted in the browser's <strong>Origin Private File System (OPFS)</strong> — a private storage area of the browser that survives page refreshes and browser restarts. Alternatively, you can work directly on a <a href="../#adding-a-local-folder">local folder</a> on your computer.</p>
+<p>The editor communicates directly with the <strong>GitHub or GitLab API</strong> to download files and to create commits. Every operation (adding, synchronising, sharing) is executed entirely in the browser.</p>
 <h3 id="credentials-storage">Credentials Storage<a class="headerlink" href="#credentials-storage" title="Permanent link">&para;</a></h3>
 <p>Your repository folder name, repository url and git username are stored in the browser's local storage.</p>
 <p>These values are written to the local storage during the clone operation and read back before adding a new repository. They persist across browser sessions (as long as you do not clear the browser storage). They are <strong>not</strong> sent anywhere except to your Git host during authenticated requests.</p>
@@ -1975,17 +1975,21 @@
 <p>Adding a repository in MerMEId MeLODy is equivalent to <code>git clone</code>. Here is what happens step by step:</p>
 <ol>
 <li>Open the <strong>"Add repository"</strong> dialog (folder-plus icon in the repository panel toolbar).</li>
-<li>Enter the display name, repository URL, username, and personal access token.</li>
-<li>Click <strong>"Next"</strong> .</li>
-<li>Select a branch (usually <code>main</code>) and click <strong>"Clone"</strong>.</li>
-<li>The editor calls a shallow clone — only the latest commit on the selected branch is downloaded. This keeps the initial clone fast even for large repositories.</li>
+<li>Enter the display name, repository URL, and — if required — username and personal access token.</li>
+<li>Click <strong>"Next"</strong>.</li>
+<li>Select a branch (usually <code>main</code>), decide whether to use <strong>lazy loading</strong>, and click <strong>"Clone"</strong>.</li>
+<li>The editor downloads the files via the API:<ul>
+<li>With <strong>lazy loading</strong> (default), only the list of files is downloaded. Each file is fetched the first time you open it. This keeps adding a repository fast even for large repositories.</li>
+<li>Without lazy loading, all files are downloaded at once.</li>
+</ul>
+</li>
 <li>Credentials are stored in the browser's local storage.</li>
 <li>The repository appears in the left panel. Click its name to select it.</li>
 </ol>
-<p><strong>Important:</strong> you must click the repository name to select (highlight) it before you can create new entities or open files. A repository that has been cloned but not selected is shown in the tree but is not active.</p>
 <hr />
 <h2 id="selecting-a-repository">Selecting a Repository<a class="headerlink" href="#selecting-a-repository" title="Permanent link">&para;</a></h2>
 <p>Click the <strong>repository name</strong> (the top-level node in the tree) to select it. The name is highlighted when the repository is active. Only one repository can be active at a time. All entity creation, editing, and saving operations apply to the currently selected repository.</p>
+<p>When the page is loaded, the first repository is selected automatically for the search.</p>
 <hr />
 <h2 id="sharing-changes">Sharing Changes<a class="headerlink" href="#sharing-changes" title="Permanent link">&para;</a></h2>
 <p>"Sharing" files means committing and pushing them to the remote Git repository. This is equivalent to <code>git commit</code> + <code>git push</code>.</p>
@@ -1994,47 +1998,53 @@
 <h3 id="selective-commit">Selective Commit<a class="headerlink" href="#selective-commit" title="Permanent link">&para;</a></h3>
 <p>You do not have to push all staged files at once. The staging queue allows <strong>selective commit</strong>:</p>
 <ol>
-<li>In the Share Files section, check the boxes next to the files you want to include in this push.</li>
+<li>In the Share Files section, check the boxes next to the files you want to include in this push (or use <strong>Select all</strong>).</li>
+<li>Optionally enter a commit message. Otherwise the current date and your username are used.</li>
 <li>Click the <strong>"Share files"</strong> button (cloud-upload icon).</li>
-<li>The editor will auto-pull first (to check for remote changes — see Conflict Detection below).</li>
+<li>The editor checks whether the selected files have been changed online in the meantime (see Conflict Check below).</li>
 <li>A commit is created containing only the checked files, and pushed to the remote.</li>
 </ol>
 <p>Files that were not checked remain in the staging queue for a future push.</p>
-<h3 id="auto-pull-before-push">Auto-Pull Before Push<a class="headerlink" href="#auto-pull-before-push" title="Permanent link">&para;</a></h3>
-<p>Before committing and pushing, MerMEId MeLODy automatically checks whether the remote has any new commits. If the remote is ahead:</p>
+<h3 id="conflict-check-before-sharing">Conflict Check Before Sharing<a class="headerlink" href="#conflict-check-before-sharing" title="Permanent link">&para;</a></h3>
+<p>Before committing and pushing, MerMEId MeLODy compares each selected file with its current version in the remote repository:</p>
 <ul>
-<li>If the remote changes do <strong>not</strong> overlap with your staged files, the pull proceeds silently and the push follows.</li>
-<li>If the remote changes <strong>do</strong> overlap with one or more of your staged files (a conflict), the push is blocked and you are warned. You have to unstage the conflict file, to synchronize properly.</li>
+<li>If none of the selected files have been changed online since your last synchronisation, the files are shared immediately.</li>
+<li>If one or more files <strong>have</strong> been changed online (or deleted online), the <strong>Sharing conflicts</strong> dialog opens.</li>
 </ul>
+<p>The Sharing conflicts dialog lists every affected file and shows your version ("Your version (not yet shared)") next to the current online version, with the differences highlighted. For each file you choose one option:</p>
+<ul>
+<li><strong>Keep my version</strong> (or <strong>Delete file</strong>, if you deleted it locally) — your version is shared and overwrites the online version.</li>
+<li><strong>Use online version</strong> — your local changes are discarded and the online version is loaded. Nothing is shared for this file.</li>
+<li><strong>Decide later</strong> — the file is skipped for now and stays in the staging queue.</li>
+</ul>
+<p>If several files are affected, the buttons <strong>All: Keep my version</strong> and <strong>All: Use online version</strong> apply the choice to all of them. Once a decision has been made for every file, click <strong>Apply and share</strong>. <strong>Cancel</strong> aborts sharing.</p>
+<p>New files that do not exist online yet never cause a conflict.</p>
 <hr />
 <h2 id="synchronising">Synchronising<a class="headerlink" href="#synchronising" title="Permanent link">&para;</a></h2>
-<p>"Synchronising" means pulling the latest changes from the remote repository. This is equivalent to <code>git pull</code>.</p>
+<p>"Synchronising" means downloading the latest changes from the remote repository. This is similar to <code>git pull</code>.</p>
 <h3 id="how-to-synchronise">How to Synchronise<a class="headerlink" href="#how-to-synchronise" title="Permanent link">&para;</a></h3>
-<p>Click the <strong>"Synchronise"</strong> button (arrow-clockwise icon) in the repository panel toolbar.</p>
-<h3 id="conflict-detection">Conflict Detection<a class="headerlink" href="#conflict-detection" title="Permanent link">&para;</a></h3>
-<p>Before pulling, the editor performs a <strong>conflict check</strong>:</p>
+<p>Click the <strong>"Synchronize repository"</strong> button (cloud-download icon) in the repository panel toolbar. A personal access token is required for synchronising; if the repository has none, add one in the <strong>Repository settings</strong>.</p>
+<h3 id="what-happens-during-synchronisation">What Happens During Synchronisation<a class="headerlink" href="#what-happens-during-synchronisation" title="Permanent link">&para;</a></h3>
 <ol>
-<li>The editor fetches the remote HEAD (the latest commit hash on the remote branch).</li>
-<li>It finds the common ancestor commit between the local and remote branches.</li>
-<li>It compares the set of files changed on the remote since the common ancestor against your locally staged files.</li>
-<li>If there is overlap (the same file has been modified both remotely and locally), the pull is <strong>blocked</strong> and a warning is shown listing the conflicting files.</li>
+<li>The editor downloads all files that have been changed online since the last synchronisation and removes files that have been deleted online.</li>
+<li>Your staged (not yet shared) files are <strong>kept</strong> and re-applied afterwards, so you don't lose any local work.</li>
+<li>The index files are updated for the changed files and the repository tree is refreshed.</li>
 </ol>
-<p>If conflicts are detected, you must first unstage your local changes for those files (see below), then synchronise again.</p>
-<p>If no conflicts are found, the pull proceeds and the local working directory is updated to match the remote.</p>
+<p>Synchronising does not check for conflicts. If a staged file has also been changed online, the differences are resolved the next time you share the file (see <a href="#conflict-check-before-sharing">Conflict Check Before Sharing</a>).</p>
 <h3 id="unsaved-changes-warning">Unsaved Changes Warning<a class="headerlink" href="#unsaved-changes-warning" title="Permanent link">&para;</a></h3>
 <p>If you have unsaved changes in the editor (the Save button is blue), you will be warned before synchronising. Save or discard the current changes first.</p>
 <hr />
 <h2 id="unstaging-files">Unstaging Files<a class="headerlink" href="#unstaging-files" title="Permanent link">&para;</a></h2>
-<p>To discard local saved changes for a specific file and restore it to the last committed state:</p>
+<p>To discard local saved changes for a specific file and restore it to the last synchronised state:</p>
 <ol>
-<li>In the Share Files section, select the file you want to unstage.</li>
+<li>In the Share Files section, check the box next to the file you want to unstage.</li>
 <li>Click the <strong>"Unstage files"</strong> button (arrow-counterclockwise icon).</li>
-<li>The file is removed from the Share Files queue and the working directory copy is restored to the last committed state.</li>
+<li>The file is removed from the Share Files queue and the local copy is restored to the version from your last synchronisation. A new file that was never shared is removed completely. The index and the open form are updated accordingly.</li>
 </ol>
 <p>This is equivalent to <code>git restore --staged &lt;file&gt; &amp;&amp; git restore &lt;file&gt;</code> in standard Git.</p>
 <hr />
 <h2 id="removing-a-repository">Removing a Repository<a class="headerlink" href="#removing-a-repository" title="Permanent link">&para;</a></h2>
-<p>Click the <strong>"Remove repository"</strong> button (folder-minus icon) in the repository panel toolbar. After confirmation, the repository is removed from the browser's virtual filesystem (IndexedDB).</p>
+<p>Click the <strong>"Remove repository"</strong> button (folder-minus icon) in the repository panel toolbar. The repository is removed immediately from the browser's storage — there is no confirmation dialog, so make sure you have shared all changes you want to keep. For local folders, only the reference in the editor is removed; the files on your disk are not touched.</p>
 <p><strong>Important:</strong> removing a repository from the editor does <strong>not</strong> delete anything on the remote. The Git repository on GitHub or GitLab is completely unaffected. You can re-add it at any time using the Add Repository dialog.</p>
 <hr />
 <h2 id="renaming-a-repository">Renaming a Repository<a class="headerlink" href="#renaming-a-repository" title="Permanent link">&para;</a></h2>
@@ -2054,27 +2064,27 @@
 <tr>
 <td style="text-align: left;">Add repository</td>
 <td style="text-align: left;"><code>git clone --depth 1 --single-branch</code></td>
-<td style="text-align: left;">Shallow clone, one branch only</td>
+<td style="text-align: left;">Files are downloaded via the API (lazy or all at once); no Git history</td>
 </tr>
 <tr>
 <td style="text-align: left;">Synchronise</td>
 <td style="text-align: left;"><code>git pull</code></td>
-<td style="text-align: left;">Preceded by conflict check</td>
+<td style="text-align: left;">Downloads changed files via the API; staged local files are kept</td>
 </tr>
 <tr>
 <td style="text-align: left;">Save</td>
-<td style="text-align: left;">write file + <code>git add</code> + <code>git updateIndex</code></td>
-<td style="text-align: left;">Local only, no network</td>
+<td style="text-align: left;">write file + <code>git add</code></td>
+<td style="text-align: left;">Local only, no network; also updates the index files</td>
 </tr>
 <tr>
 <td style="text-align: left;">Share files</td>
 <td style="text-align: left;"><code>git commit</code> + <code>git push</code></td>
-<td style="text-align: left;">Selective — only checked files</td>
+<td style="text-align: left;">Selective — only checked files; conflict check per file; one commit via the GitHub/GitLab API</td>
 </tr>
 <tr>
 <td style="text-align: left;">Unstage files</td>
-<td style="text-align: left;"><code>git resetIndex</code> + <code>git checkout</code></td>
-<td style="text-align: left;">Restores from HEAD</td>
+<td style="text-align: left;"><code>git restore --staged</code> + <code>git restore</code></td>
+<td style="text-align: left;">Restores the last synchronised version</td>
 </tr>
 <tr>
 <td style="text-align: left;">Remove repository</td>

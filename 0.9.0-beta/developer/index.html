@@ -1713,22 +1713,24 @@
 <li><a href="local/">Local Setup</a> — how to run every part of the tool on your local machine</li>
 <li><a href="architecture/">Architecture Overview</a> — bootstrap sequence, technology stack, and module structure</li>
 <li><a href="components/">Components &amp; Events</a> — detailed reference for each web component and the complete event map between them</li>
+<li><a href="services/">Services</a> — shared filesystem and index store services, credentials, storage, conflict detection</li>
 <li><a href="shacl_shapes/">SHACL Shapes</a> — how to define and extend form fields using SHACL</li>
-<li><a href="datasets/">Datasets Generation</a> — how SPARQL queries build search indices and dropdowns from entity data</li>
+<li><a href="datasets/">Datasets Generation</a> — how SPARQL queries build search indexes and dropdowns from entity data</li>
 <li><a href="extending/">Extending the Editor</a> — how to add new entity types, SHACL shapes, and MEI/XML converters</li>
-<li><a href="repo_config/">Repository Configuration</a> — <code>config.json</code> fields: dataset URL and IRI prefix</li>
+<li><a href="repo_config/">Repository Configuration</a> — <code>config.json</code> fields: dataset URL, IRI prefix and ID prefixes</li>
 </ul>
 <hr />
 <h2 id="at-a-glance">At a Glance<a class="headerlink" href="#at-a-glance" title="Permanent link">&para;</a></h2>
-<p>MerMEId MeLODy is a <strong>static, browser-only MEI metadata editor</strong> — there is no backend server. All operations runs entirely in the browser and produces RDF that is structurally aligned with MEI (Music Encoding Initiative) standards:</p>
+<p>MerMEId MeLODy is a <strong>static, browser-only MEI metadata editor</strong> — there is no backend server. All operations run entirely in the browser and produce RDF that is structurally aligned with MEI (Music Encoding Initiative) standards:</p>
 <ul>
-<li>Git operations are performed in-memory using <a href="https://isomorphic-git.org/">isomorphic-git</a> with <a href="https://github.com/isomorphic-git/lightning-fs">LightningFS</a> (an <code>IndexedDB</code>-backed virtual filesystem)</li>
+<li>Repositories are stored in the browser's <a href="https://developer.mozilla.org/en-US/docs/Web/API/File_System_API/Origin_private_file_system">Origin Private File System</a> (OPFS), or in a local folder opened via the <a href="https://developer.chrome.com/docs/capabilities/web-apis/file-system-access">File System Access API</a></li>
+<li>Cloning, pulling and pushing go directly through the GitHub or GitLab REST/GraphQL APIs (<code>modules/filesystem-manager/api-provider.js</code>) — no CORS proxy is needed. <a href="https://isomorphic-git.org/">isomorphic-git</a> is used locally (repository config, staging, walking the working directory)</li>
 <li>The UI is built with <a href="https://lit.dev/">Lit</a> web components and <a href="https://shoelace.style/">Shoelace</a></li>
-<li>Forms are generated automatically from SHACL shapes by the <a href="https://github.com/ulb-darmstadt/shacl-form">shacl-form</a> component</li>
-<li>RDF data is queried via an in-browser <a href="https://github.com/oxigraph/oxigraph">Oxigraph</a> SPARQL engine</li>
-<li>All dependencies are loaded from CDNs — no build step is required</li>
+<li>Forms are generated automatically from SHACL shapes by the <a href="https://github.com/ulb-darmstadt/shacl-form">shacl-form</a> component, in the MerMEId fork <a href="https://github.com/Music-Metadata-Tools/mermeid-shacl-form">mermeid-shacl-form</a></li>
+<li>RDF data is queried via an in-browser <a href="https://github.com/oxigraph/oxigraph">Oxigraph</a> SPARQL engine — also used to generate the search indexes directly in the browser</li>
+<li>All dependencies are loaded from CDNs — no build step is required. An importmap in <code>index.html</code> maps the aliases <code>#isomorphic-git</code>, <code>#isomorphic-git-http</code> and <code>#oxigraph</code>; the same aliases are mapped for Node.js via <code>"imports"</code> in <code>package.json</code>, so the tests run the same modules. </li>
 </ul>
-<p>Components communicate exclusively through <strong>custom DOM events</strong>. There are no direct references between components, keeping the architecture loosely coupled and each component independently testable.</p>
+<p>Components communicate mostly exclusively through <strong>custom DOM events</strong>. There are no direct references between components, keeping the architecture loosely coupled and each component independently testable.</p>
 <hr />
 <h2 id="quick-start-for-contributors">Quick Start for Contributors<a class="headerlink" href="#quick-start-for-contributors" title="Permanent link">&para;</a></h2>
 <p>The editor is a static HTML/JS application — no build step is needed for most work. To run it locally:</p>
@@ -1775,15 +1777,20 @@
 <h2 id="running-the-tests">Running the Tests<a class="headerlink" href="#running-the-tests" title="Permanent link">&para;</a></h2>
 <p>If you are working on core functionality (filesystem management, git operations), run the test suite:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>npm<span class="w"> </span>install
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>npm<span class="w"> </span><span class="nb">test</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>npm<span class="w"> </span><span class="nb">test</span><span class="w">            </span><span class="c1"># runs all tests with Vitest</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>npm<span class="w"> </span>run<span class="w"> </span>test:watch<span class="w">  </span><span class="c1"># re-runs tests on file changes</span>
 </code></pre></div>
 <p>Requires <a href="https://nodejs.org">Node.js</a> v22 or later.</p>
+<p>To run only the unit tests (filesystem and RDF-XML converter):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>npx<span class="w"> </span>vitest<span class="w"> </span>run<span class="w"> </span>tests/virtual-filesystem.test.js<span class="w"> </span>tests/rdf-xml-converter.unit.test.js
+</code></pre></div>
 <p>For integration tests (real clone/pull/push operations), you need a test repository and a GitHub personal access token. Create a repository from the <a href="https://github.com/Music-Metadata-Tools/MerMEId-MeLODy-Template">MerMEId MeLODy Template</a> and add a <code>.env</code> file in the project root:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>GIT_TOKEN=&lt;your GitHub personal access token&gt;
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>GIT_USERNAME=&lt;your GitHub username&gt;
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>TEST_REPO_URL=&lt;URL of your test repository&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>GIT_TOKEN=&lt;your GitHub personal access token&gt;
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>GIT_USERNAME=&lt;your GitHub username&gt;
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>TEST_REPO_URL=&lt;URL of your test repository&gt;
 </code></pre></div>
 <p>Integration tests are automatically skipped if these variables are not set.</p>
+<p>On GitHub, the <strong>Unit Tests</strong> workflow (<code>.github/workflows/test-unit.yml</code>) runs automatically for every pull request against <code>main</code>. The <strong>Integration Tests</strong> workflow (<code>.github/workflows/test-integration.yml</code>) is started manually by a maintainer (Actions → Integration Tests → Run workflow, with a branch or <code>refs/pull/&lt;n&gt;/head</code> as ref); it uses the repository secrets <code>TEST_GITHUB_TOKEN</code>, <code>TEST_GITHUB_USERNAME</code> and <code>TEST_REPO_URL</code>. The editor itself is deployed to GitHub Pages on every push to <code>main</code> (<code>.github/workflows/pages.yml</code>).</p>
 <hr />
 <h2 id="pull-request-review">Pull Request Review<a class="headerlink" href="#pull-request-review" title="Permanent link">&para;</a></h2>
 <p>PRs are merged into <code>main</code> by a maintainer once:</p>

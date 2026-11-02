@@ -805,6 +805,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#the-repository-settings-dialog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Repository Settings Dialog
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-catalog-metadata-dialog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Catalog Metadata Dialog
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#the-repository-tree" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -931,6 +953,17 @@
     <span class="md-ellipsis">
       
         Preview Tab
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph-tab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Graph Tab
       
     </span>
   </a>
@@ -1874,6 +1907,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#the-repository-settings-dialog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Repository Settings Dialog
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-catalog-metadata-dialog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Catalog Metadata Dialog
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#the-repository-tree" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2006,6 +2061,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#graph-tab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Graph Tab
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2044,12 +2110,12 @@
 <hr />
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌─────────────────────────────────────────────────────────────────────┐
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│  BETA                MerMEId MeLODy                [GitHub]         │
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│  BETA          MerMEId MeLODy        [Language: EN] [Docs] [GitHub] │
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├─────────────────┬───────────────────────────────┬───────────────────┤
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│ Search Panel    │  Editor Panel                 │  Output Panel     │
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│                 │                               │                   │
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│ Entity Search   │  Entity Editor                │  XML | RDF |      │
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│                 │                               │  Preview          │
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│                 │                               │  Preview | Graph  │
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│                 │  [toolbar]                    │                   │
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│                 │  Entity type + IRI            │                   │
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│                 │  shacl-form                   │                   │
@@ -2064,7 +2130,12 @@
 <a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>│  Footer                                                             │
 <a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>└─────────────────────────────────────────────────────────────────────┘
 </code></pre></div>
-<p>The <strong>header</strong> shows the BETA badge (click it to read a popup with the beta disclaimer and contact information), the application title, and a GitHub link.</p>
+<p>The <strong>header</strong> shows the CDMD logo with the BETA badge (click it to read a popup with the beta disclaimer and contact information), the application title, and three buttons:</p>
+<ul>
+<li><strong>Language</strong> — switches the user interface between English and German (<strong>Language: EN</strong> / <strong>Language: DE</strong>). The selected language is used for buttons, entity type names and the labels in the forms. Some dialogs and messages are currently only available in English. The selection is not remembered after reloading the page.</li>
+<li><strong>Docs</strong> — opens this documentation.</li>
+<li><strong>GitHub</strong> — opens the source code repository of the editor.</li>
+</ul>
 <p>The <strong>footer</strong> shows the logos of the funding and partner institutions: DFG, CDMD, ZenMEM, and ADW Mainz.</p>
 <hr />
 <h2 id="the-search-panel">The Search Panel<a class="headerlink" href="#the-search-panel" title="Permanent link">&para;</a></h2>
@@ -2072,7 +2143,7 @@
 <p>The search panel let you find entities across the entire dataset without navigating through the file tree. You can search by names, titles, composers, alternative titles, or classifications.</p>
 <h3 id="controls">Controls<a class="headerlink" href="#controls" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Type filter dropdown</strong> — narrows your search to a specific entity type (Person, Place, Work, Institution, etc.). Select <strong>All</strong> to search across all entity types.</li>
+<li><strong>Type filter dropdown</strong> — narrows your search to a specific entity type (Person, Place, Work, Institution, Data Collection, etc.). Select <strong>All</strong> to search across all entity types.</li>
 <li><strong>Search input field</strong> — type a name, keyword, or phrase to find matching entities. The search is case-insensitive and looks across multiple fields:</li>
 <li><strong>Primary labels</strong> — the main name or title of an entity</li>
 <li><strong>Alternative labels</strong> — alternate names or spellings registered for an entity (e.g., if "J.S. Bach" and "Johann Sebastian Bach" are both registered) or alternative/uniform titles</li>
@@ -2086,11 +2157,11 @@
 <li><strong>Look for alternative spellings</strong> — if you can't find an entity by its common name, the search may know it by another spelling</li>
 </ul>
 <h3 id="important-note-about-search-results">Important Note About Search Results<a class="headerlink" href="#important-note-about-search-results" title="Permanent link">&para;</a></h3>
-<p>The search shows entities from the <strong>last pushed state</strong> of the repository, not your unsaved local changes. This means:</p>
+<p>The search reads the index files in the <code>indexes/</code> folder of the selected repository. The editor updates these index files itself whenever you save, delete or unstage an entity, and when you synchronise. This means:</p>
 <ul>
-<li>If you've just created or edited an entity locally but haven't pushed yet, it won't show up in search results.</li>
-<li>New results appear after the repository is pushed and the server indexes are updated (this typically takes 1-2 minutes).</li>
-<li>To sync your local view with the latest published results, use the <strong>Synchronise</strong> button in the Repository Panel.</li>
+<li>Entities you have just created or edited appear in the search results <strong>immediately after saving</strong>, even before you share them.</li>
+<li>Changes made by other people appear after you <strong>synchronize</strong> the repository.</li>
+<li>To reload the search indexes manually, use the <strong>Reload indexes</strong> button (arrow-clockwise icon, far left in the editor toolbar).</li>
 </ul>
 <hr />
 <h2 id="the-repository-panel">The Repository Panel<a class="headerlink" href="#the-repository-panel" title="Permanent link">&para;</a></h2>
@@ -2109,12 +2180,12 @@
 <tr>
 <td style="text-align: left;">Folder-plus</td>
 <td style="text-align: left;"><strong>Add repository</strong></td>
-<td style="text-align: left;">Opens the clone dialog to connect a new Git repository</td>
+<td style="text-align: left;">Opens the dialog to connect a new Git repository or a local folder</td>
 </tr>
 <tr>
-<td style="text-align: left;">Arrow-clockwise</td>
-<td style="text-align: left;"><strong>Synchronise</strong></td>
-<td style="text-align: left;">Pulls the latest changes from the remote repository</td>
+<td style="text-align: left;">Folder-minus</td>
+<td style="text-align: left;"><strong>Remove repository</strong></td>
+<td style="text-align: left;">Removes the repository from the browser's storage (does not delete the remote)</td>
 </tr>
 <tr>
 <td style="text-align: left;">Folder</td>
@@ -2122,15 +2193,34 @@
 <td style="text-align: left;">Renames the display name shown in the editor (does not affect the remote)</td>
 </tr>
 <tr>
-<td style="text-align: left;">Folder-minus</td>
-<td style="text-align: left;"><strong>Remove repository</strong></td>
-<td style="text-align: left;">Removes the repository from the browser's virtual filesystem (does not delete the remote)</td>
+<td style="text-align: left;">Cloud-download</td>
+<td style="text-align: left;"><strong>Synchronize repository</strong></td>
+<td style="text-align: left;">Downloads the latest changes from the remote repository</td>
+</tr>
+<tr>
+<td style="text-align: left;">File-minus</td>
+<td style="text-align: left;"><strong>Remove entity</strong></td>
+<td style="text-align: left;">Deletes the entity file selected in the tree</td>
+</tr>
+<tr>
+<td style="text-align: left;">Gear</td>
+<td style="text-align: left;"><strong>Repository settings</strong></td>
+<td style="text-align: left;">Changes the username and personal access token stored for the repository</td>
+</tr>
+<tr>
+<td style="text-align: left;">Journal-bookmark</td>
+<td style="text-align: left;"><strong>Catalog metadata</strong></td>
+<td style="text-align: left;">Opens the metadata form of the repository's data catalog</td>
 </tr>
 </tbody>
 </table>
-<p>These buttons operate on whichever repository is currently selected (highlighted in the tree).</p>
+<p>These buttons operate on whichever repository is currently selected (highlighted in the tree). They are enabled once you have clicked or expanded a repository. <strong>Synchronize repository</strong> is disabled for local folders without a configured remote.</p>
+<h3 id="the-repository-settings-dialog">The Repository Settings Dialog<a class="headerlink" href="#the-repository-settings-dialog" title="Permanent link">&para;</a></h3>
+<p>Opens a dialog with the <strong>username</strong> and <strong>personal access token</strong> used for the selected repository. Use it to add a token to a repository that was added without one, or to replace an expired token. Click <strong>Save</strong> to store the new values.</p>
+<h3 id="the-catalog-metadata-dialog">The Catalog Metadata Dialog<a class="headerlink" href="#the-catalog-metadata-dialog" title="Permanent link">&para;</a></h3>
+<p>Each repository contains one data catalog (<code>dataCatalogs/catalog.ttl</code>) that describes the catalogue as a whole — its name, contributors with their roles, and a description. The dialog shows the catalog in a form; <strong>Save</strong> is enabled once the form is valid. Saving stages the file in the Share Files section.</p>
 <h3 id="the-repository-tree">The Repository Tree<a class="headerlink" href="#the-repository-tree" title="Permanent link">&para;</a></h3>
-<p>Each repository is shown as a collapsible tree. Click the arrow next to a folder to expand it. The tree is <strong>lazy-loaded</strong> — folder contents are fetched from the virtual filesystem only when you expand a node.</p>
+<p>Each repository is shown as a collapsible tree. Click the arrow next to a folder to expand it. The tree is <strong>lazy-loaded</strong> — folder contents are read from the browser's storage only when you expand a node.</p>
 <p>Each tree node is one of:</p>
 <ul>
 <li><strong>Repository root</strong> (top level) — click to select the repository; the name highlights to confirm it is active</li>
@@ -2141,12 +2231,13 @@
 <h3 id="the-share-files-section">The Share Files Section<a class="headerlink" href="#the-share-files-section" title="Permanent link">&para;</a></h3>
 <p>At the bottom of the repository panel is the <strong>Share files</strong> section. This lists all files that have been saved locally but not yet pushed to the remote repository.</p>
 <ul>
-<li>Each staged file has a <strong>checkbox</strong> next to it.</li>
-<li>Check the boxes for the files you want to include in the next commit.</li>
-<li>Click the <strong>"Share files"</strong> button (cloud-upload icon) to commit and push the selected files.</li>
-<li>Click the <strong>"Unstage files"</strong> button (arrow-counterclockwise icon) to discard local changes and restore the file from the last committed state.</li>
+<li>Each staged file is listed with its path (e.g. <code>persons/2847362910.ttl</code>) and a <strong>checkbox</strong> next to it. Click the file name to open it in the editor.</li>
+<li>Check the boxes for the files you want to include in the next commit, or use the <strong>Select all</strong> button (check-square icon) to select or deselect all files.</li>
+<li>Optionally enter a <strong>Commit-Message</strong>. If you leave it empty, the date and your username are used.</li>
+<li>Click the <strong>"Share files"</strong> button (cloud-upload icon) to commit and push the selected files. The button is enabled once at least one file is selected.</li>
+<li>Click the <strong>"Unstage files"</strong> button (arrow-counterclockwise icon) to discard local changes and restore the files to the last synchronised state.</li>
 </ul>
-<p>Deleted entities also appear here with a <code>-deleted</code> suffix in the filename.</p>
+<p>Deleted entities also appear here with a <code>-deleted</code> suffix in the filename, if the file already existed in the remote repository.</p>
 <hr />
 <h2 id="the-editor-panel">The Editor Panel<a class="headerlink" href="#the-editor-panel" title="Permanent link">&para;</a></h2>
 <p><strong>Component:</strong> Entity Editor (centre column)</p>
@@ -2162,24 +2253,29 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;">Plus</td>
+<td style="text-align: left;">Arrow-clockwise</td>
+<td style="text-align: left;"><strong>Reload indexes</strong></td>
+<td style="text-align: left;">Reloads the search and dropdown indexes from the repository's <code>indexes/</code> folder</td>
+</tr>
+<tr>
+<td style="text-align: left;">File-plus</td>
 <td style="text-align: left;"><strong>New</strong></td>
 <td style="text-align: left;">Opens the entity type dialog to create a new entity</td>
 </tr>
 <tr>
-<td style="text-align: left;">Floppy disk / Save</td>
+<td style="text-align: left;">Floppy disk</td>
 <td style="text-align: left;"><strong>Save</strong></td>
-<td style="text-align: left;">Saves the current entity to the virtual filesystem and stages it for git</td>
+<td style="text-align: left;">Saves the current entity to the browser's storage and stages it for sharing</td>
+</tr>
+<tr>
+<td style="text-align: left;">File-minus</td>
+<td style="text-align: left;"><strong>Delete</strong></td>
+<td style="text-align: left;">Deletes the current entity (prompts for confirmation)</td>
 </tr>
 <tr>
 <td style="text-align: left;">Arrow-counterclockwise</td>
 <td style="text-align: left;"><strong>Undo</strong></td>
-<td style="text-align: left;">Reverts the form to the last saved state (discards unsaved changes)</td>
-</tr>
-<tr>
-<td style="text-align: left;">File-minus</td>
-<td style="text-align: left;"><strong>Remove entity</strong></td>
-<td style="text-align: left;">Deletes the current entity (prompts for confirmation)</td>
+<td style="text-align: left;">Discards all unsaved changes and resets the form to the state in which the entity was loaded</td>
 </tr>
 </tbody>
 </table>
@@ -2191,14 +2287,14 @@
 </ul>
 <p>These are read-only and generated automatically when a new entity is created.</p>
 <h3 id="the-form-shacl-form">The Form (shacl-form)<a class="headerlink" href="#the-form-shacl-form" title="Permanent link">&para;</a></h3>
-<p>The form is rendered by the <a href="https://github.com/ulb-darmstadt/shacl-form">shacl-form</a> web component. It is generated automatically from the SHACL shape file for the entity type. Each field in the form corresponds to an RDF property defined in the SHACL shape.</p>
+<p>The form is rendered by the <a href="https://github.com/ulb-darmstadt/shacl-form">shacl-form</a> web component (in the MerMEId-specific version <a href="https://github.com/Music-Metadata-Tools/mermeid-shacl-form">mermeid-shacl-form</a>). It is generated automatically from the SHACL shape file for the entity type. Each field in the form corresponds to an RDF property defined in the SHACL shape.</p>
 <p>See <a href="../entities/">Working with Entities</a> for a detailed description of how to fill in the form.</p>
 <h3 id="unsaved-changes-indicator">Unsaved Changes Indicator<a class="headerlink" href="#unsaved-changes-indicator" title="Permanent link">&para;</a></h3>
 <p>When you make any change to the form, the <strong>Save</strong> button turns blue and a dot indicator appears on or near the button. This is a reminder that the current state has not been written to the virtual filesystem yet. Clicking a different file in the tree without saving will trigger a warning.</p>
 <hr />
 <h2 id="the-output-panel">The Output Panel<a class="headerlink" href="#the-output-panel" title="Permanent link">&para;</a></h2>
 <p><strong>Component:</strong> Entity Renderer (right column, tab group)</p>
-<p>The output panel on the right side of the screen renders the current entity's data in different formats. It updates when the form content is saved, not automatically.</p>
+<p>The output panel on the right side of the screen renders the current entity's data in different formats. The XML, RDF and Preview tabs update when an entity is opened or saved, not while you are typing. The <strong>Preview</strong> tab is shown by default.</p>
 <h3 id="xml-tab">XML Tab<a class="headerlink" href="#xml-tab" title="Permanent link">&para;</a></h3>
 <p>Shows the entity data converted from JSON-LD to <strong>MEI/XML</strong> or <strong>TEI/XML</strong> format. This conversion is performed by entity-type-specific converter modules. The output is suitable for copying into MEI or TEI documents or passing to MEI-aware tools.</p>
 <p>A <strong>copy</strong> button at the top of the tab copies the full XML content to the clipboard.</p>
@@ -2206,11 +2302,19 @@
 <p>Shows the <strong>RDF/Turtle</strong> output — the exact content that is inside the <code>.ttl</code> file. This is produced directly by <code>shacl-form.serialize()</code> and represents the canonical stored format for the entity.</p>
 <p>A <strong>copy</strong> button at the top of the tab copies the Turtle content to the clipboard.</p>
 <h3 id="preview-tab">Preview Tab<a class="headerlink" href="#preview-tab" title="Permanent link">&para;</a></h3>
-<p>Shows a <strong>read-only rendering</strong> of the current entity using a second <code>shacl-form</code> instance in <code>data-view</code> mode. This gives a cleaner, label-based view of the data without the editable input controls. It is useful for reviewing entries before saving.</p>
+<p>Shows a <strong>read-only rendering</strong> of the current entity using a second <code>shacl-form</code> instance in <code>data-view</code> mode. This gives a cleaner, label-based view of the data without the editable input controls. It is useful for reviewing entries before pushing.</p>
+<h3 id="graph-tab">Graph Tab<a class="headerlink" href="#graph-tab" title="Permanent link">&para;</a></h3>
+<p>Shows the <strong>related entities</strong> of the current entity as an interactive graph. The relations are taken from the repository's indexes, so entities linking to the current entity are shown as well as entities it links to.</p>
+<ul>
+<li>Nodes are coloured by entity type; a legend and a <strong>type filter</strong> ("Related: All / …") let you restrict the view to one type.</li>
+<li>Click a node to expand its own relations. If an entity has many relations, only the first ones are shown together with a <strong>"+N more"</strong> node.</li>
+<li>Use the zoom buttons to zoom in, zoom out or reset the view, and switch between the <strong>graph</strong> and a <strong>list</strong> view.</li>
+<li>The eye icon on a node opens the entity in the floating preview panel (see <a href="../entities/#previewing-linked-entities">Previewing Linked Entities</a>).</li>
+</ul>
 <hr />
 <h2 id="mobile-layout">Mobile Layout<a class="headerlink" href="#mobile-layout" title="Permanent link">&para;</a></h2>
 <p>On small screens, the three-panel layout collapses. A <strong>toggle button</strong> allows switching between the left panel and the main editing area. The output panel may require scrolling or is hidden depending on screen width.</p>
-<p>For the best experience on small screens, use landscape orientation. Full multi-panel layout requires a screen width of at least 1024px.</p>
+<p>For the best experience on small screens, use landscape orientation. Full multi-panel layout requires a screen width of more than 900px.</p>
 
 
 

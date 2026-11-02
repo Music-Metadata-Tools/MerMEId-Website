@@ -1127,6 +1127,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Application Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1137,6 +1154,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Bootstrap Sequence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#language-switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Language Switch
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1598,6 +1632,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Application Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1608,6 +1659,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Bootstrap Sequence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#language-switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Language Switch
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1644,36 +1712,76 @@
 <h2 id="application-architecture">Application Architecture<a class="headerlink" href="#application-architecture" title="Permanent link">&para;</a></h2>
 <p>MerMEId MeLODy is a <strong>static, browser-only application</strong>. There is no server-side component — all processing happens in the browser. The application is served as static HTML, CSS, and JavaScript files.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Browser
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── js/index.js                    ← orchestration layer (startup + event wiring)
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── adwlm-filesystem-manager       ← left panel: repositories + staging area
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│   ├── index.js                        ← adwlm-filesystem-manager component
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│   ├── constants.js                    ← shared constants (CORS proxy URL, scheme names)
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│   ├── credentials-helper.js           ← token handling utilities
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│   ├── add-repository-dialog/index.js  ← dialog for cloning a repository
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│   ├── rename-filesystem-entry-dialog/ ← dialog for renaming repositories
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│   └── virtual-filesystem/index.js     ← VirtualFilesystem class (Git + FS operations)
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>├── adwlm-entity-search            ← left panel: entity search
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>|   └── index.js                        ← adwlm-entity-search component
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>├── adwlm-entity-editor            ← main area: form editor
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>|   ├── index.js                        ← adwlm-entity-editor component and shacl-form renderer
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│   └── entity-types-dialog/index.js    ← dialog for selecting a new entity type
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>└── rdf-xml-converter              ← right panel: entity renderer
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    ├── converters                     ← one converter module per entity type
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    ├── templates                      ← MEI/XML output templates (one per entity type)
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    └── types/index.js                  ← maps entity type IRIs to converter modules
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── js/index.js                    ← orchestration layer (startup, language + event wiring)
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── modules/services/
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│   ├── filesystem-service.js          ← singleton VirtualFilesystem shared by all components
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│   └── index-store-service.js         ← shared Oxigraph store with all indexes/*.ttl (INDEXES list)
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>├── adwlm-filesystem-manager       ← left panel: repositories + staging area
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│   ├── index.js                        ← adwlm-filesystem-manager component
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│   ├── api-provider.js                 ← GitHub/GitLab REST + GraphQL provider (clone, pull, push, branches)
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│   ├── constants.js                    ← shared constants (CORS proxy URL, scheme names)
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│   ├── credentials-helper.js           ← token handling utilities
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│   ├── oxigraph-node-adapter.js           ← #oxigraph shim for Node.js / Vitest
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│   ├── add-repository-dialog/index.js  ← dialog for cloning a repository
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>│   ├── rename-filesystem-entry-dialog/ ← dialog for renaming repositories
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│   ├── repository-settings-dialog/        ← dialog for changing username / personal access token
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│   ├── catalog-metadata-dialog/           ← dialog for editing catalog metadata
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>│   ├── push-conflict-dialog/              ← dialog for resolving conflicts before sharing
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>│   └── virtual-filesystem/
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>│       ├── index.js                       ← VirtualFilesystem class (files, staging, push/pull, index generation)
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>│       ├── opfs-directory-filesystem.js   ← default storage (Origin Private File System)
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>│       └── fsa-directory-filesystem.js    ← fs adapter for local folders (File System Access API)
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>├── adwlm-entity-search            ← left panel: entity search
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>|   └── index.js                        ← adwlm-entity-search component
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>├── adwlm-entity-editor            ← main area: form editor
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>|   ├── index.js                        ← adwlm-entity-editor component and shacl-form renderer
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>│   └── entity-types-dialog/index.js    ← dialog for selecting a new entity type
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>├── adwlm-graph-view                   ← right panel: Graph tab
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>│   └── index.js                           ← adwlm-graph-view component
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>├── datasets-generator                 ← SPARQL CONSTRUCT queries, one per entity folder (index generation)
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>└── rdf-xml-converter              ← right panel: XML output
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>    ├── converters                     ← one converter module per entity type
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    ├── templates                      ← MEI/XML output templates (one per entity type)
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>    └── types/index.js                  ← maps entity type IRIs to converter modules
 </code></pre></div>
-<p>Cross-origin Git requests are routed through a CORS proxy (<code>https://cors.isomorphic-git.org</code>). No data is processed server-side; the proxy only adds the necessary CORS headers to Git HTTP responses.</p>
+<p>Git hosts are reached through their REST/GraphQL APIs (<code>api-provider.js</code>). No data is processed server-side; the only external requests go to the Git host's API.</p>
+<h3 id="storage">Storage<a class="headerlink" href="#storage" title="Permanent link">&para;</a></h3>
+<p>Each repository is a directory in the browser's Origin Private File System (OPFS), or a local folder opened via the File System Access API. Besides the data files and the <code>.git/config</code> (username, token, branch, remote, lazy-loading setting), the editor keeps some bookkeeping files per repository:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">File</th>
+<th style="text-align: left;">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>.dirty.json</code></td>
+<td style="text-align: left;">Files that have been changed or deleted locally and not yet shared</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>.snapshot.json</code></td>
+<td style="text-align: left;">The last synchronised content of locally changed files (baseline for unstaging and conflict detection)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>.remote-tree.json</code></td>
+<td style="text-align: left;">Manifest of the remote files for lazy loading (files are downloaded on first access)</td>
+</tr>
+</tbody>
+</table>
 <hr />
 <h2 id="bootstrap-sequence">Bootstrap Sequence<a class="headerlink" href="#bootstrap-sequence" title="Permanent link">&para;</a></h2>
-<p>When the page loads, the following sequence occurs in <code>js/index.js</code>:</p>
+<p>When the page loads, the following sequence occurs:</p>
 <ol>
-<li><strong>Shoelace ready</strong> — the page waits for Shoelace's custom elements (<code>sl-button</code>, <code>sl-tree</code>, <code>sl-dialog</code>, etc.) to be defined before proceeding.</li>
+<li><strong>Shoelace ready</strong> — a script in <code>index.html</code> waits for Shoelace's tab components (<code>sl-tab-group</code>, <code>sl-tab</code>, <code>sl-tab-panel</code>) to be defined and then adds the class <code>ready</code> to the body. <code>js/index.js</code> itself starts by initialising Oxigraph.</li>
 <li><strong>Fetch <code>editor-default.ttl</code></strong> — the orchestration script fetches <code>configuration/editor-default.ttl</code> from the editor server. This Turtle file defines all registered entity types.</li>
-<li><strong>SPARQL query via Oxigraph</strong> — the Turtle content is loaded into an in-browser Oxigraph triple store. A SPARQL SELECT query extracts entity type definitions: type IRI, display label, folder name, SHACL file location.</li>
-<li><strong>Pass definitions to entity_editor</strong> — the extracted definitions are set as the <code>entity_type_definitions</code> property on the <code>adwlm-entity-editor</code> component. The editor uses these to populate the "New entity" dialog and to load the correct SHACL shape for each file type.</li>
-<li><strong>Components initialize</strong> — web components connect to the DOM, set up internal state, and register listeners for the custom DOM events they consume.</li>
-<li><strong>Output Panel wiring</strong> — <code>js/index.js</code> connects the Output Panel tabs (XML, RDF, Preview) to the entity editor's output events. When the form content changes, the output panel updates automatically.</li>
+<li><strong>SPARQL query via Oxigraph</strong> — the Turtle content is loaded into an in-browser Oxigraph triple store. A SPARQL SELECT query extracts the entity type definitions — type IRI, display label in the current UI language, folder name, SHACL file location. Types without a label in the current language are not returned.</li>
+<li><strong>Pass definitions to the components</strong> — the extracted definitions are set as the <code>entity_type_definitions</code> property on <code>adwlm-entity-editor</code>, <code>adwlm-filesystem-manager</code> and <code>adwlm-graph-view</code>. The editor uses them to populate the "New entity" dialog and to load the correct SHACL shape for each file type; the filesystem manager uses the folder names to decide which folders are shown in the tree. The list of type IRIs is also exposed as <code>globalThis.__MERMEID_ENTITY_TYPE_ALLOWLIST__</code> for the quick add feature of shacl-form.</li>
+<li><strong>Components initialize</strong> — web components connect to the DOM, set up internal state, and register listeners for the custom DOM events they consume. The filesystem manager auto-selects the first repository and dispatches <code>adwlm-filesystem-manager:repository-selected</code>, which triggers loading the config and the search indexes.</li>
+<li><strong>Output Panel wiring</strong> — <code>js/index.js</code> connects the Output Panel tabs (XML, RDF, Preview, Graph) to the entity editor. The output panel is updated when an entity is opened (<code>adwlm-filesystem-manager:entity-to-edit</code>) or saved (<code>adwlm-entity-editor:entity-to-save</code>), not on every change in the form.</li>
 </ol>
+<h3 id="language-switch">Language Switch<a class="headerlink" href="#language-switch" title="Permanent link">&para;</a></h3>
+<p><code>window.__MERMEID_setUiLanguage(lang)</code> (supported: <code>en</code>, <code>de</code>) is called by the language dropdown in the header. It reloads the entity type definitions in the new language, sets the <code>data-ui-language</code> attribute on all components and dispatches <code>mermeid-ui-language-changed</code> on <code>window</code>. Static texts in <code>index.html</code> are switched by showing or hiding elements with a <code>lang</code> attribute.</p>
 <hr />
 <h2 id="technology-stack">Technology Stack<a class="headerlink" href="#technology-stack" title="Permanent link">&para;</a></h2>
 <table>
@@ -1692,32 +1800,37 @@
 </tr>
 <tr>
 <td style="text-align: left;"><a href="https://shoelace.style/">Shoelace</a></td>
-<td style="text-align: left;">latest</td>
+<td style="text-align: left;">2.17.1</td>
 <td style="text-align: left;">UI components: <code>sl-button</code>, <code>sl-tree</code>, <code>sl-dialog</code>, <code>sl-tab</code>, etc.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a href="https://isomorphic-git.org/">isomorphic-git</a></td>
-<td style="text-align: left;">1.27.1</td>
-<td style="text-align: left;">Git operations (clone, pull, push, commit, status) in the browser</td>
+<td style="text-align: left;">1.37.4</td>
+<td style="text-align: left;">Local Git operations (init, config, staging, walking the working directory)</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a href="https://github.com/isomorphic-git/lightning-fs">LightningFS</a></td>
-<td style="text-align: left;">bundled</td>
-<td style="text-align: left;">Virtual filesystem persisted in <code>IndexedDB</code></td>
+<td style="text-align: left;">OPFS / File System Access API</td>
+<td style="text-align: left;">browser</td>
+<td style="text-align: left;">Storage of repositories (own adapters in <code>virtual-filesystem/</code>)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a href="https://github.com/ulb-darmstadt/shacl-form">shacl-form</a></td>
-<td style="text-align: left;">latest</td>
-<td style="text-align: left;">SHACL-driven form renderer — generates HTML forms from SHACL shape files</td>
+<td style="text-align: left;"><a href="https://github.com/Music-Metadata-Tools/mermeid-shacl-form">mermeid-shacl-form</a> fork</td>
+<td style="text-align: left;">SHACL-driven form renderer — generates HTML forms from SHACL shape files + quick add and rich text editor plugin</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a href="https://github.com/oxigraph/oxigraph">Oxigraph</a></td>
-<td style="text-align: left;">0.4.5</td>
-<td style="text-align: left;">In-browser RDF triple store + SPARQL 1.1 engine (entity search + startup config loading)</td>
+<td style="text-align: left;">0.5.8 / 0.4.5</td>
+<td style="text-align: left;">In-browser RDF triple store + SPARQL 1.1 engine. 0.5.8 (via <code>#oxigraph</code>) is used for index generation in the virtual filesystem; 0.4.5 is imported directly by <code>js/index.js</code> and the index store service (startup config loading, entity search, graph view)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="https://vitest.dev/">Vitest</a>, memfs, dotenv</td>
+<td style="text-align: left;">dev dependencies</td>
+<td style="text-align: left;">Test suite</td>
 </tr>
 </tbody>
 </table>
-<p>All dependencies are loaded directly from CDNs (<code>cdn.jsdelivr.net</code>, <code>unpkg.com</code>). No build step or package manager is required to run or develop the editor.</p>
+<p>All dependencies are loaded directly from CDNs (<code>cdn.jsdelivr.net</code>, <code>unpkg.com</code>). No build step or package manager is required to run or develop the editor; npm is only needed to run the tests.</p>
 
 
 

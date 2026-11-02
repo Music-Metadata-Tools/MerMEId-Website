@@ -1518,6 +1518,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="IRI Generation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixed-iris" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixed IRIs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1571,10 +1588,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-dataset-namespace-patch" class="md-nav__link">
+  <a href="#linked-entities-in-the-forms" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The dataset: Namespace Patch
+        Linked Entities in the Forms
       
     </span>
   </a>
@@ -1603,8 +1620,9 @@
 <hr />
 <h2 id="default-format-urnuuid">Default Format: <code>urn:uuid:</code><a class="headerlink" href="#default-format-urnuuid" title="Permanent link">&para;</a></h2>
 <p>By default, entity IRIs use the <code>urn:uuid:</code> scheme combined with the entity folder name and a random integer:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>urn:uuid:&lt;folder&gt;/&lt;randomInteger&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>urn:uuid:&lt;folder&gt;/&lt;IDprefix&gt;&lt;randomInteger&gt;
 </code></pre></div>
+<p>The <code>IDprefix</code> is optional and empty by default (see <a href="../../developer/repo_config/#idprefix">Repository Configuration</a>).</p>
 <p><strong>Examples:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>urn:uuid:persons/2847362910
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>urn:uuid:works/1031334055
@@ -1623,17 +1641,23 @@
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">return</span><span class="w"> </span><span class="nx">array</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span><span class="w"> </span><span class="c1">// a random 32-bit unsigned integer</span>
 </code></pre></div>
 <p>This gives approximately <strong>4 billion</strong> possible values per entity type. Collisions are statistically negligible for the scale of musicological catalogues.</p>
+<h3 id="fixed-iris">Fixed IRIs<a class="headerlink" href="#fixed-iris" title="Permanent link">&para;</a></h3>
+<p>Some IRIs are not random. Each repository has exactly one data catalog and two default data collections, which the editor creates automatically when a repository is selected:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>urn:uuid:dataCatalogs/catalog
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>urn:uuid:dataCollections/works
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>urn:uuid:dataCollections/manifestations
+</code></pre></div>
 <p>The IRI is <strong>permanent</strong>: once an entity is created and committed to the repository, its IRI should not be changed. All other entities that reference it (via linked fields) store the IRI directly — changing it would break those references.</p>
 <hr />
 <h2 id="configurable-prefix-projectdomain">Configurable Prefix: <code>projectDomain</code><a class="headerlink" href="#configurable-prefix-projectdomain" title="Permanent link">&para;</a></h2>
 <p>The IRI prefix can be changed from <code>urn:uuid:</code> to an HTTPS namespace by setting <code>projectDomain</code> in <code>configuration/config.json</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">{</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">"projectDomain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.org/"</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">"projectDomain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.org/"</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="p">}</span>
 </code></pre></div>
 <p>With this configuration, new entities receive IRIs like:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>https://example.org/persons/2847362910
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>https://example.org/works/1031334055
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>https://example.org/persons/2847362910
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>https://example.org/works/1031334055
 </code></pre></div>
 <h3 id="when-to-use-a-custom-domain">When to use a custom domain<a class="headerlink" href="#when-to-use-a-custom-domain" title="Permanent link">&para;</a></h3>
 <ul>
@@ -1646,35 +1670,30 @@
 <hr />
 <h2 id="iris-in-turtle-output">IRIs in Turtle Output<a class="headerlink" href="#iris-in-turtle-output" title="Permanent link">&para;</a></h2>
 <p>Every Turtle file in the repository uses the entity's IRI as the subject of all statements:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">@prefix</span><span class="w"> </span><span class="nn">melod:</span><span class="w">  </span><span class="nv">&lt;https://lod.academy/melod/vocab/ontology#&gt;</span><span class="w"> </span><span class="p">.</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">@prefix</span><span class="w"> </span><span class="nn">schema:</span><span class="w"> </span><span class="nv">&lt;https://schema.org/&gt;</span><span class="w"> </span><span class="p">.</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">@prefix</span><span class="w"> </span><span class="nn">skos:</span><span class="w">   </span><span class="nv">&lt;http://www.w3.org/2004/02/skos/core#&gt;</span><span class="w"> </span><span class="p">.</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">@prefix</span><span class="w"> </span><span class="nn">owl:</span><span class="w">    </span><span class="nv">&lt;http://www.w3.org/2002/07/owl#&gt;</span><span class="w"> </span><span class="p">.</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="nv">&lt;urn:uuid:persons/2847362910&gt;</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="kt">a</span> <span class="nn">melod</span><span class="p">:</span><span class="nt">Person</span> <span class="p">;</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    <span class="nn">schema</span><span class="p">:</span><span class="nt">familyName</span> <span class="s">"Telemann"</span> <span class="p">;</span>
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    <span class="nn">schema</span><span class="p">:</span><span class="nt">givenName</span> <span class="s">"Georg Philipp"</span> <span class="p">;</span>
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    <span class="nn">skos</span><span class="p">:</span><span class="nt">prefLabel</span> <span class="s">"Georg Philipp Telemann"</span> <span class="p">;</span>
-<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    <span class="nn">owl</span><span class="p">:</span><span class="nt">sameAs</span> <span class="nv">&lt;http://d-nb.info/gnd/11862119X&gt;</span> <span class="p">.</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">@prefix</span><span class="w"> </span><span class="nn">melod:</span><span class="w">  </span><span class="nv">&lt;https://lod.academy/melod/vocab/ontology#&gt;</span><span class="w"> </span><span class="p">.</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">@prefix</span><span class="w"> </span><span class="nn">schema:</span><span class="w"> </span><span class="nv">&lt;https://schema.org/&gt;</span><span class="w"> </span><span class="p">.</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">@prefix</span><span class="w"> </span><span class="nn">owl:</span><span class="w">    </span><span class="nv">&lt;http://www.w3.org/2002/07/owl#&gt;</span><span class="w"> </span><span class="p">.</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="nv">&lt;urn:uuid:persons/2847362910&gt;</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="kt">a</span> <span class="nn">melod</span><span class="p">:</span><span class="nt">Person</span> <span class="p">;</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    <span class="nn">schema</span><span class="p">:</span><span class="nt">familyName</span> <span class="s">"Telemann"</span> <span class="p">;</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>    <span class="nn">schema</span><span class="p">:</span><span class="nt">givenName</span> <span class="s">"Georg Philipp"</span> <span class="p">;</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    <span class="nn">owl</span><span class="p">:</span><span class="nt">sameAs</span> <span class="nv">&lt;http://d-nb.info/gnd/11862119X&gt;</span> <span class="p">.</span>
 </code></pre></div>
 <p>Cross-references between entities also use IRIs directly:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nv">&lt;urn:uuid:expressions/1234567890&gt;</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="kt">a</span> <span class="nn">melod</span><span class="p">:</span><span class="nt">Expression</span> <span class="p">;</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="nn">melod</span><span class="p">:</span><span class="nt">isRealisationOf</span> <span class="nv">&lt;urn:uuid:works/9876543210&gt;</span> <span class="p">;</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="nn">melod</span><span class="p">:</span><span class="nt">composer</span> <span class="nv">&lt;urn:uuid:persons/2847362910&gt;</span> <span class="p">.</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nv">&lt;urn:uuid:works/9876543210&gt;</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="kt">a</span> <span class="nn">melod</span><span class="p">:</span><span class="nt">Work</span> <span class="p">;</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="nn">lrmoo</span><span class="p">:</span><span class="nt">R3_is_realised_in</span> <span class="nv">&lt;urn:uuid:expressions/1234567890&gt;</span> <span class="p">;</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    <span class="nn">melod</span><span class="p">:</span><span class="nt">hasContribution</span> <span class="p">[</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>        <span class="nn">melod</span><span class="p">:</span><span class="nt">hasAgent</span> <span class="nv">&lt;urn:uuid:persons/2847362910&gt;</span> <span class="p">;</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>        <span class="nn">melod</span><span class="p">:</span><span class="nt">hasRole</span> <span class="nv">&lt;…&gt;</span> <span class="c"># role term from the MeLODy vocabulary, e.g. composer</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    <span class="p">]</span> <span class="p">.</span>
 </code></pre></div>
 <hr />
-<h2 id="the-dataset-namespace-patch">The <code>dataset:</code> Namespace Patch<a class="headerlink" href="#the-dataset-namespace-patch" title="Permanent link">&para;</a></h2>
-<p>SHACL shape files use a special <code>dataset:</code> namespace as a placeholder for the published dataset index URL. At runtime, the editor replaces <code>dataset:</code> with the value of <code>datasetBaseUrl</code> from <code>config.json</code>. This allows the same SHACL shapes to work with any repository without modification.</p>
-<p>For example, a Birth Place field in <code>person.shacl</code> might reference:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nn">sh</span><span class="p">:</span><span class="nt">class</span> <span class="nn">melod</span><span class="p">:</span><span class="nt">Place</span> <span class="p">;</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nn">melod</span><span class="p">:</span><span class="nt">index</span> <span class="nv">&lt;dataset:places.ttl&gt;</span> <span class="p">.</span>
-</code></pre></div>
-<p>At runtime this becomes:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>https://yourname.github.io/my-catalogue/datasets/places.ttl
-</code></pre></div>
-<p>See <a href="../configuration/repo_config.md">Repository Configuration</a> for details on how <code>datasetBaseUrl</code> is configured.</p>
+<h2 id="linked-entities-in-the-forms">Linked Entities in the Forms<a class="headerlink" href="#linked-entities-in-the-forms" title="Permanent link">&para;</a></h2>
+<p>Linked entity fields in the SHACL shapes declare the index class of the target type, e.g. <code>sh:class melod:PlaceEntity</code>. When a form is opened, the editor appends all files from the repository's <code>indexes/</code> folder to the SHACL shape, so <code>shacl-form</code> can offer every entity typed <code>melod:PlaceEntity</code> in the dropdown. The IRI of the selected entity is then stored in the Turtle file.</p>
+<p>Earlier versions used a <code>dataset:</code> namespace in the shapes that was replaced at runtime with the <code>datasetBaseUrl</code>; this mechanism has been removed.</p>
+<p>See <a href="../../developer/repo_config/">Repository Configuration</a> and <a href="../../developer/shacl_shapes/">SHACL Shapes</a> for details.</p>
 
 
 

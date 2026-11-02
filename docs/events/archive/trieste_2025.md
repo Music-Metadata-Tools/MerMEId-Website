@@ -102,11 +102,11 @@ List of test data repositories used during the workshop:
 ### Part 1: Clone Remote GitLab Data Repository
 
 - Copy your data repository URL from the table above.
-- Follow the steps in [Getting Started](../../getting_started.md#adding-a-repository-to-the-editor).
+- Follow the steps in [Getting Started](../../user_guide/index.md#adding-a-repository-to-the-editor).
 
 ### Part 2: Create a Test Entity and Push It
 
-- Follow the steps in [Getting Started](../../getting_started.md#your-first-entity). Choose a simple entity, such as a *Person* or a *Place*. Insert data in the form and press the *Save* button.
+- Follow the steps in [Getting Started](../../user_guide/index.md#your-first-entity). Choose a simple entity, such as a *Person* or a *Place*. Insert data in the form and press the *Save* button.
 - Then push the file following the steps in [Git Workflow](../../user_guide/git_workflow.md#sharing-changes).
 - Optional: go to your remote GitLab repository and check that the entity file is present.
 

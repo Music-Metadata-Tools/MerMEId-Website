@@ -32,6 +32,7 @@ A **Work** represents the abstract intellectual or artistic creation — the com
 - Evidence as linked bibliography
 - Related works (part of a larger collection, preceded by, derived from, etc.)
 - Is realised in (linked Expression)
+- Data collections (automatically includes the repository's default collection "All works")
 
 ---
 
@@ -75,6 +76,7 @@ A **Manifestation** is a published or otherwise distributed embodiment of an Exp
 - Classifications
 - Related manifestations (reprints, facsimile editions)
 - Embodies (Linked Expression)
+- Data collections (automatically includes the repository's default collection "All manifestations")
 
 ---
 
@@ -98,7 +100,7 @@ An **Item** is a single physical or digital copy of a Manifestation — a specif
 - Link to digitisation (if available)
 - Classifications
 - Related items (components)
-- Materialization Of (Linked Manifestation)
+- Is materialization of (linked Manifestation)
 
 ---
 

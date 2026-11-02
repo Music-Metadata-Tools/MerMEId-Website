@@ -1,6 +1,6 @@
 # SHACL Shapes
 
-Forms in MerMEId MeLODy are generated automatically from [SHACL shapes](https://www.w3.org/TR/shacl/) by the [shacl-form](https://github.com/ulb-darmstadt/shacl-form) web component developed by ULB Darmstadt. You do not write HTML or JavaScript to add or modify fields — defining them in the SHACL shape file is sufficient.
+Forms in MerMEId MeLODy are generated automatically from [SHACL shapes](https://www.w3.org/TR/shacl/) by the [shacl-form](https://github.com/ulb-darmstadt/shacl-form) web component developed by ULB Darmstadt (in the MerMEId fork [mermeid-shacl-form](https://github.com/Music-Metadata-Tools/mermeid-shacl-form)). You do not write HTML or JavaScript to add or modify fields — defining them in the SHACL shape file is sufficient.
 
 ---
 
@@ -23,8 +23,8 @@ The following properties control how fields appear and behave in the generated f
 
 | Property | Effect |
 | :--- | :--- |
-| `sh:name` | Label shown for the field in the form |
-| `sh:description` | Help text displayed below the field |
+| `sh:name` | Label shown for the field in the form (one per UI language, e.g. `"Surname"@en, "Nachname"@de`) |
+| `sh:description` | Help text displayed below the field (one per UI language) |
 | `sh:path` | The RDF property this field represents (e.g. `schema:familyName`) |
 | `sh:minCount` | Minimum number of values; `sh:minCount 1` makes the field required |
 | `sh:maxCount` | Maximum number of values; `sh:maxCount 1` restricts to a single value |
@@ -57,82 +57,91 @@ melod:PersonShape
     sh:targetClass melod:Person ;
     sh:property [
         sh:path schema:familyName ;
-        sh:name "Surname" ;
+        sh:name "Surname"@en, "Nachname"@de ;
+        sh:description "Surname of the person"@en, "Nachname der Person"@de ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:datatype xsd:string ;
+        sh:group melod:General ;
     ] ;
     sh:property [
         sh:path schema:givenName ;
-        sh:name "First name" ;
-        sh:minCount 1 ;
+        sh:name "First name"@en, "Vorname"@de ;
         sh:maxCount 1 ;
-        sh:datatype xsd:string ;
+        sh:group melod:General ;
     ] ;
     sh:property [
         sh:path owl:sameAs ;
-        sh:name "Link / sameAs" ;
-        sh:description "Authority record URL (GND, VIAF, Wikidata, etc.)" ;
+        sh:name "Link"@en, "Link"@de ;
+        sh:description "Identifier e.g. GND, VIAF"@en, "Identifier z.B. GND, VIAF"@de ;
         sh:nodeKind sh:IRI ;
         sh:pattern "^http(s)?://.+?/..+?" ;
+        sh:group melod:General ;
     ] ;
     sh:property [
         sh:path schema:gender ;
-        sh:name "Gender" ;
+        sh:name "Gender"@en, "Geschlecht"@de ;
         sh:in ( "female" "male" "diverse" ) ;
         sh:maxCount 1 ;
+        sh:group melod:General ;
     ] ;
     sh:property [
         sh:path schema:birthPlace ;
-        sh:name "Birth place" ;
-        sh:class melod:Place ;
-        sh:nodeKind sh:IRI ;
-    ] .
+        sh:name "Place"@en, "Ort"@de ;
+        sh:class melod:PlaceEntity ;
+        sh:maxCount 1 ;
+        sh:group melod:Birth ;
+    ] ;
+    sh:targetClass melod:Person .
+
+melod:General a sh:PropertyGroup ;
+    rdfs:label "General Information"@en, "Allgemeine Informationen"@de .
+melod:Birth a sh:PropertyGroup ;
+    rdfs:label "Birth"@en, "Geburt"@de .
 ```
+
+---
+
+## Multilingual Labels
+
+The editor supports the UI languages English (`en`) and German (`de`). The form receives the selected language via the `data-language` attribute and shows the labels that match it. Therefore all labels — `sh:name`, `sh:description`, the `rdfs:label` of property groups and of `sh:or` alternatives — should be given once per language with language tags (`@en`, `@de`).
 
 ---
 
 ## Linked Entity Fields
 
-Fields that reference other entities (e.g. "Birth place" → Place) use `sh:class` to specify the type of the linked entity. The editor populates the dropdown for such fields from the published dataset index.
+Fields that reference other entities (e.g. "Birth place" → Place) use `sh:class` to specify the type of the linked entity. The class is the **index class** of the target type, `melod:<Type>Entity` (e.g. `melod:PlaceEntity`, `melod:PersonEntity`, `melod:ExpressionEntity`), which is produced by the index queries (see [Datasets Generation](datasets.md)). The editor populates the dropdown for such fields from the repository's index files.
 
-The index URL is injected at runtime via the `dataset:` namespace patch (see below).
+Fields that accept several entity types use `sh:or`:
+
+```turtle
+sh:or (
+    [ sh:class melod:PersonEntity ; rdfs:label "Person"@en, "Person"@de ]
+    [ sh:class melod:InstitutionEntity ; rdfs:label "Institution"@en, "Institution"@de ]
+) ;
+```
 
 ---
 
-## The `dataset:` Namespace Patch
+## How Dropdowns Are Populated
 
-SHACL shapes reference published dataset indexes using a special `dataset:` namespace:
+When a form is opened, the editor fetches the SHACL shape and appends the content of all files in the repository's `indexes/` folder to it. The combined Turtle is passed to `shacl-form` as a `blob:` URL. `shacl-form` then offers every entity typed with the requested class (e.g. `melod:PlaceEntity`) in the dropdown.
 
-```turtle
-sh:property [
-    sh:name "Birth place" ;
-    sh:path melod:birthPlace ;
-    sh:class melod:Place ;
-    owl:imports dataset:places.ttl ;
-] .
-```
-
-When the editor loads a repository, it reads `datasetBaseUrl` from `configuration/config.json` and replaces every occurrence of `dataset:` in the loaded SHACL shape with that URL. For example, if `datasetBaseUrl` is `https://yourname.github.io/my-catalogue/datasets/`, the property above becomes:
-
-```turtle
-owl:imports <https://yourname.github.io/my-catalogue/datasets/places.ttl> ;
-```
-
-This allows the same SHACL shape files to work with any repository — only `config.json` needs to point to the correct published dataset.
+This allows the same SHACL shape files to work with any repository.
 
 ---
 
 ## Adding a New Field
 
-To add a field to an existing entity type, open the corresponding `.shacl` file and add a new `sh:property` block to the node shape. For example, to add a "Nickname" field to the Person shape:
+To add a field to an existing entity type, open the corresponding `.shacl` file and add a new `sh:property` block to the node shape. For example, to add an "Honorific prefix" field to the Person shape:
 
 ```turtle
 sh:property [
-    sh:path schema:alternateName ;
-    sh:name "Nickname" ;
-    sh:description "Informal or abbreviated name" ;
+    sh:path schema:honorificPrefix ;
+    sh:name "Honorific prefix"@en, "Namenszusatz"@de ;
+    sh:description "Title or honorific, e.g. Dr."@en, "Titel, z.B. Dr."@de ;
     sh:datatype xsd:string ;
+    sh:group melod:General ;
 ] ;
 ```
 

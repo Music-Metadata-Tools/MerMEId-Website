@@ -1,6 +1,6 @@
 # Entity Types
 
-MerMEId MeLODy supports 13 entity types. Each type corresponds to an RDF class in the `melod:` ontology, a dedicated folder in the data repository, and a SHACL shape file that defines its form fields.
+MerMEId MeLODy supports 14 entity types, plus one data catalog per repository. Each type corresponds to an RDF class in the `melod:` ontology, a dedicated folder in the data repository, and a SHACL shape file that defines its form fields.
 
 ---
 
@@ -21,6 +21,9 @@ MerMEId MeLODy supports 13 entity types. Each type corresponds to an RDF class i
 | Bibliography | `bibliography/` | `melod:Bibliography` | A bibliographic reference |
 | Event | `events/` | `melod:Event` | A general event (non-performance) |
 | Letter | `letters/` | `melod:Letter` | A letter or correspondence document |
+| DataCollection | `dataCollections/` | `melod:DataCollection` | A named collection (work or source catalogue) belonging to the data catalog |
+
+In addition, each repository contains exactly one **data catalog** (`dataCatalogs/catalog.ttl`, `melod:DataCatalog`), which is edited via the **Catalog metadata** button in the repository panel.
 
 ---
 
@@ -32,7 +35,7 @@ MerMEId MeLODy supports 13 entity types. Each type corresponds to an RDF class i
 
 The abstract intellectual or artistic creation — the composer's intention, independent of any particular realisation, notation, or performance. See [FRBR Hierarchy](frbr.md) for details.
 
-**Key fields:** title (primary and alternative), composer (linked Person), catalogue numbers (opus, BWV, TWV, etc.), genre, related works, linked expression.
+**Key fields:** title (primary and alternative), composer (linked Person), catalogue numbers (opus, BWV, TWV, etc.), genre, related works, linked expression, data collections (file collections with citation and publication information).
 
 ---
 
@@ -52,7 +55,7 @@ A specific realisation of a Work defined by its musical content. See [FRBR Hiera
 
 A published or otherwise distributed embodiment of an Expression. See [FRBR Hierarchy](frbr.md) for details.
 
-**Key fields:** title as on the manifestation, publisher, place and date of publication, plate number, physical description and title pages (for manifestation singleton), related manifestations, linked items, linked expression.
+**Key fields:** title as on the manifestation, publisher, place and date of publication, plate number, physical description and title pages (for manifestation singleton), related manifestations, linked items, linked expression, data collections (file collections with citation and publication information).
 
 ---
 
@@ -79,13 +82,16 @@ An individual relevant to the catalogue — composer, arranger, performer, edito
 | Field | RDF Property | Notes |
 | :--- | :--- | :--- |
 | Surname | `schema:familyName` | **Required** |
-| First name | `schema:givenName` | **Required** |
-| Link / sameAs | `owl:sameAs` | GND, VIAF, Wikidata, etc. Must be a full HTTP(S) URL |
+| First name | `schema:givenName` | |
+| Alternate name | `schema:alternateName` | Alternative names or spellings |
+| Link | `owl:sameAs` | GND, VIAF, Wikidata, etc. Must be a full HTTP(S) URL |
 | Gender | `schema:gender` | Allowed values: `female`, `male`, `diverse` |
 | Birth date | `schema:birthDate` | Single date (YYYY-MM-DD) or a date span |
-| Birth place | `melod:birthPlace` | Linked entity dropdown (Place) |
+| Birth place | `schema:birthPlace` | Linked entity dropdown (Place) |
 | Death date | `schema:deathDate` | Same pattern as birth date |
-| Death place | `melod:deathPlace` | Linked entity dropdown (Place) |
+| Death place | `schema:deathPlace` | Linked entity dropdown (Place) |
+| Occupation | `schema:hasOccupation` | |
+| Description | `schema:description` | |
 
 ---
 
@@ -105,7 +111,7 @@ An organisation relevant to the catalogue — publisher, library, archive, resea
 
 A geographic location — city, region, country — used as a reference point for persons, events, performances, institutions, expressions and venues.
 
-**Key fields:** name, Link/SameAs (Geonames, GND, Wikidata, ...), geographic coordinates, description.
+**Key fields:** name, country, Link/SameAs (Geonames, GND, Wikidata, ...), description.
 
 ---
 
@@ -115,7 +121,7 @@ A geographic location — city, region, country — used as a reference point fo
 
 A specific performance venue such as a concert hall, opera house, or church. More specific than Place — a Venue is located in a Place.
 
-**Key fields:** name, place (linked Place), capacity, description, external link.
+**Key fields:** name, place (linked Place), description, external link.
 
 ---
 
@@ -165,7 +171,29 @@ A general event entity for non-performance contexts — a conference, workshop, 
 
 A letter or correspondence document. Used to document primary source material such as composers' letters that relate to specific works or expressions.
 
-**Key fields:** title of the letter, sender (linked Person or Institution), recipient (linked Person or Institution), date (single date or date span), sent place (linked Place), received place (linked Place), description.
+**Key fields:** title of the letter, sent and received (each with participant (linked Person), place (linked Place) and date), repository (linked Institution), shelfmark and former shelfmark, description. Letters are modelled with the [correspSearch](https://correspsearch.net/) vocabulary.
+
+---
+
+## Catalog Entities
+
+### DataCollection
+
+**Class:** `melod:DataCollection` | **Folder:** `dataCollections/`
+
+A named collection of works or manifestations, e.g. a work catalogue or a source catalogue, belonging to the data catalog of the repository. The default collections `dataCollections/works.ttl` ("All works") and `dataCollections/manifestations.ttl` ("All manifestations") are created automatically; new works and manifestations are added to them.
+
+**Key fields:** name, data catalog, type (work catalog or source catalog), restrictions of use, status (draft, candidate, approved, published), responsible.
+
+---
+
+### DataCatalog
+
+**Class:** `melod:DataCatalog` | **File:** `dataCatalogs/catalog.ttl`
+
+The data catalog describes the catalogue of the repository as a whole. There is exactly one per repository; it is created automatically and edited via the **Catalog metadata** button.
+
+**Key fields:** name, contributors with roles (data manager, data contributor, editor, contributor, publisher), application ("MerMEId MeLODy"), description.
 
 ---
 
@@ -177,6 +205,9 @@ All entity folders are present in a data repository created from the [MerMEId Me
 my-catalogue/
 ├── configuration/
 │   └── config.json
+├── dataCatalogs/
+│   └── catalog.ttl
+├── dataCollections/
 ├── works/
 ├── expressions/
 ├── manifestations/
@@ -189,7 +220,12 @@ my-catalogue/
 ├── instrumentations/
 ├── bibliography/
 ├── events/
-└── letters/
+├── letters/
+├── indexes/                
+└── modules/
+    └── datasets-generator/
 ```
+
+The GitHub template additionally contains the workflows in `.github/workflows/` and the data validation (`package.json`, `tests/`); the GitLab template contains a `.gitlab-ci.yml`. Folders for entity types without examples (e.g. `events/`, `letters/`) may be missing in the template — they are created when the first entity of that type is saved.
 
 The folder names are defined in the configuration of the editor. Do not rename these folders.

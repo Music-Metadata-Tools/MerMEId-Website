@@ -2,61 +2,61 @@
 
 This page covers the most common problems encountered when using MerMEId MeLODy and explains how to resolve them.
 
-For detailed error information, **open your browser's developer console** (press `F12` or `Ctrl+Shift+I`, then go to the **Console** tab). Error messages from isomorphic-git and from the editor's own modules appear there and are usually descriptive enough to pinpoint the cause.
+For detailed error information, **open your browser's developer console** (press `F12` or `Ctrl+Shift+I`, then go to the **Console** tab). Error messages from the GitHub/GitLab API and from the editor's own modules appear there and are usually descriptive enough to pinpoint the cause.
 
 ---
 
 ## Clone Fails / No Branches Listed
 
-**Symptom:** Clicking "Next" in the Add Repository dialog shows no branches, or displays an error.
+**Symptom:** Clicking "Next" in the Add Repository dialog shows no branches, or displays an error such as *"Failed to load branches. Please check the repository URL, username and personal access token, then press "Next" again."* or *"The repository URL is not valid."*
 
 **Possible causes and solutions:**
 
-- **Wrong URL format.** The repository URL must start with `https://` (not `http://` and not `git@`) and end with `.git`. Example: `https://github.com/yourname/my-catalogue.git`. Copy the URL from the "Clone" dropdown on GitHub/GitLab and make sure to select the HTTPS variant, not SSH.
+- **Wrong URL format.** The repository URL must point to a repository on GitHub or GitLab, e.g. `https://github.com/yourname/my-catalogue` or `https://gitlab.com/group/subgroup/my-catalogue`. The `.git` ending is optional, and SSH URLs (`git@...`) are converted automatically. Other Git hosts are not supported.
 
-- **Wrong token scope.** Your personal access token must have permission to read the repository. On GitHub, this means the `repo` scope. On GitLab, this means `read_repository`. Tokens with only package or CI scopes will not work. Generate a new token with the correct scope if needed.
+- **Wrong token scope.** Your personal access token must have permission to access the repository via the API. On GitHub, this means the `repo` scope (classic token) or **Contents: Read and write** (fine-grained token). On GitLab, this means the `api` scope. Tokens with only `read_repository`/`write_repository`, package or CI scopes will not work. Generate a new token with the correct scope if needed.
 
 - **Repository is empty.** A newly created repository that contains no commits cannot be cloned. GitHub and GitLab show an empty state page when you visit a repository with no commits. To resolve this, initialize the repository — the easiest way is to create it from the [MerMEId MeLODy Template](https://github.com/Music-Metadata-Tools/MerMEId-MeLODy-Template), which already contains an initial commit.
 
-- **CORS proxy unreachable.** If the proxy at `https://cors.isomorphic-git.org` is temporarily unavailable, all Git operations will fail. Try again after a few minutes.
+- **API rate limit.** GitHub limits the number of API requests without a token, and self-hosted GitLab instances may reject too many requests (HTTP 429). The editor retries automatically; if the error persists, wait a few minutes and always use a personal access token.
 
 ---
 
-## Push Fails After Sync
+## Sharing Fails
 
-**Symptom:** Clicking "Share files" fails with an error like "rejected — non-fast-forward" or similar.
+**Symptom:** Clicking "Share files" fails with the message *"Failed to share files with remote repository. Try to synchronize before sharing."*
 
-**Cause:** The remote repository has new commits that your local copy does not have. This can happen if someone else pushed to the repository while you were working.
+**Possible causes:** The personal access token has expired or lacks write permission, or the branch has been changed online in a way that prevents the commit.
 
 **Solution:**
 
-1. Click **"Synchronise"** (arrow-clockwise icon) to pull the latest changes.
-2. Once the pull completes successfully, try **"Share files"** again.
-
-If the sync itself fails due to a conflict (see below), resolve the conflict before pushing.
+1. Check the token in the **Repository settings** (gear icon) and replace it if necessary.
+2. Click **"Synchronize repository"** (cloud-download icon) to download the latest changes.
+3. Once the synchronisation completes successfully, try **"Share files"** again.
 
 ---
 
-## Push Fails With Conflict Warning
+## Sharing Conflicts
 
-**Symptom:** A conflict warning appears listing files that have been modified both locally and on the remote.
+**Symptom:** The **Sharing conflicts** dialog appears listing files that have been changed both locally and online.
 
-**Cause:** The same file was modified both in your local staged changes and in a remote commit. MerMEId MeLODy detects this before allowing the push and blocks the operation to prevent data loss.
+**Cause:** The same file was modified both in your local staged changes and in a remote commit since your last synchronisation. MerMEId MeLODy detects this before sharing to prevent data loss.
 
 **Solution:**
 
-- You need to unstage your local changes for the conflicting file(s) (use the Unstage button in the Share Files section), then synchronise.
+- Decide for each file whether to **keep your version**, **use the online version**, or **decide later**, then click **Apply and share**. See [Conflict Check Before Sharing](git_workflow.md#conflict-check-before-sharing) for details. You don't need to unstage the files first.
 
 ---
 
 ## Form Is Empty After Opening a File
 
-**Symptom:** Clicking a `.ttl` file in the repository tree opens the editor panel but the form shows no fields or no data.
+**Symptom:** Clicking a `.ttl` file in the repository tree opens the editor panel but the form shows no fields or no data, or a message like *"The selected document needs one statement with entity IRI and entity type!"* or *"The selected file is empty or does not exist anymore."* appears.
 
 **Possible causes:**
 
 - **The file contains malformed Turtle.** If a `.ttl` file was edited outside the editor and contains syntax errors, `shacl-form` may fail to parse it and render an empty form. Check the browser console for parsing errors. Correct the file in a text editor or ask an admin.
-- **The SHACL shape could not be loaded.** If the `shacl_file_location` for the entity type is a URL that cannot be fetched (e.g. a wrong path or a 404), the form will be empty. Check the path in `configuration/editor-default.ttl`.
+- **The file has no or more than one typed entity.** Each file must contain exactly one subject with a `urn:uuid:` IRI and a `melod:` type.
+- **The SHACL shape could not be loaded.** If the `shacl_file_location` for the entity type is a URL that cannot be fetched (e.g. a wrong path or a 404), the form will be empty. Check the path in `configuration/editor-default.ttl` of the editor (not of the data repository).
 
 ---
 
@@ -66,13 +66,10 @@ If the sync itself fails due to a conflict (see below), resolve the conflict bef
 
 **Possible causes and solutions:**
 
-- **`config.json` is missing or has a wrong `datasetBaseUrl`.** The search component fetches index files from the URL in `configuration/config.json`. If this file is missing or the URL is wrong (e.g. pointing to a non-existent page), no indexes will load. Open the repository's `configuration/config.json` and check the `datasetBaseUrl` value. It should point to a GitLab/GitHub Pages URL where the aggregated index `.ttl` files are published. For details on how datasets are built and published, see [Datasets Generation](../developer/datasets.md).
+- **The `indexes/` folder is missing or empty.** The search reads the index files from the `indexes/` folder of your repository. These files are generated by the CI/CD pipeline after each push to `main` and are updated by the editor whenever you save an entity. If the repository has no index files yet, they are created the first time you save an entity of each type. For details on how indexes are built, see [Datasets Generation](../developer/datasets.md).
+- **Need to reload.** Click the **"Reload indexes"** button (arrow-clockwise icon in the editor toolbar) or reload the browser page.
 
-- **Indexes have not been published yet.** The index files are generated by a CI/CD pipeline that runs after each push. If the repository was just created or the pipeline has not run yet, there are no index files to fetch. Push at least one entity and wait for the pipeline to complete (usually under two minutes). Then click **"Synchronise"** or reload the page to trigger a fresh index reload.
-
-- **Need to reload.** After a push and pipeline run, the editor may need a manual trigger to reload the indexes. Click **"Synchronise"** or reload the browser page.
-
-- **No repository is selected.** If no repository is active (nothing is highlighted in the repository tree), the search panel does not know which dataset URL to use. Click your repository name to select it and click on the **"Synchronize"** button.
+- **No repository is selected.** If no repository is active (nothing is highlighted in the repository tree), the search panel does not know which indexes to use. Click your repository name to select it.
 
 ---
 
@@ -80,17 +77,34 @@ If the sync itself fails due to a conflict (see below), resolve the conflict bef
 
 **Symptom:** The left panel is empty on first visit.
 
-**This is expected behaviour.** MerMEId MeLODy stores everything in the browser's IndexedDB. On a fresh browser profile (or after clearing browser data), there are no repositories yet. Use the **"Add repository"** button (folder-plus icon) to connect your first repository by cloning it.
+**This is expected behaviour.** MerMEId MeLODy stores everything in the browser's private storage (Origin Private File System). On a fresh browser profile (or after clearing browser data), there are no repositories yet. Use the **"Add repository"** button (folder-plus icon) to connect your first repository.
+
+For **local folders**, the browser asks again for permission to access the folder after a restart. Click the repository and allow access. If access is not granted, the warning *"Access to the local folder … was not granted."* is shown.
 
 ---
 
-## Changes Not Visible in Search After Pushing
+## Changes of Others Not Visible in Search
 
-**Symptom:** You pushed new or updated entities, but they do not appear in the search results.
+**Symptom:** Other users pushed new or updated entities, but they do not appear in your search results.
 
-**Cause:** The search index is generated by a CI/CD pipeline on your Git host (GitHub Actions or GitLab CI) after each push. This pipeline takes some time — typically 30 seconds to a few minutes.
+**Cause:** Your local copy of the repository — including the `indexes/` folder — only changes when you synchronise. In addition, the CI/CD pipeline on your Git host (GitHub Actions or GitLab CI) regenerates the index files after each push to `main`, which takes some time — typically 30 seconds to a few minutes.
 
-**Solution:** Wait for the pipeline to finish. You can monitor its progress on GitHub (Actions tab) or GitLab (CI/CD → Pipelines). Once the pipeline has completed and the index files are published, click **"Synchronise"** in the editor to trigger a fresh reload of the indexes.
+**Solution:** Click **"Synchronize repository"** to download the latest files and indexes. If the indexes are still outdated, wait for the pipeline to finish. You can monitor its progress on GitHub (Actions tab) or GitLab (Build → Pipelines), then synchronise again.
+
+Your own saved changes are visible in the search immediately, without sharing.
+
+---
+
+## Synchronising Is Not Possible
+
+**Symptom:** The message *"No personal access token. Synchronizing is not possible."* appears, or the **Synchronize repository** or **Share files** buttons are disabled.
+
+**Solution:**
+
+- Add a personal access token in the **Repository settings** (gear icon).
+- For local folders: synchronising and sharing require a remote repository configured in the folder's `.git/config`.
+- **Share files** is enabled only when at least one file is checked.
+- Try to select the repository first.
 
 ---
 
@@ -98,9 +112,9 @@ If the sync itself fails due to a conflict (see below), resolve the conflict bef
 
 **Symptom:** A feature does not work as expected in a particular browser.
 
-**Recommendation:** Use **Chrome or Edge** (any recent Chromium-based version) for the best experience. Both support all features used by MerMEId MeLODy, including IndexedDB, the File System Access API, and the Web Crypto API.
+**Recommendation:** Use **Chrome or Edge** (any recent Chromium-based version) for the best experience. Both support all features used by MerMEId MeLODy, including the Origin Private File System, the File System Access API, and the Web Crypto API.
 
-**Firefox** works for most operations (cloning, editing, saving, pushing, pulling, searching) but has limited support for the **File System Access API**. The local filesystem mode (direct access to a folder on your disk) may not be available in Firefox.
+**Firefox** works for most operations (adding repositories, editing, saving, sharing, synchronising, searching) but does not support the **File System Access API**. The local folder mode (direct access to a folder on your disk) is not available in Firefox.
 
 **Safari** is not officially tested. Some features may not work.
 
@@ -113,4 +127,4 @@ Most errors in MerMEId MeLODy produce a message in the browser's developer conso
 - **Chrome / Edge:** press `F12` or `Ctrl+Shift+I`, then click the **Console** tab.
 - **Firefox:** press `F12` or `Ctrl+Shift+I`, then click the **Console** tab.
 
-Look for red error messages. isomorphic-git errors in particular are descriptive (e.g. `HttpError: HTTP Error: 401 Unauthorized` if your token is wrong, or `MergeNotSupportedFail` if a merge conflict occurred). Copy the error message when reporting a bug on [GitHub Issues](https://github.com/Music-Metadata-Tools/MerMEId-MeLODy/issues).
+Look for red error messages. API errors in particular are descriptive (e.g. `GitHub API error: 401` or `GitLab API error: 401` if your token is wrong or expired, `403` if it lacks permissions, or `404` if the repository URL is wrong). Copy the error message when reporting a bug on [GitHub Issues](https://github.com/Music-Metadata-Tools/MerMEId-MeLODy/issues).

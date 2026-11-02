@@ -9,24 +9,26 @@ This section documents the technical architecture of MerMEId MeLODy for develope
 - [Local Setup](local.md) — how to run every part of the tool on your local machine
 - [Architecture Overview](architecture.md) — bootstrap sequence, technology stack, and module structure
 - [Components & Events](components.md) — detailed reference for each web component and the complete event map between them
+- [Services](services.md) — shared filesystem and index store services, credentials, storage, conflict detection
 - [SHACL Shapes](shacl_shapes.md) — how to define and extend form fields using SHACL
-- [Datasets Generation](datasets.md) — how SPARQL queries build search indices and dropdowns from entity data
+- [Datasets Generation](datasets.md) — how SPARQL queries build search indexes and dropdowns from entity data
 - [Extending the Editor](extending.md) — how to add new entity types, SHACL shapes, and MEI/XML converters
-- [Repository Configuration](repo_config.md) — `config.json` fields: dataset URL and IRI prefix
+- [Repository Configuration](repo_config.md) — `config.json` fields: dataset URL, IRI prefix and ID prefixes
 
 ---
 
 ## At a Glance
 
-MerMEId MeLODy is a **static, browser-only MEI metadata editor** — there is no backend server. All operations runs entirely in the browser and produces RDF that is structurally aligned with MEI (Music Encoding Initiative) standards:
+MerMEId MeLODy is a **static, browser-only MEI metadata editor** — there is no backend server. All operations run entirely in the browser and produce RDF that is structurally aligned with MEI (Music Encoding Initiative) standards:
 
-- Git operations are performed in-memory using [isomorphic-git](https://isomorphic-git.org/) with [LightningFS](https://github.com/isomorphic-git/lightning-fs) (an `IndexedDB`-backed virtual filesystem)
+- Repositories are stored in the browser's [Origin Private File System](https://developer.mozilla.org/en-US/docs/Web/API/File_System_API/Origin_private_file_system) (OPFS), or in a local folder opened via the [File System Access API](https://developer.chrome.com/docs/capabilities/web-apis/file-system-access)
+- Cloning, pulling and pushing go directly through the GitHub or GitLab REST/GraphQL APIs (`modules/filesystem-manager/api-provider.js`) — no CORS proxy is needed. [isomorphic-git](https://isomorphic-git.org/) is used locally (repository config, staging, walking the working directory)
 - The UI is built with [Lit](https://lit.dev/) web components and [Shoelace](https://shoelace.style/)
-- Forms are generated automatically from SHACL shapes by the [shacl-form](https://github.com/ulb-darmstadt/shacl-form) component
-- RDF data is queried via an in-browser [Oxigraph](https://github.com/oxigraph/oxigraph) SPARQL engine
-- All dependencies are loaded from CDNs — no build step is required
+- Forms are generated automatically from SHACL shapes by the [shacl-form](https://github.com/ulb-darmstadt/shacl-form) component, in the MerMEId fork [mermeid-shacl-form](https://github.com/Music-Metadata-Tools/mermeid-shacl-form)
+- RDF data is queried via an in-browser [Oxigraph](https://github.com/oxigraph/oxigraph) SPARQL engine — also used to generate the search indexes directly in the browser
+- All dependencies are loaded from CDNs — no build step is required. An importmap in `index.html` maps the aliases `#isomorphic-git`, `#isomorphic-git-http` and `#oxigraph`; the same aliases are mapped for Node.js via `"imports"` in `package.json`, so the tests run the same modules. 
 
-Components communicate exclusively through **custom DOM events**. There are no direct references between components, keeping the architecture loosely coupled and each component independently testable.
+Components communicate mostly exclusively through **custom DOM events**. There are no direct references between components, keeping the architecture loosely coupled and each component independently testable.
 
 ---
 
@@ -107,10 +109,17 @@ If you are working on core functionality (filesystem management, git operations)
 
 ```bash
 npm install
-npm test
+npm test            # runs all tests with Vitest
+npm run test:watch  # re-runs tests on file changes
 ```
 
 Requires [Node.js](https://nodejs.org) v22 or later.
+
+To run only the unit tests (filesystem and RDF-XML converter):
+
+```bash
+npx vitest run tests/virtual-filesystem.test.js tests/rdf-xml-converter.unit.test.js
+```
 
 For integration tests (real clone/pull/push operations), you need a test repository and a GitHub personal access token. Create a repository from the [MerMEId MeLODy Template](https://github.com/Music-Metadata-Tools/MerMEId-MeLODy-Template) and add a `.env` file in the project root:
 
@@ -121,6 +130,8 @@ TEST_REPO_URL=<URL of your test repository>
 ```
 
 Integration tests are automatically skipped if these variables are not set.
+
+On GitHub, the **Unit Tests** workflow (`.github/workflows/test-unit.yml`) runs automatically for every pull request against `main`. The **Integration Tests** workflow (`.github/workflows/test-integration.yml`) is started manually by a maintainer (Actions → Integration Tests → Run workflow, with a branch or `refs/pull/<n>/head` as ref); it uses the repository secrets `TEST_GITHUB_TOKEN`, `TEST_GITHUB_USERNAME` and `TEST_REPO_URL`. The editor itself is deployed to GitHub Pages on every push to `main` (`.github/workflows/pages.yml`).
 
 ---
 

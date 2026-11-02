@@ -8,12 +8,12 @@ This page gives a complete walkthrough of the MerMEId MeLODy user interface. The
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│  BETA                MerMEId MeLODy                [GitHub]         │
+│  BETA          MerMEId MeLODy        [Language: EN] [Docs] [GitHub] │
 ├─────────────────┬───────────────────────────────┬───────────────────┤
 │ Search Panel    │  Editor Panel                 │  Output Panel     │
 │                 │                               │                   │
 │ Entity Search   │  Entity Editor                │  XML | RDF |      │
-│                 │                               │  Preview          │
+│                 │                               │  Preview | Graph  │
 │                 │  [toolbar]                    │                   │
 │                 │  Entity type + IRI            │                   │
 │                 │  shacl-form                   │                   │
@@ -29,7 +29,11 @@ This page gives a complete walkthrough of the MerMEId MeLODy user interface. The
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
-The **header** shows the BETA badge (click it to read a popup with the beta disclaimer and contact information), the application title, and a GitHub link.
+The **header** shows the CDMD logo with the BETA badge (click it to read a popup with the beta disclaimer and contact information), the application title, and three buttons:
+
+- **Language** — switches the user interface between English and German (**Language: EN** / **Language: DE**). The selected language is used for buttons, entity type names and the labels in the forms. Some dialogs and messages are currently only available in English. The selection is not remembered after reloading the page.
+- **Docs** — opens this documentation.
+- **GitHub** — opens the source code repository of the editor.
 
 The **footer** shows the logos of the funding and partner institutions: DFG, CDMD, ZenMEM, and ADW Mainz.
 
@@ -43,7 +47,7 @@ The search panel let you find entities across the entire dataset without navigat
 
 ### Controls
 
-- **Type filter dropdown** — narrows your search to a specific entity type (Person, Place, Work, Institution, etc.). Select **All** to search across all entity types.
+- **Type filter dropdown** — narrows your search to a specific entity type (Person, Place, Work, Institution, Data Collection, etc.). Select **All** to search across all entity types.
 - **Search input field** — type a name, keyword, or phrase to find matching entities. The search is case-insensitive and looks across multiple fields:
   - **Primary labels** — the main name or title of an entity
   - **Alternative labels** — alternate names or spellings registered for an entity (e.g., if "J.S. Bach" and "Johann Sebastian Bach" are both registered) or alternative/uniform titles
@@ -58,11 +62,11 @@ The search panel let you find entities across the entire dataset without navigat
 
 ### Important Note About Search Results
 
-The search shows entities from the **last pushed state** of the repository, not your unsaved local changes. This means:
+The search reads the index files in the `indexes/` folder of the selected repository. The editor updates these index files itself whenever you save, delete or unstage an entity, and when you synchronise. This means:
 
-- If you've just created or edited an entity locally but haven't pushed yet, it won't show up in search results.
-- New results appear after the repository is pushed and the server indexes are updated (this typically takes 1-2 minutes).
-- To sync your local view with the latest published results, use the **Synchronise** button in the Repository Panel.
+- Entities you have just created or edited appear in the search results **immediately after saving**, even before you share them.
+- Changes made by other people appear after you **synchronize** the repository.
+- To reload the search indexes manually, use the **Reload indexes** button (arrow-clockwise icon, far left in the editor toolbar).
 
 ---
 
@@ -76,16 +80,27 @@ The repository panel shows your cloned repositories, their folder structure, and
 
 | Icon | Action | Description |
 | :--- | :--- | :--- |
-| Folder-plus | **Add repository** | Opens the clone dialog to connect a new Git repository |
-| Arrow-clockwise | **Synchronise** | Pulls the latest changes from the remote repository |
+| Folder-plus | **Add repository** | Opens the dialog to connect a new Git repository or a local folder |
+| Folder-minus | **Remove repository** | Removes the repository from the browser's storage (does not delete the remote) |
 | Folder | **Rename repository** | Renames the display name shown in the editor (does not affect the remote) |
-| Folder-minus | **Remove repository** | Removes the repository from the browser's virtual filesystem (does not delete the remote) |
+| Cloud-download | **Synchronize repository** | Downloads the latest changes from the remote repository |
+| File-minus | **Remove entity** | Deletes the entity file selected in the tree |
+| Gear | **Repository settings** | Changes the username and personal access token stored for the repository |
+| Journal-bookmark | **Catalog metadata** | Opens the metadata form of the repository's data catalog |
 
-These buttons operate on whichever repository is currently selected (highlighted in the tree).
+These buttons operate on whichever repository is currently selected (highlighted in the tree). They are enabled once you have clicked or expanded a repository. **Synchronize repository** is disabled for local folders without a configured remote.
+
+### The Repository Settings Dialog
+
+Opens a dialog with the **username** and **personal access token** used for the selected repository. Use it to add a token to a repository that was added without one, or to replace an expired token. Click **Save** to store the new values.
+
+### The Catalog Metadata Dialog
+
+Each repository contains one data catalog (`dataCatalogs/catalog.ttl`) that describes the catalogue as a whole — its name, contributors with their roles, and a description. The dialog shows the catalog in a form; **Save** is enabled once the form is valid. Saving stages the file in the Share Files section.
 
 ### The Repository Tree
 
-Each repository is shown as a collapsible tree. Click the arrow next to a folder to expand it. The tree is **lazy-loaded** — folder contents are fetched from the virtual filesystem only when you expand a node.
+Each repository is shown as a collapsible tree. Click the arrow next to a folder to expand it. The tree is **lazy-loaded** — folder contents are read from the browser's storage only when you expand a node.
 
 Each tree node is one of:
 
@@ -99,12 +114,13 @@ Files that have been modified and saved (staged) are visually indicated in the t
 
 At the bottom of the repository panel is the **Share files** section. This lists all files that have been saved locally but not yet pushed to the remote repository.
 
-- Each staged file has a **checkbox** next to it.
-- Check the boxes for the files you want to include in the next commit.
-- Click the **"Share files"** button (cloud-upload icon) to commit and push the selected files.
-- Click the **"Unstage files"** button (arrow-counterclockwise icon) to discard local changes and restore the file from the last committed state.
+- Each staged file is listed with its path (e.g. `persons/2847362910.ttl`) and a **checkbox** next to it. Click the file name to open it in the editor.
+- Check the boxes for the files you want to include in the next commit, or use the **Select all** button (check-square icon) to select or deselect all files.
+- Optionally enter a **Commit-Message**. If you leave it empty, the date and your username are used.
+- Click the **"Share files"** button (cloud-upload icon) to commit and push the selected files. The button is enabled once at least one file is selected.
+- Click the **"Unstage files"** button (arrow-counterclockwise icon) to discard local changes and restore the files to the last synchronised state.
 
-Deleted entities also appear here with a `-deleted` suffix in the filename.
+Deleted entities also appear here with a `-deleted` suffix in the filename, if the file already existed in the remote repository.
 
 ---
 
@@ -118,10 +134,11 @@ The editor panel is the main working area. It displays the form for the currentl
 
 | Icon | Action | Description |
 | :--- | :--- | :--- |
-| Plus | **New** | Opens the entity type dialog to create a new entity |
-| Floppy disk / Save | **Save** | Saves the current entity to the virtual filesystem and stages it for git |
-| Arrow-counterclockwise | **Undo** | Reverts the form to the last saved state (discards unsaved changes) |
-| File-minus | **Remove entity** | Deletes the current entity (prompts for confirmation) |
+| Arrow-clockwise | **Reload indexes** | Reloads the search and dropdown indexes from the repository's `indexes/` folder |
+| File-plus | **New** | Opens the entity type dialog to create a new entity |
+| Floppy disk | **Save** | Saves the current entity to the browser's storage and stages it for sharing |
+| File-minus | **Delete** | Deletes the current entity (prompts for confirmation) |
+| Arrow-counterclockwise | **Undo** | Discards all unsaved changes and resets the form to the state in which the entity was loaded |
 
 ### Entity Type and IRI Display
 
@@ -134,7 +151,7 @@ These are read-only and generated automatically when a new entity is created.
 
 ### The Form (shacl-form)
 
-The form is rendered by the [shacl-form](https://github.com/ulb-darmstadt/shacl-form) web component. It is generated automatically from the SHACL shape file for the entity type. Each field in the form corresponds to an RDF property defined in the SHACL shape.
+The form is rendered by the [shacl-form](https://github.com/ulb-darmstadt/shacl-form) web component (in the MerMEId-specific version [mermeid-shacl-form](https://github.com/Music-Metadata-Tools/mermeid-shacl-form)). It is generated automatically from the SHACL shape file for the entity type. Each field in the form corresponds to an RDF property defined in the SHACL shape.
 
 See [Working with Entities](entities.md) for a detailed description of how to fill in the form.
 
@@ -148,7 +165,7 @@ When you make any change to the form, the **Save** button turns blue and a dot i
 
 **Component:** Entity Renderer (right column, tab group)
 
-The output panel on the right side of the screen renders the current entity's data in different formats. It updates when the form content is saved, not automatically.
+The output panel on the right side of the screen renders the current entity's data in different formats. The XML, RDF and Preview tabs update when an entity is opened or saved, not while you are typing. The **Preview** tab is shown by default.
 
 ### XML Tab
 
@@ -164,7 +181,16 @@ A **copy** button at the top of the tab copies the Turtle content to the clipboa
 
 ### Preview Tab
 
-Shows a **read-only rendering** of the current entity using a second `shacl-form` instance in `data-view` mode. This gives a cleaner, label-based view of the data without the editable input controls. It is useful for reviewing entries before saving.
+Shows a **read-only rendering** of the current entity using a second `shacl-form` instance in `data-view` mode. This gives a cleaner, label-based view of the data without the editable input controls. It is useful for reviewing entries before pushing.
+
+### Graph Tab
+
+Shows the **related entities** of the current entity as an interactive graph. The relations are taken from the repository's indexes, so entities linking to the current entity are shown as well as entities it links to.
+
+- Nodes are coloured by entity type; a legend and a **type filter** ("Related: All / …") let you restrict the view to one type.
+- Click a node to expand its own relations. If an entity has many relations, only the first ones are shown together with a **"+N more"** node.
+- Use the zoom buttons to zoom in, zoom out or reset the view, and switch between the **graph** and a **list** view.
+- The eye icon on a node opens the entity in the floating preview panel (see [Previewing Linked Entities](entities.md#previewing-linked-entities)).
 
 ---
 
@@ -172,4 +198,4 @@ Shows a **read-only rendering** of the current entity using a second `shacl-form
 
 On small screens, the three-panel layout collapses. A **toggle button** allows switching between the left panel and the main editing area. The output panel may require scrolling or is hidden depending on screen width.
 
-For the best experience on small screens, use landscape orientation. Full multi-panel layout requires a screen width of at least 1024px.
+For the best experience on small screens, use landscape orientation. Full multi-panel layout requires a screen width of more than 900px.

@@ -6,7 +6,6 @@ This page describes how to:
 
 * Run the editor locally
 * Use a local version of the form editor
-* Run Git operations without relying on the public Git proxy service
 
 ## Requirements
 
@@ -17,6 +16,7 @@ Depending on the setup you choose, you may need:
 | Editor only                   | Git, Python 3          |
 | Editor with local form editor | Git, Python 3, Node.js |
 | Fully offline setup           | Git, Python 3, Node.js |
+| Running the tests             | Git, Node.js (v22 or later) |
 
 You can verify that the required software is installed:
 
@@ -145,72 +145,19 @@ simply reload the browser. No server restart is required.
 
 # Fully Offline Setup
 
-By default, Git operations performed by MerMEId are routed through the public isomorphic-git proxy service:
+Earlier versions of MerMEId MeLODy routed all Git operations through the public isomorphic-git CORS proxy (`https://cors.isomorphic-git.org`). **This is no longer necessary.** Cloning, pulling, pushing and listing branches now call the GitHub API (`api.github.com`) or the GitLab API (`https://<host>/api/v4` and `/api/graphql`) directly from the browser. Both APIs allow cross-origin requests, so no proxy service is involved.
 
-```text
-https://cors.isomorphic-git.org
-```
+This means:
 
-This allows Git operations such as cloning, pulling, and pushing repositories directly from the browser.
+* When you run the editor and the form editor locally (see above), the only external requests are those to your Git host's API and to the CDNs that serve the libraries (Shoelace, Lit, isomorphic-git, Oxigraph).
+* Self-hosted GitLab instances work as long as their API allows cross-origin requests.
+* If you want to avoid the CDNs as well, download the libraries referenced in the importmap and `<script>` tags of `index.html` and point the URLs to your local copies.
 
-If you would prefer not to rely on the public service, you can run your own local proxy instead.
+The constant `CORS_PROXY` in `modules/filesystem-manager/constants.js` still exists, but it is only used by legacy code paths that are no longer called. You do not need to change it.
 
+## Working on a Local Folder
 
-## Option 1: Quick Start
-
-The easiest option is to start the proxy directly with npm:
-
-```bash
-npm install -g @isomorphic-git/cors-proxy
-cors-proxy run
-```
-
-The proxy will be available at:
-
-```text
-http://localhost:9999
-```
-
-## Option 2: Clone the Proxy Locally
-
-If you prefer to keep a local copy of the proxy source code:
-
-```bash
-git clone https://github.com/isomorphic-git/cors-proxy.git
-cd cors-proxy
-npm install
-npx cors-proxy start
-```
-
-The proxy will be available at:
-
-```text
-http://localhost:9999
-```
-
-## Configure MerMEId to Use the Local Proxy
-
-Open:
-
-```text
-modules/filesystem-manager/constants.js
-```
-
-Replace:
-
-```javascript
-export const CORS_PROXY = 'https://cors.isomorphic-git.org'
-```
-
-with:
-
-```javascript
-export const CORS_PROXY = 'http://localhost:9999'
-```
-
-Restart the editor if it is already running.
-
-All Git operations will now use your local proxy service instead of the public one.
+In Chromium-based browsers, the **Add repository** dialog can open a folder on your disk instead of loading a repository from a URL. The editor then reads and writes the files directly in that folder. If the folder has no `.git` directory, the editor runs `git init`. Sharing and synchronising still go through the GitHub/GitLab API, using the remote URL in `.git/config` (SSH remotes are converted to HTTPS for the API calls). You can also commit and push with your local Git client.
 
 ---
 
@@ -237,7 +184,7 @@ Requirements:
 
 ### Fully Offline Setup
 
-Use this setup if you want all editor components and Git operations to run locally without depending on external services.
+Use this setup if you want all editor components to run locally without depending on external services. Note that sharing and synchronising always require network access to your Git host's API.
 
 Requirements:
 

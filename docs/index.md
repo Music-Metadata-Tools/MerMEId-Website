@@ -19,9 +19,9 @@ The editor produces complex [RDF/Turtle](https://www.w3.org/TR/turtle/) output t
 
 ## How It Works
 
-MerMEId MeLODy connects your browser directly to a Git repository where all data files live. You clone the repository into the browser's virtual filesystem (backed by IndexedDB), edit entities using automatically generated forms, and push changes back to the remote — all without leaving the browser tab.
+MerMEId MeLODy connects your browser directly to a Git repository on GitHub or GitLab where all data files live. You load the repository into the browser's private storage (Origin Private File System) via the GitHub or GitLab API, edit entities using automatically generated forms, and push changes back to the remote — all without leaving the browser tab.
 
-Each entity (person, work, source, place, etc.) is stored as a separate `.ttl` file inside a typed subfolder using the MeLODy ontology, which is structurally aligned with MEI elements and FRBR hierarchies. The forms are generated on the fly from SHACL shape files stored in the repository, ensuring that your data entry follows MEI-compatible structures. The data model is fully transparent and customisable — you can adjust which fields appear in forms while maintaining compliance with MEI output requirements.
+Each entity (person, work, source, place, etc.) is stored as a separate `.ttl` file inside a typed subfolder using the MeLODy ontology, which is structurally aligned with MEI elements and FRBR hierarchies. The forms are generated on the fly from SHACL shape files shipped with the editor, combined with the index files of your data repository, ensuring that your data entry follows MEI-compatible structures. The data model is fully transparent and customisable — you can adjust which fields appear in forms while maintaining compliance with MEI output requirements.
 
 To get started you need a data repository. The quickest way is to create one from the [GitHub MerMEId MeLODy Template](https://github.com/Music-Metadata-Tools/MerMEId-MeLODy-Template) on GitHub or from the [GitLab MerMEId MeLODy Template](https://gitlab.rlp.net/adwmainz/nfdi4culture/cdmd/project_templates/mermeid-template) on GitLab RLP.
 
@@ -38,12 +38,15 @@ To get started you need a data repository. The quickest way is to create one fro
 ## Key Features
 
 - **Browser-only** — no installation, no backend server; everything runs in the browser
-- **Git-backed storage** — data is stored in a standard Git repository on GitHub, GitLab, or any HTTPS-accessible Git host
+- **Git-backed storage** — data is stored in a standard Git repository on GitHub or GitLab (gitlab.com or self-hosted instances); the editor talks directly to their APIs
+- **Local folder mode** — in Chromium-based browsers you can also work directly on a folder on your computer
+- **Local search indexes** — search and linked entity dropdowns use index files inside the repository, which the editor updates on every save
 - **RDF/Turtle output** — all metadata is stored as Linked Open Data, ready for SPARQL endpoints and LOD integration
 - **MEI output** — MEI entity snippets and full MEI work files
-- **SHACL-driven forms** — data entry forms are generated automatically from [SHACL shapes](https://www.w3.org/TR/shacl/) through the [shacl-forms](https://github.com/ULB-Darmstadt/shacl-form) webcomponent of the ULB Darmstadt, making the data model easy to read, validate, and extend
+- **SHACL-driven forms** — data entry forms are generated automatically from [SHACL shapes](https://www.w3.org/TR/shacl/) through the [shacl-forms](https://github.com/ULB-Darmstadt/shacl-form) webcomponent of the ULB Darmstadt (in the MerMEId-specific version [mermeid-shacl-form](https://github.com/Music-Metadata-Tools/mermeid-shacl-form)), making the data model easy to read, validate, and extend
 - **FRBR + MEI-based data model** — implements the MEI-compatible FRBR hierarchy (Work, Expression, Manifestation, Item) plus contextual entities (Persons, Places, Venues, Events, Performance events, Instrumentations, Bibliography, Letters); the MeLODy ontology structure mirrors both FRBR levels and MEI elements to ensure semantic precision
-- **Cross-entity linking** — link entities to each other and preview linked records in a floating side panel
+- **Cross-entity linking** — link entities to each other, preview linked records in a floating side panel and explore related entities in the graph view
+- **Multilingual interface** — the user interface and the forms are available in English and German
 - **No build step** — the source code is plain HTML and JavaScript
 
 ---

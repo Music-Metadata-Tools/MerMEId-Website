@@ -9,8 +9,10 @@ Every entity in MerMEId MeLODy has a unique IRI (Internationalized Resource Iden
 By default, entity IRIs use the `urn:uuid:` scheme combined with the entity folder name and a random integer:
 
 ```
-urn:uuid:<folder>/<randomInteger>
+urn:uuid:<folder>/<IDprefix><randomInteger>
 ```
+
+The `IDprefix` is optional and empty by default (see [Repository Configuration](../developer/repo_config.md#idprefix)).
 
 **Examples:**
 
@@ -41,6 +43,16 @@ return array[0]; // a random 32-bit unsigned integer
 ```
 
 This gives approximately **4 billion** possible values per entity type. Collisions are statistically negligible for the scale of musicological catalogues.
+
+### Fixed IRIs
+
+Some IRIs are not random. Each repository has exactly one data catalog and two default data collections, which the editor creates automatically when a repository is selected:
+
+```
+urn:uuid:dataCatalogs/catalog
+urn:uuid:dataCollections/works
+urn:uuid:dataCollections/manifestations
+```
 
 The IRI is **permanent**: once an entity is created and committed to the repository, its IRI should not be changed. All other entities that reference it (via linked fields) store the IRI directly — changing it would break those references.
 
@@ -82,43 +94,33 @@ Every Turtle file in the repository uses the entity's IRI as the subject of all 
 ```turtle
 @prefix melod:  <https://lod.academy/melod/vocab/ontology#> .
 @prefix schema: <https://schema.org/> .
-@prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
 @prefix owl:    <http://www.w3.org/2002/07/owl#> .
 
 <urn:uuid:persons/2847362910>
     a melod:Person ;
     schema:familyName "Telemann" ;
     schema:givenName "Georg Philipp" ;
-    skos:prefLabel "Georg Philipp Telemann" ;
     owl:sameAs <http://d-nb.info/gnd/11862119X> .
 ```
 
 Cross-references between entities also use IRIs directly:
 
 ```turtle
-<urn:uuid:expressions/1234567890>
-    a melod:Expression ;
-    melod:isRealisationOf <urn:uuid:works/9876543210> ;
-    melod:composer <urn:uuid:persons/2847362910> .
+<urn:uuid:works/9876543210>
+    a melod:Work ;
+    lrmoo:R3_is_realised_in <urn:uuid:expressions/1234567890> ;
+    melod:hasContribution [
+        melod:hasAgent <urn:uuid:persons/2847362910> ;
+        melod:hasRole <…> # role term from the MeLODy vocabulary, e.g. composer
+    ] .
 ```
 
 ---
 
-## The `dataset:` Namespace Patch
+## Linked Entities in the Forms
 
-SHACL shape files use a special `dataset:` namespace as a placeholder for the published dataset index URL. At runtime, the editor replaces `dataset:` with the value of `datasetBaseUrl` from `config.json`. This allows the same SHACL shapes to work with any repository without modification.
+Linked entity fields in the SHACL shapes declare the index class of the target type, e.g. `sh:class melod:PlaceEntity`. When a form is opened, the editor appends all files from the repository's `indexes/` folder to the SHACL shape, so `shacl-form` can offer every entity typed `melod:PlaceEntity` in the dropdown. The IRI of the selected entity is then stored in the Turtle file.
 
-For example, a Birth Place field in `person.shacl` might reference:
+Earlier versions used a `dataset:` namespace in the shapes that was replaced at runtime with the `datasetBaseUrl`; this mechanism has been removed.
 
-```turtle
-sh:class melod:Place ;
-melod:index <dataset:places.ttl> .
-```
-
-At runtime this becomes:
-
-```
-https://yourname.github.io/my-catalogue/datasets/places.ttl
-```
-
-See [Repository Configuration](../configuration/repo_config.md) for details on how `datasetBaseUrl` is configured.
+See [Repository Configuration](../developer/repo_config.md) and [SHACL Shapes](../developer/shacl_shapes.md) for details.

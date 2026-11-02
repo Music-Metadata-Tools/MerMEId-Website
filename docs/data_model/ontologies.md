@@ -12,9 +12,13 @@ MerMEId MeLODy does not define everything from scratch — it builds on well-est
 | [CIDOC-CRM](https://cidoc-crm.org/) | `cidoc:` | Events, places, actors (persons and institutions as agents), temporal and spatial modelling |
 | [Schema.org](https://schema.org/) | `schema:` | Persons (name, birth/death dates and places, gender, external identifiers), organisations, basic descriptive metadata |
 | [DoReMus](https://data.doremus.org/ontology/) | `mus:` | Music-specific extensions: instrumentation, medium of performance, musical keys, casting |
-| [SKOS](https://www.w3.org/TR/skos-reference/) | `skos:` | Preferred labels (`skos:prefLabel`) used for entity display names and search index entries |
+| [SKOS](https://www.w3.org/TR/skos-reference/) | `skos:` | Used in the generated index files: `skos:prefLabel` (display label), `skos:altLabel` (alternative labels), `skos:broader` (additional search context) and `skos:related` (links to related entities for the graph view) |
+| [correspSearch](https://correspsearch.net/) | `cs:` | Letters: correspondence actions (sent, received), participants, places and dates |
+| [DASH](https://datashapes.org/dash) | `dash:` | Form widget hints in the SHACL shapes (e.g. `dash:singleLine`) |
 | [OWL](https://www.w3.org/TR/owl2-overview/) | `owl:` | `owl:sameAs` for linking to external authority records (GND, VIAF, Wikidata, GeoNames, etc.) |
 | [MEI](https://music-encoding.org/) | — | Music notation and encoding concepts; XML output tab converts to MEI format for interoperability |
+
+Controlled vocabularies of the MeLODy data model (e.g. title types, roles, certainty) are published as `melod-terms.ttl` (prefix `terms:`) and imported by the SHACL shapes.
 
 ---
 

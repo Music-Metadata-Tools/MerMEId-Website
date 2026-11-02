@@ -10,7 +10,7 @@ This section documents the conceptual and technical foundations of the data mode
 
 - [Ontologies](ontologies.md) — the external vocabularies the data model is built on, and the MeLODy ontology
 - [FRBR Hierarchy](frbr.md) — the core bibliographic hierarchy: Work, Expression, Manifestation, Item
-- [Entity Types](entity_types.md) — all 13 supported entity types with fields and repository structure
+- [Entity Types](entity_types.md) — all 14 supported entity types with fields and repository structure
 
 ---
 
@@ -24,7 +24,10 @@ Work                     ← abstract creative work
       └── Manifestation  ← a published or distributed edition
            └── Item      ← a single physical or digital copy
 
-Person  Place  Venue  Institution  PerformanceEvent  Event Instrumentation  Bibliography  Letter
+Person  Place  Venue  Institution  PerformanceEvent  Event  Instrumentation  Bibliography  Letter
+
+DataCatalog              ← one per repository, describes the catalogue as a whole
+ └── DataCollection      ← groups Works / Manifestations into a work or source catalogue
 ```
 
 All entity classes are defined in the [MeLODy ontology](https://lod.academy/melod/vocab/ontology#) (`melod:` → `https://lod.academy/melod/vocab/ontology#`).

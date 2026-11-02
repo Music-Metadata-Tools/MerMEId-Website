@@ -1,6 +1,6 @@
 # Configuration
 
-MerMEId MeLODy is configured at two distinct levels: the **editor** itself (which entity types are available and how their forms look) and the **data repository** (where data is published and what IRI scheme to use). SHACL shape files provide a third layer of configuration, driving the form fields for each entity type.
+MerMEId MeLODy is configured at two distinct levels: the **editor** itself (which entity types are available and how their forms look) and the **data repository** (IRI scheme and ID prefixes). SHACL shape files provide a third layer of configuration, driving the form fields for each entity type.
 
 ---
 
@@ -9,26 +9,30 @@ MerMEId MeLODy is configured at two distinct levels: the **editor** itself (whic
 
 ```
 Editor repository
-└── configuration/
-    ├── editor-default.ttl    ← which entity types exist and which SHACL shape each uses
-    └── *.shacl               ← one shape file per entity type, defines form fields
+├── configuration/
+│   ├── editor-default.ttl    ← which entity types exist and which SHACL shape each uses
+│   └── *.shacl               ← one shape file per entity type, defines form fields
+└── modules/datasets-generator/
+    └── <folder>.sparql       ← one SPARQL query per entity folder, builds the index files
 
 Data repository
-└── configuration/
-    └── config.json           ← datasetBaseUrl and projectDomain
+├── configuration/
+│   └── config.json           ← datasetBaseUrl, projectDomain and optional IDprefix
+└── indexes/
+    └── <folder>.ttl          ← generated index files (search and dropdowns)
 ```
 
 No build step is required for most configuration changes. Editing a SHACL shape or `editor-default.ttl` takes effect immediately on the next page load.
 
 ## Editor Configuration
 
-The editor configuration file `configuration/editor-default.ttl` is a Turtle file loaded at startup. It tells the editor which entity types are available, what their display names are, where their files are stored, and which SHACL shape file defines their form.
+The editor configuration file `configuration/editor-default.ttl` is a Turtle file loaded at startup. It tells the editor which entity types are available, what their display names are in each UI language, where their files are stored, and which SHACL shape file defines their form.
 
 ---
 
 ## How It Works
 
-When the editor starts, `js/index.js` fetches `editor-default.ttl` and loads its content into an in-browser [Oxigraph](https://github.com/oxigraph/oxigraph) triple store. A SPARQL SELECT query then extracts all entity type definitions:
+When the editor starts, `js/index.js` fetches `editor-default.ttl` and loads its content into an in-browser [Oxigraph](https://github.com/oxigraph/oxigraph) triple store. A SPARQL SELECT query then extracts all entity type definitions for the current UI language:
 
 ```sparql
 SELECT ?type ?label ?folder ?shacl WHERE {
@@ -39,7 +43,7 @@ SELECT ?type ?label ?folder ?shacl WHERE {
 }
 ```
 
-The results are passed to the `adwlm-entity-editor` component as `entity_type_definitions`. This drives the "New entity" dialog and tells the editor which SHACL shape to load when a file of that type is opened.
+The results are passed to the `adwlm-entity-editor`, `adwlm-filesystem-manager` and `adwlm-graph-view` components as `entity_type_definitions`. This drives the "New entity" dialog, tells the editor which SHACL shape to load when a file of that type is opened, and determines which folders are shown in the repository tree. The query is run again whenever the UI language is changed.
 
 ---
 
@@ -51,9 +55,8 @@ Each entity type is an RDF subject with four required properties:
 @prefix melod: <https://lod.academy/melod/vocab/ontology#> .
 @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
 
-melod:Person
-    a melod:EntityType ;
-    rdfs:label "Person" ;
+melod:Person a melod:Entity ;
+    rdfs:label "Person"@en , "Person"@de ;
     melod:entity_folder_name "persons" ;
     melod:shacl_file_location "configuration/person.shacl" .
 ```
@@ -62,10 +65,12 @@ melod:Person
 
 | Property | Description |
 | :--- | :--- |
-| `a melod:EntityType` | Required type declaration — the SPARQL query matches on this |
-| `rdfs:label` | Human-readable display name shown in the "New entity" dialog (e.g. `"Person"`) |
+| `a melod:Entity` | Required type declaration — the SPARQL query matches on this |
+| `rdfs:label` | Human-readable display name shown in the "New entity" dialog (e.g. `"Person"@en`). One label per UI language (`@en`, `@de`) is required — a type without a label in the current language does not appear in the editor |
 | `melod:entity_folder_name` | Name of the folder in the data repository where files of this type are stored (e.g. `"persons"`) — **must** match the actual folder name exactly |
 | `melod:shacl_file_location` | Path or URL of the SHACL shape file for this entity type |
+
+The data catalog (`melod:DataCatalog`, `dataCatalogs/catalog.ttl`) is not registered in `editor-default.ttl`; it is edited via the catalog metadata dialog with `configuration/dataCatalog.shacl`.
 
 ---
 
@@ -93,23 +98,23 @@ Create a `.shacl` file (which is a valid Turtle file) in the `configuration/` fo
 Add a new block to `configuration/editor-default.ttl`:
 
 ```turtle
-melod:MyNewType
-    a melod:EntityType ;
-    rdfs:label "My New Type" ;
+melod:MyNewType a melod:Entity ;
+    rdfs:label "My New Type"@en , "Mein neuer Typ"@de ;
     melod:entity_folder_name "mynewtype" ;
     melod:shacl_file_location "configuration/mynewtype.shacl" .
 ```
 
-Replace `melod:MyNewType` with the full class IRI from your ontology. Update the label, folder name, and shape file path accordingly.
+Replace `melod:MyNewType` with the full class IRI from your ontology. Update the labels, folder name, and shape file path accordingly.
 
+### Step 3 — Create the data folder
 
-```
+Create the folder (e.g. `mynewtype/`) in the data repository. If it does not exist, it is created when the first entity of this type is saved.
 
 ### Step 4 — Add a search index entry (optional)
 
-If you want the new entity type to be searchable, add an entry for its index file to `adwlm-entity-search` in `modules/entity-search/index.js`. The corresponding aggregate index file (e.g. `mynewtype.ttl`) must also be generated by the CI/CD pipeline in the data repository.
+If you want the new entity type to be searchable, add a SPARQL query `modules/datasets-generator/mynewtype.sparql` to the editor and an entry for its index file to `INDEXES` in `modules/services/index-store-service.js`. See [Extending the Editor](extending.md) for details.
 
-No changes to the core editor components are needed — forms are generated automatically from the SHACL shape.
+No changes to the core editor components are needed for the form — it is generated automatically from the SHACL shape.
 
 ---
 

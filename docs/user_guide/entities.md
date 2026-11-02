@@ -7,7 +7,7 @@ This page covers the full lifecycle of an entity in MerMEId MeLODy — from crea
 ## Creating a New Entity
 
 1. Make sure a repository is **selected** (highlighted) in the left panel.
-2. Click the **"New"** button (folder-plus icon) in the editor toolbar.
+2. Click the **"New"** button (file-plus icon) in the editor toolbar.
 3. A dialog opens listing all available entity types. Select the type you want to create (e.g. **Person**, **Work**, **Place**).
 4. Click **"Create"**. The dialog closes and a blank form opens in the editor panel.
 
@@ -23,19 +23,23 @@ urn:uuid:<folder>/<randomInteger>
 
 For example, a new person entity might get the IRI `urn:uuid:persons/2847362910`.
 
+The prefix can be changed with `projectDomain` in `configuration/config.json`, and an optional `IDprefix` per folder can be placed in front of the number (e.g. `urn:uuid:works/w1477695404`). See [Repository Configuration](../developer/repo_config.md).
+
 The IRI is displayed below the toolbar in the editor panel and cannot be changed after creation.
 
 ---
 
 ## Filling in the Form
 
-The form is generated automatically from the SHACL shape for the entity type. Different field types appear depending on the property being described.
+The form is generated automatically from the SHACL shape for the entity type. Different field types appear depending on the property being described. Field labels and help texts are shown in the language selected in the header (English or German).
 
 ### Field Types
 
 **Text fields** — plain literal values. Type directly into the input. Most label and name fields are text fields (e.g. Surname, First name, title).
 
-**IRI / Link fields** — expect a full IRI (URL) as value. The field may validate that the entered value matches the expected IRI pattern. For example, the `owl:sameAs` field on a Person expects a value like `http://d-nb.info/gnd/118816X`. An error is shown if the value does not match the required pattern `^http(s)?://.+?/..+?`.
+**Rich text fields** — some description fields offer a rich text editor with basic formatting. The content is stored as HTML.
+
+**IRI / Link fields** — expect a full IRI (URL) as value. The field may validate that the entered value matches the expected IRI pattern. For example, the `owl:sameAs` field ("Link") on a Person expects a value like `http://d-nb.info/gnd/118816X`. An error is shown if the value does not match the required pattern `^http(s)?://.+?/..+?`.
 
 **Dropdown / enum fields** — a fixed list of allowed values to choose from. For example, the Gender field on a Person offers `female`, `male`, and `diverse`. Click the dropdown to see the options.
 
@@ -45,32 +49,31 @@ The form is generated automatically from the SHACL shape for the entity type. Di
 
 ### Required Fields
 
-Fields marked with an asterisk (`*`) or highlighted as required must be filled before the entity can be saved without validation errors. The form will show an inline error message if a required field is empty when you attempt to save.
+Fields marked with an asterisk (`*`) or highlighted as required must be filled before the entity can be saved. If a required field is empty or a value is invalid, saving is blocked and the message *"Cannot save entity. Please fill out all required fields or correct invalid fields."* is shown.
 
 ---
 
 ## Linking Entities
 
-Many fields reference other entities — for example, a Person has a Birth Place (linking to a Place entity), and a Work has a Composer (linking to a Person entity). These cross-references are what make the data model a true Linked Open Data graph.
+Many fields reference other entities — for example, a Person has a Birth Place (linking to a Place entity), and a Work has a Contributor (linking to a Person entity). These cross-references are what make the data model a true Linked Open Data graph.
 
 ### How Cross-References Work
 
-Linked entity fields appear as **dropdown menus** populated from the dataset's published index files. When you click on a linked entity field, a searchable list of existing entities of the appropriate type appears, loaded from the `datasetBaseUrl` configured in `configuration/config.json`.
+Linked entity fields appear as **dropdown menus** populated from the index files in the `indexes/` folder of the selected repository. When you click on a linked entity field, a searchable list of existing entities of the appropriate type appears.
 
 Select the entity you want to link. The IRI of the selected entity is written into the Turtle file as the value of the property.
-
-Because the dropdown draws from the **published** index (not from local unsaved files), a newly created entity will only appear in linked entity dropdowns after it has been pushed to the remote repository and the CI/CD pipeline has regenerated the index files.
 
 ### Quick Add
 
 If the entity you want to link does not exist yet, you do not need to leave the current form to create it. The **Quick Add** feature lets you create a new linked entity inline:
 
 1. In the linked entity field, look for the **"Quick Add"** button (the `+` button next to the field).
-2. Click it. A dialog opens with a form for the linked entity type (e.g. a Place form if you are filling in a Birth Place).
-3. Fill in the required fields and click **"Save"** in the Quick Add dialog.
-4. The new entity is saved to the virtual filesystem.
+2. Click it. A **Quick Add** dialog opens with a form for the linked entity type (e.g. a Place form if you are filling in a Birth Place).
+3. Fill in the required fields and click **"Save"** in the Quick Add dialog. The button is enabled once the form is valid; **Cancel** closes the dialog without saving.
+4. The new entity is saved, staged and added to the index, and it is **selected automatically** in the field from which you opened the dialog.
+5. Save the main form to keep the link.
 
-The Quick Add entity is staged for git in the same way as a manually saved entity — it will appear in the Share Files section and must be pushed to become available in the published index.
+The Quick Add entity is staged for git in the same way as a manually saved entity — it will appear in the Share Files section and must be shared to become available to other users.
 
 ---
 
@@ -78,51 +81,54 @@ The Quick Add entity is staged for git in the same way as a manually saved entit
 
 While editing, you can inspect any linked entity without leaving the current form:
 
-1. In the form, find a field that shows a linked entity value (displayed as a clickable link, rendered as `<a class="uuid">`).
+1. In the form, find a field that shows a linked entity value (displayed as a clickable link).
 2. Click the link.
-3. A **floating, draggable side panel** opens on the right side of the screen. It shows a read-only rendering of the linked entity using a second `shacl-form` in `data-view` mode.
+3. A **floating side panel** opens. It shows a read-only rendering of the linked entity using a second `shacl-form` in `data-view` mode. You can move the panel by dragging its header and resize it.
 4. At the top of the side panel, an **"Edit"** button opens the linked entity in the main editor (replacing the currently open form). Use with care if you have unsaved changes in the current form — you will be warned before switching.
 
-The preview panel is useful for quickly checking the details of a linked entity without navigating away from your work.
+The preview panel can also be opened from the [Graph tab](interface.md#graph-tab). It is useful for quickly checking the details of a linked entity without navigating away from your work.
 
 ---
 
 ## Saving
 
-Click the **"Save"** button (or the floppy-disk icon) to save the current entity.
+Click the **"Save"** button (floppy-disk icon) to save the current entity.
 
 ### Unsaved Changes Indicator
 
-As soon as you make any change to the form, the Save button changes appearance (turns blue and shows a dot indicator). This visual cue reminds you that the current state has not been written to the virtual filesystem yet.
+As soon as you make any change to the form, the Save button becomes active and shows a dot indicator. This visual cue reminds you that the current state has not been saved yet.
 
 ### What Happens When You Save
 
 1. The `shacl-form` serialises the current form state as RDF/Turtle.
-2. The Turtle content is written to the corresponding `.ttl` file in the virtual filesystem.
-3. The file is staged for git (`git add` + `git updateIndex`).
-4. The file appears in the **Share Files** section in the repository panel.
+2. The Turtle content is written to the corresponding `.ttl` file in the browser's storage.
+3. The file is staged for sharing.
+4. The index file of the entity type in `indexes/` is updated and the search is reloaded. The updated index file is staged as well and is shared together with your data.
+5. The file appears in the **Share Files** section in the repository panel.
 
-Saving does **not** push anything to the remote Git repository. The data is stored only in the browser's IndexedDB until you explicitly share (push) the file.
+New works and manifestations are automatically added to the repository's default data collection ("All works" or "All manifestations").
+
+Saving does **not** push anything to the remote Git repository. The data is stored only in the browser until you explicitly share (push) the file.
 
 ---
 
 ## Undoing Changes
 
-Click the **"Undo"** button (arrow-counterclockwise icon) in the entity editor toolbar to revert the current form to the last saved state.
+Click the **"Undo"** button (arrow-counterclockwise icon) in the entity editor toolbar to discard your unsaved changes.
 
-Undo only works for changes made since the last save. It restores the content of the `.ttl` file from the virtual filesystem and reloads the form. It does **not** unstage the file if it had already been staged — use the Unstage button in the Share Files section for that.
+Undo resets the form to the state in which the entity was loaded into the editor. It does **not** unstage the file if it had already been staged — use the Unstage button in the Share Files section for that.
 
 ---
 
 ## Deleting an Entity
 
 1. Open the entity you want to delete by clicking on its file in the repository tree.
-2. Click the red **"Remove Entity"** button (file-minus icon) in the entity editor toolbar or the **"Remove Entity"** button (file-minus icon) in the repositories section (left side)**.
-3. A confirmation dialog appears asking you to confirm the deletion. Click **"Confirm"** (or the equivalent confirm button).
-4. The file is removed from the repository tree and the editor is cleared.
-5. The deleted file appears in the **Share Files** section with a `-deleted` suffix in its filename (e.g. `persons/2847362910.ttl-deleted`).
+2. Click the red **"Delete"** button (file-minus icon) in the entity editor toolbar or the **"Remove entity"** button (file-minus icon) in the repositories section (left side).
+3. A **Confirm deletion** dialog appears asking *"Do you really want to delete this entity?"*. Click **"Delete"** to confirm or **"Cancel"** to abort.
+4. The file is removed from the repository tree, its entry is removed from the index, and the editor is cleared.
+5. If the file already existed in the remote repository, the deleted file appears in the **Share Files** section with a `-deleted` suffix in its filename (e.g. `persons/2847362910.ttl-deleted`). A new file that was never shared is simply removed.
 6. To push the deletion to the remote repository, check the box next to the deleted file entry and click **"Share files"**.
 
-If you change your mind before pushing, use the **Unstage files** button in the Share Files section to restore the file from the last committed state.
+If you change your mind before pushing, use the **Unstage files** button in the Share Files section to restore the file to the last synchronised state.
 
 Note: deleting an entity locally and pushing the deletion removes the file from the Git repository. Any other entities that linked to the deleted entity will retain the IRI reference but it will no longer resolve to a file.

@@ -53,7 +53,7 @@ To get started you need a data repository. The quickest way is to create one fro
 
 ## Beta Status
 
-MerMEId MeLODy is **beta software** (version 0.9, released 2026-10-26). It is actively used in ongoing cataloguing projects, but you should:
+MerMEId MeLODy is **beta software** (version 0.9, released 2026-10-27). It is actively used in ongoing cataloguing projects, but you should:
 
 - Back up your data repository regularly (it is a standard Git repository — cloning it elsewhere is sufficient)
 - Expect occasional breaking changes between versions
